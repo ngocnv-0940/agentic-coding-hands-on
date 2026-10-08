@@ -38,8 +38,8 @@
 
 | Code | Name | Type | Enforced At |
 |------|------|------|-------------|
-| PERM001_TodoRouteGuard | Chặn khách vào /todo | route-guard | `lib/supabase/proxy.ts:65` (qua `proxy.ts:4-6`) |
-| PERM002_LoginRedirectForSignedIn | Người đã đăng nhập vào /login bị chuyển sang /todo | route-guard | `lib/supabase/proxy.ts:66` |
+| PERM001_TodoRouteGuard | Chặn khách vào `/`, /todo và các trang giữ chỗ (kể cả đường dẫn con) | route-guard | `lib/supabase/proxy.ts:82` (qua `proxy.ts:4-6`) |
+| PERM002_LoginRedirectForSignedIn | Người đã đăng nhập vào /login bị chuyển sang `/`; không phải admin vào /admin* bị chuyển về `/` | route-guard | `lib/supabase/proxy.ts:83,85-87` |
 | PERM003_AuthPathsProxyBypass | Proxy bỏ qua mọi đường dẫn /auth/ | route-guard | `lib/supabase/proxy.ts:21` |
 | PERM004_StaticAssetsProxyBypass | Proxy không chạy cho tệp tĩnh và tài nguyên Next | route-guard | `proxy.ts:8-13` |
 | PERM005_AuthErrorFailClosed | Auth server lỗi thì coi như chưa đăng nhập | route-guard | `lib/supabase/proxy.ts:45-52` |
@@ -50,14 +50,14 @@
 
 ---
 
-## PERM001_TodoRouteGuard: Chặn khách vào /todo
+## PERM001_TodoRouteGuard: Chặn khách vào `/`, /todo và các trang giữ chỗ
 
 **Type**: route-guard
-**Enforced At**: `lib/supabase/proxy.ts:65` (hàm `updateSession`, gọi từ `proxy.ts:4-6`); phạm vi đường dẫn ở `lib/supabase/proxy.ts:9-11`
+**Enforced At**: `lib/supabase/proxy.ts:82` (hàm `updateSession`, gọi từ `proxy.ts:4-6`); phạm vi đường dẫn ở `lib/supabase/proxy.ts:7-27`
 
 ### Description
 
-Đường dẫn được bảo vệ là đúng `/todo` hoặc bắt đầu bằng `/todo/` (`isProtectedPath`, `lib/supabase/proxy.ts:9-11`). Khách chưa đăng nhập bị `redirect` về `/login`, query bị xóa (`url.search = ""`, dòng 58). Quyết định dựa trên `supabase.auth.getUser()` (dòng 47, hỏi Auth server xác minh), không bao giờ dùng `getSession()` (ghi chú dòng 15). Mọi redirect đều copy cookie phiên đã làm mới và header cache sang response redirect (`redirectWithCookies`, dòng 55-63), nếu không phiên vừa refresh sẽ rơi mất. Người đã đăng nhập đi qua, nhận response đã gắn cookie làm mới (dòng 67).
+Đường dẫn được bảo vệ là đúng `/` (khớp đúng, không theo tiền tố, kẻo `/login` cũng bị bảo vệ), hoặc đúng/bắt đầu bằng một trong `/todo`, `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` kèm dấu `/` (`isProtectedPath`, `lib/supabase/proxy.ts:7-27`). Layout `(main)` còn kiểm lại phiên cho `/` và các trang giữ chỗ (`app/(main)/layout.tsx:32-33`). Khách chưa đăng nhập bị `redirect` về `/login`, query bị xóa (`url.search = ""`, dòng 58). Quyết định dựa trên `supabase.auth.getUser()` (dòng 47, hỏi Auth server xác minh), không bao giờ dùng `getSession()` (ghi chú dòng 15). Mọi redirect đều copy cookie phiên đã làm mới và header cache sang response redirect (`redirectWithCookies`, dòng 55-63), nếu không phiên vừa refresh sẽ rơi mất. Người đã đăng nhập đi qua, nhận response đã gắn cookie làm mới (dòng 67).
 
 ### Related Routes
 
@@ -82,19 +82,19 @@
 
 ---
 
-## PERM002_LoginRedirectForSignedIn: Người đã đăng nhập vào /login bị chuyển sang /todo
+## PERM002_LoginRedirectForSignedIn: Người đã đăng nhập vào /login bị chuyển sang `/`
 
 **Type**: route-guard
-**Enforced At**: `lib/supabase/proxy.ts:66` (gọi từ `proxy.ts:4-6`)
+**Enforced At**: `lib/supabase/proxy.ts:83,85-87` (gọi từ `proxy.ts:4-6`)
 
 ### Description
 
-Điều kiện là `user && pathname === "/login"`, so khớp đúng `/login`, không phải tiền tố. Người đã đăng nhập mở `/login` (kể cả `/login?error=...`) bị redirect sang `/todo`, query bị xóa, cookie làm mới được copy sang redirect (dòng 55-63). Khách vẫn xem được `/login`. Trang `/` (`app/page.tsx:5-7`) chỉ gọi `redirect("/login")` cho mọi người, không tự kiểm quyền; proxy cho `/` đi qua (không phải đường dẫn bảo vệ, không phải `/login`), nên người đã đăng nhập tới `/todo` ở lượt chuyển thứ hai.
+Điều kiện là `user && pathname === "/login"`, so khớp đúng `/login`, không phải tiền tố. Người đã đăng nhập mở `/login` (kể cả `/login?error=...`) bị redirect sang `/` (trang chủ), query bị xóa, cookie làm mới được copy sang redirect (dòng 55-63). Khách vẫn xem được `/login`. Trang `/` giờ là trang chủ (`app/(main)/page.tsx`), được `/` trong nhóm bảo vệ chặn khách (PERM001); `app/page.tsx` đã xoá.
 
 ### Related Routes
 
 - (GET) /login - frontend page (route-list.md § Frontend Routes/Pages, không có mã `ROUTE###`)
-- (GET) / - frontend page, chỉ chuyển hướng (route-list.md § Frontend Routes/Pages, không có mã `ROUTE###`)
+- (GET) / - frontend page, trang chủ (route-list.md § Frontend Routes/Pages, không có mã `ROUTE###`)
 
 ### Related Screens
 
@@ -106,7 +106,7 @@
 | Role | Allow | Conditions |
 |------|-------|------------|
 | anonymous | ✓ | Xem `/login` bình thường |
-| authenticated | ✗ | Redirect `/todo` |
+| authenticated | ✗ | Redirect `/` |
 
 ### Related Modules
 
@@ -318,7 +318,7 @@ Callback không yêu cầu phiên có sẵn (đây là bước tạo phiên, và
 
 ### Description
 
-Đích của callback chỉ có hai hằng: `SUCCESS_PATH = "/todo"` và `FAILURE_PATH = "/login?error=auth_failed"` (dòng 4-6). Tham số `next` hoặc bất kỳ đích nào từ query không bao giờ được đọc (ghi chú dòng 31; `searchParams` chỉ dùng `error` và `code`, dòng 33-36). `Location` là đường dẫn tương đối (`redirectTo`, dòng 14-19), nên header `Host` hoặc `X-Forwarded-Host` giả không đổi được đích (ghi chú dòng 9-12). Nhờ đó không có open redirect. Handler đăng xuất cũng dùng `Location` tương đối cố định `/login` (`app/auth/logout/route.ts:34`).
+Đích của callback chỉ có hai hằng: `SUCCESS_PATH = "/"` và `FAILURE_PATH = "/login?error=auth_failed"` (dòng 4-6). Tham số `next` hoặc bất kỳ đích nào từ query không bao giờ được đọc (ghi chú dòng 31; `searchParams` chỉ dùng `error` và `code`, dòng 33-36). `Location` là đường dẫn tương đối (`redirectTo`, dòng 14-19), nên header `Host` hoặc `X-Forwarded-Host` giả không đổi được đích (ghi chú dòng 9-12). Nhờ đó không có open redirect. Handler đăng xuất cũng dùng `Location` tương đối cố định `/login` (`app/auth/logout/route.ts:34`).
 
 ### Related Routes
 
@@ -333,7 +333,7 @@ Callback không yêu cầu phiên có sẵn (đây là bước tạo phiên, và
 
 | Role | Allow | Conditions |
 |------|-------|------------|
-| anonymous | ✓ | Chỉ được chuyển tới `/todo` hoặc `/login?error=auth_failed`, không chọn được đích khác |
+| anonymous | ✓ | Chỉ được chuyển tới `/` hoặc `/login?error=auth_failed`, không chọn được đích khác |
 | authenticated | ✓ | Như anonymous |
 
 ### Related Modules

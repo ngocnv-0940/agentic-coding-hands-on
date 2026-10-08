@@ -114,15 +114,15 @@ sequenceDiagram
 **Who** · Khách (trình duyệt vừa quay về từ Supabase/Google) *(gate A0)*
 **FE** · Không có giao diện; chỉ trả redirect.
 **Request** · query `code` *(mã PKCE, tuỳ chọn)*; query `error`, `error_description` *(khi Google/Supabase báo lỗi hoặc huỷ, tuỳ chọn)*; cookie PKCE verifier do A2 đặt.
-**BE** · `GET` dùng server client của Supabase: có `error`, thiếu `code` hoặc `code` dài hơn 2048 ký tự thì thất bại ngay; còn lại gọi `exchangeCodeForSession(code)`; cookie phiên do `setAll` ghi vào response. Redirect là 307 với `Location` tương đối (`/todo` hoặc `/login?error=auth_failed`) và `Cache-Control: private, no-store`, nên đích không bao giờ phụ thuộc header `Host`/`X-Forwarded-Host`.
-**Rule** · **BR-002 — Đích sau đăng nhập luôn là `/todo`; không đọc tham số đích (`next`).** Vì vậy FR-103 (đăng nhập thành công vào `/todo`) không phụ thuộc đầu vào bên ngoài và không có điểm open-redirect. FR-002 (mọi tài khoản Google được phép): không có kiểm tra tên miền ở bước này.
+**BE** · `GET` dùng server client của Supabase: có `error`, thiếu `code` hoặc `code` dài hơn 2048 ký tự thì thất bại ngay; còn lại gọi `exchangeCodeForSession(code)`; cookie phiên do `setAll` ghi vào response. Redirect là 307 với `Location` tương đối (`/` hoặc `/login?error=auth_failed`) và `Cache-Control: private, no-store`, nên đích không bao giờ phụ thuộc header `Host`/`X-Forwarded-Host`.
+**Rule** · **BR-002 — Đích sau đăng nhập luôn là `/` (`SUCCESS_PATH` trong `app/auth/callback/route.ts`); không đọc tham số đích (`next`).** Vì vậy FR-103 (đăng nhập thành công vào `/`) không phụ thuộc đầu vào bên ngoài và không có điểm open-redirect. FR-002 (mọi tài khoản Google được phép): không có kiểm tra tên miền ở bước này.
 
 | DEC | subtype | Condition | What the user sees | Source |
 |---|---|---|---|---|
 | **DEC-002** | flow | có `error`, hoặc thiếu `code`, hoặc `exchangeCodeForSession` trả lỗi | Về `/login?error=auth_failed` (cờ cố định, không chép lại nội dung lỗi của Supabase) | `app/auth/callback/route.ts` |
 | **DEC-002** | flow | có `code` và đổi mã thành công | Về `/todo` kèm cookie phiên | `app/auth/callback/route.ts` |
 
-**Result** · Thành công: tạo phiên (cookie), redirect `/todo`. Thất bại/huỷ: không tạo phiên, redirect `/login?error=...` — đúng nhánh FR-402. US001 (đăng nhập thành công) khép lại ở đây; US002 (thấy lỗi) nhận nhánh lỗi. Không ghi bảng ứng dụng.
+**Result** · Thành công: tạo phiên (cookie), redirect `/`. Thất bại/huỷ: không tạo phiên, redirect `/login?error=...` — đúng nhánh FR-402. US001 (đăng nhập thành công) khép lại ở đây; US002 (thấy lỗi) nhận nhánh lỗi. Không ghi bảng ứng dụng.
 **Source:** `app/auth/callback/route.ts`
 
 ---
@@ -141,8 +141,8 @@ sequenceDiagram
 
 | DEC | subtype | Condition | What the user sees | Source |
 |---|---|---|---|---|
-| **DEC-001** | flow | `pathname` bắt đầu bằng `/todo` và không có phiên hợp lệ | Chuyển về `/login` (FR-101: khách bị chặn khỏi `/todo`) | `lib/supabase/proxy.ts` |
-| **DEC-001** | flow | `pathname` = `/login` và có phiên hợp lệ (kể cả khi có `error`) | Chuyển sang `/todo` (FR-102: người đã đăng nhập bỏ qua màn Login) | `lib/supabase/proxy.ts` |
+| **DEC-001** | flow | `pathname` là `/` (khớp đúng), hoặc bắt đầu bằng `/todo`, `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin`, và không có phiên hợp lệ | Chuyển về `/login` (FR-101: khách bị chặn khỏi `/todo`; danh sách mở rộng do F003 FR-105) | `lib/supabase/proxy.ts` |
+| **DEC-001** | flow | `pathname` = `/login` và có phiên hợp lệ (kể cả khi có `error`) | Chuyển sang `/` (FR-102: người đã đăng nhập bỏ qua màn Login) | `lib/supabase/proxy.ts` |
 | **DEC-001** | flow | trường hợp còn lại, hoặc `pathname` bắt đầu bằng `/auth/` | Cho đi tiếp, kèm cookie phiên đã làm mới | `lib/supabase/proxy.ts` |
 
 **Result** · Cookie phiên được làm mới khi cần; chuyển hướng theo DEC-001. US005 (khách bị chặn khỏi `/todo`) và US006 (người đã đăng nhập bỏ qua `/login`) hoàn tất ở đây. Không ghi bảng.
@@ -194,7 +194,7 @@ sequenceDiagram
 | A3 | Cookie PKCE verifier mất hoặc khác host (`localhost` ≠ `127.0.0.1`) | Đổi mã lỗi → `/login?error=...` |
 | A3 | `code` đã dùng hoặc hết hạn | Đổi mã lỗi → `/login?error=...` |
 | A4 | Access token hết hạn nhưng refresh token hợp lệ | Làm mới và gắn cookie mới vào redirect (BR-004) |
-| A4 | Có phiên + `/login?error=...` | Vẫn chuyển sang `/todo` (DEC-001) |
+| A4 | Có phiên + `/login?error=...` | Vẫn chuyển sang `/` (DEC-001) |
 | A5 | Request tới `/todo` lọt qua proxy | A5 tự `getUser()`, không có user thì redirect `/login` (A0 — FR-601) |
 | A6 | `GET /auth/logout` (liên kết, prefetch) | 405, không đăng xuất |
 | A6 | `signOut` lỗi | Xoá cookie `sb-*-auth-token*` (cả mảnh), vẫn 303 `/login` |
@@ -298,9 +298,9 @@ Ghi chú: chỉ dùng một host trên trình duyệt (`localhost`) vì cookie P
 Chính sách test: `e2e-red-first` — viết test Playwright (`@playwright/test`) trước, chạy phải đỏ vì đúng lý do, rồi mới cài đặt. Google/Supabase chỉ bị giả lập ở biên mạng trong test (server Supabase giả cho request phía máy chủ, `page.route` cho điều hướng của trình duyệt); không có mock trong mã ứng dụng.
 
 - **SC-001** *(A2)* Bấm nút: nút bị vô hiệu hoá, có chỉ báo `role="status"`, và trình duyệt gọi endpoint authorize với `provider=google`, `redirect_to` chứa `/auth/callback`, `code_challenge`; không mở tab/popup mới (covers FR-203, FR-401).
-- **SC-002** *(A3)* Callback với `code` giả hợp lệ → URL cuối là `/todo` có cookie phiên; với `error=access_denied`, không `code`, hoặc đổi mã trả 400 → URL cuối là `/login?error=...` (covers FR-402, DEC-002).
+- **SC-002** *(A3)* Callback với `code` giả hợp lệ → URL cuối là `/` có cookie phiên; với `error=access_denied`, không `code`, hoặc đổi mã trả 400 → URL cuối là `/login?error=...` (covers FR-402, DEC-002).
 - **SC-003** *(A1)* `/login?error=x` hiện đúng thông báo cố định dưới nút; `/login` thì không; giá trị `error` chứa HTML không xuất hiện trong trang (covers FR-204, BR-001, DEC-003).
-- **SC-004** *(A4)* Chưa đăng nhập vào `/todo` → `/login`; đã đăng nhập vào `/login` → `/todo` (cả khi có `error`); redirect không mất cookie (covers FR-101, FR-102, BR-004, DEC-001).
+- **SC-004** *(A4)* Chưa đăng nhập vào `/todo` → `/login`; đã đăng nhập vào `/login` → `/` (cả khi có `error`); redirect không mất cookie (covers FR-101, FR-102, BR-004, DEC-001).
 - **SC-005** *(A5, A6)* `/todo` hiện email; Logout (form `POST /auth/logout`) → `/login`; mở lại `/todo` hoặc Back → `/login`, không còn DOM `/todo` (covers FR-301, FR-104, FR-404). `GET /auth/logout` → 405; `signOut` lỗi vẫn xoá cookie và 303 `/login` (hành vi trong mã; test e2e hiện chỉ phủ luồng Logout → `/login` và Back).
 - **SC-006** *(A1)* Bố cục: logo trái trên, vùng ngôn ngữ phải trên, footer cố định khi cuộn; logo/footer/dòng giới thiệu không phản ứng khi bấm (covers FR-201, FR-202). Test case `60bc5bbb` ("tab mới hoặc popup") bị thay thế bởi quyết định chuyển hướng cùng tab trong `clarifications.md`.
 - **SC-007** *(A1)* Các chuỗi Login đổi theo locale từ F002 (covers FR-205; test thuộc F002 nhưng cần giả lập locale).
@@ -353,7 +353,7 @@ Chính sách test: `e2e-red-first` — viết test Playwright (`@playwright/test
 
 **Acceptance Scenarios:**
 
-1. **Given** có phiên hợp lệ, **When** mở `/login?error=x`, **Then** về `/todo`.
+1. **Given** có phiên hợp lệ, **When** mở `/login?error=x`, **Then** về `/`.
 
 ### 5.2 Assumptions
 
@@ -392,7 +392,7 @@ Chính sách test: `e2e-red-first` — viết test Playwright (`@playwright/test
 #### Data Flow
 
 ```text
-bấm nút -> signInWithOAuth (PKCE) -> Supabase authorize -> Google -> /auth/callback?code -> exchangeCodeForSession -> cookie phiên -> redirect /todo
+bấm nút -> signInWithOAuth (PKCE) -> Supabase authorize -> Google -> /auth/callback?code -> exchangeCodeForSession -> cookie phiên -> redirect /
 mọi request -> proxy -> updateSession (làm mới cookie) -> DEC-001 -> trang hoặc redirect (kèm cookie)
 ```
 

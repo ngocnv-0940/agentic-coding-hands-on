@@ -2,6 +2,28 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-08 — Trang chủ SAA 2025 (F003_Homepage)
+
+**Thêm**
+
+- Trang chủ `/` trong nhóm route `app/(main)/`: header cố định (điều hướng từ 1024px, chuông thông báo trống, VN/EN, menu tài khoản có Sign out), hero ROOT FURTHER với đếm ngược, thông tin sự kiện, lưới 6 giải thưởng, khối Sun* Kudos, nút widget và footer. Layout `(main)` kiểm lại phiên.
+- Trang giữ chỗ "Coming soon": `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin`; dùng lại header và footer.
+- Biến `EVENT_START_AT` (chỉ phía máy chủ) trong `.env.example`: ISO-8601 bắt buộc kèm offset hoặc `Z`; sai thì đếm ngược 00 và ngày hiện "—". Ngày hiển thị `dd/MM/yyyy` theo Asia/Ho_Chi_Minh.
+- `lib/auth/get-current-user.ts`, `lib/auth/user-role.ts`: vai trò admin chỉ từ `app_metadata.role` (không tin `user_metadata`).
+- Từ điển trang chủ tách thành `lib/i18n/dictionary-home-vi.ts` và `dictionary-home-en.ts`, gộp vào từ điển vi/en.
+- 6 spec E2E trang chủ; Supabase giả có thêm hai danh tính admin; `playwright.config.ts` đặt `EVENT_START_AT` và 4 worker.
+
+**Thay đổi**
+
+- Đích sau đăng nhập đổi từ `/todo` sang `/` (`app/auth/callback/route.ts`); `/login` khi đã đăng nhập cũng về `/`. `/todo` vẫn được bảo vệ.
+- `lib/supabase/proxy.ts`: `/` (khớp đúng) và các trang giữ chỗ (kể cả đường dẫn con) cần đăng nhập; người không phải admin vào `/admin*` bị chuyển về `/`.
+- `app/page.tsx` (chỉ `redirect('/login')`) đã xoá; `/` do `app/(main)/page.tsx` phục vụ.
+- Spec E2E của F001 và F002 cập nhật theo đích mới `/`.
+
+**Còn mở**
+
+- Trang giữ chỗ chưa có nội dung thật; widget chưa có hành động; bảng thông báo chưa có nguồn dữ liệu.
+
 ## 2026-10-08 — Đăng nhập Google qua Supabase và chọn ngôn ngữ vi/en
 
 **Thêm**

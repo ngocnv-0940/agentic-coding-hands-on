@@ -2,7 +2,7 @@
 
 **Project**: agentic-coding-hands-on
 **Generated**: 2026-10-08
-**Analysis Scope**: Next.js 16 App Router, nguồn màn hình theo route-view: `app/login/page.tsx` và `app/todo/page.tsx` (liệt kê từ route-list.md, đã đối chiếu mã nguồn)
+**Analysis Scope**: Next.js 16 App Router, nguồn màn hình theo route-view: `app/login/page.tsx`, `app/todo/page.tsx` và `app/(main)/page.tsx` (liệt kê từ route-list.md, đã đối chiếu mã nguồn)
 
 **Code Format**: All codes MUST follow `SCR###_NameSlug` format (e.g., SCR001_LoginForm, SCR002_Dashboard) | `SCR###/REG###` for region-scoped references within a composite screen
 
@@ -28,6 +28,7 @@
 |------|------|------|------------|----------------|
 | SCR001_Login | Login | atomic | 12 | 3 |
 | SCR002_Todo | Todo | atomic | 7 | 2 |
+| SCR003_Homepage | Homepage | atomic | 15 | 4 |
 
 ---
 
@@ -111,7 +112,7 @@ Trang tối thiểu được bảo vệ, nguồn `app/todo/page.tsx:11`. Hiện 
 
 ## Notes
 
-- **Không phải màn hình**: `/` (`app/page.tsx:5-7`) chỉ gọi `redirect("/login")`, không có UI nên không có SCR. Route Handler `GET /auth/callback` (ROUTE001) và `POST /auth/logout` (ROUTE002) cũng không render giao diện nên không phải màn hình.
+- **Không phải màn hình**: Các trang giữ chỗ `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` (`app/(main)/*/page.tsx`) chỉ có chữ "Coming soon" trong layout `(main)` nên chưa có SCR riêng (`/` là SCR003_Homepage). Route Handler `GET /auth/callback` (ROUTE001) và `POST /auth/logout` (ROUTE002) cũng không render giao diện nên không phải màn hình.
 - **Mã SCR giữ nguyên** `SCR001_Login`, `SCR002_Todo` theo bản nháp đã có ở `docs/generated/screen-list.md`; mã đối chiếu khớp mã nguồn.
 - **Lệch nhỏ so với bản nháp cũ**: `docs/generated/screen-list.md` ghi "language-menu-open" là một trạng thái; trong mã đó chỉ là state cục bộ `open` của bộ chọn (`language-selector.tsx:23`), không đổi URL.
 - **Phân loại SCR001_Login: atomic (không khai báo vùng)**. Thứ tự áp dụng H6 → H4 → H5 → H2 → H3 → H1 → cổng 2-trên-3:
@@ -134,7 +135,7 @@ Trang tối thiểu được bảo vệ, nguồn `app/todo/page.tsx:11`. Hiện 
 
 ## Summary
 
-- **Total Screens**: 2
+- **Total Screens**: 3
 
 ---
 
@@ -146,3 +147,9 @@ Trang tối thiểu được bảo vệ, nguồn `app/todo/page.tsx:11`. Hiện 
 - [x] All route URLs are properly formatted
 - [x] All SCR### codes are referenced in FeatureList.md
 - [x] No orphaned screen references
+## SCR003_Homepage: Homepage
+
+**Feature:** F003 — Homepage
+**Route:** /
+**Description:** Trang chủ SAA 2025 (thiết kế MoMorph `i87tDx10uM`) cho người đã đăng nhập: header cố định (điều hướng, thông báo, ngôn ngữ, tài khoản), hero ROOT FURTHER với đếm ngược tới `EVENT_START_AT`, thông tin sự kiện, lưới 6 hạng mục giải thưởng, khối Sun* Kudos, nút widget và footer; khách bị chuyển về `/login`. Nguồn `app/(main)/page.tsx` cùng layout `app/(main)/layout.tsx` (header, footer, kiểm lại phiên); `/` do layout `(main)` kiểm lại phiên sau proxy. Đặc tả đầy đủ ở `docs/screens/SCR003_Homepage/spec.md`.
+**States:** loading, empty, error, saving, success, ended

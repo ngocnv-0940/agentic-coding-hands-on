@@ -11,7 +11,7 @@ lang: vi
 ## 1. Overview
 
 **Problem:** Ứng dụng SAA 2025 chưa có cách nào xác định người dùng là ai trước khi cho vào; cần một cổng đăng nhập bằng tài khoản Google, giữ phiên đăng nhập, chặn trang nội bộ với khách và cho phép đăng xuất.
-**Solution:** Khách bấm "LOGIN With Google" trên màn Login, đăng nhập Google ngay trong cùng tab rồi vào trang `/todo`. Trang `/todo` chỉ người đã đăng nhập mới xem được; nó hiện email và nút Logout. Đăng nhập lỗi hoặc bị huỷ thì quay lại màn Login kèm thông báo lỗi ngay dưới nút.
+**Solution:** Khách bấm "LOGIN With Google" trên màn Login, đăng nhập Google ngay trong cùng tab rồi vào trang chủ `/` (trước đây là `/todo`; xem F003_Homepage). Trang `/todo` vẫn tồn tại, chỉ người đã đăng nhập mới xem được; nó hiện email và nút Logout. Đăng nhập lỗi hoặc bị huỷ thì quay lại màn Login kèm thông báo lỗi ngay dưới nút.
 **Scope:** Màn Login (vỏ màn: hero, khối giới thiệu, nút đăng nhập, thông báo lỗi, footer, logo ở header); bước đổi mã đăng nhập lấy phiên sau khi Google trả về; chặn/chuyển hướng theo trạng thái đăng nhập; trang `/todo` tối thiểu (email + Logout); đăng xuất.
 **Non-Scope:** Bộ chọn ngôn ngữ VN/EN, cookie `NEXT_LOCALE` và từ điển vi/en thuộc F002_Localization (màn Login chỉ nhận chuỗi từ từ điển đó). Không giới hạn tên miền Google, không đăng nhập bằng email/mật khẩu, không phân quyền theo vai trò, không có chức năng todo thật, không bảng dữ liệu riêng của ứng dụng.
 
@@ -26,7 +26,7 @@ lang: vi
 
 | ID | Capability | What the user can do | User Stories | Requirements | Business Rules | Screens |
 |----|------------|------------------------|-----------------|---------------|-------------------|---------|
-| CAP-01 | Đăng nhập bằng Google | Khách mở màn Login, bấm nút, đăng nhập Google rồi vào `/todo`; thất bại hoặc huỷ thì thấy thông báo lỗi và thử lại | US001, US002 | FR-001, FR-002, FR-103, FR-201, FR-202, FR-203, FR-204, FR-205, FR-401, FR-402, FR-403 | BR-001, BR-002, DEC-002, DEC-003, SM-001 | SCR001_Login |
+| CAP-01 | Đăng nhập bằng Google | Khách mở màn Login, bấm nút, đăng nhập Google rồi vào trang chủ `/`; thất bại hoặc huỷ thì thấy thông báo lỗi và thử lại | US001, US002 | FR-001, FR-002, FR-103, FR-201, FR-202, FR-203, FR-204, FR-205, FR-401, FR-402, FR-403 | BR-001, BR-002, DEC-002, DEC-003, SM-001 | SCR001_Login |
 | CAP-02 | Bảo vệ trang theo phiên | Khách không vào được `/todo`; người đã đăng nhập không phải xem lại màn Login | US005, US006 | FR-101, FR-102, FR-601 | BR-003, BR-004, DEC-001 | — |
 | CAP-03 | Xem trang cá nhân và đăng xuất | Người đã đăng nhập thấy email của mình trên `/todo` và đăng xuất về màn Login | US003, US004 | FR-104, FR-301, FR-404 | — | SCR002_Todo |
 
@@ -50,8 +50,8 @@ lang: vi
 ### Navigation (1xx)
 
 - **FR-101** Khách chưa đăng nhập mở `/todo` thì bị chuyển về `/login`.
-- **FR-102** Người đã đăng nhập mở `/login` thì bị chuyển sang `/todo`.
-- **FR-103** Đăng nhập thành công luôn đưa người dùng tới `/todo`.
+- **FR-102** Người đã đăng nhập mở `/login` thì bị chuyển sang `/` (trang chủ).
+- **FR-103** Đăng nhập thành công luôn đưa người dùng tới `/` (trang chủ).
 - **FR-104** Đăng xuất xong đưa người dùng về `/login`.
 
 ### Login (2xx)
@@ -69,7 +69,7 @@ lang: vi
 ### Interaction (4xx)
 
 - **FR-401** Bấm nút đăng nhập chuyển hướng ngay trong cùng tab sang Google, không mở tab hay cửa sổ mới.
-- **FR-402** Sau khi Google trả về, hệ thống đổi mã đăng nhập lấy phiên; thành công vào `/todo`, lỗi/huỷ/thiếu mã thì về `/login` kèm cờ lỗi.
+- **FR-402** Sau khi Google trả về, hệ thống đổi mã đăng nhập lấy phiên; thành công vào `/`, lỗi/huỷ/thiếu mã thì về `/login` kèm cờ lỗi.
 - **FR-403** Nếu không khởi động được luồng đăng nhập ngay trên màn Login, nút bật lại và thông báo lỗi hiện ra.
 - **FR-404** Đăng xuất xoá phiên của người dùng.
 
@@ -83,8 +83,8 @@ lang: vi
 - Sau đăng nhập luôn tới `/todo`; hệ thống không nhận đích chuyển hướng từ bên ngoài. (BR-002)
 - Các đường dẫn trao đổi đăng nhập không bị áp quy tắc chuyển hướng theo phiên, để bước đổi mã không bị chặn. (BR-003)
 - Mỗi lần chuyển hướng theo phiên phải giữ nguyên cookie phiên vừa được làm mới, nếu không người dùng bị đăng xuất ngầm. (BR-004)
-- Khách vào trang cần phiên thì về màn Login; người có phiên vào màn Login thì sang `/todo` (kể cả khi có cờ lỗi). (DEC-001)
-- Kết quả bước đổi mã: có cờ lỗi từ Google, hoặc thiếu mã, hoặc đổi mã lỗi thì về màn Login kèm lỗi; còn lại vào `/todo`. (DEC-002)
+- Khách vào trang cần phiên thì về màn Login; người có phiên vào màn Login thì sang `/` (kể cả khi có cờ lỗi). (DEC-001)
+- Kết quả bước đổi mã: có cờ lỗi từ Google, hoặc thiếu mã, hoặc đổi mã lỗi thì về màn Login kèm lỗi; còn lại vào `/`. (DEC-002)
 - Thông báo lỗi chỉ hiện khi có cờ lỗi trên địa chỉ màn Login; không có cờ thì không hiện gì. (DEC-003)
 - Nút đăng nhập đi qua ba trạng thái: sẵn sàng, đang khởi động (vô hiệu hoá + chỉ báo tải), lỗi (bật lại + thông báo). (SM-001)
 
@@ -211,7 +211,7 @@ lang: vi
 
 ### US006_SkipLogin — Error: người đã đăng nhập mở màn Login kèm cờ lỗi
 
-**Given** người dùng đã đăng nhập, **When** mở `/login` có cờ lỗi, **Then** vẫn sang `/todo` và không hiện thông báo lỗi.
+**Given** người dùng đã đăng nhập, **When** mở `/login` có cờ lỗi, **Then** vẫn sang `/` và không hiện thông báo lỗi.
 
 ## 9. Edge Cases
 
@@ -223,7 +223,7 @@ lang: vi
 | Đổi mã thất bại (mã đã dùng, hết hạn, hoặc mở ứng dụng bằng địa chỉ khác với lúc bấm nút) | Không tạo phiên, về màn Login kèm lỗi | "Đăng nhập không thành công. Vui lòng thử lại." |
 | Khách huỷ ở trang Google | Về màn Login kèm lỗi, nút dùng lại được | "Đăng nhập không thành công. Vui lòng thử lại." |
 | Phiên sắp hết hạn khi chuyển hướng | Phiên được làm mới và cookie mới đi kèm lần chuyển hướng | None — silent handling |
-| Người đã đăng nhập mở `/login` hoặc quay lại bằng nút Back | Chuyển sang `/todo` | None — silent handling |
+| Người đã đăng nhập mở `/login` hoặc quay lại bằng nút Back | Chuyển sang `/` | None — silent handling |
 | Khách mở `/todo` bằng đường dẫn con hoặc có tham số | Vẫn bị chuyển về `/login` | None — silent handling |
 | Tài khoản Google không có email hiển thị | Trang Todo hiện dấu gạch ở chỗ email | "—" |
 
@@ -232,8 +232,8 @@ lang: vi
 - **FR-001** → Sau khi khởi động Supabase cục bộ bằng cấu hình đã commit, nút đăng nhập dẫn tới trang đồng ý của Google (không báo nhà cung cấp chưa bật).
 - **FR-002** → Hai tài khoản Google khác tên miền đều đăng nhập được.
 - **FR-101** → `/todo` và `/todo/bất-kỳ` khi chưa đăng nhập đều dẫn về `/login`.
-- **FR-102** → `/login` khi đã đăng nhập dẫn sang `/todo`, kể cả có cờ lỗi.
-- **FR-103** → Đăng nhập thành công luôn kết thúc ở `/todo`.
+- **FR-102** → `/login` khi đã đăng nhập dẫn sang `/`, kể cả có cờ lỗi.
+- **FR-103** → Đăng nhập thành công luôn kết thúc ở `/`.
 - **FR-104** → Logout xong địa chỉ là `/login`.
 - **FR-201** → Đủ logo, vùng ngôn ngữ, hero, "ROOT FURTHER", hai dòng giới thiệu, nút và footer; logo ở góc trái trên, vùng ngôn ngữ ở góc phải trên.
 - **FR-202** → Cuộn trang, header và footer đứng yên; bấm hoặc rê lên logo, dòng giới thiệu, footer không có phản ứng.
@@ -242,7 +242,7 @@ lang: vi
 - **FR-205** → Đổi VN/EN (F002) thì chuỗi trên màn Login đổi theo, không còn chuỗi cứng sót lại.
 - **FR-301** → `/todo` hiện đúng email của tài khoản vừa đăng nhập và có nút Logout.
 - **FR-401** → Bấm nút không mở tab hay popup mới; trình duyệt rời trang trong cùng tab.
-- **FR-402** → Huỷ ở Google, thiếu mã, mã sai đều về `/login` kèm lỗi; mã đúng về `/todo`.
+- **FR-402** → Huỷ ở Google, thiếu mã, mã sai đều về `/login` kèm lỗi; mã đúng về `/`.
 - **FR-403** → Chặn mạng ngay khi bấm: nút bật lại và có thông báo lỗi.
 - **FR-404** → Sau Logout, dùng nút Back hoặc mở lại `/todo` vẫn bị chuyển về `/login`.
 - **FR-601** → Cookie phiên bị sửa tay không mở được `/todo`.

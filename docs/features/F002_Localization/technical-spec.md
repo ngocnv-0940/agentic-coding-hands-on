@@ -104,7 +104,7 @@ Khách bấm bộ chọn VN/EN trên header màn Login; lựa chọn ghi vào co
 |---|---|---|---|
 | `RootLayout` (layout gốc từ scaffold, F001_Auth cũng chạm tới) | Đặt `lang`, đặt `<title>` theo từ điển | A1 | `app/layout.tsx` |
 | `getLocale` / `getDictionary` | Đọc cookie, áp BR-001, trả từ điển | A1 | `lib/i18n/get-locale.ts`, `lib/i18n/get-dictionary.ts`, `lib/i18n/locale-config.ts` |
-| `dictionary` vi + en | Từ điển tự viết, có kiểu, cùng bộ khóa (BR-002) | A0, A1 | `lib/i18n/dictionary-vi.ts`, `lib/i18n/dictionary-en.ts` |
+| `dictionary` vi + en | Từ điển tự viết, có kiểu, cùng bộ khóa (BR-002) | A0, A1 | `lib/i18n/dictionary-vi.ts`, `lib/i18n/dictionary-en.ts` (chuỗi trang chủ F003 tách ở `dictionary-home-vi.ts`/`dictionary-home-en.ts`, được gộp vào hai file này) |
 | `setLocale` | Kiểm giá trị, ghi cookie, gọi `refresh()` | A2 | `lib/i18n/set-locale-action.ts` |
 | `LanguageSelector` (Client Component) + `LanguageSelectorContainer` | Nút + menu, DEC-002, SM-001; container nối với `setLocale` | A3 | `app/login/_components/language-selector.tsx`, `app/login/language-selector-container.tsx` |
 
