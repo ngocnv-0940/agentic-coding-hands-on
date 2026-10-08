@@ -1,0 +1,322 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Glob|Grep|Read|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook guard.jailbreak --event pre-tool-use -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook guard.breadth-scout --event pre-tool-use -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook guard.secret-read --event pre-tool-use -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook convention.descriptive-name --event pre-tool-use -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook extension.skill --event pre-tool-use -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/iac-routing-guard.cjs --project --event pre-tool-use -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook metrics.record --event pre-tool-use -a claude",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Workflow",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/workflow-opt-in-guard.cjs --project --event pre-tool-use -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/iron-laws-guard.cjs --project --event pre-tool-use -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/evidence-gate-guard.cjs --project --event pre-tool-use -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/destructive-command-guard.cjs --project --event pre-tool-use -a claude",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook session.init --event session-start -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook metrics.record --event session-start -a claude",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/takumi-bootstrap.cjs --project --event session-start -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/session-state.cjs --project --event session-start -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/memory-graph-nudge.cjs --project --event session-start -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/graph-reindex-sync.cjs --project --event session-start -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook perf.usage-cache --event session-start -a claude",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "startup|resume|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook session.activity --event session-start -a claude",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook session.prompt-context --event user-prompt-submit -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook metrics.record --event user-prompt-submit -a claude",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook perf.usage-cache --event user-prompt-submit -a claude",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook session.subagent-init --event subagent-start -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/team-context-inject.cjs --project --event subagent-start -a claude",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook session.wip-checkpoint --event pre-compact -a claude",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook convention.quality-gate --event post-tool-use -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/post-edit-simplify-reminder.cjs --project --event post-tool-use -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook metrics.record --event post-tool-use -a claude",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook perf.usage-cache --event post-tool-use -a claude",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Task|TaskCreate|TaskUpdate|TodoWrite",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook session.activity --event post-tool-use -a claude",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/plan-format-kanban.cjs --project --event post-tool-use -a claude",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook metrics.flush --event stop -a claude",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook session.activity --event stop -a claude",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/session-state.cjs --project --event stop -a claude",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/memory-graph-queue.cjs --project --event stop -a claude",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook metrics.flush --event session-end -a claude",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --hook session.activity --event subagent-stop -a claude",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/session-state.cjs --project --event subagent-stop -a claude",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Plan",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tkm hook-exec --eval hooks/takumi-after-plan-reminder.cjs --project --event subagent-stop -a claude",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "tkm statusline"
+  }
+}

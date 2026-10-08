@@ -1,0 +1,1 @@
+- [E2E harness gotchas](e2e-harness-gotchas.md) — Playwright alert/held-navigation/shadow traps, CJS, RED validity, Date.now log

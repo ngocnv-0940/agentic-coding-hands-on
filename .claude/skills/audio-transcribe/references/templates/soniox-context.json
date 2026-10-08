@@ -1,0 +1,17 @@
+{
+  "context": {
+    "general": [
+      { "key": "project",  "value": "<project or product name>" },
+      { "key": "company",  "value": "<organization or team name>" },
+      { "key": "setting",  "value": "<recording setting, e.g. meeting / demo / interview / lecture>" },
+      { "key": "topic",    "value": "<one-line description of what is being discussed>" },
+      { "key": "language", "value": "<dominant language(s), e.g. Vietnamese + English>" }
+    ],
+    "terms": [
+      "ExactProperNoun1",
+      "ExactProductName2",
+      "TechnicalAcronym3"
+    ],
+    "text": "2-5 sentence description of the recording domain: who is speaking, what they discuss, typical vocabulary. NOT transmitted by default - it is used locally in the revision phase. Pass --send-doc-summary to also send it to the service (which forwards it to Soniox). The terms list below is what actually biases the model."
+  }
+}
