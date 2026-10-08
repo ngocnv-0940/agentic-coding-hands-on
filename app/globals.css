@@ -5,6 +5,14 @@
   --foreground: #171717;
 }
 
+/* SAA 2025 palette (Figma "Details-*" variables) shared by the (main) screens. */
+@theme {
+  --color-saa-navy: #00101a;
+  --color-saa-gold: #ffea9e;
+  --color-saa-gold-border: #998c5f;
+  --color-saa-divider: #2e3940;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
