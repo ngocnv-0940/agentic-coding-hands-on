@@ -13,7 +13,7 @@ test.describe('Auth flow and route guards', () => {
     await expect(page.getByRole('button', { name: LOGIN_BUTTON })).toBeVisible()
   })
 
-  // Clarification: "/" redirects to /login (signed-in users then continue to /todo via the proxy)
+  // Clarification: "/" redirects guests to /login (signed-in users then see the homepage /)
   test('root path redirects to /login', async ({ page }) => {
     await page.goto('/')
     await expect(page).toHaveURL(/\/login$/)
@@ -28,9 +28,11 @@ test.describe('Auth flow and route guards', () => {
   })
 
   // TC e76aa170: valid Google account -> user info returned and redirected to the app page
-  test('successful Google sign-in lands on /todo showing the signed-in email', async ({ page }) => {
+  // F001 DEC-002 (homepage feature): the post-login landing is the homepage `/`, not `/todo`.
+  test('successful Google sign-in lands on the homepage /', async ({ page }) => {
     await loginThroughStubbedGoogle(page)
-    await expect(page.getByTestId('todo-email')).toHaveText('e2e@example.com')
+    await expect(page).toHaveURL(/\/$/)
+    await expect(page.getByTestId('homepage-hero')).toBeVisible()
   })
 
   // Cancel at Google: the callback sends the user back with a generic error, provider text is never echoed
@@ -71,18 +73,19 @@ test.describe('Auth flow and route guards', () => {
     await expect(page.locator('[onerror]')).toHaveCount(0)
   })
 
-  // Authenticated users are sent away from /login, including when a flag is present
-  test('authenticated visitor on /login is redirected to /todo', async ({ page }) => {
+  // Authenticated users are sent away from /login to the homepage, including when a flag is present
+  test('authenticated visitor on /login is redirected to /', async ({ page }) => {
     await loginThroughStubbedGoogle(page)
     await page.goto('/login')
-    await expect(page).toHaveURL(/\/todo$/)
+    await expect(page).toHaveURL(/\/$/)
     await page.goto('/login?error=x')
-    await expect(page).toHaveURL(/\/todo$/)
+    await expect(page).toHaveURL(/\/$/)
   })
 
   // TC 45278c06 step 2: logout returns to /login and /todo is guarded again
   test('logout returns to /login and /todo is guarded again', async ({ page }) => {
     await loginThroughStubbedGoogle(page)
+    await page.goto('/todo')
     const logout = page.getByRole('button', { name: /đăng xuất|logout/i })
     await expect(logout).toBeVisible()
     await logout.click()
@@ -94,6 +97,7 @@ test.describe('Auth flow and route guards', () => {
   // Logout must leave no /todo data in the DOM, before or after browser Back (Activity keeps left routes hidden)
   test('browser Back after logout never shows the previous user data', async ({ page }) => {
     await loginThroughStubbedGoogle(page)
+    await page.goto('/todo')
     await expect(page.getByTestId('todo-email')).toBeVisible()
     await page.getByRole('button', { name: /đăng xuất|logout/i }).click()
     await expect(page).toHaveURL(/\/login$/)
@@ -124,6 +128,6 @@ test.describe('Auth flow and route guards', () => {
     const button = page.getByRole('button', { name: LOGIN_BUTTON })
     await expect(button).toBeVisible()
     await button.click()
-    await expect(page).toHaveURL(/\/todo$/)
+    await expect(page).toHaveURL(/\/$/)
   })
 })

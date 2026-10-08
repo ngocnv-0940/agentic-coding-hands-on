@@ -118,7 +118,7 @@ test.describe('Login screen layout', () => {
     const button = page.getByRole('button', { name: LOGIN_BUTTON })
     await expect(button).toBeVisible()
     await button.click()
-    await expect(page).toHaveURL(/\/todo$/)
+    await expect(page).toHaveURL(/\/$/)
     expect(popups, 'no new tab or popup').toEqual([])
     expect(page.context().pages()).toHaveLength(1)
 
