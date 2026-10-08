@@ -1,0 +1,206 @@
+$ playwright test
+[WebServer] $ next build
+[WebServer] $ next start -p "3100"
+
+Running 33 tests using 8 workers
+
+  ✓   5 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:17:7 › Auth flow and route guards › root path redirects to /login (3.2s)
+  ✓   3 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:10:7 › Auth flow and route guards › unauthenticated visitor sees the login screen (4.0s)
+  ✓   7 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:51:7 › Auth flow and route guards › callback without code or error returns to /login with the inline error (4.1s)
+  ✓   4 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:37:7 › Auth flow and route guards › cancelled Google consent returns to /login with the inline error (4.3s)
+  ✓   2 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:45:7 › Auth flow and route guards › callback with a rejected code returns to /login with the inline error (4.4s)
+  ✓   1 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:58:7 › Auth flow and route guards › an error flag shows exactly one fixed alert; a clean /login shows none (4.9s)
+  ✓   9 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:67:7 › Auth flow and route guards › HTML in the error flag is not injected into the page (2.2s)
+  ✓   6 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:23:7 › Auth flow and route guards › unauthenticated /todo, nested and query variants redirect to /login (5.9s)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+  ✓   8 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:31:7 › Auth flow and route guards › successful Google sign-in lands on /todo showing the signed-in email (9.1s)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+  ✓  14 [chromium] › e2e/language-selector-localization.spec.ts:14:7 › Language selector and localization › defaults to Vietnamese with the VN label and html lang vi (4.6s)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+  ✓  16 [chromium] › e2e/language-selector-localization.spec.ts:35:7 › Language selector and localization › clicking the selector opens the menu (4.3s)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+  ✓  15 [chromium] › e2e/language-selector-localization.spec.ts:22:7 › Language selector and localization › shows a flag left of VN and a chevron right of it (4.7s)
+  ✓  13 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:104:7 › Auth flow and route guards › a fresh login after a failed one succeeds (6.0s)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+  ✓  17 [chromium] › e2e/language-selector-localization.spec.ts:45:7 › Language selector and localization › hovering the selector shows a pointer cursor (3.2s)
+  ✓  12 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:95:7 › Auth flow and route guards › garbage in the session cookies redirects /todo to /login (8.3s)
+  ✓  10 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:75:7 › Auth flow and route guards › authenticated visitor on /login is redirected to /todo (8.6s)
+  ✓  11 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:84:7 › Auth flow and route guards › logout returns to /login and /todo is guarded again (8.9s)
+  ✓  21 [chromium] › e2e/language-selector-localization.spec.ts:107:7 › Language selector and localization › picking the current language writes no cookie (3.2s)
+  ✓  18 [chromium] › e2e/language-selector-localization.spec.ts:52:7 › Language selector and localization › menu closes on re-click, Escape and outside click (3.9s)
+  ✓  22 [chromium] › e2e/language-selector-localization.spec.ts:116:7 › Language selector and localization › an unknown NEXT_LOCALE value falls back to Vietnamese (1.5s)
+  ✓  19 [chromium] › e2e/language-selector-localization.spec.ts:68:7 › Language selector and localization › keyboard: Enter opens the menu and Tab reaches the options (3.7s)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+  ✓  20 [chromium] › e2e/language-selector-localization.spec.ts:81:7 › Language selector and localization › picking EN switches the copy, persists a cookie, and survives reload (4.8s)
+  ✓  24 [chromium] › e2e/login-screen-layout-and-button.spec.ts:19:7 › Login screen layout › logo sits top-left at every size and is not interactive (2.5s)
+  ✓  25 [chromium] › e2e/login-screen-layout-and-button.spec.ts:34:7 › Login screen layout › language selector sits top-right at every size (2.5s)
+  ✓  26 [chromium] › e2e/login-screen-layout-and-button.spec.ts:46:7 › Login screen layout › header stays fixed while the page scrolls (2.0s)
+  ✓  23 [chromium] › e2e/language-selector-localization.spec.ts:123:7 › Language selector and localization › /todo labels follow the locale cookie (3.1s)
+  ✓  27 [chromium] › e2e/login-screen-layout-and-button.spec.ts:58:7 › Login screen layout › footer is fixed at the bottom, visible on scroll, and not interactive (2.3s)
+  ✓  29 [chromium] › e2e/login-screen-layout-and-button.spec.ts:72:7 › Login screen layout › hero shows key visual, title and descriptions as static text (2.4s)
+  ✓  28 [chromium] › e2e/login-screen-layout-and-button.spec.ts:83:7 › Login screen layout › login button is below the descriptions and shows the Google icon (2.5s)
+  ✓  33 [chromium] › e2e/login-screen-layout-and-button.spec.ts:134:7 › Login screen layout › no horizontal scroll at 375px (1.3s)
+  ✓  31 [chromium] › e2e/login-screen-layout-and-button.spec.ts:103:7 › Login screen layout › login button is disabled with a loader while the Google sign-in starts (1.7s)
+[WebServer] Error: Route "/todo": Next.js encountered the unstable value `Date.now()` while prerendering.
+[WebServer] 
+[WebServer] This value can change between renders, so it must be either prerendered or computed later.
+[WebServer] 
+[WebServer] Ways to fix this:
+[WebServer]   - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+[WebServer]   - [cache] Prerender and cache the value with `"use cache"`
+[WebServer]   - [client] Render the value on the client with `"use client"`
+[WebServer]   - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+[WebServer] 
+[WebServer] Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+[WebServer]     at dc.__loadSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12946)
+[WebServer]     at async dc._useSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:12344)
+[WebServer]     at async dc._emitInitialSession (.next/server/chunks/ssr/_00v65bbl4acll._.js:24:20075)
+  ✓  32 [chromium] › e2e/login-screen-layout-and-button.spec.ts:114:7 › Login screen layout › clicking login redirects the same tab to Google PKCE start (1.8s)
+  ✘  30 [chromium] › e2e/login-screen-layout-and-button.spec.ts:95:7 › Login screen layout › login button shows a shadow on hover (6.1s)
+
+
+  1) [chromium] › e2e/login-screen-layout-and-button.spec.ts:95:7 › Login screen layout › login button shows a shadow on hover 
+
+    Error: expect(locator).toHaveCSS(expected) failed
+
+    Locator:  getByRole('button', { name: /login with google/i })
+    Expected: "none"
+    Received: "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCSS" getByRole('button', { name: /login with google/i }) with timeout 5000ms
+      - waiting for getByRole('button', { name: /login with google/i })
+        13 × locator resolved to <button type="button" aria-busy="false" class="flex h-[60px] w-fit cursor-pointer items-center gap-2 rounded-lg bg-[#FFEA9E] px-6 py-4 shadow-none transition-shadow duration-200 hover:shadow-[0_4px_20px_rgba(255,234,158,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:shadow-none">…</button>
+           - unexpected value "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+
+
+       95 |   test('login button shows a shadow on hover', async ({ page }) => {
+       96 |     const button = page.getByRole('button', { name: LOGIN_BUTTON })
+    >  97 |     await expect(button).toHaveCSS('box-shadow', 'none')
+          |                          ^
+       98 |     await button.hover()
+       99 |     await expect(button).not.toHaveCSS('box-shadow', 'none')
+      100 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/login-screen-layout-and-button.spec.ts:97:26
+
+    Error Context: test-results/login-screen-layout-and-bu-55771-ton-shows-a-shadow-on-hover-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/login-screen-layout-and-bu-55771-ton-shows-a-shadow-on-hover-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/login-screen-layout-and-bu-55771-ton-shows-a-shadow-on-hover-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/login-screen-layout-and-button.spec.ts:95:7 › Login screen layout › login button shows a shadow on hover 
+  32 passed (5.1m)
+error: script "test:e2e" exited with code 1

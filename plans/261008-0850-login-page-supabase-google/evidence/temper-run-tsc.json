@@ -1,0 +1,5 @@
+{
+  "command": "bunx tsc --noEmit",
+  "exitCode": 0,
+  "summary": "Typecheck clean, exit 0, no diagnostics."
+}

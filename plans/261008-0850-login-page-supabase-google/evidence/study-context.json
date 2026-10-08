@@ -1,0 +1,19 @@
+{
+  "task": "Implement the SAA 2025 Login screen (/login) per MoMorph GzbNeVGJHz with Supabase (local) Google OAuth, VN/EN language switch, and a minimal protected /todo page",
+  "mode": "interactive",
+  "acceptanceCriteria": [
+    "/login renders header (logo left, VN language selector right, fixed), hero key visual, ROOT FURTHER title, intro texts, LOGIN With Google button, fixed footer — matching the MoMorph design",
+    "Language selector defaults to VN with flag + chevron; click opens VN/EN menu; choosing EN sets NEXT_LOCALE cookie and re-renders all login text in English",
+    "Clicking LOGIN With Google disables the button, shows a loader, and same-tab redirects to Supabase /auth/v1/authorize with provider=google and redirect_to /auth/callback",
+    "/auth/callback exchanges the PKCE code and redirects to /todo on success; failure or cancel redirects to /login?error=... and the inline error 'Đăng nhập không thành công. Vui lòng thử lại.' is shown",
+    "Unauthenticated access to /todo redirects to /login; authenticated access to /login redirects to /todo",
+    "/todo shows the signed-in user's email and a Logout button; logout returns to /login",
+    "Login button shows shadow/elevation on hover; language selector shows pointer + highlight on hover",
+    "supabase/ config (config.toml with Google provider via env) and .env.example committed; no secrets committed"
+  ],
+  "touchpoints": [
+    "app/layout.tsx", "app/globals.css", "app/login/", "app/todo/", "app/auth/callback/", "proxy.ts", "lib/supabase/", "lib/i18n/", "supabase/config.toml", ".env.example", "playwright.config.ts", "e2e/", "package.json", "public/"
+  ],
+  "blastRadius": ["all routes via proxy (session refresh + redirects)", "root layout (fonts, html lang)", "auth session cookies"],
+  "contracts": ["GET /auth/callback?code=&next=", "NEXT_LOCALE cookie values vi|en", "env NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY", "bun run test:e2e"]
+}

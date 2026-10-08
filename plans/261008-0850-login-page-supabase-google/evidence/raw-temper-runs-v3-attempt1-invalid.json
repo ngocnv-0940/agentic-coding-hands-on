@@ -1,0 +1,20 @@
+[
+  {
+    "label": "tsc",
+    "command": "NODE_OPTIONS=--max-old-space-size=4096 bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "Typecheck clean, exit 0, no diagnostics. Output: tsc-output-v3.txt."
+  },
+  {
+    "label": "lint",
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "eslint clean, exit 0, no findings. Output: lint-output-v3.txt."
+  },
+  {
+    "label": "e2e-green",
+    "command": "E2E_PROD=1 DEBUG=pw:webserver bun run test:e2e",
+    "exitCode": 1,
+    "summary": "INVALID RUN, not green. 31 passed, 3 failed (root redirect, successful Google sign-in, authenticated /login redirect). Playwright webServer on :3100 got HTTP 200 from a foreign server (user preview, next-server pid 365490) about 30ms after spawning `bun run build && bun run start`, so specs ran against that server. Failing root spec shows __next_error__ page. Config has no port override and the app port is hardcoded to 3100 in playwright.config.ts and e2e/support/login-through-stubbed-google.ts. Log: e2e-green-v3-output.txt. Must be rerun when :3100 is free. Date.now/prerender matches in log: 0."
+  }
+]

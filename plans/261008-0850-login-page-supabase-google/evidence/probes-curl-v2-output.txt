@@ -1,0 +1,32 @@
+# curl probes P1/P4/P6 logout + callback, 2026-10-08T03:17:44Z
+== GET /auth/logout
+HTTP/1.1 405 Method Not Allowed
+== POST /auth/logout anon
+HTTP/1.1 303 See Other
+cache-control: private, no-store
+location: /login
+== POST spoofed Host + X-Forwarded-Host
+HTTP/1.1 303 See Other
+cache-control: private, no-store
+location: /login
+== POST garbage real-name sb cookies
+HTTP/1.1 303 See Other
+location: /login
+set-cookie: sb-localhost-auth-token.0=; Path=/; Max-Age=0; SameSite=lax
+set-cookie: sb-localhost-auth-token.1=; Path=/; Max-Age=0; SameSite=lax
+== callback Host spoof
+HTTP/1.1 307 Temporary Redirect
+cache-control: private, no-store
+location: /login?error=auth_failed
+== callback code 2100 chars
+HTTP/1.1 307 Temporary Redirect
+location: /login?error=auth_failed
+== callback error+code
+HTTP/1.1 307 Temporary Redirect
+location: /login?error=auth_failed
+== callback duplicate code
+HTTP/1.1 307 Temporary Redirect
+location: /login?error=auth_failed
+== callback no code
+HTTP/1.1 307 Temporary Redirect
+location: /login?error=auth_failed

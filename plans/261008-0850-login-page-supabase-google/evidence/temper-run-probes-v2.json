@@ -1,0 +1,5 @@
+{
+  "command": "node probe-logout-and-oauth.mjs (Playwright chromium, prod app :3100, mock :54398 behind fault proxy :54399) && curl P1/P4/logout set",
+  "exitCode": 0,
+  "summary": "PASS: P6a normal logout -> /login, no sb-* cookies, Back and hard reload stay on /login with no /todo content (previous P6b FAIL resolved); P6b signOut 500 fallback -> /login, cookies cleared; P6c auth server dropped -> /login, cookies cleared; P6d garbage real-name cookies cleared by logout; P6e GET /auth/logout -> 405; P7a OAuth start failure -> button re-enabled, one alert, focus on button, no navigation; P1/P4 Host spoof and callback bounds -> relative /login?error=auth_failed, never 500. NOT EXERCISED: P7 bfcache pageshow persisted branch (/login is Cache-Control no-store, Chromium did not restore from bfcache; page re-rendered idle). P3 not re-run this round (accepted earlier). Output: probes-browser-v2-output.txt, probes-browser-v2.json, probes-curl-v2-output.txt."
+}

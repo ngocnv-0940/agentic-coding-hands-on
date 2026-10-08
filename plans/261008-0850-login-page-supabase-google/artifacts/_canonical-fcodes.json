@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-10-08T06:42:44Z",
+  "plan": "261008-0850-login-page-supabase-google",
+  "features": [
+    {
+      "fcode": "F001",
+      "name": "Auth",
+      "slug": "F001_Auth",
+      "priority": "P0",
+      "type": "ui",
+      "related": {
+        "screens": [
+          "SCR001_Login",
+          "SCR002_Todo"
+        ],
+        "user_stories": [
+          "US001_Login",
+          "US002_LoginFailure",
+          "US003_ViewTodo",
+          "US004_Logout",
+          "US005_GuardTodo",
+          "US006_SkipLogin"
+        ],
+        "routes": [
+          "GET /auth/callback",
+          "POST /auth/logout",
+          "GET /login",
+          "GET /todo",
+          "GET /"
+        ],
+        "models": [],
+        "bl": [],
+        "perms": [
+          "PERM001_TodoRouteGuard",
+          "PERM002_LoginRedirectForSignedIn",
+          "PERM003_AuthPathsProxyBypass",
+          "PERM004_StaticAssetsProxyBypass",
+          "PERM005_AuthErrorFailClosed",
+          "PERM006_TodoPageSessionRecheck",
+          "PERM007_LogoutPostOnly",
+          "PERM008_OAuthCallbackCodeValidation",
+          "PERM009_OAuthCallbackFixedRedirect"
+        ]
+      }
+    },
+    {
+      "fcode": "F002",
+      "name": "Localization",
+      "slug": "F002_Localization",
+      "priority": "P1",
+      "type": "ui",
+      "related": {
+        "screens": [
+          "SCR001_Login"
+        ],
+        "user_stories": [
+          "US007_SelectLanguage",
+          "US008_KeepLanguage"
+        ],
+        "routes": [],
+        "models": [],
+        "bl": [],
+        "perms": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "command": "node capture-login.mjs (1440x1024 VN, EN, VN menu open) + pixel measurement vs Figma GzbNeVGJHz frame 662:14387",
+  "exitCode": 1,
+  "summary": "Visual gate NOT PASS (discrepancies listed). Header, logo, VN selector, H1 position, subtitle/tagline position, footer line and copy match. Discrepancies: CTA 310x60 vs Figma 305x59 (+5px w, +1px h), Google glyph larger than Figma's 18px (about 20px in 24px box), subtitle/tagline weight looks lighter than Figma (qualitative). Known stopgap not counted: hero key visual is a cropped raster with hard left seam at x=600 and missing gradient/lower artwork. EN state: baked Vietnamese copy '...25.' inside key-visual.jpg shows at x 605-635 y 588 behind EN subtitle (material). No deterministic pixel metric equals zero, so judgment is qualitative. Screenshots: login-vn-1440x1024.png, login-en-1440x1024.png, login-vn-language-menu-open-1440x1024.png, figma-reference-GzbNeVGJHz-1440x1024.png, cta-compare-figma-top-impl-bottom.png."
+}

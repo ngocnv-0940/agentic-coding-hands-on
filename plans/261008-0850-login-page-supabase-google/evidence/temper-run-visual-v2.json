@@ -1,0 +1,5 @@
+{
+  "command": "node capture-visual-v2.mjs (1440x1024 VN, EN, VN menu open, VN hover) + PIL pixel metrics vs figma-reference-GzbNeVGJHz-1440x1024.png",
+  "exitCode": 0,
+  "summary": "Capture exit 0. Visual gate verdict NOT PASS: material mismatch in the hero key visual. Impl hero artwork ends near y=800 and fades to flat #00101A; Figma keeps artwork to the footer rule at y=933 (band 800-925 mean luma 14.0 impl vs 26.0 Figma). Right-side artwork dimmer (mean 59.2 vs 72.3, mean abs diff 21.5). Full-frame mean abs diff 8.8 (not zero, so not exact). CTA 305px wide matches; height 60 DOM (fractional y 672.5) vs 59 px in Figma pixels (1px, antialias-level, minor). Subtitle weight lighter than Figma (qualitative). Hover state has no Figma reference frame, not compared. Screenshots: login-vn/en/language-menu-open/button-hover-1440x1024-v2.png."
+}

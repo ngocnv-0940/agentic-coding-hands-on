@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-10-08T06:29:35Z",
+  "overall_status": "PASS",
+  "plan": "261008-0850-login-page-supabase-google",
+  "schema_version": 1,
+  "totals": {
+    "critical": 0,
+    "failed_specs": 0,
+    "passed_specs": 0,
+    "warning": 0
+  },
+  "validators": {
+    "behavior_logic": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "command": "node capture-visual-v3.mjs (1440x1024 VN, EN, VN menu open, VN hover; own prod app on :3100 + mock :54399) + python metric (channel-mean luma, MAD) vs figma-reference-GzbNeVGJHz-1440x1024.png",
+  "exitCode": 0,
+  "summary": "Capture exit 0. Verdict NOT PASS overall (hero key visual matched; CTA label and footer typography differ, listed below). Band x400-1200 y800-925 mean luma: Figma 26.0, v3 25.6 (delta 0.4; v2 14.0, delta 12.0). Right box x1200-1440 y80-800: Figma 73.0, v3 73.1 (delta -0.1; v2 63.9, delta 9.1). Right-box MAD: v2 19.4, v3 10.5. Full-frame MAD: v2 8.80, v3 4.37. Not exact (MAD != 0). Discrepancies: CTA label ink width 227px vs Figma 222px (+5px, Figma 186-408, v3 186-413); footer copyright ink 278px vs 271px and starts 3px left in v3 (581 vs 585); residual MAD highest in CTA (16.8). Hover and menu states: no Figma reference frame, not compared. Screenshots *-v3.png in visual/."
+}

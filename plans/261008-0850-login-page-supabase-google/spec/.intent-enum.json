@@ -1,0 +1,8 @@
+{
+  "mode": "system",
+  "intents": [
+    "(guest, authentication via Google OAuth incl. session, route protection and logout, signed-in user reaches /todo)",
+    "(any visitor, UI localization, interface language switched VN/EN and persisted in NEXT_LOCALE cookie)"
+  ],
+  "justification": ""
+}

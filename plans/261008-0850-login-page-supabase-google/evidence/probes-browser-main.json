@@ -1,0 +1,140 @@
+[
+ {
+  "id": "P2 next=https://evil.test",
+  "ok": true,
+  "detail": {
+   "verifierCookie": true,
+   "finalUrl": "http://localhost:3100/todo"
+  }
+ },
+ {
+  "id": "P2 next=//evil.test",
+  "ok": true,
+  "detail": {
+   "verifierCookie": true,
+   "finalUrl": "http://localhost:3100/todo"
+  }
+ },
+ {
+  "id": "P2 next=/todo",
+  "ok": true,
+  "detail": {
+   "verifierCookie": true,
+   "finalUrl": "http://localhost:3100/todo"
+  }
+ },
+ {
+  "id": "P5 setup: session cookie names",
+  "ok": true,
+  "detail": [
+   "sb-localhost-auth-token-flow-b5ac28419af12d9909f23cd86e1cd3fd-code-verifier",
+   "sb-localhost-auth-token-flows-code-verifier",
+   "sb-localhost-auth-token"
+  ]
+ },
+ {
+  "id": "P5a flipped byte /todo",
+  "ok": true,
+  "detail": {
+   "url": "http://localhost:3100/login",
+   "status": 200
+  }
+ },
+ {
+  "id": "P5b truncated chunk (chunked=false; .0 only, no .1) /todo",
+  "ok": true,
+  "detail": {
+   "url": "http://localhost:3100/login",
+   "status": 200
+  }
+ },
+ {
+  "id": "P5c foreign-ref cookie /todo",
+  "ok": true,
+  "detail": {
+   "url": "http://localhost:3100/login",
+   "status": 200
+  }
+ },
+ {
+  "id": "P5d /login with bad cookie renders; /todo guard redirect headers",
+  "ok": true,
+  "detail": {
+   "loginVisible": true,
+   "url": "http://localhost:3100/login",
+   "guardResponses": [
+    {
+     "status": 307,
+     "cc": null
+    }
+   ]
+  }
+ },
+ {
+  "id": "P6a logout with signOut 500 -> /login, no sb-* cookies",
+  "ok": true,
+  "detail": {
+   "url": "http://localhost:3100/login",
+   "leftover": []
+  }
+ },
+ {
+  "id": "P6b back after logout does not show /todo content",
+  "ok": false,
+  "detail": {
+   "url": "http://localhost:3100/login",
+   "todoEmailCount": 1,
+   "emailText": "e2e@example.com",
+   "h1": [
+    "ROOT FURTHER",
+    "Việc cần làm"
+   ]
+  }
+ },
+ {
+  "id": "P6c hard reload after back shows /login (guard re-run)",
+  "ok": true,
+  "detail": {
+   "url": "http://localhost:3100/login"
+  }
+ },
+ {
+  "id": "P7 OAuth start failure: button re-enabled, no loader, one alert, focus on button, no navigation",
+  "ok": true,
+  "detail": {
+   "disabled": false,
+   "focused": true,
+   "busy": "false",
+   "loaderCount": 0,
+   "alerts": [
+    "Đăng nhập không thành công. Vui lòng thử lại."
+   ],
+   "url": "http://localhost:3100/login",
+   "navigated": false
+  }
+ },
+ {
+  "id": "P8 signed-in /login?error=x -> /todo without query",
+  "ok": true,
+  "detail": {
+   "url": "http://localhost:3100/todo"
+  }
+ },
+ {
+  "id": "P8 locale cookie attrs after switching to EN",
+  "ok": true,
+  "detail": {
+   "cookie": {
+    "name": "NEXT_LOCALE",
+    "value": "en",
+    "domain": "localhost",
+    "path": "/",
+    "expires": 1822963690.487811,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+   },
+   "setCookieHeaders": []
+  }
+ }
+]

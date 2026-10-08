@@ -1,0 +1,5 @@
+{
+  "command": "NEXT_PUBLIC_SUPABASE_URL=http://localhost:54399 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=e2e-publishable-key bun run build",
+  "exitCode": 0,
+  "summary": "next build 16.4.0 (Turbopack), Cache Components enabled, compiled and static pages generated, exit 0. Routes /login, /todo, / and /auth/callback are dynamic (f). No build-time error. Log: build-output.txt."
+}

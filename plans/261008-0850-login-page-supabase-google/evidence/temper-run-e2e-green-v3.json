@@ -1,0 +1,5 @@
+{
+  "command": "E2E_PROD=1 DEBUG=pw:webserver bun run test:e2e",
+  "exitCode": 0,
+  "summary": "34 passed, 0 failed, 0 skipped, 0 flaky, 0 retries. Server log: Playwright ran its own `bun run build && bun run start -p 3100` (Compiled, next start Ready), no foreign server on :3100. Date.now/prerender matches: 0. Output e2e-green-v3-rerun-output.txt. Attempt 1 (exit 1) was invalid: a preview server held :3100."
+}

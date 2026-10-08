@@ -1,0 +1,5 @@
+{
+  "command": "bun run lint",
+  "exitCode": 0,
+  "summary": "eslint clean, exit 0. Output lint-output-v3.txt."
+}

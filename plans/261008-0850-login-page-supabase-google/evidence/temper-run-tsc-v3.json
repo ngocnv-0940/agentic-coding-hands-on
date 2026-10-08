@@ -1,0 +1,5 @@
+{
+  "command": "NODE_OPTIONS=--max-old-space-size=4096 bunx tsc --noEmit",
+  "exitCode": 0,
+  "summary": "Typecheck clean, exit 0. Output tsc-output-v3.txt."
+}
