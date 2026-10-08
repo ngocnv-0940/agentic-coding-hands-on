@@ -57,3 +57,21 @@ produces it without touching specs. Probe scripts and proxy live in the scratchp
 
 **Why:** `pkill -f` killed the tool's own shell again (exit 144) during the v2 run.
 **How to apply:** find PIDs with `ss -ltnp | grep :PORT`, then `kill <pid>`. Never `pkill -f` in this repo.
+
+**Why (homepage RED, 2026-10-08):** the shared login helper first asserted the landing URL `/`. The app
+still lands on `/todo`, so 48 homepage specs all died on that one line and their screen assertions never ran.
+**How to apply:** the helper waits only for leaving `/login` and `/auth/*`; landing URL assertions live in the
+landing specs (F001 "lands on the homepage /", access "callback next ... lands on /"). Each homepage spec then
+fails on its own screen element (`homepage-hero` not found), which is the diagnostic the UI agent needs.
+
+**Why:** a custom `E2E_EVENT_START_AT` server must never be reused, or the run silently uses the wrong date.
+**How to apply:** playwright.config sets `reuseExistingServer: !CI && !customEventEnv` and passes `EVENT_START_AT`;
+`@event-env-invalid` specs are grep-inverted unless `E2E_EVENT_START_AT` is set. Offset-less ISO is NOT covered
+(needs a third server run); report it as a gap.
+
+**Why:** `page.clock.install` keeps time flowing naturally, so a minute-precise countdown can drift past a minute on a slow box.
+**How to apply:** start at :00 seconds (e.g. 13:21:00) and use `page.clock.runFor('01:00')` for minute steps only.
+
+**Why:** Login helper + F001 regressions (logout, Back, cookies, fresh login) need `/todo` after login; the homepage
+landing would have broken them for a reason they do not test.
+**How to apply:** after login, specs that test /todo call `page.goto('/todo')` explicitly.
