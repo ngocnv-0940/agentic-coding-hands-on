@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "lang": "vi",
+  "title": "Mục lục tài liệu — Thứ tự đọc",
+  "quickPath": {
+    "label": "Đọc nhanh tối thiểu",
+    "nums": [
+      1,
+      2,
+      4,
+      5
+    ]
+  },
+  "roles": [
+    {
+      "key": "new_dev",
+      "label": "Dev mới — vào việc nhanh",
+      "nums": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        15
+      ]
+    },
+    {
+      "key": "reviewer",
+      "label": "Reviewer — quy tắc, phân quyền, contract",
+      "nums": [
+        2,
+        13
+      ]
+    },
+    {
+      "key": "pm",
+      "label": "PM / BA — phạm vi và hành vi",
+      "nums": [
+        1,
+        5,
+        6
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "layer": 1,
+      "label": "Định hướng — hệ thống là gì và tại sao",
+      "intro": "Bắt đầu ở đây nếu bạn mới vào. Layer này trả lời hệ thống là gì và có hình hài ra sao, trước khi đi vào chi tiết.",
+      "entries": [
+        {
+          "num": 1,
+          "kind": "file",
+          "path": "system/overview.md",
+          "key": "system_overview",
+          "what": "Mục tiêu sản phẩm, phạm vi, actor chính, bức tranh tổng thể — đọc đầu tiên — Đọc đầu tiên — xác định mục đích, phạm vi và các actor chính của sản phẩm trước khi đi vào bất kỳ chi tiết cấu trúc hay hành vi nào."
+        },
+        {
+          "num": 2,
+          "kind": "file",
+          "path": "system/architecture.md",
+          "key": "architecture",
+          "what": "Sơ đồ tầng, tech stack, ranh giới service, luồng dữ liệu chính — Đọc sau tổng quan vì sơ đồ tầng, tech stack và luồng dữ liệu chỉ có nghĩa khi bạn đã biết hệ thống dùng để làm gì."
+        }
+      ]
+    },
+    {
+      "layer": 2,
+      "label": "Mô hình nghiệp vụ — thực thể, tính năng, user story",
+      "intro": "Từ vựng nghiệp vụ — thực thể, danh mục tính năng và user story mà mọi thứ khác tham chiếu tới.",
+      "entries": [
+        {
+          "num": 4,
+          "kind": "file",
+          "path": "generated/entities.md",
+          "key": "entities",
+          "what": "Thực thể dữ liệu cốt lõi, trường chính và quan hệ giữa chúng — Đọc sau khi định hướng — các thực thể dữ liệu cốt lõi là từ vựng mà danh mục tính năng, user story và API đều tham chiếu tới."
+        },
+        {
+          "num": 5,
+          "kind": "file",
+          "path": "generated/feature-list.md",
+          "key": "feature_list",
+          "what": "Danh mục tính năng F### đầy đủ, mỗi mục một dòng tóm tắt — Đọc sau thực thể vì mỗi tính năng được mô tả qua dữ liệu nó chạm vào; đây là danh mục mà mọi thứ khác trỏ vào."
+        },
+        {
+          "num": 6,
+          "kind": "file",
+          "path": "generated/user-stories.md",
+          "key": "user_stories",
+          "what": "User story US### nhóm theo tính năng và actor — Đọc sau danh mục tính năng — các story mở rộng mỗi F### thành mục tiêu cụ thể của actor và ý định nghiệm thu."
+        }
+      ]
+    },
+    {
+      "layer": 3,
+      "label": "Giao diện & hành vi — màn hình, API, quy tắc, phân quyền",
+      "intro": "Hệ thống hành xử thế nào ở rìa: màn hình người dùng chạm vào, bề mặt API, quy tắc nghiệp vụ nó áp đặt, và ai được làm gì.",
+      "entries": [
+        {
+          "num": 7,
+          "kind": "file",
+          "path": "generated/screen-list.md",
+          "key": "screen_list",
+          "what": "Danh sách mọi màn hình SCR### trong sản phẩm — Đọc sau các story vì màn hình là nơi những mục tiêu đó trở thành thứ người dùng nhìn thấy và chạm vào được."
+        },
+        {
+          "num": 8,
+          "kind": "file",
+          "path": "generated/screen-flow.md",
+          "key": "screen_flow",
+          "what": "Màn hình nối với nhau ra sao — đường điều hướng và chuyển trạng thái — Đọc sau danh sách màn hình để biết các màn hình trước khi lần theo cách điều hướng và trạng thái di chuyển giữa chúng."
+        },
+        {
+          "num": 9,
+          "kind": "file",
+          "path": "generated/route-list.md",
+          "key": "route_list",
+          "what": "Mọi route API backend expose, kèm method và path — Đọc sau màn hình vì các route là bề mặt backend mà những màn hình đó gọi tới."
+        },
+        {
+          "num": 10,
+          "kind": "file",
+          "path": "generated/api-map.md",
+          "key": "api_map",
+          "what": "Bề mặt API nhóm theo resource, kèm background job — Đọc sau danh sách route — nó nhóm các route thô theo resource và thêm background job, tạo nên hình hài của API."
+        },
+        {
+          "num": 12,
+          "kind": "file",
+          "path": "generated/behavior-logic.md",
+          "key": "behavior_logic",
+          "what": "Đơn vị logic nền/async BL### và thứ kích hoạt chúng — Đọc sau bề mặt API vì các đơn vị BL### mô tả logic async và nền mà các endpoint và job đó kích hoạt."
+        },
+        {
+          "num": 13,
+          "kind": "file",
+          "path": "generated/permissions-matrix.md",
+          "key": "permissions_matrix",
+          "what": "Vai trò nào được làm hành động nào (ma trận RBAC) — Đọc sau các quy tắc — nó chốt vai trò nào được thực hiện mỗi hành động mà phần còn lại của hệ thống mở ra."
+        }
+      ]
+    },
+    {
+      "layer": 4,
+      "label": "Đào sâu — luồng, đặc tả từng tính năng, từng màn hình",
+      "intro": "Đào sâu khi bạn cần chi tiết về một luồng, một tính năng hay một màn hình cụ thể — đọc sau khi các layer trên đã cho bạn bản đồ.",
+      "entries": [
+        {
+          "num": 15,
+          "kind": "glob",
+          "glob": "features/*/",
+          "link": "features/",
+          "key": "features",
+          "what": "Đặc tả sâu từng tính năng — functional-spec + technical-spec mỗi tính năng (xem ghi chú dưới)"
+        },
+        {
+          "num": 16,
+          "kind": "glob",
+          "glob": "screens/*/spec.md",
+          "link": "screens/",
+          "key": "screens",
+          "what": "Đặc tả chi tiết UI và hành vi từng màn hình"
+        },
+        {
+          "num": 17,
+          "kind": "file",
+          "path": "generated/traceability-matrix.md",
+          "key": "traceability_matrix",
+          "what": "Mỗi F### một dòng, xâu chuỗi SCR###/US###/BL###/ROUTE###/PERM### (+TC###) — mạch truy vết đầu-cuối của tính năng"
+        }
+      ]
+    }
+  ],
+  "ui": {
+    "start_here": "Bắt đầu tại đây",
+    "appendix": "Phụ lục — Tài liệu trong kho mã",
+    "drill_labels": {
+      "flows": "Luồng",
+      "features": "Tính năng",
+      "screens": "Màn hình",
+      "traceability_matrix": "Truy vết"
+    },
+    "pager": {
+      "prev": "‹ Trước",
+      "next": "Tiếp ›",
+      "reading": "Đang đọc",
+      "back_to_index": "về mục lục",
+      "end_of_spine": "Đã hết thứ tự đọc"
+    },
+    "zoom": {
+      "title": "Trình xem sơ đồ",
+      "open": "Mở sơ đồ này ở chế độ phóng to",
+      "close": "Đóng",
+      "zoom_in": "Phóng to",
+      "zoom_out": "Thu nhỏ",
+      "fit": "Vừa màn hình",
+      "actual_size": "Kích thước thật",
+      "hint": "Cuộn để phóng · kéo để di chuyển · Esc để đóng"
+    }
+  }
+}

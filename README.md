@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# agentic-coding-hands-on
 
-## Getting Started
+Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có hai màn hình: `/login` và `/todo` (chỉ người đã đăng nhập xem được; hiện email và nút đăng xuất). Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
 
-First, run the development server:
+## Yêu cầu
+
+| Công cụ | Ghi chú |
+|---|---|
+| [bun](https://bun.sh) | Trình quản lý gói và chạy script |
+| Supabase CLI 2.120+ | Chạy Supabase cục bộ (`supabase start`) |
+| Docker **hoặc** Podman | Supabase CLI chạy các container; xem phần Podman bên dưới |
+| Google Cloud project | Tạo OAuth client kiểu Web application |
+
+## Cài đặt cục bộ
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1. Cấu hình Google OAuth
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Trong Google Cloud, tạo OAuth client (Web application) với:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Authorized redirect URI: `http://127.0.0.1:54321/auth/v1/callback`
+- Authorized JavaScript origin: `http://localhost:3000`
 
-## Learn More
+Tạo file `supabase/.env` (đã nằm trong `.gitignore`, không commit):
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID=<client id>
+SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET=<client secret>
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Chạy Supabase
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+supabase start
+supabase status   # lấy Publishable key (sb_publishable_...)
+```
 
-## Deploy on Vercel
+#### Dùng Podman thay Docker
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+systemctl --user enable --now podman.socket
+export DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock
+mkdir -p supabase/snippets supabase/functions   # Podman cần sẵn hai thư mục bind-mount; git không lưu thư mục rỗng
+supabase start -x vector,logflare,edge-runtime,imgproxy
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Bốn dịch vụ bị loại (`vector`, `logflare`, `edge-runtime`, `imgproxy`) là các container analytics/phụ trợ cần docker socket; đăng nhập không dùng đến chúng.
+
+### 3. Biến môi trường cho ứng dụng
+
+```bash
+cp .env.example .env.local
+# điền NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY bằng key từ `supabase status`
+```
+
+Cả `NEXT_PUBLIC_SUPABASE_URL` và `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` đều bắt buộc: `lib/supabase/config.ts` ném lỗi khi thiếu, nên `bun run build` cũng cần chúng (CI phải đặt cả hai).
+
+### 4. Chạy ứng dụng
+
+```bash
+bun run dev
+```
+
+Mở **`http://localhost:3000`**, không dùng `127.0.0.1`: cookie PKCE của Supabase gắn theo host, đổi host giữa chừng làm bước đổi mã đăng nhập thất bại.
+
+## Script
+
+| Lệnh | Việc làm |
+|---|---|
+| `bun run dev` | Chạy dev server |
+| `bun run build` | Build production |
+| `bun run start` | Chạy bản build |
+| `bun run lint` | ESLint |
+| `bun run test:e2e` | Playwright E2E |
+
+E2E không cần Supabase thật: `playwright.config.ts` tự khởi động một Supabase giả ở cổng `54399` và ứng dụng ở cổng `3100`. Đặt `E2E_PROD=1` để chạy bằng `build` + `start` thay cho `next dev` (dùng khi một `next dev` khác đang giữ khoá thư mục). `E2E_SMOKE=1` bật các spec gắn tag `@smoke` (chạy với Supabase thật), nhưng hiện chưa có spec nào như vậy — luồng Google thật phải kiểm thủ công.
+
+## Cấu trúc chính
+
+| Đường dẫn | Nội dung |
+|---|---|
+| `proxy.ts`, `lib/supabase/` | Làm mới phiên và chặn route; client Supabase |
+| `app/login/`, `app/todo/` | Hai màn hình |
+| `app/auth/callback/`, `app/auth/logout/` | `GET` đổi mã OAuth; `POST` đăng xuất |
+| `lib/i18n/` | Từ điển vi/en và cookie `NEXT_LOCALE` |
+| `supabase/config.toml` | Cấu hình Supabase cục bộ (Google đã bật) |
+| `e2e/` | Playwright và Supabase giả |
