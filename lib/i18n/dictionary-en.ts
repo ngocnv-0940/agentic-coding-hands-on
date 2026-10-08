@@ -1,3 +1,4 @@
+import { homeEn } from './dictionary-home-en'
 import type { Dictionary } from './dictionary-vi'
 
 export const en: Dictionary = {
@@ -17,4 +18,5 @@ export const en: Dictionary = {
   'todo.emailLabel': 'Email',
   'todo.logout': 'Logout',
   'todo.emailMissing': '—',
+  ...homeEn,
 }
