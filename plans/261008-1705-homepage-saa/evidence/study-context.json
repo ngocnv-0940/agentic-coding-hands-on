@@ -1,0 +1,22 @@
+{
+  "task": "Implement the SAA 2025 homepage at / from MoMorph screen i87tDx10uM (fileKey 9ypp4enmFmdK3YAFJLIu6C)",
+  "mode": "interactive",
+  "acceptanceCriteria": [
+    "Guest GET / redirects to /login; signed-in user sees the homepage (proxy guard via getUser)",
+    "After login (callback success, or authenticated visit to /login) the user lands on / instead of /todo; /todo stays protected",
+    "Header: logo, nav (About SAA 2025 active on /, Awards Information, Sun* Kudos), bell, VN/EN language selector, account icon; sticky",
+    "Account menu shows Profile + Sign out; Admin Dashboard only when app_metadata.role === 'admin'; Sign out posts to /auth/logout",
+    "Notification panel opens with empty state, no badge",
+    "Hero: ROOT FURTHER key visual, Coming soon, DAYS/HOURS/MINUTES countdown from EVENT_START_AT (2-digit, per-minute update); at/after start or invalid env -> 00 and Coming soon hidden",
+    "Event info (date from EVENT_START_AT, Âu Cơ Art Center, Livestream note); CTA ABOUT AWARDS -> /awards-information, ABOUT KUDOS -> /sun-kudos",
+    "Root Further content block; awards grid of 6 cards (3 cols desktop, 2 cols tablet/mobile) each linking /awards-information#<slug>; description clamps 2 lines; hover lift",
+    "Sun* Kudos promo with Chi tiết -> /sun-kudos; widget button fixed bottom-right; footer with links incl. Tiêu chuẩn chung -> /standards and copyright",
+    "Placeholder pages /awards-information, /sun-kudos, /standards, /profile, /admin exist (no broken links)",
+    "Dropdowns toggle on click, close on outside click/Escape, open via Enter/Space",
+    "VN/EN switch localizes homepage strings",
+    "Visual match to Figma design within project tolerance"
+  ],
+  "touchpoints": ["app/page.tsx", "lib/supabase/proxy.ts", "app/auth/callback/route.ts", "app/layout.tsx", "lib/i18n/dictionary-vi.ts", "lib/i18n/dictionary-en.ts", "e2e/*", "public/images/homepage/*"],
+  "blastRadius": ["Login redirect flow (F001) and its existing E2E specs expecting /todo", "Shared i18n dictionaries (F002)", "Root layout fonts"],
+  "contracts": ["Route guard contract in lib/supabase/proxy.ts (getUser, fail closed)", "POST /auth/logout", "NEXT_LOCALE cookie", "EVENT_START_AT env var (new)"]
+}

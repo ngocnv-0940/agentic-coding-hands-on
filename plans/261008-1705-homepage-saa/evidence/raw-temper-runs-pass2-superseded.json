@@ -1,0 +1,10 @@
+[
+  {"command":"bun run test:e2e","exitCode":0,"summary":"pass 1 of 2: 80 passed, 0 failed (6.4m); countdown fix from coordinator included"},
+  {"command":"bun run test:e2e","exitCode":0,"summary":"pass 2 of 2: 80 passed, 0 failed (6.5m)"},
+  {"command":"E2E_PROD=1 E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid","exitCode":0,"summary":"invalid-env pass 1 (production server, build+start): 2 passed"},
+  {"command":"E2E_PROD=1 E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid","exitCode":0,"summary":"invalid-env pass 2 (production server): 2 passed"},
+  {"command":"bunx tsc --noEmit","exitCode":0,"summary":"typecheck clean"},
+  {"command":"bun run lint","exitCode":0,"summary":"eslint clean"},
+  {"command":"bun run build","exitCode":0,"summary":"production build clean, no warnings (uses .env.local)"},
+  {"command":"node mobile-overflow-recheck.cjs (320, 375, 768)","exitCode":0,"summary":"320 and 375: scrollWidth equals innerWidth, countdown tiles fit; 768: scrollWidth 812 > 768, header account button clipped at right edge (defect)"}
+]

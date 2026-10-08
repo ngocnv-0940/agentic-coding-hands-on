@@ -1,0 +1,51 @@
+{
+  "score": 9,
+  "criticalCount": 0,
+  "decision": "SEALED",
+  "acceptanceCovered": [
+    "Guest GET / redirects to /login; signed-in user sees homepage (proxy getUser)",
+    "Post-login landing / (callback + authenticated /login); /todo stays protected",
+    "Header logo/nav/bell/language/account, sticky, About active on /",
+    "Account menu Profile + Sign out; Admin Dashboard only for app_metadata.role admin; Sign out POSTs /auth/logout",
+    "Notification panel empty state, no badge",
+    "Countdown from EVENT_START_AT 2-digit, per-minute update; at/after start and invalid env -> 00 and Coming soon hidden",
+    "Event info date/venue/livestream; CTAs to /awards-information and /sun-kudos",
+    "Root Further block; 6 award cards 3/2 cols, slug anchors, 2-line clamp, hover lift",
+    "Kudos promo -> /sun-kudos; fixed widget; footer links incl. /standards + copyright",
+    "Placeholder pages exist, protected incl. nested, internal links < 400",
+    "Dropdowns toggle/outside-click/Escape/Enter/Space",
+    "VN/EN switch localizes homepage",
+    "Visual match within tolerance (evidence/visual, visual-recheck)"
+  ],
+  "regressionChecked": [
+    "/login <-> / redirect loop (exact / match)",
+    "/todo guard and logout flow unchanged (specs updated to goto /todo)",
+    "callback open-redirect via next param",
+    "proxy fail-closed on getUser throw/error",
+    "cookies + cache headers on every proxy redirect",
+    "/admin role gate proxy 307 + page re-check",
+    "/auth/* proxy bypass unchanged",
+    "NEXT_LOCALE cookie / locale switching on (main) routes",
+    "EVENT_START_AT server-only, not NEXT_PUBLIC_",
+    "countdown hydration (initial = server snapshot) and timer cleanup"
+  ],
+  "contractStatus": "CHANGED",
+  "refuted": [],
+  "unproven": [],
+  "reachableRegressions": [],
+  "findings": [
+    { "severity": "Medium", "category": "Testing", "location": "e2e/support/mock-supabase-server.ts:37-47", "summary": "No e2e proving user_metadata.role='admin' does not grant admin; key security invariant only proven by inspection", "disposition": "Accept" },
+    { "severity": "Medium", "category": "Testing", "location": "e2e/homepage-countdown-invalid-env.spec.ts:14-17", "summary": "Offset-less EVENT_START_AT (strict-offset rule) never exercised; only 'not-a-date' is run", "disposition": "Accept" },
+    { "severity": "Medium", "category": "Testing", "location": "e2e/homepage-countdown-and-event-info.spec.ts:20-30", "summary": "No console-error assertion for hydration mismatch, a plan top risk", "disposition": "Accept" },
+    { "severity": "Medium", "category": "Testing", "location": "e2e/homepage-countdown-and-event-info.spec.ts:45-61", "summary": "At/after-start tests pass regardless of client hook (server clock already past event); boundary transition not pinned", "disposition": "Accept" },
+    { "severity": "Medium", "category": "Docs", "location": "docs/system/permissions.md:1-60", "summary": "status: implemented but body still 'draft/forward-authored'; says placeholders rely on proxy only while (main) layout re-checks session; F001 functional-spec FR-102/103/402 still say /todo; F003 FR wording omits offset requirement", "disposition": "Accept" },
+    { "severity": "Low", "category": "Correctness", "location": "lib/event/event-start-config.ts:31-36", "summary": "Date.parse silently rolls impossible dates (2025-02-30, T24:00) instead of rejecting them", "disposition": "Accept" },
+    { "severity": "Low", "category": "UX", "location": "app/(main)/_behavior/account-menu.tsx:34-41", "summary": "Sign-out button stays disabled if POST fails or page restored from bfcache", "disposition": "Defer" },
+    { "severity": "Low", "category": "Accessibility", "location": "app/(main)/_behavior/use-dropdown-menu.ts:34-50", "summary": "Panels stay open when focus tabs out; no aria-haspopup", "disposition": "Defer" },
+    { "severity": "Low", "category": "Accessibility", "location": "app/(main)/_components/widget-button.tsx:8-25", "summary": "Focusable button with no action (deferred quick-action menu)", "disposition": "Defer" },
+    { "severity": "Low", "category": "UX", "location": "app/(main)/_components/header-nav.tsx:16", "summary": "Header nav hidden below lg with no mobile alternative; confirm against Figma mobile", "disposition": "Defer" },
+    { "severity": "Low", "category": "Maintainability", "location": "app/(main)/_components/home-screen.tsx:21", "summary": "homeFontClassName applied twice (also layout.tsx:19); cross-route import of app/login LanguageSelectorContainer; server env read co-located with client-imported helpers", "disposition": "Defer" },
+    { "severity": "Low", "category": "Performance", "location": "public/images/homepage/keyvisual.png:1", "summary": "4.4 MB source asset (served optimized by next/image; repo weight only)", "disposition": "Defer" },
+    { "severity": "Low", "category": "Process", "location": "plans/261008-1705-homepage-saa/evidence/temper-results.json:7", "summary": "All evidence ts values are 1970-01-01 epoch placeholders", "disposition": "Accept" }
+  ]
+}

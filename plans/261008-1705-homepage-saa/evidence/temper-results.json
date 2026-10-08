@@ -1,0 +1,60 @@
+{
+  "commands": [
+    {
+      "command": "E2E_PROD=1 bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "full suite after stage 5 fixes (production server): 83 passed, 0 failed (includes usermeta-admin negatives, 30 s boundary, hydration guard)",
+      "ts": "2026-10-08T14:27:26Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "invalid-env value not-a-date: 2 passed, 0 failed",
+      "ts": "2026-10-08T14:33:10Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_EVENT_START_AT=2025-12-26T18:30:00 bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "invalid-env value 2025-12-26T18:30:00 (offset-less): 2 passed, 0 failed",
+      "ts": "2026-10-08T14:38:20Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_EVENT_START_AT=2025-02-30T10:00:00Z bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "invalid-env value 2025-02-30T10:00:00Z (impossible date): 2 passed, 0 failed",
+      "ts": "2026-10-08T14:43:15Z"
+    },
+    {
+      "command": "bunx tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "typecheck clean",
+      "ts": "2026-10-08T14:48:24Z"
+    },
+    {
+      "command": "bun run lint",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "eslint clean",
+      "ts": "2026-10-08T14:48:31Z"
+    },
+    {
+      "command": "bun run build",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "production build clean, no warnings (uses .env.local)",
+      "ts": "2026-10-08T14:49:15Z"
+    },
+    {
+      "command": "element-rect-recheck.cjs (visual, 1024/1280/1512)",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "awards cards inside grid and viewport at 1024, 1280 and 1512; measured on a mock-URL build (NEXT_PUBLIC_SUPABASE_URL=http://localhost:54399)",
+      "ts": "2026-10-08T14:49:04Z"
+    }
+  ]
+}

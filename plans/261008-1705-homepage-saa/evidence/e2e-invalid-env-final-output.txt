@@ -1,0 +1,11 @@
+$ playwright test --grep @event-env-invalid
+[WebServer] $ next build
+[WebServer] $ next start -p "3100"
+
+Running 2 tests using 2 workers
+
+  ✓  1 [chromium] › e2e/homepage-countdown-invalid-env.spec.ts:18:7 › @event-env-invalid Homepage with an invalid EVENT_START_AT › countdown reads 00, Coming soon is hidden and the event date shows a dash (1.5s)
+  ✓  2 [chromium] › e2e/homepage-countdown-invalid-env.spec.ts:28:7 › @event-env-invalid Homepage with an invalid EVENT_START_AT › the rest of the homepage still renders around the bad configuration (1.7s)
+
+  2 passed (4.7m)
+exit=0

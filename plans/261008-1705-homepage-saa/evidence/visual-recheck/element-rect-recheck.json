@@ -1,0 +1,707 @@
+{
+  "w1024": {
+    "viewport": {
+      "innerWidth": 1024,
+      "scrollWidth": 1024
+    },
+    "awardsGrid": {
+      "rect": {
+        "left": 48,
+        "right": 976,
+        "top": 2671,
+        "bottom": 3684,
+        "width": 928
+      },
+      "insideViewport": true
+    },
+    "awardCards": {
+      "top-talent": {
+        "rect": {
+          "left": 48,
+          "right": 331,
+          "top": 2671,
+          "bottom": 3122,
+          "width": 283
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "top-project": {
+        "rect": {
+          "left": 371,
+          "right": 653,
+          "top": 2671,
+          "bottom": 3122,
+          "width": 283
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "top-project-leader": {
+        "rect": {
+          "left": 693,
+          "right": 976,
+          "top": 2671,
+          "bottom": 3122,
+          "width": 283
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "best-manager": {
+        "rect": {
+          "left": 48,
+          "right": 331,
+          "top": 3202,
+          "bottom": 3684,
+          "width": 283
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "signature-2025-creator": {
+        "rect": {
+          "left": 371,
+          "right": 653,
+          "top": 3202,
+          "bottom": 3684,
+          "width": 283
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "mvp": {
+        "rect": {
+          "left": 693,
+          "right": 976,
+          "top": 3202,
+          "bottom": 3684,
+          "width": 283
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      }
+    },
+    "kudos": {
+      "rect": {
+        "left": 48,
+        "right": 976,
+        "top": 3786,
+        "bottom": 4310,
+        "width": 928
+      },
+      "insideViewport": true,
+      "logo": {
+        "left": 48,
+        "right": 976,
+        "top": 3786,
+        "bottom": 4310,
+        "width": 928
+      },
+      "logoInsideCard": true,
+      "logoInsideViewport": true
+    },
+    "hero": {
+      "rect": {
+        "left": 48,
+        "right": 976,
+        "top": 184,
+        "bottom": 780,
+        "width": 928
+      },
+      "insideViewport": true
+    },
+    "heroImages": [
+      {
+        "alt": "",
+        "rect": {
+          "left": 48,
+          "right": 499,
+          "top": 184,
+          "bottom": 384,
+          "width": 451
+        },
+        "inside": true
+      }
+    ],
+    "footer": {
+      "rect": {
+        "left": 0,
+        "right": 1024,
+        "top": 4435,
+        "bottom": 4708,
+        "width": 1024
+      },
+      "insideViewport": true,
+      "links": [
+        {
+          "text": "",
+          "rect": {
+            "left": 478,
+            "right": 547,
+            "top": 4476,
+            "bottom": 4540,
+            "width": 69
+          },
+          "inside": true
+        },
+        {
+          "text": "About SAA 2025",
+          "rect": {
+            "left": 89,
+            "right": 260,
+            "top": 4564,
+            "bottom": 4620,
+            "width": 171
+          },
+          "inside": true
+        },
+        {
+          "text": "Awards Information",
+          "rect": {
+            "left": 308,
+            "right": 514,
+            "top": 4564,
+            "bottom": 4620,
+            "width": 207
+          },
+          "inside": true
+        },
+        {
+          "text": "Sun* Kudos",
+          "rect": {
+            "left": 562,
+            "right": 696,
+            "top": 4564,
+            "bottom": 4620,
+            "width": 134
+          },
+          "inside": true
+        },
+        {
+          "text": "Tiêu chuẩn chung",
+          "rect": {
+            "left": 744,
+            "right": 935,
+            "top": 4564,
+            "bottom": 4620,
+            "width": 191
+          },
+          "inside": true
+        }
+      ]
+    },
+    "controls": {
+      "notifications-trigger": {
+        "rect": {
+          "left": 880,
+          "right": 920,
+          "top": 20,
+          "bottom": 60,
+          "width": 40
+        },
+        "insideViewport": true
+      },
+      "language-selector-trigger": {
+        "rect": {
+          "left": 754,
+          "right": 864,
+          "top": 12,
+          "bottom": 68,
+          "width": 110
+        },
+        "insideViewport": true
+      },
+      "account-trigger": {
+        "rect": {
+          "left": 936,
+          "right": 976,
+          "top": 20,
+          "bottom": 60,
+          "width": 40
+        },
+        "insideViewport": true
+      },
+      "widget-button": {
+        "rect": {
+          "left": 899,
+          "right": 1005,
+          "top": 788,
+          "bottom": 852,
+          "width": 106
+        },
+        "insideViewport": true
+      }
+    }
+  },
+  "w1280": {
+    "viewport": {
+      "innerWidth": 1280,
+      "scrollWidth": 1280
+    },
+    "awardsGrid": {
+      "rect": {
+        "left": 144,
+        "right": 1136,
+        "top": 2607,
+        "bottom": 3663,
+        "width": 992
+      },
+      "insideViewport": true
+    },
+    "awardCards": {
+      "top-talent": {
+        "rect": {
+          "left": 144,
+          "right": 448,
+          "top": 2607,
+          "bottom": 3079,
+          "width": 304
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "top-project": {
+        "rect": {
+          "left": 488,
+          "right": 792,
+          "top": 2607,
+          "bottom": 3079,
+          "width": 304
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "top-project-leader": {
+        "rect": {
+          "left": 832,
+          "right": 1136,
+          "top": 2607,
+          "bottom": 3079,
+          "width": 304
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "best-manager": {
+        "rect": {
+          "left": 144,
+          "right": 448,
+          "top": 3159,
+          "bottom": 3663,
+          "width": 304
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "signature-2025-creator": {
+        "rect": {
+          "left": 488,
+          "right": 792,
+          "top": 3159,
+          "bottom": 3663,
+          "width": 304
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "mvp": {
+        "rect": {
+          "left": 832,
+          "right": 1136,
+          "top": 3159,
+          "bottom": 3663,
+          "width": 304
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      }
+    },
+    "kudos": {
+      "rect": {
+        "left": 144,
+        "right": 1136,
+        "top": 3765,
+        "bottom": 4289,
+        "width": 992
+      },
+      "insideViewport": true,
+      "logo": {
+        "left": 144,
+        "right": 1136,
+        "top": 3765,
+        "bottom": 4289,
+        "width": 992
+      },
+      "logoInsideCard": true,
+      "logoInsideViewport": true
+    },
+    "hero": {
+      "rect": {
+        "left": 144,
+        "right": 1136,
+        "top": 184,
+        "bottom": 780,
+        "width": 992
+      },
+      "insideViewport": true
+    },
+    "heroImages": [
+      {
+        "alt": "",
+        "rect": {
+          "left": 144,
+          "right": 595,
+          "top": 184,
+          "bottom": 384,
+          "width": 451
+        },
+        "inside": true
+      }
+    ],
+    "footer": {
+      "rect": {
+        "left": 0,
+        "right": 1280,
+        "top": 4414,
+        "bottom": 4611,
+        "width": 1280
+      },
+      "insideViewport": true,
+      "links": [
+        {
+          "text": "",
+          "rect": {
+            "left": 90,
+            "right": 159,
+            "top": 4481,
+            "bottom": 4545,
+            "width": 69
+          },
+          "inside": true
+        },
+        {
+          "text": "About SAA 2025",
+          "rect": {
+            "left": 281,
+            "right": 452,
+            "top": 4455,
+            "bottom": 4511,
+            "width": 171
+          },
+          "inside": true
+        },
+        {
+          "text": "Awards Information",
+          "rect": {
+            "left": 500,
+            "right": 707,
+            "top": 4455,
+            "bottom": 4511,
+            "width": 207
+          },
+          "inside": true
+        },
+        {
+          "text": "Sun* Kudos",
+          "rect": {
+            "left": 755,
+            "right": 888,
+            "top": 4455,
+            "bottom": 4511,
+            "width": 134
+          },
+          "inside": true
+        },
+        {
+          "text": "Tiêu chuẩn chung",
+          "rect": {
+            "left": 489,
+            "right": 680,
+            "top": 4515,
+            "bottom": 4571,
+            "width": 191
+          },
+          "inside": true
+        }
+      ]
+    },
+    "controls": {
+      "notifications-trigger": {
+        "rect": {
+          "left": 1040,
+          "right": 1080,
+          "top": 20,
+          "bottom": 60,
+          "width": 40
+        },
+        "insideViewport": true
+      },
+      "language-selector-trigger": {
+        "rect": {
+          "left": 914,
+          "right": 1024,
+          "top": 12,
+          "bottom": 68,
+          "width": 110
+        },
+        "insideViewport": true
+      },
+      "account-trigger": {
+        "rect": {
+          "left": 1096,
+          "right": 1136,
+          "top": 20,
+          "bottom": 60,
+          "width": 40
+        },
+        "insideViewport": true
+      },
+      "widget-button": {
+        "rect": {
+          "left": 1155,
+          "right": 1261,
+          "top": 788,
+          "bottom": 852,
+          "width": 106
+        },
+        "insideViewport": true
+      }
+    }
+  },
+  "w1512": {
+    "viewport": {
+      "innerWidth": 1512,
+      "scrollWidth": 1512
+    },
+    "awardsGrid": {
+      "rect": {
+        "left": 144,
+        "right": 1368,
+        "top": 2447,
+        "bottom": 3535,
+        "width": 1224
+      },
+      "insideViewport": true
+    },
+    "awardCards": {
+      "top-talent": {
+        "rect": {
+          "left": 144,
+          "right": 480,
+          "top": 2447,
+          "bottom": 2951,
+          "width": 336
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "top-project": {
+        "rect": {
+          "left": 588,
+          "right": 924,
+          "top": 2447,
+          "bottom": 2951,
+          "width": 336
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "top-project-leader": {
+        "rect": {
+          "left": 1032,
+          "right": 1368,
+          "top": 2447,
+          "bottom": 2951,
+          "width": 336
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "best-manager": {
+        "rect": {
+          "left": 144,
+          "right": 480,
+          "top": 3031,
+          "bottom": 3535,
+          "width": 336
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "signature-2025-creator": {
+        "rect": {
+          "left": 588,
+          "right": 924,
+          "top": 3031,
+          "bottom": 3535,
+          "width": 336
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      },
+      "mvp": {
+        "rect": {
+          "left": 1032,
+          "right": 1368,
+          "top": 3031,
+          "bottom": 3535,
+          "width": 336
+        },
+        "insideGrid": true,
+        "insideViewport": true
+      }
+    },
+    "kudos": {
+      "rect": {
+        "left": 196,
+        "right": 1316,
+        "top": 3637,
+        "bottom": 4161,
+        "width": 1120
+      },
+      "insideViewport": true,
+      "logo": {
+        "left": 196,
+        "right": 1316,
+        "top": 3637,
+        "bottom": 4161,
+        "width": 1120
+      },
+      "logoInsideCard": true,
+      "logoInsideViewport": true
+    },
+    "hero": {
+      "rect": {
+        "left": 144,
+        "right": 1368,
+        "top": 184,
+        "bottom": 780,
+        "width": 1224
+      },
+      "insideViewport": true
+    },
+    "heroImages": [
+      {
+        "alt": "",
+        "rect": {
+          "left": 144,
+          "right": 595,
+          "top": 184,
+          "bottom": 384,
+          "width": 451
+        },
+        "inside": true
+      }
+    ],
+    "footer": {
+      "rect": {
+        "left": 0,
+        "right": 1512,
+        "top": 4286,
+        "bottom": 4431,
+        "width": 1512
+      },
+      "insideViewport": true,
+      "links": [
+        {
+          "text": "",
+          "rect": {
+            "left": 90,
+            "right": 159,
+            "top": 4327,
+            "bottom": 4391,
+            "width": 69
+          },
+          "inside": true
+        },
+        {
+          "text": "About SAA 2025",
+          "rect": {
+            "left": 239,
+            "right": 410,
+            "top": 4331,
+            "bottom": 4387,
+            "width": 171
+          },
+          "inside": true
+        },
+        {
+          "text": "Awards Information",
+          "rect": {
+            "left": 458,
+            "right": 665,
+            "top": 4331,
+            "bottom": 4387,
+            "width": 207
+          },
+          "inside": true
+        },
+        {
+          "text": "Sun* Kudos",
+          "rect": {
+            "left": 713,
+            "right": 846,
+            "top": 4331,
+            "bottom": 4387,
+            "width": 134
+          },
+          "inside": true
+        },
+        {
+          "text": "Tiêu chuẩn chung",
+          "rect": {
+            "left": 894,
+            "right": 1086,
+            "top": 4331,
+            "bottom": 4387,
+            "width": 191
+          },
+          "inside": true
+        }
+      ]
+    },
+    "controls": {
+      "notifications-trigger": {
+        "rect": {
+          "left": 1272,
+          "right": 1312,
+          "top": 20,
+          "bottom": 60,
+          "width": 40
+        },
+        "insideViewport": true
+      },
+      "language-selector-trigger": {
+        "rect": {
+          "left": 1146,
+          "right": 1256,
+          "top": 12,
+          "bottom": 68,
+          "width": 110
+        },
+        "insideViewport": true
+      },
+      "account-trigger": {
+        "rect": {
+          "left": 1328,
+          "right": 1368,
+          "top": 20,
+          "bottom": 60,
+          "width": 40
+        },
+        "insideViewport": true
+      },
+      "widget-button": {
+        "rect": {
+          "left": 1387,
+          "right": 1493,
+          "top": 788,
+          "bottom": 852,
+          "width": 106
+        },
+        "insideViewport": true
+      }
+    }
+  }
+}

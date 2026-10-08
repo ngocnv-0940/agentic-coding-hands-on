@@ -1,0 +1,7 @@
+[
+  {"command":"E2E_PROD=1 bun run test:e2e","exitCode":0,"summary":"full suite after header-nav change, production server: 80 passed, 0 failed (5.5m); dev-mode not used because :3000 dev server holds the lock"},
+  {"command":"bunx tsc --noEmit","exitCode":0,"summary":"typecheck clean"},
+  {"command":"bun run lint","exitCode":0,"summary":"eslint clean"},
+  {"command":"node header-fit-recheck.cjs (375, 768, 1024, 1280)","exitCode":0,"summary":"no document overflow at any width; bell, language, account and widget inside viewport at 375/768/1024/1280; desktop nav hidden at 375/768 and shown at 1024/1280"},
+  {"command":"node awards-1024-crop.cjs","exitCode":0,"summary":"awards grid at 1024: 3 fixed 336px columns in a 928px container; third column (Top Project Leader, MVP) clipped at viewport edge (defect, awards-grid)"}
+]

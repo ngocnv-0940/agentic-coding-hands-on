@@ -1,0 +1,12 @@
+[
+  {
+    "command": "bun run test:e2e",
+    "exitCode": 1,
+    "summary": "[('48', 'failed'), ('32', 'passed')] RED: homepage/landing assertions; 48 failed tests across 8 files"
+  },
+  {
+    "command": "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+    "exitCode": 1,
+    "summary": "[('2', 'failed')] RED: homepage hero not rendered in invalid-env run; 2 failed"
+  }
+]
