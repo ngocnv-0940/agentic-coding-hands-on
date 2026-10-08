@@ -1,0 +1,20 @@
+import type { Dictionary } from './dictionary-vi'
+
+export const en: Dictionary = {
+  'meta.title': 'Sign in - SAA 2025',
+  'login.logoAlt': 'Sun* Annual Awards 2025',
+  'login.title': 'ROOT FURTHER',
+  'login.subtitle': 'Start your journey with SAA 2025.',
+  'login.tagline': 'Sign in to explore!',
+  'login.button': 'LOGIN With Google',
+  'login.loading': 'Signing in...',
+  'login.error': 'Sign-in failed. Please try again.',
+  'login.footer': 'Copyright © 2025 Sun*',
+  'language.vi': 'VN',
+  'language.en': 'EN',
+  'language.menu': 'Select language',
+  'todo.title': 'To-do',
+  'todo.emailLabel': 'Email',
+  'todo.logout': 'Logout',
+  'todo.emailMissing': '—',
+}
