@@ -1,0 +1,21 @@
+$ playwright test "e2e/awards-information-category-navigation.spec.ts" --grep PageUp "--repeat-each=10"
+[WebServer] $ next dev -p "3100"
+
+Running 10 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /awards-information is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   2 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (11.6s)
+  ✓   1 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (11.6s)
+  ✓   4 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (11.6s)
+  ✓   3 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (11.6s)
+  ✓   6 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (10.8s)
+  ✓   5 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (10.9s)
+  ✓   7 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (10.8s)
+  ✓   8 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (10.9s)
+  ✓   9 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (9.5s)
+  ✓  10 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (9.5s)
+
+  10 passed (5.1m)
+exit=0

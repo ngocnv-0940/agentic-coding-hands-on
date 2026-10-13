@@ -1,0 +1,40 @@
+$ playwright test "e2e/awards-information-access-and-content.spec.ts" "e2e/awards-information-category-navigation.spec.ts" "e2e/awards-information-responsive-layout.spec.ts"
+[WebServer] $ next dev -p "3100"
+
+Running 27 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   1 [chromium] › e2e/awards-information-access-and-content.spec.ts:58:7 › Awards Information access and content › ID-1: a guest opening the page is redirected to /login (1.0s)
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /awards-information is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   2 [chromium] › e2e/awards-information-access-and-content.spec.ts:50:7 › Awards Information access and content › ID-0: a signed-in user sees the awards page and no Coming soon (3.4s)
+  ✓   4 [chromium] › e2e/awards-information-access-and-content.spec.ts:76:7 › Awards Information access and content › ID-3: title sits above the menu and cards; the Kudos block sits below the last award (3.5s)
+  ✓   5 [chromium] › e2e/awards-information-access-and-content.spec.ts:89:7 › Awards Information access and content › ID-4: caption "Sun* Annual Awards 2025" and gold heading "Hệ thống giải thưởng SAA 2025" (2.5s)
+  ✓   3 [chromium] › e2e/awards-information-access-and-content.spec.ts:66:7 › Awards Information access and content › ID-2: the header "Awards Information" item opens the page (4.0s)
+  ✓   6 [chromium] › e2e/awards-information-access-and-content.spec.ts:97:7 › Awards Information access and content › ID-5: the category menu lists six items in order, each linking to its section (2.6s)
+  ✓   9 [chromium] › e2e/awards-information-access-and-content.spec.ts:140:7 › Awards Information access and content › ID-7: each award image renders 336 x 336 at 1440px (2.3s)
+  ✓   7 [chromium] › e2e/awards-information-access-and-content.spec.ts:107:7 › Awards Information access and content › ID-6: six award sections in order, each with quantity and prize values (2.8s)
+  ✓   8 [chromium] › e2e/awards-information-access-and-content.spec.ts:124:7 › Awards Information access and content › D005: the section description is the full Figma copy, not the homepage card copy (3.0s)
+  ✓  10 [chromium] › e2e/awards-information-access-and-content.spec.ts:151:7 › Awards Information access and content › ID-8: the Sun* Kudos block shows eyebrow, title and the Chi tiết link (2.1s)
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  11 [chromium] › e2e/awards-information-access-and-content.spec.ts:160:7 › Awards Information access and content › ID-12: Chi tiết opens /sun-kudos in the same tab (2.9s)
+[WebServer] Route /_not-found is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  12 [chromium] › e2e/awards-information-access-and-content.spec.ts:171:7 › Awards Information access and content › ID-14: an unknown route under /awards-information answers 404 (3.6s)
+  ✓  13 [chromium] › e2e/awards-information-access-and-content.spec.ts:179:7 › Awards Information access and content › AC12: switching to English localizes the page with no raw awards.* keys (3.4s)
+  ✓  15 [chromium] › e2e/awards-information-category-navigation.spec.ts:75:7 › Awards Information category navigation › D007: a click sets #slug without adding a history entry (3.3s)
+  ✓  17 [chromium] › e2e/awards-information-category-navigation.spec.ts:112:7 › Awards Information category navigation › ID-10: hovering an inactive menu item changes its computed style (2.5s)
+  ✓  14 [chromium] › e2e/awards-information-category-navigation.spec.ts:64:7 › Awards Information category navigation › ID-9/ID-11: default active is Top Talent; each click scrolls to its section and leaves only it active (4.6s)
+  ✓  18 [chromium] › e2e/awards-information-category-navigation.spec.ts:126:7 › Awards Information category navigation › scroll-spy: manual scrolling moves the active item and leaves the URL untouched (2.4s)
+  ✓  19 [chromium] › e2e/awards-information-category-navigation.spec.ts:140:7 › Awards Information category navigation › deep link #mvp scrolls to MVP and activates it (2.4s)
+  ✓  20 [chromium] › e2e/awards-information-category-navigation.spec.ts:148:7 › Awards Information category navigation › homepage Best Manager card opens #best-manager with that section active (2.5s)
+  ✓  23 [chromium] › e2e/awards-information-responsive-layout.spec.ts:67:9 › Awards Information responsive layout › FR-407: at 768px the menu is one horizontal row of tabs with no page-level horizontal scroll (2.0s)
+  ✓  16 [chromium] › e2e/awards-information-category-navigation.spec.ts:86:7 › Awards Information category navigation › BR-002: no flicker, only the clicked item ever gains aria-current during a click scroll (7.5s)
+  ✓  22 [chromium] › e2e/awards-information-responsive-layout.spec.ts:42:7 › Awards Information responsive layout › FR-406: at 1440px the menu is left of the cards and stays sticky under the header (3.2s)
+  ✓  24 [chromium] › e2e/awards-information-responsive-layout.spec.ts:67:9 › Awards Information responsive layout › FR-407: at 375px the menu is one horizontal row of tabs with no page-level horizontal scroll (1.7s)
+  ✓  25 [chromium] › e2e/awards-information-responsive-layout.spec.ts:82:7 › Awards Information responsive layout › D009: from 768px each award card puts image and text side by side (2.0s)
+  ✓  21 [chromium] › e2e/awards-information-category-navigation.spec.ts:158:7 › Awards Information category navigation › ID-13: an unknown hash raises no page error, keeps the top of the page and Top Talent active (5.1s)
+  ✓  26 [chromium] › e2e/awards-information-responsive-layout.spec.ts:94:7 › Awards Information responsive layout › D009: below 768px each award card stacks the image above the text (1.9s)
+  ✓  27 [chromium] › e2e/awards-information-responsive-layout.spec.ts:105:7 › Awards Information responsive layout › DEC-002: resizing from 1440px to 375px keeps the active menu item (1.6s)
+
+  27 passed (4.9m)
+EXIT 0

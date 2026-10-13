@@ -1,0 +1,123 @@
+{
+  "score": 9,
+  "criticalCount": 0,
+  "decision": "SEALED",
+  "acceptanceCovered": [
+    "AC1: Signed-in user opening /awards-information sees the Awards System page (TC ID-0); guest is redirected to /login (TC ID-1); header nav 'Awards Information' opens it (TC ID-2). — proven by: e2e/awards-information-access-and-content.spec.ts ID-0, ID-1, ID-2 (green in e2e-full-final2-output.txt, 112/112 suite)",
+    "AC2: Layout = keyvisual hero + section title, category menu on the left (desktop), 6 award cards in the center, Sun* Kudos block at the bottom, shared header/footer (TC ID-3). — proven by: access-and-content spec ID-3 (title above menu and cards, Kudos below last award) and responsive-layout spec FR-406 (menu left of cards at 1440px); shared header/footer is the (main) layout, confirmed by code reading rather than asserted by a dedicated test",
+    "AC3: Title shows caption 'Sun* Annual Awards 2025' (Figma casing, per clarifications.md 2026-10-13; TC ID-4 wrote it lowercase) and gold heading 'Hệ thống giải thưởng SAA 2025' (TC ID-4). — proven by: access-and-content spec ID-4 (toHaveText on caption and h1, plus different computed colours)",
+    "AC4: Menu lists 6 items in order Top Talent, Top Project, Top Project Leader, Best Manager, Signature 2025 - Creator, MVP (TC ID-5). — proven by: access-and-content spec ID-5 (six items in Figma order, each linking to its section)",
+    "AC5: 6 award cards show image (336x336), title, description, quantity and prize value per Figma (TC ID-6, ID-7). — proven by: access-and-content spec ID-6 (six sections with quantity and prize), D005 (full Figma description copy), ID-7 (336 x 336 image at 1440px)",
+    "AC6: Sun* Kudos block shows eyebrow, title, description and 'Chi tiết' button linking to /sun-kudos (TC ID-8, ID-12). — proven by: access-and-content spec ID-8 (eyebrow, title, Chi tiết link) and ID-12 (Chi tiết opens /sun-kudos in the same tab)",
+    "AC7: Clicking a menu item smooth-scrolls to its section and makes only that item active (gold + underline) (TC ID-9, ID-11); hover highlights items (TC ID-10). — proven by: category-navigation spec ID-9/ID-11 (each click scrolls to its section, exactly one aria-current item), BR-002 no-flicker test, D007 hash test, ID-10 (hover changes computed style), Ctrl-click and PageUp tests from rounds 1-2 (30/30 dev, 30/30 prod); gold + underline is the ITEM_ACTIVE class string in awards-category-menu.tsx (code reading, not asserted by a test)",
+    "AC8: Scroll-spy: the section in view sets the active menu item. — proven by: category-navigation spec 'scroll-spy: manual scrolling moves the active item and leaves the URL untouched' and the PageUp takeover test, which asserts the active item equals the section in view after the scroll settles (ALG-001)",
+    "AC9: Deep link /awards-information#<slug> scrolls to and activates that award; homepage award card links land on the right section. — proven by: category-navigation spec 'deep link #mvp scrolls to MVP and activates it' and 'homepage Best Manager card opens #best-manager with that section active'",
+    "AC10: Unknown hash causes no JS error and no crash (TC ID-13). — proven by: category-navigation spec ID-13 (page.on('pageerror') stays empty, page at top, Top Talent active)",
+    "AC11: Desktop (>=1024px) menu is sticky below the site header; below 1024px it becomes one row of horizontally scrolling tabs with the same active styling. — proven by: responsive-layout spec FR-406 (sticky under header at 1440px), FR-407 at 768px and 375px (one row, overflow-x auto/scroll, no page horizontal scroll), DEC-002 (active item survives resize); same active styling is the single nav element sharing ITEM_ACTIVE with no breakpoint override (code reading, not asserted by a test)",
+    "AC12: All copy is localized VN (verbatim Figma) / EN via lib/i18n dictionaries with parity. — proven by: access-and-content spec AC12 (EN switch, no raw awards.* keys), VN copy asserted verbatim in ID-4/ID-5/ID-6/D005, compile-time Dictionary type parity (tsc --noEmit exit 0, re-run this round)"
+  ],
+  "regressionChecked": [
+    "KudosPromo default variant class strings byte-identical (homepage)",
+    "Homepage placeholder spec loop drops only /awards-information",
+    "Dictionary/Dictionary-type parity across vi/en spreads",
+    "awardHref + AWARD_SLUGS anchor contract unchanged",
+    "(main) layout auth/Suspense untouched; page nests under it",
+    "Next 16.4 app-router replaceState patch accepts null state (no router desync)",
+    "Hook listener/timer/rAF cleanup (incl. round-2 touchmove listener and onUnsettled rAF) and StrictMode double-effect",
+    "createScrollLock/isSidewaysMove/startsOnScrollingTabRow have no callers outside use-award-category-spy.ts",
+    "tsc --noEmit and eslint on the round-2 touched files re-run on current tree: exit 0"
+  ],
+  "contractStatus": "OK",
+  "refuted": [],
+  "unproven": [],
+  "reachableRegressions": [],
+  "findings": [
+    {
+      "severity": "Medium",
+      "category": "Concurrency",
+      "location": "app/(main)/_behavior/use-award-category-spy.ts:85-89",
+      "summary": "addressed — Idle-timer release ignores hasReachedSection; a >150ms scroll-event gap unlocks mid smooth-scroll (BR-002). Gate release on target reached or a hard deadline.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Medium",
+      "category": "UX/Accessibility",
+      "location": "app/(main)/_behavior/use-award-category-spy.ts:91-92",
+      "summary": "addressed — Unconditional preventDefault blocks modifier-click/open-in-new-tab on menu anchors.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Medium",
+      "category": "Documentation",
+      "location": "docs/screens/SCR004_AwardsInformation/spec.md:28-184",
+      "summary": "Promoted screen spec contradicts clarifications/code: stacking below 1024 (code 768), E12 '10 Đơn vị' (Figma '10 Cá nhân'), image always left (code alternates).",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "app/(main)/_behavior/use-award-category-spy.ts:136-145",
+      "summary": "addressed — Keyboard/scrollbar interruption is not a user takeover; touchstart on the tab row releases the page lock mid-scroll.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Maintainability",
+      "location": "app/(main)/_wiring/awards-category-menu-container.tsx:18-28",
+      "summary": "addressed — Spy order from AWARD_SLUGS while items come from AWARD_DETAILS, plus an 'as AwardSlug' cast.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Maintainability",
+      "location": "app/(main)/_wiring/build-awards-information-props.ts:44-51",
+      "summary": "addressed — KUDOS_PATH and kudos dictionary mapping duplicated from build-home-screen-props.ts.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Structure",
+      "summary": "await connection() redundant after cookies() in page.tsx; harmless, mirrors layout.",
+      "disposition": "Reject"
+    },
+    {
+      "severity": "Low",
+      "category": "i18n",
+      "summary": "EN prize values keep VN number format '7.000.000 VNĐ'; product decision.",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Performance",
+      "summary": "KudosPromo wide variant keeps sizes hint at 1120px for a 1152px card; negligible.",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Accessibility",
+      "summary": "Award image alt repeats adjacent h2 title; acceptable as the PNG carries name artwork.",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "app/(main)/_behavior/award-scroll-lock.ts:144",
+      "summary": "addressed — Vertical wheel/touch starting on the overflowing tab row (<1024) is treated as a sideways row scroll, so the lock is not cancelled; the deadline release then pins anchorY at an unreached offset and the active item stays stale until the next scroll. Fix: exclude only sideways gestures, or release(false) and recompute when the deadline expires with the target unreached.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Testing",
+      "location": "e2e/awards-information-category-navigation.spec.ts:62",
+      "summary": "addressed — Fix round added no regression test for modifier-click or scroll-key takeover. Add a Ctrl-click test and a PageDown-during-click-scroll test.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Testing",
+      "location": "e2e/awards-information-category-navigation.spec.ts:233",
+      "summary": "Round-2 logic has no test: touchmove direction decision, vertical-wheel exemption on the <1024 tab row, and the deadline onUnsettled recompute. Fix if wanted: an 800px-wide test sending page.mouse.wheel(0,-600) over the row during a click-scroll.",
+      "disposition": "Defer"
+    }
+  ]
+}

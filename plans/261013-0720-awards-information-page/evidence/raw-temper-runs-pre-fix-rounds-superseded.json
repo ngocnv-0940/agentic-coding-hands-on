@@ -1,0 +1,50 @@
+{
+  "note": "Runs 0-7 predate fix rounds 1-2; run 11 failed on a test precondition race fixed in the spec (see e2e-nav-repeat3-final-attempt1-precondition-race-output.txt). Kept for history; final = temper-results.json.",
+  "runs": [
+    {
+      "command": "bunx tsc --noEmit",
+      "exitCode": 0,
+      "summary": "[Predates fix rounds 1-2; re-verified in final2 runs below] TypeScript typecheck clean, no diagnostics (tsc-final-output.txt)."
+    },
+    {
+      "command": "bun run lint",
+      "exitCode": 0,
+      "summary": "[Predates fix rounds 1-2; re-verified in final2 runs below] eslint clean, no findings (lint-final-output.txt)."
+    },
+    {
+      "command": "bun run build",
+      "exitCode": 0,
+      "summary": "[Predates fix rounds 1-2; re-verified in final2 runs below] next build 16.4.0 compiled, 13 routes incl. /awards-information (dynamic), no prerender or cookie errors, no warnings (build-final-output.txt)."
+    },
+    {
+      "command": "bun run test:e2e e2e/awards-information-access-and-content.spec.ts e2e/awards-information-category-navigation.spec.ts e2e/awards-information-responsive-layout.spec.ts",
+      "exitCode": 0,
+      "summary": "[Predates fix rounds 1-2; re-verified in final2 runs below] Run 1 (dev server): 27 passed, 0 failed, 4.9 min (e2e-green-run1-output.txt). RED baseline was 25 failed, 2 passed."
+    },
+    {
+      "command": "bun run test:e2e e2e/awards-information-access-and-content.spec.ts e2e/awards-information-category-navigation.spec.ts e2e/awards-information-responsive-layout.spec.ts",
+      "exitCode": 0,
+      "summary": "[Predates fix rounds 1-2; re-verified in final2 runs below] Run 2 (dev server, flakiness check): 27 passed, 0 failed, 5.0 min. Same as run 1; no flaky test seen (e2e-green-run2-output.txt)."
+    },
+    {
+      "command": "E2E_PROD=1 bun run test:e2e e2e/awards-information-access-and-content.spec.ts e2e/awards-information-category-navigation.spec.ts e2e/awards-information-responsive-layout.spec.ts",
+      "exitCode": 0,
+      "summary": "[Predates fix rounds 1-2; re-verified in final2 runs below] Production build + next start: 27 passed, 0 failed, 4.8 min (e2e-green-prod-output.txt)."
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "summary": "[Predates fix rounds 1-2; re-verified in final2 runs below] Full suite: 110 passed, 0 failed, 0 skipped, 6.9 min. @smoke and @event-env-invalid groups are grep-inverted by config (not counted). Includes homepage specs and shared dictionary/KudosPromo consumers (e2e-full-final-output.txt)."
+    },
+    {
+      "command": "bun run build (with NEXT_PUBLIC_SUPABASE_URL=http://localhost:54399, for the visual capture only)",
+      "exitCode": 0,
+      "summary": "[Predates fix rounds 1-2; re-verified in final2 runs below] Production build against the mock Supabase URL used for visual validation (evidence/visual/build-visual-env.log)."
+    },
+    {
+      "command": "bun run test:e2e e2e/awards-information-category-navigation.spec.ts --repeat-each=3",
+      "exitCode": 1,
+      "summary": "final2 attempt 1 (dev), before the PageUp precondition fix: 29 passed, 1 failed. PageUp repeat2 failed its precondition (scrollY read 679 = pre-click offset, smooth scroll not yet started); a test-timing race, not an app defect (e2e-nav-repeat3-final-attempt1-precondition-race-output.txt)."
+    }
+  ]
+}

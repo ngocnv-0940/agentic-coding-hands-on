@@ -1,0 +1,11 @@
+{
+  "redTestFiles": [
+    "e2e/awards-information-access-and-content.spec.ts",
+    "e2e/awards-information-category-navigation.spec.ts",
+    "e2e/awards-information-responsive-layout.spec.ts",
+    "e2e/support/awards-information-locators.ts"
+  ],
+  "redCommand": "bun run test:e2e e2e/awards-information-access-and-content.spec.ts e2e/awards-information-category-navigation.spec.ts e2e/awards-information-responsive-layout.spec.ts",
+  "redExitCode": 1,
+  "redFailure": "25 failed, 2 passed (27 total). Every failure is a screen assertion on the awards page. The page still renders the Coming soon placeholder, so the awards testids are absent. Representative errors: (1) access-and-content :53 ID-0, :71 ID-2, :78 ID-3: expect(locator).toBeVisible() failed, element(s) not found, waiting for getByTestId('awards-information'). (2) access-and-content :91 ID-4: toHaveText failed, waiting for getByTestId('awards-caption'). (3) access-and-content :99 ID-5: waiting for getByTestId('awards-category-menu'). (4) category-navigation: openAwardsSignedIn precondition fails on getByTestId('awards-information') for ID-9, D007, BR-002, ID-10, scroll-spy, ID-13; deep link #mvp fails with 'active item for mvp' (no item carries aria-current=location); homepage Best Manager card fails with 'active item for best-manager'. (5) responsive-layout: every test fails on getByTestId('awards-information') via openAwardsAt. Passing: ID-1 (guest redirect to /login) and ID-14 (unknown route answers 404). Homepage access spec (edited loop) passes 9/9 separately (exit 0)."
+}

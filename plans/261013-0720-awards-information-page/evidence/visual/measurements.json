@@ -1,0 +1,1332 @@
+{
+  "w1440-top": {
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "scroll": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "header": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 80
+    },
+    "headerPos": {
+      "position": "sticky"
+    },
+    "hero": {
+      "x": 0,
+      "y": 80,
+      "w": 1440,
+      "h": 503
+    },
+    "keyvisual": {
+      "x": 0,
+      "y": 80,
+      "w": 1440,
+      "h": 547
+    },
+    "caption": "Sun* Annual Awards 2025",
+    "h1": {
+      "text": "Hệ thống giải thưởng SAA 2025",
+      "color": "rgb(255, 234, 158)",
+      "font-size": "57px",
+      "font-weight": "700"
+    },
+    "navRect": {
+      "x": 144,
+      "y": 703,
+      "w": 178,
+      "h": 454
+    },
+    "navPos": {
+      "position": "sticky",
+      "top": "96px",
+      "overflow-x": "visible",
+      "display": "block"
+    },
+    "ulDir": {
+      "display": "flex",
+      "flex-direction": "column"
+    },
+    "items": [
+      {
+        "slug": "top-talent",
+        "text": "Top Talent",
+        "ariaCurrent": "location",
+        "color": "rgb(255, 234, 158)",
+        "border-bottom-color": "rgb(255, 234, 158)",
+        "border-bottom-width": "1px",
+        "text-shadow": "rgba(0, 0, 0, 0.25) 0px 4px 4px, rgb(250, 226, 135) 0px 0px 6px"
+      },
+      {
+        "slug": "top-project",
+        "text": "Top Project",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "top-project-leader",
+        "text": "Top Project Leader",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "best-manager",
+        "text": "Best Manager",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "signature-2025-creator",
+        "text": "Signature 2025 - Creator",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "mvp",
+        "text": "MVP",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      }
+    ],
+    "sections": [
+      {
+        "id": "top-talent",
+        "rect": {
+          "x": 440,
+          "y": 703,
+          "w": 856,
+          "h": 631
+        },
+        "imgRect": {
+          "x": 440,
+          "y": 703,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 856,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project",
+        "rect": {
+          "x": 440,
+          "y": 1414,
+          "w": 856,
+          "h": 679
+        },
+        "imgRect": {
+          "x": 960,
+          "y": 1414,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 480,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project-leader",
+        "rect": {
+          "x": 440,
+          "y": 2173,
+          "w": 856,
+          "h": 679
+        },
+        "imgRect": {
+          "x": 440,
+          "y": 2173,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 856,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "best-manager",
+        "rect": {
+          "x": 440,
+          "y": 2932,
+          "w": 856,
+          "h": 667
+        },
+        "imgRect": {
+          "x": 960,
+          "y": 2932,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 480,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "signature-2025-creator",
+        "rect": {
+          "x": 440,
+          "y": 3679,
+          "w": 856,
+          "h": 1047
+        },
+        "imgRect": {
+          "x": 440,
+          "y": 3679,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 856,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "mvp",
+        "rect": {
+          "x": 440,
+          "y": 4806,
+          "w": 856,
+          "h": 763
+        },
+        "imgRect": {
+          "x": 960,
+          "y": 4806,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 480,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      }
+    ],
+    "kudosRect": {
+      "x": 144,
+      "y": 5689,
+      "w": 1152,
+      "h": 524
+    },
+    "kudosLink": {
+      "text": "Chi tiết",
+      "href": "/sun-kudos"
+    },
+    "kudosTitle": "Sun* Kudos",
+    "fontFamily": {
+      "font-family": "Montserrat, \"Montserrat Fallback\""
+    }
+  },
+  "w1440-midpage": {
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "scroll": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "header": {
+      "x": 0,
+      "y": 2632,
+      "w": 1440,
+      "h": 80
+    },
+    "headerPos": {
+      "position": "sticky"
+    },
+    "hero": {
+      "x": 0,
+      "y": 80,
+      "w": 1440,
+      "h": 503
+    },
+    "keyvisual": {
+      "x": 0,
+      "y": 80,
+      "w": 1440,
+      "h": 547
+    },
+    "caption": "Sun* Annual Awards 2025",
+    "h1": {
+      "text": "Hệ thống giải thưởng SAA 2025",
+      "color": "rgb(255, 234, 158)",
+      "font-size": "57px",
+      "font-weight": "700"
+    },
+    "navRect": {
+      "x": 144,
+      "y": 2728,
+      "w": 178,
+      "h": 454
+    },
+    "navPos": {
+      "position": "sticky",
+      "top": "96px",
+      "overflow-x": "visible",
+      "display": "block"
+    },
+    "ulDir": {
+      "display": "flex",
+      "flex-direction": "column"
+    },
+    "items": [
+      {
+        "slug": "top-talent",
+        "text": "Top Talent",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "top-project",
+        "text": "Top Project",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "top-project-leader",
+        "text": "Top Project Leader",
+        "ariaCurrent": "location",
+        "color": "rgb(255, 234, 158)",
+        "border-bottom-color": "rgb(255, 234, 158)",
+        "border-bottom-width": "1px",
+        "text-shadow": "rgba(0, 0, 0, 0.25) 0px 4px 4px, rgb(250, 226, 135) 0px 0px 6px"
+      },
+      {
+        "slug": "best-manager",
+        "text": "Best Manager",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "signature-2025-creator",
+        "text": "Signature 2025 - Creator",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "mvp",
+        "text": "MVP",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      }
+    ],
+    "sections": [
+      {
+        "id": "top-talent",
+        "rect": {
+          "x": 440,
+          "y": 703,
+          "w": 856,
+          "h": 631
+        },
+        "imgRect": {
+          "x": 440,
+          "y": 703,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 856,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project",
+        "rect": {
+          "x": 440,
+          "y": 1414,
+          "w": 856,
+          "h": 679
+        },
+        "imgRect": {
+          "x": 960,
+          "y": 1414,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 480,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project-leader",
+        "rect": {
+          "x": 440,
+          "y": 2173,
+          "w": 856,
+          "h": 679
+        },
+        "imgRect": {
+          "x": 440,
+          "y": 2173,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 856,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "best-manager",
+        "rect": {
+          "x": 440,
+          "y": 2932,
+          "w": 856,
+          "h": 667
+        },
+        "imgRect": {
+          "x": 960,
+          "y": 2932,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 480,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "signature-2025-creator",
+        "rect": {
+          "x": 440,
+          "y": 3679,
+          "w": 856,
+          "h": 1047
+        },
+        "imgRect": {
+          "x": 440,
+          "y": 3679,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 856,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "mvp",
+        "rect": {
+          "x": 440,
+          "y": 4806,
+          "w": 856,
+          "h": 763
+        },
+        "imgRect": {
+          "x": 960,
+          "y": 4806,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 480,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      }
+    ],
+    "kudosRect": {
+      "x": 144,
+      "y": 5689,
+      "w": 1152,
+      "h": 524
+    },
+    "kudosLink": {
+      "text": "Chi tiết",
+      "href": "/sun-kudos"
+    },
+    "kudosTitle": "Sun* Kudos",
+    "fontFamily": {
+      "font-family": "Montserrat, \"Montserrat Fallback\""
+    }
+  },
+  "w768-top": {
+    "viewport": {
+      "w": 768,
+      "h": 900
+    },
+    "scroll": {
+      "scrollWidth": 768,
+      "clientWidth": 768
+    },
+    "header": {
+      "x": 0,
+      "y": 0,
+      "w": 768,
+      "h": 80
+    },
+    "headerPos": {
+      "position": "sticky"
+    },
+    "hero": {
+      "x": 0,
+      "y": 80,
+      "w": 768,
+      "h": 567
+    },
+    "keyvisual": {
+      "x": 0,
+      "y": 80,
+      "w": 768,
+      "h": 547
+    },
+    "caption": "Sun* Annual Awards 2025",
+    "h1": {
+      "text": "Hệ thống giải thưởng SAA 2025",
+      "color": "rgb(255, 234, 158)",
+      "font-size": "57px",
+      "font-weight": "700"
+    },
+    "navRect": {
+      "x": 0,
+      "y": 767,
+      "w": 768,
+      "h": 58
+    },
+    "navPos": {
+      "position": "sticky",
+      "top": "80px",
+      "overflow-x": "auto",
+      "display": "block"
+    },
+    "ulDir": {
+      "display": "flex",
+      "flex-direction": "row"
+    },
+    "items": [
+      {
+        "slug": "top-talent",
+        "text": "Top Talent",
+        "ariaCurrent": "location",
+        "color": "rgb(255, 234, 158)",
+        "border-bottom-color": "rgb(255, 234, 158)",
+        "border-bottom-width": "1px",
+        "text-shadow": "rgba(0, 0, 0, 0.25) 0px 4px 4px, rgb(250, 226, 135) 0px 0px 6px"
+      },
+      {
+        "slug": "top-project",
+        "text": "Top Project",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "top-project-leader",
+        "text": "Top Project Leader",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "best-manager",
+        "text": "Best Manager",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "signature-2025-creator",
+        "text": "Signature 2025 - Creator",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "mvp",
+        "text": "MVP",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      }
+    ],
+    "sections": [
+      {
+        "id": "top-talent",
+        "rect": {
+          "x": 48,
+          "y": 849,
+          "w": 672,
+          "h": 827
+        },
+        "imgRect": {
+          "x": 48,
+          "y": 849,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 464,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project",
+        "rect": {
+          "x": 48,
+          "y": 1756,
+          "w": 672,
+          "h": 899
+        },
+        "imgRect": {
+          "x": 384,
+          "y": 1756,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 88,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project-leader",
+        "rect": {
+          "x": 48,
+          "y": 2735,
+          "w": 672,
+          "h": 875
+        },
+        "imgRect": {
+          "x": 48,
+          "y": 2735,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 464,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "best-manager",
+        "rect": {
+          "x": 48,
+          "y": 3690,
+          "w": 672,
+          "h": 887
+        },
+        "imgRect": {
+          "x": 384,
+          "y": 3690,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 88,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "signature-2025-creator",
+        "rect": {
+          "x": 48,
+          "y": 4657,
+          "w": 672,
+          "h": 1335
+        },
+        "imgRect": {
+          "x": 48,
+          "y": 4657,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 464,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "mvp",
+        "rect": {
+          "x": 48,
+          "y": 6072,
+          "w": 672,
+          "h": 1039
+        },
+        "imgRect": {
+          "x": 384,
+          "y": 6072,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 88,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          0,
+          0
+        ]
+      }
+    ],
+    "kudosRect": {
+      "x": 48,
+      "y": 7231,
+      "w": 672,
+      "h": 524
+    },
+    "kudosLink": {
+      "text": "Chi tiết",
+      "href": "/sun-kudos"
+    },
+    "kudosTitle": "Sun* Kudos",
+    "fontFamily": {
+      "font-family": "Montserrat, \"Montserrat Fallback\""
+    }
+  },
+  "w768-midpage": {
+    "viewport": {
+      "w": 768,
+      "h": 900
+    },
+    "scroll": {
+      "scrollWidth": 768,
+      "clientWidth": 768
+    },
+    "header": {
+      "x": 0,
+      "y": 3390,
+      "w": 768,
+      "h": 80
+    },
+    "headerPos": {
+      "position": "sticky"
+    },
+    "hero": {
+      "x": 0,
+      "y": 80,
+      "w": 768,
+      "h": 567
+    },
+    "keyvisual": {
+      "x": 0,
+      "y": 80,
+      "w": 768,
+      "h": 547
+    },
+    "caption": "Sun* Annual Awards 2025",
+    "h1": {
+      "text": "Hệ thống giải thưởng SAA 2025",
+      "color": "rgb(255, 234, 158)",
+      "font-size": "57px",
+      "font-weight": "700"
+    },
+    "navRect": {
+      "x": 0,
+      "y": 3470,
+      "w": 768,
+      "h": 58
+    },
+    "navPos": {
+      "position": "sticky",
+      "top": "80px",
+      "overflow-x": "auto",
+      "display": "block"
+    },
+    "ulDir": {
+      "display": "flex",
+      "flex-direction": "row"
+    },
+    "items": [
+      {
+        "slug": "top-talent",
+        "text": "Top Talent",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "top-project",
+        "text": "Top Project",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "top-project-leader",
+        "text": "Top Project Leader",
+        "ariaCurrent": "location",
+        "color": "rgb(255, 234, 158)",
+        "border-bottom-color": "rgb(255, 234, 158)",
+        "border-bottom-width": "1px",
+        "text-shadow": "rgba(0, 0, 0, 0.25) 0px 4px 4px, rgb(250, 226, 135) 0px 0px 6px"
+      },
+      {
+        "slug": "best-manager",
+        "text": "Best Manager",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "signature-2025-creator",
+        "text": "Signature 2025 - Creator",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "mvp",
+        "text": "MVP",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      }
+    ],
+    "sections": [
+      {
+        "id": "top-talent",
+        "rect": {
+          "x": 48,
+          "y": 849,
+          "w": 672,
+          "h": 827
+        },
+        "imgRect": {
+          "x": 48,
+          "y": 849,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 464,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project",
+        "rect": {
+          "x": 48,
+          "y": 1756,
+          "w": 672,
+          "h": 899
+        },
+        "imgRect": {
+          "x": 384,
+          "y": 1756,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 88,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project-leader",
+        "rect": {
+          "x": 48,
+          "y": 2735,
+          "w": 672,
+          "h": 875
+        },
+        "imgRect": {
+          "x": 48,
+          "y": 2735,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 464,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "best-manager",
+        "rect": {
+          "x": 48,
+          "y": 3690,
+          "w": 672,
+          "h": 887
+        },
+        "imgRect": {
+          "x": 384,
+          "y": 3690,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 88,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "signature-2025-creator",
+        "rect": {
+          "x": 48,
+          "y": 4657,
+          "w": 672,
+          "h": 1335
+        },
+        "imgRect": {
+          "x": 48,
+          "y": 4657,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 464,
+        "flexDir": {
+          "flex-direction": "row"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "mvp",
+        "rect": {
+          "x": 48,
+          "y": 6072,
+          "w": 672,
+          "h": 1039
+        },
+        "imgRect": {
+          "x": 384,
+          "y": 6072,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 88,
+        "flexDir": {
+          "flex-direction": "row-reverse"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      }
+    ],
+    "kudosRect": {
+      "x": 48,
+      "y": 7231,
+      "w": 672,
+      "h": 524
+    },
+    "kudosLink": {
+      "text": "Chi tiết",
+      "href": "/sun-kudos"
+    },
+    "kudosTitle": "Sun* Kudos",
+    "fontFamily": {
+      "font-family": "Montserrat, \"Montserrat Fallback\""
+    }
+  },
+  "w375-top": {
+    "viewport": {
+      "w": 375,
+      "h": 900
+    },
+    "scroll": {
+      "scrollWidth": 375,
+      "clientWidth": 375
+    },
+    "header": {
+      "x": 0,
+      "y": 0,
+      "w": 375,
+      "h": 80
+    },
+    "headerPos": {
+      "position": "sticky"
+    },
+    "hero": {
+      "x": 0,
+      "y": 80,
+      "w": 375,
+      "h": 361
+    },
+    "keyvisual": {
+      "x": 0,
+      "y": 80,
+      "w": 375,
+      "h": 547
+    },
+    "caption": "Sun* Annual Awards 2025",
+    "h1": {
+      "text": "Hệ thống giải thưởng SAA 2025",
+      "color": "rgb(255, 234, 158)",
+      "font-size": "36px",
+      "font-weight": "700"
+    },
+    "navRect": {
+      "x": 0,
+      "y": 489,
+      "w": 375,
+      "h": 58
+    },
+    "navPos": {
+      "position": "sticky",
+      "top": "80px",
+      "overflow-x": "auto",
+      "display": "block"
+    },
+    "ulDir": {
+      "display": "flex",
+      "flex-direction": "row"
+    },
+    "items": [
+      {
+        "slug": "top-talent",
+        "text": "Top Talent",
+        "ariaCurrent": "location",
+        "color": "rgb(255, 234, 158)",
+        "border-bottom-color": "rgb(255, 234, 158)",
+        "border-bottom-width": "1px",
+        "text-shadow": "rgba(0, 0, 0, 0.25) 0px 4px 4px, rgb(250, 226, 135) 0px 0px 6px"
+      },
+      {
+        "slug": "top-project",
+        "text": "Top Project",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "top-project-leader",
+        "text": "Top Project Leader",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "best-manager",
+        "text": "Best Manager",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "signature-2025-creator",
+        "text": "Signature 2025 - Creator",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      },
+      {
+        "slug": "mvp",
+        "text": "MVP",
+        "ariaCurrent": null,
+        "color": "rgb(255, 255, 255)",
+        "border-bottom-color": "rgba(0, 0, 0, 0)",
+        "border-bottom-width": "1px",
+        "text-shadow": "none"
+      }
+    ],
+    "sections": [
+      {
+        "id": "top-talent",
+        "rect": {
+          "x": 16,
+          "y": 571,
+          "w": 343,
+          "h": 1083
+        },
+        "imgRect": {
+          "x": 16,
+          "y": 571,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 56,
+        "flexDir": {
+          "flex-direction": "column"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project",
+        "rect": {
+          "x": 16,
+          "y": 1694,
+          "w": 343,
+          "h": 1155
+        },
+        "imgRect": {
+          "x": 16,
+          "y": 1694,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 56,
+        "flexDir": {
+          "flex-direction": "column"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "top-project-leader",
+        "rect": {
+          "x": 16,
+          "y": 2889,
+          "w": 343,
+          "h": 1131
+        },
+        "imgRect": {
+          "x": 16,
+          "y": 2889,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 56,
+        "flexDir": {
+          "flex-direction": "column"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "best-manager",
+        "rect": {
+          "x": 16,
+          "y": 4060,
+          "w": 343,
+          "h": 1143
+        },
+        "imgRect": {
+          "x": 16,
+          "y": 4060,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 56,
+        "flexDir": {
+          "flex-direction": "column"
+        },
+        "imgNatural": [
+          336,
+          336
+        ]
+      },
+      {
+        "id": "signature-2025-creator",
+        "rect": {
+          "x": 16,
+          "y": 5243,
+          "w": 343,
+          "h": 1559
+        },
+        "imgRect": {
+          "x": 16,
+          "y": 5243,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 56,
+        "flexDir": {
+          "flex-direction": "column"
+        },
+        "imgNatural": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "mvp",
+        "rect": {
+          "x": 16,
+          "y": 6842,
+          "w": 343,
+          "h": 1271
+        },
+        "imgRect": {
+          "x": 16,
+          "y": 6842,
+          "w": 336,
+          "h": 336
+        },
+        "titleX": 56,
+        "flexDir": {
+          "flex-direction": "column"
+        },
+        "imgNatural": [
+          0,
+          0
+        ]
+      }
+    ],
+    "kudosRect": {
+      "x": 16,
+      "y": 8161,
+      "w": 343,
+      "h": 533
+    },
+    "kudosLink": {
+      "text": "Chi tiết",
+      "href": "/sun-kudos"
+    },
+    "kudosTitle": "Sun* Kudos",
+    "fontFamily": {
+      "font-family": "Montserrat, \"Montserrat Fallback\""
+    }
+  },
+  "homeKudos1440": {
+    "w": 1120,
+    "h": 524,
+    "x": 160,
+    "y": 3589,
+    "cls": "relative mx-auto flex min-h-[500px] w-full max-w-[1120px] items-center overflow-hidden rounded-2xl bg-[#0f0f0f]",
+    "link": "/sun-kudos",
+    "text": "Chi tiết",
+    "contentMax": "521px"
+  }
+}
