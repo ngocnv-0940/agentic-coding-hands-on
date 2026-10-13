@@ -1,6 +1,6 @@
 # agentic-coding-hands-on
 
-Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có ba màn hình: `/login`, trang chủ SAA 2025 `/` (đích sau đăng nhập; header, đếm ngược tới sự kiện, lưới giải thưởng, footer) và `/todo` (hiện email và nút đăng xuất). Các trang `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` hiện chỉ là trang giữ chỗ "Coming soon"; `/admin` chỉ cho người dùng có `app_metadata.role = 'admin'`. Mọi trang trừ `/login` đều cần đăng nhập. Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
+Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có bốn màn hình: `/login`, trang chủ SAA 2025 `/` (đích sau đăng nhập; header, đếm ngược tới sự kiện, lưới giải thưởng, footer), trang Hệ thống giải `/awards-information` (menu 6 hạng mục, 6 thẻ giải, liên kết `#<slug>`) và `/todo` (hiện email và nút đăng xuất). Các trang `/sun-kudos`, `/standards`, `/profile`, `/admin` hiện chỉ là trang giữ chỗ "Coming soon"; `/admin` chỉ cho người dùng có `app_metadata.role = 'admin'`. Mọi trang trừ `/login` đều cần đăng nhập. Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
 
 ## Yêu cầu
 
@@ -86,8 +86,8 @@ E2E không cần Supabase thật: `playwright.config.ts` tự khởi động m�
 |---|---|
 | `proxy.ts`, `lib/supabase/` | Làm mới phiên và chặn route; client Supabase |
 | `app/login/`, `app/todo/` | Màn hình đăng nhập và `/todo` |
-| `app/(main)/` | Trang chủ `/` và các trang giữ chỗ; layout chung có header, footer (kiểm lại phiên); `_components` hiển thị, `_behavior` menu và hook, `_wiring` container |
-| `lib/event/`, `lib/awards/`, `lib/auth/` | Đọc `EVENT_START_AT` và đếm ngược; danh mục 6 giải thưởng; người dùng hiện tại và vai trò admin |
+| `app/(main)/` | Trang chủ `/`, `/awards-information` và các trang giữ chỗ; layout chung có header, footer (kiểm lại phiên); `_components` hiển thị, `_behavior` menu và hook, `_wiring` container |
+| `lib/event/`, `lib/awards/`, `lib/auth/` | Đọc `EVENT_START_AT` và đếm ngược; danh mục 6 giải thưởng và chi tiết giải (`award-categories`, `award-details`); người dùng hiện tại và vai trò admin |
 | `app/auth/callback/`, `app/auth/logout/` | `GET` đổi mã OAuth; `POST` đăng xuất |
 | `lib/i18n/` | Từ điển vi/en và cookie `NEXT_LOCALE` |
 | `supabase/config.toml` | Cấu hình Supabase cục bộ (Google đã bật) |

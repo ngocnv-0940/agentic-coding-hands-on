@@ -2,6 +2,21 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-13 — Trang Hệ thống giải (F004_AwardsInformation, SCR004)
+
+**Thêm**
+
+- `/awards-information` thay trang giữ chỗ "Coming soon": hero keyvisual, tiêu đề "Hệ thống giải thưởng SAA 2025", menu 6 hạng mục, 6 thẻ giải (ảnh 336x336, mô tả đầy đủ nguyên văn Figma, số lượng, giá trị; Signature 2025 có hai mức giá trị) và khối Sun* Kudos dẫn tới `/sun-kudos`. Thẻ giải có `id` bằng slug nên liên kết `/awards-information#<slug>` từ trang chủ hạ cánh đúng thẻ.
+- Menu hạng mục: dọc, dính dưới header từ 1024px; dưới 1024px là hàng tab cuộn ngang ghim phía trên các thẻ. Thẻ xếp dọc dưới 768px; từ 768px ảnh so le trái/phải.
+- Hành vi cuộn (`app/(main)/_behavior/`): scroll-spy theo vị trí cuộn; bấm mục thì cuộn mượt và ghi `#<slug>` bằng `history.replaceState` (không thêm mục lịch sử); hash hợp lệ lúc tải cuộn tức thì, hash sai bị bỏ qua. Khoá cuộn giữ scroll-spy lại tới khi thẻ đích tới nơi (nhả theo `scrollend` hoặc sau 150ms yên; hạn chót 1500ms) và nhả ngay khi người dùng cuộn tay; bấm kèm Ctrl/Meta/Shift/Alt không bị chặn.
+- `lib/awards/award-details.ts` (khoá từ điển của mô tả, số lượng, giá trị), `lib/i18n/dictionary-awards-vi.ts` và `dictionary-awards-en.ts` gộp vào từ điển vi/en (en vẫn bắt buộc đủ khoá lúc biên dịch).
+- 3 spec E2E `e2e/awards-information-*.spec.ts` và `e2e/support/awards-information-locators.ts`.
+
+**Thay đổi**
+
+- `KudosPromo` có prop tuỳ chọn `variant` (`default` | `wide`); trang chủ không truyền nên giữ nguyên. Props khối Kudos dựng bởi `buildKudosPromoProps` (`_wiring/build-kudos-promo-props.ts`), dùng chung với trang chủ.
+- `/awards-information` vẫn được proxy bảo vệ như trước; không đổi xác thực hay routing.
+
 ## 2026-10-09 — Màn Login: cập nhật kích thước theo từng khổ màn hình (SCR001, chỉ giao diện)
 
 **Thay đổi**

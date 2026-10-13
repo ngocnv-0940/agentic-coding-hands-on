@@ -36,11 +36,16 @@ Ghi chú:
 |------|-----------|------------|
 | / | `HomePage` (Server Component, bọc `HomeContent` trong `Suspense`; trang chủ F003; proxy chuyển khách về /login, layout `(main)` kiểm lại phiên; `app/page.tsx` đã xoá) | — |
 
-### File: app/(main)/{awards-information,sun-kudos,standards,profile,admin}/page.tsx
+### File: app/(main)/awards-information/page.tsx
 
 | Path | Component | Route Name |
 |------|-----------|------------|
-| /awards-information | `Page` (`ComingSoonPage`, trang giữ chỗ; proxy bảo vệ kể cả đường dẫn con) | — |
+| /awards-information | `AwardsInformationPage` (Server Component, bọc `AwardsInformationContent` trong `Suspense`; trang Hệ thống giải F004 / SCR004; proxy bảo vệ kể cả đường dẫn con, layout `(main)` kiểm lại phiên) | — |
+
+### File: app/(main)/{sun-kudos,standards,profile,admin}/page.tsx
+
+| Path | Component | Route Name |
+|------|-----------|------------|
 | /sun-kudos | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
 | /standards | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
 | /profile | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |

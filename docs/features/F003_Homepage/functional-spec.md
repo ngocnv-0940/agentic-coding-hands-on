@@ -13,7 +13,7 @@ lang: vi
 **Problem:** Sau khi đăng nhập, người dùng hiện chỉ thấy trang `/todo` tối thiểu; chưa có trang chủ nào giới thiệu Sun* Annual Awards 2025 (chủ đề ROOT FURTHER), cho biết còn bao lâu tới sự kiện, các hạng mục giải thưởng và phong trào Sun* Kudos.
 **Solution:** Trang chủ `/` dành cho người đã đăng nhập: header cố định (điều hướng, thông báo, ngôn ngữ, tài khoản), hero kèm đồng hồ đếm ngược tới giờ khai mạc, thông tin sự kiện, phần giới thiệu Root Further, lưới 6 hạng mục giải thưởng, khối quảng bá Sun* Kudos, nút widget cố định và footer. Đăng nhập xong người dùng vào thẳng trang này.
 **Scope:** Màn trang chủ cùng vỏ header/footer của nó; menu tài khoản, bảng thông báo (trạng thái trống), nút widget; đồng hồ đếm ngược theo cấu hình; các trang đích còn thiếu làm trang "Coming soon" tối thiểu để không có link chết; việc đổi đích sau đăng nhập từ `/todo` sang `/`.
-**Non-Scope:** Nội dung thật của các trang Awards Information, Sun* Kudos, Tiêu chuẩn chung, Profile, Admin Dashboard (chỉ có trang giữ chỗ). Dữ liệu thông báo thật và menu hành động nhanh của nút widget (chưa có đặc tả). Cơ chế đăng nhập/đăng xuất và bộ chọn ngôn ngữ (thuộc F001_Auth và F002_Localization, trang này chỉ dùng lại).
+**Non-Scope:** Nội dung thật của trang Awards Information (nay do F004_AwardsInformation dựng) và các trang Sun* Kudos, Tiêu chuẩn chung, Profile, Admin Dashboard (chỉ có trang giữ chỗ). Dữ liệu thông báo thật và menu hành động nhanh của nút widget (chưa có đặc tả). Cơ chế đăng nhập/đăng xuất và bộ chọn ngôn ngữ (thuộc F001_Auth và F002_Localization, trang này chỉ dùng lại).
 
 **Actors**
 
@@ -53,7 +53,7 @@ lang: vi
 ### Foundation (0xx)
 
 - **FR-001** Thời điểm bắt đầu sự kiện lấy từ một biến cấu hình `EVENT_START_AT` (ISO-8601 kèm offset hoặc `Z`), là nguồn duy nhất cho ngày hiển thị và đếm ngược.
-- **FR-002** Các trang `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` tồn tại, dùng lại header và footer của trang chủ và chỉ có nội dung "Coming soon".
+- **FR-002** Các trang `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` tồn tại, dùng lại header và footer của trang chủ; `/sun-kudos`, `/standards`, `/profile`, `/admin` chỉ có nội dung "Coming soon", còn `/awards-information` nay là trang Hệ thống giải của F004_AwardsInformation.
 - **FR-003** Mọi chuỗi trên trang chủ lấy từ từ điển vi/en hiện có của F002_Localization.
 
 ### Navigation (1xx)
@@ -113,13 +113,13 @@ lang: vi
 |-------------|--------|-----------------|-------------------|
 | Homepage SAA | SCR003_Homepage | Header cố định; hero ROOT FURTHER với đếm ngược; ngày, địa điểm, Livestream; đoạn giới thiệu Root Further; lưới 6 hạng mục; khối Sun* Kudos; nút widget; footer | Đi tới Awards Information, Sun* Kudos, Tiêu chuẩn chung; mở menu tài khoản, bảng thông báo, bộ chọn ngôn ngữ; bấm thẻ giải thưởng; đăng xuất |
 
-Các trang giữ chỗ `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` chỉ hiện "Coming soon" (dùng lại header, footer, và chỉ cho người đã đăng nhập) nên không có đặc tả màn riêng.
+Các trang giữ chỗ `/sun-kudos`, `/standards`, `/profile`, `/admin` chỉ hiện "Coming soon" (dùng lại header, footer, và chỉ cho người đã đăng nhập) nên không có đặc tả màn riêng; `/awards-information` đã có đặc tả riêng ở F004_AwardsInformation (SCR004_AwardsInformation).
 
 ### User Journey
 
 1. Người dùng đăng nhập Google xong và đến Homepage SAA, thấy hero ROOT FURTHER, đồng hồ đếm ngược và thông tin sự kiện.
 2. Người dùng cuộn xuống, đọc phần Root Further rồi xem lưới 6 hạng mục giải thưởng.
-3. Người dùng bấm một thẻ, được chuyển tới trang Awards Information (hiện là trang giữ chỗ) tại đúng mục của hạng mục.
+3. Người dùng bấm một thẻ, được chuyển tới trang Awards Information (F004_AwardsInformation) tại đúng mục của hạng mục.
 4. Người dùng quay lại, xem khối Sun* Kudos và bấm "Chi tiết" để sang trang Sun* Kudos.
 5. Bất cứ lúc nào, người dùng đổi ngôn ngữ, mở menu tài khoản để đăng xuất, hoặc bấm logo để về đầu trang.
 

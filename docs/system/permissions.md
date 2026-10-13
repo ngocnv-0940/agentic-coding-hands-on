@@ -30,7 +30,7 @@ lang: vi
 ## Curated View
 
 - **anonymous** xem được trang đăng nhập `/login`, đổi ngôn ngữ VN/EN và bấm "LOGIN With Google". Mở `/` hay bất kỳ trang được bảo vệ nào (liệt kê ở Access Boundaries) đều bị chuyển về `/login`. Bấm đăng xuất không có tác dụng, vì chưa có phiên.
-- **authenticated** vào được trang chủ `/`, `/todo` và các trang giữ chỗ (`/awards-information`, `/sun-kudos`, `/standards`, `/profile`). Mở thẳng `/admin` mà không phải admin thì bị chuyển về `/`. Đăng nhập xong thì về `/`. Mở `/login` thì bị chuyển sang `/`. Đăng xuất từ menu tài khoản trên trang chủ.
+- **authenticated** vào được trang chủ `/`, `/todo`, `/awards-information` (trang Hệ thống giải) và các trang giữ chỗ (`/sun-kudos`, `/standards`, `/profile`). Mở thẳng `/admin` mà không phải admin thì bị chuyển về `/`. Đăng nhập xong thì về `/`. Mở `/login` thì bị chuyển sang `/`. Đăng xuất từ menu tài khoản trên trang chủ.
 - **admin** thấy y như `authenticated`, thêm mục "Admin Dashboard" trong menu tài khoản, dẫn tới `/admin`, và là người duy nhất vào được trang đó (hiện chỉ là trang giữ chỗ, chưa có dữ liệu).
 - Mọi người, kể cả khách, tải được ảnh và tài nguyên tĩnh (ảnh trang đăng nhập, favicon, tệp của Next.js). Các tài nguyên này không kiểm tra đăng nhập.
 - Trang `/` giờ là trang chủ thật (không còn chỉ chuyển hướng). Khách không thấy nội dung của nó.

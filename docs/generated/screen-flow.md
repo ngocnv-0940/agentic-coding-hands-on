@@ -2,7 +2,7 @@
 
 **Project**: agentic-coding-hands-on
 **Generated**: 2026-10-08
-**Analysis Scope**: Luồng chuyển màn hình của SCR001_Login, SCR002_Todo và SCR003_Homepage: `app/page.tsx` đã xoá (`/` là trang chủ), guard ở `proxy.ts` + `lib/supabase/proxy.ts`, `GET /auth/callback` (ROUTE001), `POST /auth/logout` (ROUTE002). Toàn bộ chuyển màn hình là chuyển hướng phía máy chủ hoặc điều hướng của trình duyệt; không có `<Link>`, `useRouter` hay `window.location` điều hướng trong `app/` (chỉ `window.location.origin` để dựng `redirectTo`, `lib/auth/sign-in-with-google.ts:17`).
+**Analysis Scope**: Luồng chuyển màn hình của SCR001_Login, SCR002_Todo, SCR003_Homepage và SCR004_AwardsInformation: `app/page.tsx` đã xoá (`/` là trang chủ), guard ở `proxy.ts` + `lib/supabase/proxy.ts`, `GET /auth/callback` (ROUTE001), `POST /auth/logout` (ROUTE002). Toàn bộ chuyển màn hình là chuyển hướng phía máy chủ hoặc điều hướng của trình duyệt; không có `<Link>`, `useRouter` hay `window.location` điều hướng trong `app/` (chỉ `window.location.origin` để dựng `redirectTo`, `lib/auth/sign-in-with-google.ts:17`; menu của SCR004 chỉ ghi hash bằng `history.replaceState`, không chuyển trang).
 
 **Code Format**: All SCR codes MUST follow `SCR###_NameSlug` format (e.g., SCR001_LoginForm, SCR002_Dashboard) | `SCR###/REG###` for region-scoped transitions
 
@@ -19,7 +19,10 @@ graph TD
     X["Vào /todo khi chưa đăng nhập"] -->|"Proxy redirect /login"| B
     Y["Vào /login khi đã đăng nhập"] -->|"Proxy redirect /"| HP
     HP -->|"Sign out: POST /auth/logout, 303 /login"| B
-    HP -->|"Header, footer, thẻ giải thưởng"| PH["Trang giữ chỗ: /awards-information, /sun-kudos, /standards, /profile, /admin"]
+    HP -->|"Header, footer, nút ABOUT AWARDS, thẻ giải thưởng (#slug)"| AW["SCR004_AwardsInformation"]
+    AW -->|"Logo hoặc About SAA 2025"| HP
+    AW -->|"Chi tiết (khối Sun* Kudos), header, footer"| PH
+    HP -->|"Header, footer, nút CTA, menu tài khoản"| PH["Trang giữ chỗ: /sun-kudos, /standards, /profile, /admin"]
     PH -->|"Logo hoặc About SAA 2025"| HP
 ```
 
@@ -35,7 +38,11 @@ graph TD
 |-------------|-----------|----------------|------------|--------|
 | Truy cập `/` | SCR001_Login | Proxy `redirect /login`, bỏ query (`lib/supabase/proxy.ts:82`); layout `(main)` kiểm lại (`app/(main)/layout.tsx:32-33`) | Chưa đăng nhập hoặc Auth server không trả lời (fail closed) | |
 | Truy cập `/` | SCR003_Homepage | Tải trang (`app/(main)/page.tsx`) | Đã đăng nhập | |
-| SCR003_Homepage | Trang giữ chỗ (`/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin`) | Bấm mục điều hướng, nút CTA, thẻ giải thưởng, footer hoặc menu tài khoản | Đã đăng nhập; `/admin` chỉ khi `app_metadata.role === 'admin'`, người khác bị proxy chuyển về `/` (`lib/supabase/proxy.ts:85-87`) | |
+| SCR003_Homepage | SCR004_AwardsInformation | Bấm mục "Awards Information" ở header, nút ABOUT AWARDS, thẻ giải thưởng (mở `/awards-information#<slug>`) hoặc liên kết ở footer (`app/(main)/_wiring/build-home-screen-props.ts:6`, `lib/awards/award-categories.ts:27-29`) | Đã đăng nhập | |
+| SCR004_AwardsInformation | SCR003_Homepage | Bấm logo hoặc About SAA 2025 (header dùng lại) | Đã đăng nhập | |
+| SCR004_AwardsInformation | Trang giữ chỗ `/sun-kudos` | Nút "Chi tiết" của khối Sun* Kudos, liên kết cùng tab (`app/(main)/_wiring/build-kudos-promo-props.ts:5,15`); header và footer tới `/sun-kudos`, `/standards` | Đã đăng nhập | |
+| URL trực tiếp `/awards-information#<slug>` | SCR004_AwardsInformation | Tải trang; hash hợp lệ thì cuộn tức thì tới thẻ, hash sai thì ở đầu trang (`app/(main)/_behavior/use-award-category-spy.ts:84-91`) | Đã đăng nhập; khách bị proxy chuyển về `/login` (`lib/supabase/proxy.ts:82`) | |
+| SCR003_Homepage | Trang giữ chỗ (`/sun-kudos`, `/standards`, `/profile`, `/admin`) | Bấm mục điều hướng, nút CTA, footer hoặc menu tài khoản | Đã đăng nhập; `/admin` chỉ khi `app_metadata.role === 'admin'`, người khác bị proxy chuyển về `/` (`lib/supabase/proxy.ts:85-87`) | |
 | Trang giữ chỗ | SCR003_Homepage | Bấm logo hoặc About SAA 2025 (header dùng lại) | Đã đăng nhập | |
 | SCR003_Homepage | SCR001_Login | Sign out trong menu tài khoản: form `POST /auth/logout`, `303 Location: /login` (`app/(main)/_behavior/account-menu.tsx:33`) | Luôn chuyển về `/login` | |
 | URL trực tiếp `/login` | SCR001_Login | Tải trang | Chưa đăng nhập (`getUser()` không trả người dùng) | |
@@ -93,10 +100,11 @@ graph TD
 **Entry Points**:
 - Từ SCR001_Login: `GET /auth/callback` thành công (307 `/`)
 - Từ proxy khi người đã đăng nhập mở `/login` (redirect `/`)
-- URL trực tiếp `/` khi đã đăng nhập; từ trang giữ chỗ (logo, About SAA 2025)
+- URL trực tiếp `/` khi đã đăng nhập; từ SCR004_AwardsInformation hoặc trang giữ chỗ (logo, About SAA 2025)
 
 **Exit Points**:
-- Tới trang giữ chỗ `/awards-information` (kèm `#<slug>` từ thẻ), `/sun-kudos`, `/standards`, `/profile`, `/admin` (header, footer, nút CTA, thẻ giải thưởng, menu tài khoản)
+- Tới SCR004_AwardsInformation (`/awards-information`, kèm `#<slug>` từ thẻ giải thưởng; header, footer, nút ABOUT AWARDS)
+- Tới trang giữ chỗ `/sun-kudos`, `/standards`, `/profile`, `/admin` (header, footer, nút CTA, menu tài khoản)
 - Tới SCR001_Login: Sign out (`POST /auth/logout`, 303 `/login`) hoặc phiên mất hiệu lực (`app/(main)/layout.tsx:33`)
 - Ở lại SCR003_Homepage: đổi VN/EN (`setLocale`), mở hoặc đóng menu tài khoản và bảng thông báo, bấm logo (cuộn lên đầu trang)
 
@@ -104,6 +112,24 @@ graph TD
 - Proxy khi vào `/`: có người dùng → cho qua, không có → `/login` (`lib/supabase/proxy.ts:82`); layout `(main)` kiểm lại, không có người dùng → `redirect('/login')` (`app/(main)/layout.tsx:32-33`)
 - Proxy khi vào `/admin*`: không phải admin → `/` (`lib/supabase/proxy.ts:85-87`); trang `/admin` kiểm lại (`app/(main)/admin/page.tsx:20`)
 - Mục Admin Dashboard chỉ hiện khi `isAdmin` (`app/(main)/_behavior/account-menu.tsx:27-31`)
+
+---
+
+### SCR004_AwardsInformation (Awards Information)
+
+**Entry Points**:
+- Từ SCR003_Homepage: thẻ giải thưởng (`/awards-information#<slug>`), nút ABOUT AWARDS, header, footer
+- URL trực tiếp `/awards-information` hoặc `/awards-information#<slug>` khi đã đăng nhập
+
+**Exit Points**:
+- Tới `/sun-kudos` (trang giữ chỗ): nút "Chi tiết" của khối Sun* Kudos, cùng tab
+- Tới SCR003_Homepage, `/sun-kudos`, `/standards`, `/profile`, `/admin`: header, footer, menu tài khoản
+- Tới SCR001_Login: Sign out, hoặc phiên mất hiệu lực (`app/(main)/layout.tsx:33`)
+- Ở lại SCR004: bấm mục menu (cuộn mượt, ghi `#<slug>` bằng `history.replaceState`), cuộn tay (mục active đổi theo)
+
+**Decision Points**:
+- Proxy khi vào `/awards-information*`: có người dùng → cho qua, không có → `/login` (`lib/supabase/proxy.ts:82`)
+- Hash lúc tải: khớp một trong 6 slug → cuộn tới thẻ đó; không khớp → ở đầu trang, mục đầu active (`app/(main)/_behavior/award-hash.ts:8-18`)
 
 ---
 

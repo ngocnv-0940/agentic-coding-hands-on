@@ -19,7 +19,7 @@ lang: vi
 **Purpose:** Người dùng đã đăng nhập dùng trang này làm cửa vào chính của ứng dụng: xem chủ đề ROOT FURTHER, đếm ngược tới sự kiện Sun* Annual Awards 2025, các hạng mục giải thưởng và phong trào Sun* Kudos, rồi đi tới các trang liên quan.
 **Actors:** Người dùng đã đăng nhập, Quản trị viên
 **Entry Conditions:** Có phiên đăng nhập hợp lệ (proxy chặn khách bằng 307, layout `(main)` kiểm lại); khách bị chuyển về màn Login. Người dùng tới đây ngay sau khi đăng nhập hoặc khi mở `/login` lúc đã đăng nhập.
-**Exit Conditions:** Người dùng sang trang Awards Information, Sun* Kudos, Tiêu chuẩn chung, Profile, Admin Dashboard (hiện đều là trang giữ chỗ) hoặc đăng xuất về màn Login.
+**Exit Conditions:** Người dùng sang trang Awards Information, Sun* Kudos, Tiêu chuẩn chung, Profile, Admin Dashboard (Awards Information là SCR004_AwardsInformation, các trang còn lại hiện là trang giữ chỗ) hoặc đăng xuất về màn Login.
 
 ## 2. Screen Layout
 
@@ -61,7 +61,7 @@ Các vùng xếp dọc: header cố định ở trên (logo trái, ba mục đi�
 | R2 | Hero (key visual, đếm ngược, thông tin sự kiện, CTA) | static | yes | `HomeHero`, `CountdownContainer` / `CountdownDisplay`, `EventInfo`, `HeroCtaLinks` |
 | R3 | Root Further content | static | yes | `RootFurtherContent` |
 | R4 | Awards | static | yes | `AwardsSection`, `AwardCard` |
-| R5 | Sun* Kudos promo | static | yes | `KudosPromo` |
+| R5 | Sun* Kudos promo | static | yes | `KudosPromo` (`variant` mặc định) |
 | R6 | Footer | static | yes | `SiteFooter`, `SiteFooterContainer` |
 | R7 | Widget button | fixed-bottom-right | no | `WidgetButton` |
 | R8 | Lớp nổi: bảng thông báo, menu ngôn ngữ, menu tài khoản | floating (dưới header) | no | `NotificationsMenu`, `AccountMenu`, `LanguageSelectorContainer` |
@@ -183,7 +183,7 @@ N/A — no validation rules or submit-side error feedback detected.
 
 | Action | Element | Condition | Destination | Result | Source |
 |--------|---------|-----------|-------------|--------|--------|
-| Mở Awards Information | E03, E15, E19, E20, E24 | — | Trang giữ chỗ `/awards-information` (kèm `#<slug>` từ thẻ) | redirect | `app/(main)/_wiring/build-home-screen-props.ts:6,32`, `app/(main)/_components/award-card.tsx:10-14`, `lib/awards/award-categories.ts:27-29` |
+| Mở Awards Information | E03, E15, E19, E20, E24 | — | SCR004_AwardsInformation (`/awards-information`, kèm `#<slug>` từ thẻ) | redirect | `app/(main)/_wiring/build-home-screen-props.ts:6,32`, `app/(main)/_components/award-card.tsx:10-14`, `lib/awards/award-categories.ts:27-29` |
 | Mở Sun* Kudos | E03, E16, E22, E24 | — | Trang giữ chỗ `/sun-kudos` | redirect | `app/(main)/_wiring/build-home-screen-props.ts:7,33,53-60` |
 | Mở Tiêu chuẩn chung | E24 | — | Trang giữ chỗ `/standards` | redirect | `app/(main)/layout.tsx:63-70` |
 | Mở Profile | E08 | — | Trang giữ chỗ `/profile` | redirect | `app/(main)/_behavior/account-menu.tsx:24-26` |
@@ -191,7 +191,7 @@ N/A — no validation rules or submit-side error feedback detected.
 | Đăng xuất | E09 | — | SCR001_Login | redirect | `app/(main)/_behavior/account-menu.tsx:33`, `app/auth/logout/route.ts` |
 | Đổi ngôn ngữ | E05 | — | (stays on screen) | làm mới trang | `app/login/language-selector-container.tsx`, `lib/i18n/set-locale-action.ts` |
 
-Các trang giữ chỗ chưa có đặc tả màn riêng; chúng dùng lại header và footer này (qua layout `app/(main)/layout.tsx`) và chỉ dành cho người đã đăng nhập.
+Các trang giữ chỗ (trừ `/awards-information`, đã có SCR004_AwardsInformation) chưa có đặc tả màn riêng; chúng dùng lại header và footer này (qua layout `app/(main)/layout.tsx`) và chỉ dành cho người đã đăng nhập.
 
 ## 9. Accessibility
 
