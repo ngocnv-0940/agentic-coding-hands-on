@@ -15,7 +15,7 @@ Next.js App Router: route đến từ file-system (`app/**/route.ts`), không c�
 
 | Method | Path | Code | Owner F### | Handler | Middleware |
 |--------|------|------|------------|---------|------------|
-| GET | /auth/callback | ROUTE001 | F001 | `GET` export trong app/auth/callback/route.ts: đổi `code` OAuth lấy session (`exchangeCodeForSession`), thành công 307 về /todo, lỗi hoặc thiếu `code` hoặc `?error` hoặc `code` dài hơn 2048 ký tự thì 307 về /login?error=auth_failed | proxy.ts bỏ qua: `updateSession` trả `NextResponse.next()` ngay cho đường dẫn bắt đầu bằng `/auth/`, không đụng cookie |
+| GET | /auth/callback | ROUTE001 | F001 | `GET` export trong app/auth/callback/route.ts: đổi `code` OAuth lấy session (`exchangeCodeForSession`), thành công 307 về /, lỗi hoặc thiếu `code` hoặc `?error` hoặc `code` dài hơn 2048 ký tự thì 307 về /login?error=auth_failed | proxy.ts bỏ qua: `updateSession` trả `NextResponse.next()` ngay cho đường dẫn bắt đầu bằng `/auth/`, không đụng cookie |
 
 ### File: app/auth/logout/route.ts
 
@@ -30,17 +30,27 @@ Ghi chú:
 
 ## Frontend Routes/Pages
 
-### File: app/page.tsx
+### File: app/(main)/page.tsx
 
 | Path | Component | Route Name |
 |------|-----------|------------|
-| / | `Home` (chỉ `redirect("/login")`, không có UI; proxy chuyển tiếp người đã đăng nhập sang /todo) | — |
+| / | `HomePage` (Server Component, bọc `HomeContent` trong `Suspense`; trang chủ F003; proxy chuyển khách về /login, layout `(main)` kiểm lại phiên; `app/page.tsx` đã xoá) | — |
+
+### File: app/(main)/{awards-information,sun-kudos,standards,profile,admin}/page.tsx
+
+| Path | Component | Route Name |
+|------|-----------|------------|
+| /awards-information | `Page` (`ComingSoonPage`, trang giữ chỗ; proxy bảo vệ kể cả đường dẫn con) | — |
+| /sun-kudos | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
+| /standards | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
+| /profile | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
+| /admin | `AdminPage` (trang giữ chỗ; proxy và `AdminGate` chỉ cho `app_metadata.role === 'admin'`, người khác về /) | — |
 
 ### File: app/login/page.tsx
 
 | Path | Component | Route Name |
 |------|-----------|------------|
-| /login | `LoginPage` (Server Component, bọc `LoginContent` trong `Suspense`; đọc cookie `NEXT_LOCALE` và `?error=`; proxy chuyển người đã đăng nhập sang /todo) | — |
+| /login | `LoginPage` (Server Component, bọc `LoginContent` trong `Suspense`; đọc cookie `NEXT_LOCALE` và `?error=`; proxy chuyển người đã đăng nhập sang /) | — |
 
 ### File: app/todo/page.tsx
 
@@ -53,5 +63,5 @@ Ghi chú:
 | Category | Count |
 |----------|-------|
 | Backend Routes | 2 |
-| Frontend Pages | 3 |
-| Total | 5 |
+| Frontend Pages | 8 |
+| Total | 10 |

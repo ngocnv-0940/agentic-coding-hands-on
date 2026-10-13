@@ -1,0 +1,46 @@
+[WebServer] $ next dev -p "3100"
+
+
+Running 1 test using 1 worker
+
+[1/1] [chromium] › e2e/zz-countdown-probe.spec.ts:7:5 › countdown probe
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+
+[chromium] › e2e/zz-countdown-probe.spec.ts:7:5 › countdown probe
+PROBE
+2025-12-24T06:20:32.451Z minutes=00
+2025-12-24T06:20:42.552Z minutes=09
+2025-12-24T06:20:52.574Z minutes=09
+2025-12-24T06:21:02.593Z minutes=09
+2025-12-24T06:21:12.615Z minutes=09
+2025-12-24T06:21:22.633Z minutes=09
+2025-12-24T06:21:32.653Z minutes=09
+2025-12-24T06:21:42.670Z minutes=09
+2025-12-24T06:21:52.687Z minutes=09
+2025-12-24T06:22:02.706Z minutes=08
+2025-12-24T06:22:12.724Z minutes=08
+2025-12-24T06:22:22.744Z minutes=08
+2025-12-24T06:22:32.760Z minutes=08
+2025-12-24T06:22:42.777Z minutes=08
+2025-12-24T06:22:52.798Z minutes=08
+2025-12-24T06:23:02.817Z minutes=07
+2025-12-24T06:23:12.837Z minutes=07
+2025-12-24T06:23:22.852Z minutes=07
+2025-12-24T06:23:32.870Z minutes=07
+2025-12-24T06:23:42.886Z minutes=07
+2025-12-24T06:23:52.902Z minutes=07
+2025-12-24T06:24:02.917Z minutes=06
+2025-12-24T06:24:12.934Z minutes=06
+2025-12-24T06:24:22.953Z minutes=06
+2025-12-24T06:24:32.984Z minutes=06
+2025-12-24T06:24:42.999Z minutes=06
+2025-12-24T06:24:53.014Z minutes=06
+2025-12-24T06:25:03.036Z minutes=05
+2025-12-24T06:25:13.056Z minutes=05
+2025-12-24T06:25:23.073Z minutes=05
+2025-12-24T06:25:33.089Z minutes=05
+
+  1 passed (4.7m)
+exit=0

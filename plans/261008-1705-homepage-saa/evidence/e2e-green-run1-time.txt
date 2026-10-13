@@ -1,0 +1,1 @@
+( bun run test:e2e > $EV/e2e-green-run1-output.txt 2>&1; echo "exit=$?" >> ; )  248.42s user 131.04s system 95% cpu 6:39.15 total

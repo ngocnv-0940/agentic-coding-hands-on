@@ -1,0 +1,8 @@
+{
+  "mode": "single",
+  "intents": [
+    "Signed-in Sunner views the SAA 2025 homepage (hero + countdown, Root Further content, award categories, Sun* Kudos promo) and navigates to award/kudos pages",
+    "Signed-in Sunner uses the shared header controls (language, notifications panel, account menu with sign-out) on the homepage"
+  ],
+  "justification": "Second intent is the homepage's own header shell: language reuses F002, sign-out reuses F001's existing /auth/logout; the only F001 change is a guard rule (/ protected, post-login landing = /). Both intents live on one screen with one route, so they form a single feature; the F001 rule delta is captured as a cross-feature impact plus a forward-drafted docs/system/permissions.md, not a second feature folder."
+}

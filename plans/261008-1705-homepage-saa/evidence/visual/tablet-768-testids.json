@@ -1,0 +1,236 @@
+[
+  {
+    "testid": "language-selector-trigger",
+    "tag": "BUTTON",
+    "text": "VN",
+    "x": 637,
+    "y": 12,
+    "w": 62,
+    "h": 56
+  },
+  {
+    "testid": "notifications-trigger",
+    "tag": "BUTTON",
+    "text": "",
+    "x": 716,
+    "y": 20,
+    "w": 40,
+    "h": 40
+  },
+  {
+    "testid": "account-trigger",
+    "tag": "BUTTON",
+    "text": "",
+    "x": 772,
+    "y": 20,
+    "w": 40,
+    "h": 40
+  },
+  {
+    "testid": "homepage-hero",
+    "tag": "SECTION",
+    "text": "ROOT FURTHERComing soon02DAYS05HOURS09MINUTESThời gian:26/12",
+    "x": 48,
+    "y": 184,
+    "w": 672,
+    "h": 596
+  },
+  {
+    "testid": "countdown-coming-soon",
+    "tag": "P",
+    "text": "Coming soon",
+    "x": 48,
+    "y": 424,
+    "w": 672,
+    "h": 32
+  },
+  {
+    "testid": "countdown-days",
+    "tag": "SPAN",
+    "text": "02",
+    "x": 48,
+    "y": 472,
+    "w": 116,
+    "h": 82
+  },
+  {
+    "testid": "countdown-hours",
+    "tag": "SPAN",
+    "text": "05",
+    "x": 204,
+    "y": 472,
+    "w": 116,
+    "h": 82
+  },
+  {
+    "testid": "countdown-minutes",
+    "tag": "SPAN",
+    "text": "09",
+    "x": 360,
+    "y": 472,
+    "w": 118,
+    "h": 82
+  },
+  {
+    "testid": "event-date",
+    "tag": "SPAN",
+    "text": "26/12/2025",
+    "x": 147,
+    "y": 616,
+    "w": 134,
+    "h": 32
+  },
+  {
+    "testid": "event-venue",
+    "tag": "SPAN",
+    "text": "Âu Cơ Art Center",
+    "x": 434,
+    "y": 616,
+    "w": 217,
+    "h": 32
+  },
+  {
+    "testid": "event-livestream",
+    "tag": "P",
+    "text": "Tường thuật trực tiếp qua sóng Livestream",
+    "x": 48,
+    "y": 656,
+    "w": 672,
+    "h": 24
+  },
+  {
+    "testid": "awards-grid",
+    "tag": "DIV",
+    "text": "Top TalentVinh danh top cá nhân xuất sắc trên mọi phương diệ",
+    "x": 48,
+    "y": 3119,
+    "w": 672,
+    "h": 1644
+  },
+  {
+    "testid": "award-card-top-talent",
+    "tag": "A",
+    "text": "Top TalentVinh danh top cá nhân xuất sắc trên mọi phương diệ",
+    "x": 48,
+    "y": 3119,
+    "w": 316,
+    "h": 484
+  },
+  {
+    "testid": "award-card-description",
+    "tag": "P",
+    "text": "Vinh danh top cá nhân xuất sắc trên mọi phương diện",
+    "x": 48,
+    "y": 3495,
+    "w": 316,
+    "h": 48
+  },
+  {
+    "testid": "award-card-top-project",
+    "tag": "A",
+    "text": "Top ProjectVinh danh dự án xuất sắc trên mọi phương diện, dự",
+    "x": 404,
+    "y": 3119,
+    "w": 316,
+    "h": 484
+  },
+  {
+    "testid": "award-card-description",
+    "tag": "P",
+    "text": "Vinh danh dự án xuất sắc trên mọi phương diện, dự án có doan",
+    "x": 404,
+    "y": 3495,
+    "w": 316,
+    "h": 48
+  },
+  {
+    "testid": "award-card-top-project-leader",
+    "tag": "A",
+    "text": "Top Project LeaderVinh danh người quản lý truyền cảm hứng và",
+    "x": 48,
+    "y": 3683,
+    "w": 316,
+    "h": 484
+  },
+  {
+    "testid": "award-card-description",
+    "tag": "P",
+    "text": "Vinh danh người quản lý truyền cảm hứng và dẫn dắt dự án bứt",
+    "x": 48,
+    "y": 4059,
+    "w": 316,
+    "h": 48
+  },
+  {
+    "testid": "award-card-best-manager",
+    "tag": "A",
+    "text": "Best ManagerVinh danh người quản lý có năng lực quản lý tốt,",
+    "x": 404,
+    "y": 3683,
+    "w": 316,
+    "h": 484
+  },
+  {
+    "testid": "award-card-description",
+    "tag": "P",
+    "text": "Vinh danh người quản lý có năng lực quản lý tốt, dẫn dắt đội",
+    "x": 404,
+    "y": 4059,
+    "w": 316,
+    "h": 48
+  },
+  {
+    "testid": "award-card-signature-2025-creator",
+    "tag": "A",
+    "text": "Signature 2025 - CreatorVinh danh người quản lý có năng lực ",
+    "x": 48,
+    "y": 4247,
+    "w": 316,
+    "h": 516
+  },
+  {
+    "testid": "award-card-description",
+    "tag": "P",
+    "text": "Vinh danh người quản lý có năng lực quản lý tốt, dẫn dắt đội",
+    "x": 48,
+    "y": 4623,
+    "w": 316,
+    "h": 48
+  },
+  {
+    "testid": "award-card-mvp",
+    "tag": "A",
+    "text": "MVP (Most Valuable Person)Vinh danh người quản lý có năng lự",
+    "x": 404,
+    "y": 4247,
+    "w": 316,
+    "h": 516
+  },
+  {
+    "testid": "award-card-description",
+    "tag": "P",
+    "text": "Vinh danh người quản lý có năng lực quản lý tốt, dẫn dắt đội",
+    "x": 404,
+    "y": 4655,
+    "w": 316,
+    "h": 48
+  },
+  {
+    "testid": "kudos-promo",
+    "tag": "SECTION",
+    "text": "Phong trào ghi nhậnSun* KudosĐIỂM MỚI CỦA SAA 2025\nHoạt động",
+    "x": 48,
+    "y": 4865,
+    "w": 672,
+    "h": 524
+  },
+  {
+    "testid": "widget-button",
+    "tag": "BUTTON",
+    "text": "/",
+    "x": 643,
+    "y": 912,
+    "w": 106,
+    "h": 64
+  }
+]

@@ -31,7 +31,7 @@ Các hàng 1 đến 5 là phần tử giao diện tương tác thật (đếm t�
 | SCR002_Todo | LogoutButton (`app/todo/logout-button.tsx:10`, trong `<form action="/auth/logout" method="post">` ở `page.tsx:39`) | destructive-action | Gửi form POST (điều hướng cả trang), kết thúc phiên cục bộ rồi về `/login`; nút bị khóa sau khi bấm | POST /auth/logout (ROUTE002) |
 | SCR002_Todo | Mở `/todo` khi đã đăng nhập (sau callback thành công hoặc gõ URL) | navigation | Trang đọc `getUser()` và hiện email cùng nút đăng xuất | GET /todo |
 | SCR002_Todo | Mở `/todo` khi chưa đăng nhập (kể cả `/todo/x`, `/todo?a=1`) | navigation | Proxy chuyển về `/login`, bỏ query | GET /todo (qua `proxy.ts`) |
-| SCR001_Login | Mở `/login` khi đã đăng nhập (kể cả `/login?error=x`) | navigation | Proxy chuyển sang `/todo`, bỏ query | GET /login (qua `proxy.ts`) |
+| SCR001_Login | Mở `/login` khi đã đăng nhập (kể cả `/login?error=x`) | navigation | Proxy chuyển sang `/`, bỏ query | GET /login (qua `proxy.ts`) |
 | SCR001_Login | Quay lại hoặc mở lại `/login`, `/todo` sau khi đã chọn ngôn ngữ; hoặc cookie hỏng | navigation | Máy chủ đọc cookie `NEXT_LOCALE`, dựng giao diện theo ngôn ngữ đó (mặc định `vi`) | GET /login, GET /todo |
 
 Phần tử không tương tác, đã loại khỏi bảng: logo (`login-header.tsx:18`), chân trang (`login-footer.tsx:8`), tiêu đề hình và hai dòng giới thiệu (`login-hero-intro.tsx`), thông báo lỗi `role="alert"` (`login-error-message.tsx:5-11`; kết quả của lần đăng nhập thất bại, không bấm được), tiêu đề và dòng email trên `/todo` (`page.tsx:34-38`). Điều hướng thụ động không có story riêng: `/` chỉ `redirect("/login")` (`app/page.tsx:5-7`), và các lần chuyển hướng 307 của `GET /auth/callback` (`app/auth/callback/route.ts:36-40`) được tính vào US001 và US002.
@@ -68,12 +68,12 @@ Là Khách, tôi muốn đăng nhập bằng tài khoản Google của mình đ�
 
 - [ ] Criterion 1: Bấm "LOGIN With Google" thì chính tab hiện tại chuyển sang Google (OAuth PKCE, `provider=google`, có `code_challenge` phương pháp `s256`, `redirect_to` chứa `/auth/callback`); không mở tab hay popup mới (`lib/auth/sign-in-with-google.ts:15-18`).
 - [ ] Criterion 2: Từ lúc bấm đến khi trình duyệt rời trang, nút bị vô hiệu hóa, `aria-busy="true"` và logo Google được thay bằng vòng quay có chữ ẩn `login.loading` (`login-button.tsx:17-35`).
-- [ ] Criterion 3: Google xác thực xong, `GET /auth/callback?code=...` đổi `code` lấy phiên rồi trả 307 về `/todo`; người dùng thấy email của mình trên `/todo` (`app/auth/callback/route.ts:40`).
+- [ ] Criterion 3: Google xác thực xong, `GET /auth/callback?code=...` đổi `code` lấy phiên rồi trả 307 về `/` (trang chủ) (`app/auth/callback/route.ts:40`).
 - [ ] Criterion 4: Mọi tài khoản Google đều đăng nhập được, không giới hạn tên miền (`clarifications.md`, không có kiểm tra nào trong `app/auth/callback/route.ts`).
 
 ### Technical Notes
 
-- **Endpoint**: Client SDK `supabase.auth.signInWithOAuth` (không có URL riêng của ứng dụng) rồi `GET /auth/callback` (ROUTE001). Thành công 307 `/todo`, thất bại 307 `/login?error=auth_failed` (xem US002).
+- **Endpoint**: Client SDK `supabase.auth.signInWithOAuth` (không có URL riêng của ứng dụng) rồi `GET /auth/callback` (ROUTE001). Thành công 307 `/`, thất bại 307 `/login?error=auth_failed` (xem US002).
 - **Data Required**: Nhãn `login.button`, `login.loading` từ từ điển theo `NEXT_LOCALE`; `NEXT_PUBLIC_SUPABASE_URL` và `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (`lib/supabase/config.ts`); cookie PKCE do thư viện Supabase ghi.
 - **Dependencies**: Supabase Auth cùng nhà cung cấp Google; `GET /auth/callback` là `Route Handler`, `proxy.ts` cố ý bỏ qua mọi đường dẫn `/auth/` để không ghi đè cookie PKCE (`lib/supabase/proxy.ts:20-21`, PERM003). Khi trang được khôi phục từ bộ nhớ đệm back/forward (`pageshow` có `persisted`), trạng thái đang khởi tạo được đặt lại về `idle` (`google-login-container.tsx:23-29`).
 
@@ -90,7 +90,7 @@ Là Khách, tôi muốn đăng nhập bằng tài khoản Google của mình đ�
 
 | Scenario | Given | When | Then |
 |----------|-------|------|------|
-| Happy Path | Khách đang ở `/login`, Google được stub ở mạng | Bấm "LOGIN With Google" | Cùng tab đi qua Google rồi về `/todo`, thấy email; không có popup; chỉ có đúng một yêu cầu authorize (`e2e/login-screen-layout-and-button.spec.ts:114`, `e2e/auth-flow-and-route-guards.spec.ts:31`) |
+| Happy Path | Khách đang ở `/login`, Google được stub ở mạng | Bấm "LOGIN With Google" | Cùng tab đi qua Google rồi về `/` (trang chủ); không có popup; chỉ có đúng một yêu cầu authorize (`e2e/login-screen-layout-and-button.spec.ts:114`, `e2e/auth-flow-and-route-guards.spec.ts:31`) |
 | Loading | Yêu cầu authorize bị giữ lại | Bấm nút | Nút bị khóa và hiện vòng quay (`e2e/login-screen-layout-and-button.spec.ts:103`) |
 | Error Case | `signInWithOAuth` trả lỗi hoặc ném ngoại lệ | Bấm nút | `signInWithGoogle` trả `ok: false`, chuyển sang trạng thái lỗi (chi tiết ở US002); không văng ngoại lệ ra ngoài (`sign-in-with-google.ts:19-22`) |
 
@@ -113,13 +113,13 @@ Là Khách, tôi muốn thấy thông báo khi đăng nhập thất bại hoặc
 - [ ] Criterion 2: Màn Login hiện đúng một đoạn `<p role="alert">` với câu cố định `login.error` (đúng ngôn ngữ đang chọn) dưới nút; `/login` không có cờ lỗi thì không có đoạn nào (`login-error-message.tsx:5-11`, `google-login-container.tsx:31`).
 - [ ] Criterion 3: Chỉ việc `?error=` có giá trị khác rỗng mới được xét; nội dung tham số và văn bản lỗi của nhà cung cấp không bao giờ được hiển thị, mã HTML trong tham số không được chèn vào trang (`app/login/page.tsx:22-24`).
 - [ ] Criterion 4: Khởi tạo OAuth hỏng ngay trên trang (`signInWithGoogle` trả `ok: false`) cũng hiện cùng thông báo và đưa focus về nút (`google-login-container.tsx:36-39`).
-- [ ] Criterion 5: Nút "LOGIN With Google" dùng lại được ngay; thử lại thành công thì vào `/todo` (`e2e/auth-flow-and-route-guards.spec.ts:120`). Trong lúc đang khởi tạo lần mới, thông báo lỗi được ẩn (`showError` chỉ đúng khi `error` hoặc `idle` kèm cờ).
+- [ ] Criterion 5: Nút "LOGIN With Google" dùng lại được ngay; thử lại thành công thì vào `/` (`e2e/auth-flow-and-route-guards.spec.ts:120`). Trong lúc đang khởi tạo lần mới, thông báo lỗi được ẩn (`showError` chỉ đúng khi `error` hoặc `idle` kèm cờ).
 
 ### Technical Notes
 
 - **Endpoint**: `GET /auth/callback` (ROUTE001) trả 307 `/login?error=auth_failed`; không có endpoint thất bại nào khác.
 - **Data Required**: Chuỗi `login.error` từ từ điển; cờ `?error=` (chỉ xét có hay không).
-- **Dependencies**: US001 là cách thường gặp để vào trạng thái này, nhưng người dùng cũng vào được bằng cách mở thẳng `/login?error=...`, nên story kiểm tra được độc lập. Người đã đăng nhập mở URL này bị chuyển sang `/todo` (xem US006).
+- **Dependencies**: US001 là cách thường gặp để vào trạng thái này, nhưng người dùng cũng vào được bằng cách mở thẳng `/login?error=...`, nên story kiểm tra được độc lập. Người đã đăng nhập mở URL này bị chuyển sang `/` (xem US006).
 
 ### Screens
 
@@ -280,9 +280,9 @@ Là Người dùng đã đăng nhập, tôi muốn mở màn Login lúc phiên c
 
 ### Acceptance Criteria
 
-- [ ] Criterion 1: `/login` (so khớp đúng đường dẫn) khi `getUser()` trả người dùng thì `redirect` sang `/todo`, query bị xóa (`lib/supabase/proxy.ts:55-66`).
-- [ ] Criterion 2: Kể cả khi URL có cờ lỗi (`/login?error=x`), người đã đăng nhập vẫn sang `/todo` (`e2e/auth-flow-and-route-guards.spec.ts:75`).
-- [ ] Criterion 3: Mở `/` cũng đi qua `/login` rồi `/todo` với người đã đăng nhập (`app/page.tsx:5-7` kết hợp quy tắc trên).
+- [ ] Criterion 1: `/login` (so khớp đúng đường dẫn) khi `getUser()` trả người dùng thì `redirect` sang `/`, query bị xóa (`lib/supabase/proxy.ts:83`).
+- [ ] Criterion 2: Kể cả khi URL có cờ lỗi (`/login?error=x`), người đã đăng nhập vẫn sang `/` (`e2e/auth-flow-and-route-guards.spec.ts:75`).
+- [ ] Criterion 3: Mở `/` khi đã đăng nhập hiện trang chủ (`app/(main)/page.tsx`); `/login` sang `/` (không còn `/todo`, `app/page.tsx` đã xoá).
 - [ ] Criterion 4: Khách vẫn xem `/login` bình thường (PERM002).
 
 ### Technical Notes
@@ -304,8 +304,8 @@ Là Người dùng đã đăng nhập, tôi muốn mở màn Login lúc phiên c
 
 | Scenario | Given | When | Then |
 |----------|-------|------|------|
-| Happy Path | Đã đăng nhập | Mở `/login` | Về `/todo` (`e2e/auth-flow-and-route-guards.spec.ts:75`) |
-| Error Case (cờ lỗi kèm theo) | Đã đăng nhập | Mở `/login?error=x` | Vẫn về `/todo`, không hiện thông báo lỗi (`e2e/auth-flow-and-route-guards.spec.ts:78-79`) |
+| Happy Path | Đã đăng nhập | Mở `/login` | Về `/` (`e2e/auth-flow-and-route-guards.spec.ts:75`) |
+| Error Case (cờ lỗi kèm theo) | Đã đăng nhập | Mở `/login?error=x` | Vẫn về `/`, không hiện thông báo lỗi (`e2e/auth-flow-and-route-guards.spec.ts:78-79`) |
 
 ---
 

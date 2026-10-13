@@ -1,0 +1,15 @@
+$ playwright test "e2e/homepage-countdown-and-event-info.spec.ts"
+[WebServer] $ next build
+[WebServer] $ next start -p "3100"
+
+Running 7 tests using 4 workers
+
+  ✓  1 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:78:7 › Homepage countdown and event info › at the event start the countdown reads 00 and Coming soon is hidden (4.4s)
+  ✓  4 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:57:7 › Homepage countdown and event info › the minutes value drops by one after a minute passes (4.6s)
+  ✓  2 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:66:7 › Homepage countdown and event info › shortly before the start the client shows 00 00 00 with Coming soon, then hides it once the start passes (4.6s)
+  ✓  3 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:45:7 › Homepage countdown and event info › before the start the countdown shows 02 05 09 with labels and Coming soon (4.7s)
+  ✓  5 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:87:7 › Homepage countdown and event info › after the event start the countdown stays at 00 and Coming soon stays hidden (2.9s)
+  ✓  7 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:103:7 › Homepage countdown and event info › the hero shows the ROOT FURTHER title (2.8s)
+  ✓  6 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:95:7 › Homepage countdown and event info › event date, venue and livestream note show the Figma content (2.9s)
+
+  7 passed (5.0m)

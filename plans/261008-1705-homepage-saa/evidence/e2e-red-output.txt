@@ -1,0 +1,1776 @@
+$ playwright test
+[WebServer] $ next dev -p "3100"
+
+Running 80 tests using 8 workers
+
+[WebServer] Error: Route "/": Could not validate `instant` because an error prevented the target segment from rendering.
+[WebServer]     at ignore-listed frames {
+[WebServer]   [cause]: Error: NEXT_REDIRECT
+[WebServer]       at Home (app/page.tsx:6:11)
+[WebServer]     4 | // forwards signed-in users on to /todo).
+[WebServer]     5 | export default function Home() {
+[WebServer]   > 6 |   redirect("/login");
+[WebServer]       |           ^
+[WebServer]     7 | }
+[WebServer]     8 | {
+[WebServer]     environmentName: 'Prerender',
+[WebServer]     digest: 'NEXT_REDIRECT;replace;/login;307;'
+[WebServer]   }
+[WebServer] }
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Error: Route "/": Could not validate `instant` because an error prevented the target segment from rendering.
+[WebServer]     at ignore-listed frames {
+[WebServer]   [cause]: Error: NEXT_REDIRECT
+[WebServer]       at Home (app/page.tsx:6:11)
+[WebServer]     4 | // forwards signed-in users on to /todo).
+[WebServer]     5 | export default function Home() {
+[WebServer]   > 6 |   redirect("/login");
+[WebServer]       |           ^
+[WebServer]     7 | }
+[WebServer]     8 | {
+[WebServer]     environmentName: 'Prerender',
+[WebServer]     digest: 'NEXT_REDIRECT;replace;/login;307;'
+[WebServer]   }
+[WebServer] }
+  ✓   4 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:10:7 › Auth flow and route guards › unauthenticated visitor sees the login screen (2.0s)
+  ✓   5 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:17:7 › Auth flow and route guards › root path redirects to /login (2.0s)
+  ✓   2 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:47:7 › Auth flow and route guards › callback with a rejected code returns to /login with the inline error (2.2s)
+  ✓   7 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:39:7 › Auth flow and route guards › cancelled Google consent returns to /login with the inline error (2.3s)
+  ✓   1 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:53:7 › Auth flow and route guards › callback without code or error returns to /login with the inline error (2.3s)
+  ✓   8 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:60:7 › Auth flow and route guards › an error flag shows exactly one fixed alert; a clean /login shows none (2.4s)
+[WebServer] Route /todo is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   3 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:23:7 › Auth flow and route guards › unauthenticated /todo, nested and query variants redirect to /login (3.5s)
+  ✓   9 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:69:7 › Auth flow and route guards › HTML in the error flag is not injected into the page (2.0s)
+[WebServer] Error: Route "/": Could not validate `instant` because an error prevented the target segment from rendering.
+[WebServer]     at ignore-listed frames {
+[WebServer]   [cause]: Error: NEXT_REDIRECT
+[WebServer]       at Home (app/page.tsx:6:11)
+[WebServer]     4 | // forwards signed-in users on to /todo).
+[WebServer]     5 | export default function Home() {
+[WebServer]   > 6 |   redirect("/login");
+[WebServer]       |           ^
+[WebServer]     7 | }
+[WebServer]     8 | {
+[WebServer]     environmentName: 'Prerender',
+[WebServer]     digest: 'NEXT_REDIRECT;replace;/login;307;'
+[WebServer]   }
+[WebServer] }
+  ✓  15 [chromium] › e2e/homepage-access-and-landing.spec.ts:11:7 › Homepage access and landing › guest on / is redirected to /login and never sees the homepage hero (1.2s)
+  ✓  13 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:115:7 › Auth flow and route guards › garbage in the session cookies redirects /todo to /login (6.4s)
+  ✘  16 [chromium] › e2e/homepage-access-and-landing.spec.ts:18:7 › Homepage access and landing › guest opening any placeholder or nested route is redirected to /login (9.2s)
+  ✘   6 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:32:7 › Auth flow and route guards › successful Google sign-in lands on the homepage / (12.4s)
+  ✘  14 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:124:7 › Auth flow and route guards › a fresh login after a failed one succeeds (11.3s)
+  ✘  10 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:77:7 › Auth flow and route guards › authenticated visitor on /login is redirected to / (11.8s)
+  ✓  11 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:86:7 › Auth flow and route guards › logout returns to /login and /todo is guarded again (12.7s)
+  ✓  12 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:98:7 › Auth flow and route guards › browser Back after logout never shows the previous user data (12.9s)
+  ✘  17 [chromium] › e2e/homepage-access-and-landing.spec.ts:27:7 › Homepage access and landing › callback with next=https://evil.example still lands on the homepage / (10.4s)
+[WebServer] Route /_not-found is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  18 [chromium] › e2e/homepage-access-and-landing.spec.ts:37:7 › Homepage access and landing › /todo stays reachable for a signed-in user (9.1s)
+  ✘  21 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:22:7 › Homepage dropdown menus › bell opens an empty notifications panel with no badge (8.4s)
+  ✘  23 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:33:7 › Homepage dropdown menus › account menu for a regular user has Profile and Sign out but no Admin Dashboard (8.4s)
+  ✘  20 [chromium] › e2e/homepage-access-and-landing.spec.ts:54:7 › Homepage access and landing › an admin opening /admin sees the Coming soon placeholder with header and footer (9.2s)
+  ✘  19 [chromium] › e2e/homepage-access-and-landing.spec.ts:45:7 › Homepage access and landing › a non-admin opening /admin is sent to the homepage / (9.7s)
+  ✘  25 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:44:7 › Homepage dropdown menus › account menu for an admin adds Admin Dashboard (7.9s)
+  ✘  26 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:54:7 › Homepage dropdown menus › Sign out returns to /login and the homepage is guarded afterwards (7.0s)
+  ✘  22 [chromium] › e2e/homepage-access-and-landing.spec.ts:64:7 › Homepage access and landing › signed-in placeholder pages show the shared header, footer and Coming soon (9.4s)
+  ✘  24 [chromium] › e2e/homepage-access-and-landing.spec.ts:76:7 › Homepage access and landing › the active nav item follows the current placeholder route (9.1s)
+  ✘  28 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:79:7 › Homepage dropdown menus › keyboard opens the account menu with Enter or Space and Escape returns focus to the trigger (8.5s)
+  ✘  27 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:65:7 › Homepage dropdown menus › account menu toggles on click and closes on a second click or outside click (8.6s)
+  ✘  29 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:93:7 › Homepage dropdown menus › opening the bell closes the account menu and the reverse (8.3s)
+  ✘  30 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:104:7 › Homepage dropdown menus › opening the account menu closes the language menu (7.8s)
+  ✘  31 [chromium] › e2e/homepage-content-and-links.spec.ts:24:7 › Homepage content and links › ABOUT AWARDS and ABOUT KUDOS open their pages (7.8s)
+  ✘  32 [chromium] › e2e/homepage-content-and-links.spec.ts:33:7 › Homepage content and links › the six award cards link to /awards-information with their slug (7.7s)
+  ✘  34 [chromium] › e2e/homepage-content-and-links.spec.ts:42:7 › Homepage content and links › image, title and Chi tiết of a card each open its award section (7.7s)
+  ✘  33 [chromium] › e2e/homepage-content-and-links.spec.ts:54:7 › Homepage content and links › hovering an award card changes its transform or shadow (7.8s)
+  ✘  37 [chromium] › e2e/homepage-content-and-links.spec.ts:92:7 › Homepage content and links › the Sun* Kudos Chi tiết button opens /sun-kudos (7.8s)
+  ✘  36 [chromium] › e2e/homepage-content-and-links.spec.ts:78:7 › Homepage content and links › every award description is clamped to at most two lines (8.1s)
+  ✘  35 [chromium] › e2e/homepage-content-and-links.spec.ts:64:7 › Homepage content and links › award grid is 3 columns on desktop and 2 on tablet and phone (8.3s)
+  ✘  38 [chromium] › e2e/homepage-content-and-links.spec.ts:99:7 › Homepage content and links › the widget button stays fixed in the bottom-right corner after scrolling (8.3s)
+  ✘  39 [chromium] › e2e/homepage-content-and-links.spec.ts:110:7 › Homepage content and links › footer shows the four navigation links and the copyright line (8.2s)
+  ✘  42 [chromium] › e2e/homepage-content-and-links.spec.ts:138:7 › Homepage content and links › the homepage has no horizontal scroll at 375px (7.8s)
+  ✘  40 [chromium] › e2e/homepage-content-and-links.spec.ts:120:7 › Homepage content and links › footer Tiêu chuẩn chung opens the standards placeholder (8.0s)
+  ✘  41 [chromium] › e2e/homepage-content-and-links.spec.ts:127:7 › Homepage content and links › every internal link on the homepage answers below 400 (7.8s)
+  ✘  43 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:20:7 › Homepage countdown and event info › before the start the countdown shows 02 05 09 with labels and Coming soon (7.2s)
+  ✘  44 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:32:7 › Homepage countdown and event info › the minutes value drops by one after a minute passes (8.2s)
+  ✘  45 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:41:7 › Homepage countdown and event info › at the event start the countdown reads 00 and Coming soon is hidden (8.6s)
+  ✘  46 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:50:7 › Homepage countdown and event info › after the event start the countdown stays at 00 and Coming soon stays hidden (10.0s)
+  ✘  47 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:58:7 › Homepage countdown and event info › event date, venue and livestream note show the Figma content (10.2s)
+  ✘  48 [chromium] › e2e/homepage-header-and-menus.spec.ts:28:7 › Homepage header navigation › header stays fixed at the top after scrolling (10.3s)
+  ✘  50 [chromium] › e2e/homepage-header-and-menus.spec.ts:36:7 › Homepage header navigation › About SAA 2025 is the active nav item on / (10.3s)
+  ✘  49 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:66:7 › Homepage countdown and event info › the hero shows the ROOT FURTHER title (10.6s)
+  ✘  51 [chromium] › e2e/homepage-header-and-menus.spec.ts:42:7 › Homepage header navigation › clicking the active About item scrolls the homepage to the top (6.6s)
+  ✘  52 [chromium] › e2e/homepage-header-and-menus.spec.ts:51:7 › Homepage header navigation › logo click returns to the top of / from the homepage and from a placeholder (6.8s)
+  ✘  53 [chromium] › e2e/homepage-header-and-menus.spec.ts:64:7 › Homepage header navigation › footer About link from a placeholder page opens the homepage (6.9s)
+  ✓  60 [chromium] › e2e/language-selector-localization.spec.ts:14:7 › Language selector and localization › defaults to Vietnamese with the VN label and html lang vi (1.3s)
+  ✓  61 [chromium] › e2e/language-selector-localization.spec.ts:22:7 › Language selector and localization › shows a flag left of VN and a chevron right of it (1.3s)
+  ✓  62 [chromium] › e2e/language-selector-localization.spec.ts:35:7 › Language selector and localization › clicking the selector opens the menu (1.1s)
+  ✓  63 [chromium] › e2e/language-selector-localization.spec.ts:45:7 › Language selector and localization › hovering the selector shows a pointer cursor (1.1s)
+  ✘  54 [chromium] › e2e/homepage-header-and-menus.spec.ts:73:7 › Homepage header navigation › Awards Information and Sun* Kudos nav items navigate to their pages (8.5s)
+  ✓  64 [chromium] › e2e/language-selector-localization.spec.ts:52:7 › Language selector and localization › menu closes on re-click, Escape and outside click (1.4s)
+  ✓  65 [chromium] › e2e/language-selector-localization.spec.ts:68:7 › Language selector and localization › keyboard: Enter opens the menu and Tab reaches the options (1.3s)
+  ✘  55 [chromium] › e2e/homepage-header-and-menus.spec.ts:82:7 › Homepage header navigation › hovering a nav item changes its colours (9.3s)
+  ✘  56 [chromium] › e2e/homepage-header-and-menus.spec.ts:91:7 › Homepage header navigation › language selector shows VN by default and the page is lang vi (9.2s)
+  ✓  66 [chromium] › e2e/language-selector-localization.spec.ts:107:7 › Language selector and localization › picking the current language writes no cookie (2.3s)
+  ✘  58 [chromium] › e2e/homepage-header-and-menus.spec.ts:105:7 › Homepage header navigation › choosing EN switches the homepage to English and keeps it after reload (9.6s)
+  ✘  57 [chromium] › e2e/homepage-header-and-menus.spec.ts:97:7 › Homepage header navigation › language menu opens with exactly the VN and EN options (9.9s)
+  ✓  67 [chromium] › e2e/language-selector-localization.spec.ts:116:7 › Language selector and localization › an unknown NEXT_LOCALE value falls back to Vietnamese (2.1s)
+  ✘  59 [chromium] › e2e/homepage-header-and-menus.spec.ts:117:7 › Homepage header navigation › choosing VN again restores the Vietnamese homepage (7.8s)
+  ✓  69 [chromium] › e2e/login-screen-layout-and-button.spec.ts:19:7 › Login screen layout › logo sits top-left at every size and is not interactive (2.8s)
+  ✓  70 [chromium] › e2e/login-screen-layout-and-button.spec.ts:58:7 › Login screen layout › footer is fixed at the bottom, visible on scroll, and not interactive (2.9s)
+  ✓  68 [chromium] › e2e/language-selector-localization.spec.ts:81:7 › Language selector and localization › picking EN switches the copy, persists a cookie, and survives reload (5.2s)
+  ✓  73 [chromium] › e2e/login-screen-layout-and-button.spec.ts:34:7 › Login screen layout › language selector sits top-right at every size (3.8s)
+  ✓  74 [chromium] › e2e/login-screen-layout-and-button.spec.ts:46:7 › Login screen layout › header stays fixed while the page scrolls (3.9s)
+  ✓  76 [chromium] › e2e/login-screen-layout-and-button.spec.ts:83:7 › Login screen layout › login button is below the descriptions and shows the Google icon (3.5s)
+  ✓  77 [chromium] › e2e/login-screen-layout-and-button.spec.ts:95:7 › Login screen layout › login button shows a shadow on hover (3.3s)
+  ✓  75 [chromium] › e2e/login-screen-layout-and-button.spec.ts:72:7 › Login screen layout › hero shows key visual, title and descriptions as static text (3.8s)
+  ✓  80 [chromium] › e2e/login-screen-layout-and-button.spec.ts:134:7 › Login screen layout › no horizontal scroll at 375px (2.0s)
+  ✓  78 [chromium] › e2e/login-screen-layout-and-button.spec.ts:103:7 › Login screen layout › login button is disabled with a loader while the Google sign-in starts (2.8s)
+  ✓  72 [chromium] › e2e/language-selector-localization.spec.ts:135:7 › Language selector and localization › /todo labels follow the locale cookie (6.6s)
+  ✘  71 [chromium] › e2e/language-selector-localization.spec.ts:123:7 › Language selector and localization › the homepage landing follows the locale cookie (10.4s)
+  ✘  79 [chromium] › e2e/login-screen-layout-and-button.spec.ts:114:7 › Login screen layout › clicking login redirects the same tab to Google PKCE start (7.7s)
+
+
+  1) [chromium] › e2e/auth-flow-and-route-guards.spec.ts:32:7 › Auth flow and route guards › successful Google sign-in lands on the homepage / 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/$/
+    Received string:  "http://localhost:3100/todo"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        12 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/todo"
+
+
+      32 |   test('successful Google sign-in lands on the homepage /', async ({ page }) => {
+      33 |     await loginThroughStubbedGoogle(page)
+    > 34 |     await expect(page).toHaveURL(/\/$/)
+         |                        ^
+      35 |     await expect(page.getByTestId('homepage-hero')).toBeVisible()
+      36 |   })
+      37 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/auth-flow-and-route-guards.spec.ts:34:24
+
+    Error Context: test-results/auth-flow-and-route-guards-eade1-n-in-lands-on-the-homepage--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth-flow-and-route-guards-eade1-n-in-lands-on-the-homepage--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth-flow-and-route-guards-eade1-n-in-lands-on-the-homepage--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/auth-flow-and-route-guards.spec.ts:77:7 › Auth flow and route guards › authenticated visitor on /login is redirected to / 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/$/
+    Received string:  "http://localhost:3100/todo"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        9 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+          - unexpected value "http://localhost:3100/todo"
+
+
+      78 |     await loginThroughStubbedGoogle(page)
+      79 |     await page.goto('/login')
+    > 80 |     await expect(page).toHaveURL(/\/$/)
+         |                        ^
+      81 |     await page.goto('/login?error=x')
+      82 |     await expect(page).toHaveURL(/\/$/)
+      83 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/auth-flow-and-route-guards.spec.ts:80:24
+
+    Error Context: test-results/auth-flow-and-route-guards-b5ffa--on-login-is-redirected-to--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth-flow-and-route-guards-b5ffa--on-login-is-redirected-to--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth-flow-and-route-guards-b5ffa--on-login-is-redirected-to--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/auth-flow-and-route-guards.spec.ts:124:7 › Auth flow and route guards › a fresh login after a failed one succeeds 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/$/
+    Received string:  "http://localhost:3100/todo"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        12 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/todo"
+
+
+      129 |     await expect(button).toBeVisible()
+      130 |     await button.click()
+    > 131 |     await expect(page).toHaveURL(/\/$/)
+          |                        ^
+      132 |   })
+      133 | })
+      134 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/auth-flow-and-route-guards.spec.ts:131:24
+
+    Error Context: test-results/auth-flow-and-route-guards-05e13-after-a-failed-one-succeeds-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth-flow-and-route-guards-05e13-after-a-failed-one-succeeds-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth-flow-and-route-guards-05e13-after-a-failed-one-succeeds-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/homepage-access-and-landing.spec.ts:18:7 › Homepage access and landing › guest opening any placeholder or nested route is redirected to /login 
+
+    Error: GET /awards-information
+
+    expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/login$/
+    Received string:  "http://localhost:3100/awards-information"
+    Timeout: 5000ms
+
+    Call log:
+      - GET /awards-information with timeout 5000ms
+        12 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/awards-information"
+
+
+      19 |     for (const path of PLACEHOLDER_PATHS) {
+      20 |       await page.goto(path)
+    > 21 |       await expect(page, `GET ${path}`).toHaveURL(/\/login$/)
+         |                                         ^
+      22 |       await expect(page.getByRole('button', { name: LOGIN_BUTTON })).toBeVisible()
+      23 |     }
+      24 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-access-and-landing.spec.ts:21:41
+
+    Error Context: test-results/homepage-access-and-landin-990a2-oute-is-redirected-to-login-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-access-and-landin-990a2-oute-is-redirected-to-login-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-access-and-landin-990a2-oute-is-redirected-to-login-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › e2e/homepage-access-and-landing.spec.ts:27:7 › Homepage access and landing › callback with next=https://evil.example still lands on the homepage / 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/$/
+    Received string:  "http://localhost:3100/todo"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        7 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+          - unexpected value "http://localhost:3100/todo"
+
+
+      29 |     await page.goto('/login')
+      30 |     await page.getByRole('button', { name: LOGIN_BUTTON }).click()
+    > 31 |     await expect(page).toHaveURL(/\/$/)
+         |                        ^
+      32 |     expect(new URL(page.url()).host).toBe('localhost:3100')
+      33 |     await expect(hero(page)).toBeVisible()
+      34 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-access-and-landing.spec.ts:31:24
+
+    Error Context: test-results/homepage-access-and-landin-acb69-till-lands-on-the-homepage--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-access-and-landin-acb69-till-lands-on-the-homepage--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-access-and-landin-acb69-till-lands-on-the-homepage--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › e2e/homepage-access-and-landing.spec.ts:45:7 › Homepage access and landing › a non-admin opening /admin is sent to the homepage / 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/$/
+    Received string:  "http://localhost:3100/admin"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        14 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/admin"
+
+
+      46 |     await loginThroughStubbedGoogle(page)
+      47 |     await page.goto('/admin')
+    > 48 |     await expect(page).toHaveURL(/\/$/)
+         |                        ^
+      49 |     await expect(hero(page)).toBeVisible()
+      50 |     await expect(placeholderComingSoon(page)).toHaveCount(0)
+      51 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-access-and-landing.spec.ts:48:24
+
+    Error Context: test-results/homepage-access-and-landin-89c6b-in-is-sent-to-the-homepage--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-access-and-landin-89c6b-in-is-sent-to-the-homepage--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-access-and-landin-89c6b-in-is-sent-to-the-homepage--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › e2e/homepage-access-and-landing.spec.ts:54:7 › Homepage access and landing › an admin opening /admin sees the Coming soon placeholder with header and footer 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('coming-soon')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('coming-soon') with timeout 5000ms
+      - waiting for getByTestId('coming-soon')
+
+
+      56 |     await page.goto('/admin')
+      57 |     await expect(page).toHaveURL(/\/admin$/)
+    > 58 |     await expect(placeholderComingSoon(page)).toBeVisible()
+         |                                               ^
+      59 |     await expect(header(page)).toBeVisible()
+      60 |     await expect(footer(page)).toBeVisible()
+      61 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-access-and-landing.spec.ts:58:47
+
+    Error Context: test-results/homepage-access-and-landin-54064-lder-with-header-and-footer-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-access-and-landin-54064-lder-with-header-and-footer-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-access-and-landin-54064-lder-with-header-and-footer-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › e2e/homepage-access-and-landing.spec.ts:64:7 › Homepage access and landing › signed-in placeholder pages show the shared header, footer and Coming soon 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('banner')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('banner') with timeout 5000ms
+      - waiting for getByRole('banner')
+
+
+      67 |       await page.goto(path)
+      68 |       await expect(page, `GET ${path}`).toHaveURL(new RegExp(`${path}$`))
+    > 69 |       await expect(header(page)).toBeVisible()
+         |                                  ^
+      70 |       await expect(footer(page)).toBeVisible()
+      71 |       await expect(placeholderComingSoon(page)).toBeVisible()
+      72 |     }
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-access-and-landing.spec.ts:69:34
+
+    Error Context: test-results/homepage-access-and-landin-f2176-ader-footer-and-Coming-soon-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-access-and-landin-f2176-ader-footer-and-Coming-soon-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-access-and-landin-f2176-ader-footer-and-Coming-soon-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › e2e/homepage-access-and-landing.spec.ts:76:7 › Homepage access and landing › the active nav item follows the current placeholder route 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('banner').getByRole('navigation').getByRole('link', { name: /Awards Information/i })
+    Expected: "page"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('banner').getByRole('navigation').getByRole('link', { name: /Awards Information/i }) with timeout 5000ms
+      - waiting for getByRole('banner').getByRole('navigation').getByRole('link', { name: /Awards Information/i })
+
+
+      77 |     await loginThroughStubbedGoogle(page)
+      78 |     await page.goto('/awards-information')
+    > 79 |     await expect(navLink(page, /Awards Information/i)).toHaveAttribute('aria-current', 'page')
+         |                                                        ^
+      80 |     await expect(navLink(page, /About SAA 2025/i)).not.toHaveAttribute('aria-current', 'page')
+      81 |
+      82 |     await page.goto('/standards')
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-access-and-landing.spec.ts:79:56
+
+    Error Context: test-results/homepage-access-and-landin-ba414-e-current-placeholder-route-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-access-and-landin-ba414-e-current-placeholder-route-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-access-and-landin-ba414-e-current-placeholder-route-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:22:7 › Homepage dropdown menus › bell opens an empty notifications panel with no badge 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test('bell opens an empty notifications panel with no badge', async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |     await notificationsTrigger(page).click()
+      26 |     await expect(notificationsTrigger(page)).toHaveAttribute('aria-expanded', 'true')
+      27 |     await expect(notificationsPanel(page)).toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-account-and-dropdown-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-account-and-dropd-0a95b-cations-panel-with-no-badge-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-account-and-dropd-0a95b-cations-panel-with-no-badge-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-account-and-dropd-0a95b-cations-panel-with-no-badge-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:33:7 › Homepage dropdown menus › account menu for a regular user has Profile and Sign out but no Admin Dashboard 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      33 |   test('account menu for a regular user has Profile and Sign out but no Admin Dashboard', async ({ page }) => {
+      34 |     await loginThroughStubbedGoogle(page)
+    > 35 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      36 |     await accountTrigger(page).click()
+      37 |     await expect(accountMenu(page)).toBeVisible()
+      38 |     await expect(accountMenuProfile(page)).toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-account-and-dropdown-menus.spec.ts:35:30
+
+    Error Context: test-results/homepage-account-and-dropd-4bdf7--out-but-no-Admin-Dashboard-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-account-and-dropd-4bdf7--out-but-no-Admin-Dashboard-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-account-and-dropd-4bdf7--out-but-no-Admin-Dashboard-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:44:7 › Homepage dropdown menus › account menu for an admin adds Admin Dashboard 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      44 |   test('account menu for an admin adds Admin Dashboard', async ({ page }) => {
+      45 |     await loginThroughStubbedGoogle(page, { as: 'admin' })
+    > 46 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      47 |     await accountTrigger(page).click()
+      48 |     await expect(accountMenuProfile(page)).toBeVisible()
+      49 |     await expect(accountMenuSignOut(page)).toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-account-and-dropdown-menus.spec.ts:46:30
+
+    Error Context: test-results/homepage-account-and-dropd-604cb--admin-adds-Admin-Dashboard-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-account-and-dropd-604cb--admin-adds-Admin-Dashboard-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-account-and-dropd-604cb--admin-adds-Admin-Dashboard-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:54:7 › Homepage dropdown menus › Sign out returns to /login and the homepage is guarded afterwards 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      54 |   test('Sign out returns to /login and the homepage is guarded afterwards', async ({ page }) => {
+      55 |     await loginThroughStubbedGoogle(page)
+    > 56 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      57 |     await accountTrigger(page).click()
+      58 |     await accountMenuSignOut(page).click()
+      59 |     await expect(page).toHaveURL(/\/login$/)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-account-and-dropdown-menus.spec.ts:56:30
+
+    Error Context: test-results/homepage-account-and-dropd-d2cce-epage-is-guarded-afterwards-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-account-and-dropd-d2cce-epage-is-guarded-afterwards-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-account-and-dropd-d2cce-epage-is-guarded-afterwards-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:65:7 › Homepage dropdown menus › account menu toggles on click and closes on a second click or outside click 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      65 |   test('account menu toggles on click and closes on a second click or outside click', async ({ page }) => {
+      66 |     await loginThroughStubbedGoogle(page)
+    > 67 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      68 |     await accountTrigger(page).click()
+      69 |     await expect(accountMenu(page)).toBeVisible()
+      70 |     await accountTrigger(page).click()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-account-and-dropdown-menus.spec.ts:67:30
+
+    Error Context: test-results/homepage-account-and-dropd-cd3aa-cond-click-or-outside-click-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-account-and-dropd-cd3aa-cond-click-or-outside-click-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-account-and-dropd-cd3aa-cond-click-or-outside-click-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:79:7 › Homepage dropdown menus › keyboard opens the account menu with Enter or Space and Escape returns focus to the trigger 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      79 |   test('keyboard opens the account menu with Enter or Space and Escape returns focus to the trigger', async ({ page }) => {
+      80 |     await loginThroughStubbedGoogle(page)
+    > 81 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      82 |     await accountTrigger(page).focus()
+      83 |     await page.keyboard.press('Enter')
+      84 |     await expect(accountMenu(page)).toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-account-and-dropdown-menus.spec.ts:81:30
+
+    Error Context: test-results/homepage-account-and-dropd-09ea9-eturns-focus-to-the-trigger-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-account-and-dropd-09ea9-eturns-focus-to-the-trigger-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-account-and-dropd-09ea9-eturns-focus-to-the-trigger-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:93:7 › Homepage dropdown menus › opening the bell closes the account menu and the reverse 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      93 |   test('opening the bell closes the account menu and the reverse', async ({ page }) => {
+      94 |     await loginThroughStubbedGoogle(page)
+    > 95 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      96 |     await notificationsTrigger(page).click()
+      97 |     await expect(notificationsPanel(page)).toBeVisible()
+      98 |     await accountTrigger(page).click()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-account-and-dropdown-menus.spec.ts:95:30
+
+    Error Context: test-results/homepage-account-and-dropd-d4823-ccount-menu-and-the-reverse-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-account-and-dropd-d4823-ccount-menu-and-the-reverse-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-account-and-dropd-d4823-ccount-menu-and-the-reverse-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:104:7 › Homepage dropdown menus › opening the account menu closes the language menu 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      104 |   test('opening the account menu closes the language menu', async ({ page }) => {
+      105 |     await loginThroughStubbedGoogle(page)
+    > 106 |     await expect(hero(page)).toBeVisible()
+          |                              ^
+      107 |     await languageTrigger(page).click()
+      108 |     await expect(languageOptionEn(page)).toBeVisible()
+      109 |     await accountTrigger(page).click()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-account-and-dropdown-menus.spec.ts:106:30
+
+    Error Context: test-results/homepage-account-and-dropd-b1023-nu-closes-the-language-menu-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-account-and-dropd-b1023-nu-closes-the-language-menu-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-account-and-dropd-b1023-nu-closes-the-language-menu-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [chromium] › e2e/homepage-content-and-links.spec.ts:24:7 › Homepage content and links › ABOUT AWARDS and ABOUT KUDOS open their pages 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-57aee-BOUT-KUDOS-open-their-pages-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-57aee-BOUT-KUDOS-open-their-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-57aee-BOUT-KUDOS-open-their-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [chromium] › e2e/homepage-content-and-links.spec.ts:33:7 › Homepage content and links › the six award cards link to /awards-information with their slug 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-93174-information-with-their-slug-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-93174-information-with-their-slug-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-93174-information-with-their-slug-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [chromium] › e2e/homepage-content-and-links.spec.ts:42:7 › Homepage content and links › image, title and Chi tiết of a card each open its award section 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-df8dd-each-open-its-award-section-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-df8dd-each-open-its-award-section-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-df8dd-each-open-its-award-section-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [chromium] › e2e/homepage-content-and-links.spec.ts:54:7 › Homepage content and links › hovering an award card changes its transform or shadow 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-be64c-ges-its-transform-or-shadow-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-be64c-ges-its-transform-or-shadow-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-be64c-ges-its-transform-or-shadow-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [chromium] › e2e/homepage-content-and-links.spec.ts:64:7 › Homepage content and links › award grid is 3 columns on desktop and 2 on tablet and phone 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-a5a5a-p-and-2-on-tablet-and-phone-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-a5a5a-p-and-2-on-tablet-and-phone-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-a5a5a-p-and-2-on-tablet-and-phone-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [chromium] › e2e/homepage-content-and-links.spec.ts:78:7 › Homepage content and links › every award description is clamped to at most two lines 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-598d9-lamped-to-at-most-two-lines-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-598d9-lamped-to-at-most-two-lines-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-598d9-lamped-to-at-most-two-lines-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [chromium] › e2e/homepage-content-and-links.spec.ts:92:7 › Homepage content and links › the Sun* Kudos Chi tiết button opens /sun-kudos 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-05279-tiết-button-opens-sun-kudos-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-05279-tiết-button-opens-sun-kudos-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-05279-tiết-button-opens-sun-kudos-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [chromium] › e2e/homepage-content-and-links.spec.ts:99:7 › Homepage content and links › the widget button stays fixed in the bottom-right corner after scrolling 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-10264-ight-corner-after-scrolling-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-10264-ight-corner-after-scrolling-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-10264-ight-corner-after-scrolling-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [chromium] › e2e/homepage-content-and-links.spec.ts:110:7 › Homepage content and links › footer shows the four navigation links and the copyright line 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-7fcba-inks-and-the-copyright-line-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-7fcba-inks-and-the-copyright-line-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-7fcba-inks-and-the-copyright-line-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [chromium] › e2e/homepage-content-and-links.spec.ts:120:7 › Homepage content and links › footer Tiêu chuẩn chung opens the standards placeholder 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-f9171-s-the-standards-placeholder-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-f9171-s-the-standards-placeholder-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-f9171-s-the-standards-placeholder-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  28) [chromium] › e2e/homepage-content-and-links.spec.ts:127:7 › Homepage content and links › every internal link on the homepage answers below 400 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-673ac--homepage-answers-below-400-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-673ac--homepage-answers-below-400-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-673ac--homepage-answers-below-400-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  29) [chromium] › e2e/homepage-content-and-links.spec.ts:138:7 › Homepage content and links › the homepage has no horizontal scroll at 375px 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      18 |   test.beforeEach(async ({ page }) => {
+      19 |     await loginThroughStubbedGoogle(page)
+    > 20 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      21 |   })
+      22 |
+      23 |   // FR-206/US005/ID-44/ID-45: the two hero CTAs open the awards and kudos placeholders
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-content-and-links.spec.ts:20:30
+
+    Error Context: test-results/homepage-content-and-links-8526a--horizontal-scroll-at-375px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-content-and-links-8526a--horizontal-scroll-at-375px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-content-and-links-8526a--horizontal-scroll-at-375px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30) [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:20:7 › Homepage countdown and event info › before the start the countdown shows 02 05 09 with labels and Coming soon 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      13 |   await startBrowserClockAt(page, browserTime)
+      14 |   await loginThroughStubbedGoogle(page)
+    > 15 |   await expect(hero(page)).toBeVisible()
+         |                            ^
+      16 | }
+      17 |
+      18 | test.describe('Homepage countdown and event info', () => {
+        at signedInAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:15:28)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:21:5
+
+    Error Context: test-results/homepage-countdown-and-eve-32668-with-labels-and-Coming-soon-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-countdown-and-eve-32668-with-labels-and-Coming-soon-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-countdown-and-eve-32668-with-labels-and-Coming-soon-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  31) [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:32:7 › Homepage countdown and event info › the minutes value drops by one after a minute passes 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      13 |   await startBrowserClockAt(page, browserTime)
+      14 |   await loginThroughStubbedGoogle(page)
+    > 15 |   await expect(hero(page)).toBeVisible()
+         |                            ^
+      16 | }
+      17 |
+      18 | test.describe('Homepage countdown and event info', () => {
+        at signedInAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:15:28)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:33:5
+
+    Error Context: test-results/homepage-countdown-and-eve-2dfdb-y-one-after-a-minute-passes-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-countdown-and-eve-2dfdb-y-one-after-a-minute-passes-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-countdown-and-eve-2dfdb-y-one-after-a-minute-passes-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  32) [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:41:7 › Homepage countdown and event info › at the event start the countdown reads 00 and Coming soon is hidden 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      13 |   await startBrowserClockAt(page, browserTime)
+      14 |   await loginThroughStubbedGoogle(page)
+    > 15 |   await expect(hero(page)).toBeVisible()
+         |                            ^
+      16 | }
+      17 |
+      18 | test.describe('Homepage countdown and event info', () => {
+        at signedInAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:15:28)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:42:5
+
+    Error Context: test-results/homepage-countdown-and-eve-90cff-0-and-Coming-soon-is-hidden-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-countdown-and-eve-90cff-0-and-Coming-soon-is-hidden-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-countdown-and-eve-90cff-0-and-Coming-soon-is-hidden-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  33) [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:50:7 › Homepage countdown and event info › after the event start the countdown stays at 00 and Coming soon stays hidden 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      13 |   await startBrowserClockAt(page, browserTime)
+      14 |   await loginThroughStubbedGoogle(page)
+    > 15 |   await expect(hero(page)).toBeVisible()
+         |                            ^
+      16 | }
+      17 |
+      18 | test.describe('Homepage countdown and event info', () => {
+        at signedInAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:15:28)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:51:5
+
+    Error Context: test-results/homepage-countdown-and-eve-a45f8-nd-Coming-soon-stays-hidden-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-countdown-and-eve-a45f8-nd-Coming-soon-stays-hidden-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-countdown-and-eve-a45f8-nd-Coming-soon-stays-hidden-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  34) [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:58:7 › Homepage countdown and event info › event date, venue and livestream note show the Figma content 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      13 |   await startBrowserClockAt(page, browserTime)
+      14 |   await loginThroughStubbedGoogle(page)
+    > 15 |   await expect(hero(page)).toBeVisible()
+         |                            ^
+      16 | }
+      17 |
+      18 | test.describe('Homepage countdown and event info', () => {
+        at signedInAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:15:28)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:59:5
+
+    Error Context: test-results/homepage-countdown-and-eve-71228-note-show-the-Figma-content-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-countdown-and-eve-71228-note-show-the-Figma-content-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-countdown-and-eve-71228-note-show-the-Figma-content-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  35) [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:66:7 › Homepage countdown and event info › the hero shows the ROOT FURTHER title 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      13 |   await startBrowserClockAt(page, browserTime)
+      14 |   await loginThroughStubbedGoogle(page)
+    > 15 |   await expect(hero(page)).toBeVisible()
+         |                            ^
+      16 | }
+      17 |
+      18 | test.describe('Homepage countdown and event info', () => {
+        at signedInAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:15:28)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-countdown-and-event-info.spec.ts:67:5
+
+    Error Context: test-results/homepage-countdown-and-eve-100bd-hows-the-ROOT-FURTHER-title-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-countdown-and-eve-100bd-hows-the-ROOT-FURTHER-title-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-countdown-and-eve-100bd-hows-the-ROOT-FURTHER-title-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  36) [chromium] › e2e/homepage-header-and-menus.spec.ts:28:7 › Homepage header navigation › header stays fixed at the top after scrolling 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--0f0ac--at-the-top-after-scrolling-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--0f0ac--at-the-top-after-scrolling-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--0f0ac--at-the-top-after-scrolling-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  37) [chromium] › e2e/homepage-header-and-menus.spec.ts:36:7 › Homepage header navigation › About SAA 2025 is the active nav item on / 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--dd1d7--is-the-active-nav-item-on--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--dd1d7--is-the-active-nav-item-on--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--dd1d7--is-the-active-nav-item-on--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  38) [chromium] › e2e/homepage-header-and-menus.spec.ts:42:7 › Homepage header navigation › clicking the active About item scrolls the homepage to the top 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--b7ebc-lls-the-homepage-to-the-top-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--b7ebc-lls-the-homepage-to-the-top-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--b7ebc-lls-the-homepage-to-the-top-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  39) [chromium] › e2e/homepage-header-and-menus.spec.ts:51:7 › Homepage header navigation › logo click returns to the top of / from the homepage and from a placeholder 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--5ea82-page-and-from-a-placeholder-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--5ea82-page-and-from-a-placeholder-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--5ea82-page-and-from-a-placeholder-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  40) [chromium] › e2e/homepage-header-and-menus.spec.ts:64:7 › Homepage header navigation › footer About link from a placeholder page opens the homepage 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--78f7c-der-page-opens-the-homepage-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--78f7c-der-page-opens-the-homepage-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--78f7c-der-page-opens-the-homepage-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  41) [chromium] › e2e/homepage-header-and-menus.spec.ts:73:7 › Homepage header navigation › Awards Information and Sun* Kudos nav items navigate to their pages 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--483bf-ems-navigate-to-their-pages-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--483bf-ems-navigate-to-their-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--483bf-ems-navigate-to-their-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  42) [chromium] › e2e/homepage-header-and-menus.spec.ts:82:7 › Homepage header navigation › hovering a nav item changes its colours 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--09aab-av-item-changes-its-colours-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--09aab-av-item-changes-its-colours-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--09aab-av-item-changes-its-colours-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  43) [chromium] › e2e/homepage-header-and-menus.spec.ts:91:7 › Homepage header navigation › language selector shows VN by default and the page is lang vi 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--bab49-ult-and-the-page-is-lang-vi-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--bab49-ult-and-the-page-is-lang-vi-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--bab49-ult-and-the-page-is-lang-vi-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  44) [chromium] › e2e/homepage-header-and-menus.spec.ts:97:7 › Homepage header navigation › language menu opens with exactly the VN and EN options 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--7914c-actly-the-VN-and-EN-options-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--7914c-actly-the-VN-and-EN-options-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--7914c-actly-the-VN-and-EN-options-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  45) [chromium] › e2e/homepage-header-and-menus.spec.ts:105:7 › Homepage header navigation › choosing EN switches the homepage to English and keeps it after reload 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--7103e-h-and-keeps-it-after-reload-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--7103e-h-and-keeps-it-after-reload-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--7103e-h-and-keeps-it-after-reload-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  46) [chromium] › e2e/homepage-header-and-menus.spec.ts:117:7 › Homepage header navigation › choosing VN again restores the Vietnamese homepage 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('homepage-hero')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('homepage-hero') with timeout 5000ms
+      - waiting for getByTestId('homepage-hero')
+
+
+      22 |   test.beforeEach(async ({ page }) => {
+      23 |     await loginThroughStubbedGoogle(page)
+    > 24 |     await expect(hero(page)).toBeVisible()
+         |                              ^
+      25 |   })
+      26 |
+      27 |   // FR-201: the header stays on screen while the page scrolls
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/homepage-header-and-menus.spec.ts:24:30
+
+    Error Context: test-results/homepage-header-and-menus--5d2a4-res-the-Vietnamese-homepage-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-header-and-menus--5d2a4-res-the-Vietnamese-homepage-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-header-and-menus--5d2a4-res-the-Vietnamese-homepage-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  47) [chromium] › e2e/language-selector-localization.spec.ts:123:7 › Language selector and localization › the homepage landing follows the locale cookie 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/$/
+    Received string:  "http://localhost:3100/todo"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        13 × locator resolved to <html lang="en" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/todo"
+
+
+      128 |     await expect(button).toBeVisible()
+      129 |     await button.click()
+    > 130 |     await expect(page).toHaveURL(/\/$/)
+          |                        ^
+      131 |     await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+      132 |     await expect(trigger(page)).toContainText('EN')
+      133 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/language-selector-localization.spec.ts:130:24
+
+    Error Context: test-results/language-selector-localiza-0c672-g-follows-the-locale-cookie-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/language-selector-localiza-0c672-g-follows-the-locale-cookie-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/language-selector-localiza-0c672-g-follows-the-locale-cookie-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  48) [chromium] › e2e/login-screen-layout-and-button.spec.ts:114:7 › Login screen layout › clicking login redirects the same tab to Google PKCE start 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/$/
+    Received string:  "http://localhost:3100/todo"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        14 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/todo"
+
+
+      119 |     await expect(button).toBeVisible()
+      120 |     await button.click()
+    > 121 |     await expect(page).toHaveURL(/\/$/)
+          |                        ^
+      122 |     expect(popups, 'no new tab or popup').toEqual([])
+      123 |     expect(page.context().pages()).toHaveLength(1)
+      124 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/login-screen-layout-and-button.spec.ts:121:24
+
+    Error Context: test-results/login-screen-layout-and-bu-05598-me-tab-to-Google-PKCE-start-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/login-screen-layout-and-bu-05598-me-tab-to-Google-PKCE-start-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/login-screen-layout-and-bu-05598-me-tab-to-Google-PKCE-start-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  48 failed
+    [chromium] › e2e/auth-flow-and-route-guards.spec.ts:32:7 › Auth flow and route guards › successful Google sign-in lands on the homepage / 
+    [chromium] › e2e/auth-flow-and-route-guards.spec.ts:77:7 › Auth flow and route guards › authenticated visitor on /login is redirected to / 
+    [chromium] › e2e/auth-flow-and-route-guards.spec.ts:124:7 › Auth flow and route guards › a fresh login after a failed one succeeds 
+    [chromium] › e2e/homepage-access-and-landing.spec.ts:18:7 › Homepage access and landing › guest opening any placeholder or nested route is redirected to /login 
+    [chromium] › e2e/homepage-access-and-landing.spec.ts:27:7 › Homepage access and landing › callback with next=https://evil.example still lands on the homepage / 
+    [chromium] › e2e/homepage-access-and-landing.spec.ts:45:7 › Homepage access and landing › a non-admin opening /admin is sent to the homepage / 
+    [chromium] › e2e/homepage-access-and-landing.spec.ts:54:7 › Homepage access and landing › an admin opening /admin sees the Coming soon placeholder with header and footer 
+    [chromium] › e2e/homepage-access-and-landing.spec.ts:64:7 › Homepage access and landing › signed-in placeholder pages show the shared header, footer and Coming soon 
+    [chromium] › e2e/homepage-access-and-landing.spec.ts:76:7 › Homepage access and landing › the active nav item follows the current placeholder route 
+    [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:22:7 › Homepage dropdown menus › bell opens an empty notifications panel with no badge 
+    [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:33:7 › Homepage dropdown menus › account menu for a regular user has Profile and Sign out but no Admin Dashboard 
+    [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:44:7 › Homepage dropdown menus › account menu for an admin adds Admin Dashboard 
+    [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:54:7 › Homepage dropdown menus › Sign out returns to /login and the homepage is guarded afterwards 
+    [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:65:7 › Homepage dropdown menus › account menu toggles on click and closes on a second click or outside click 
+    [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:79:7 › Homepage dropdown menus › keyboard opens the account menu with Enter or Space and Escape returns focus to the trigger 
+    [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:93:7 › Homepage dropdown menus › opening the bell closes the account menu and the reverse 
+    [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:104:7 › Homepage dropdown menus › opening the account menu closes the language menu 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:24:7 › Homepage content and links › ABOUT AWARDS and ABOUT KUDOS open their pages 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:33:7 › Homepage content and links › the six award cards link to /awards-information with their slug 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:42:7 › Homepage content and links › image, title and Chi tiết of a card each open its award section 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:54:7 › Homepage content and links › hovering an award card changes its transform or shadow 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:64:7 › Homepage content and links › award grid is 3 columns on desktop and 2 on tablet and phone 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:78:7 › Homepage content and links › every award description is clamped to at most two lines 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:92:7 › Homepage content and links › the Sun* Kudos Chi tiết button opens /sun-kudos 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:99:7 › Homepage content and links › the widget button stays fixed in the bottom-right corner after scrolling 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:110:7 › Homepage content and links › footer shows the four navigation links and the copyright line 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:120:7 › Homepage content and links › footer Tiêu chuẩn chung opens the standards placeholder 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:127:7 › Homepage content and links › every internal link on the homepage answers below 400 
+    [chromium] › e2e/homepage-content-and-links.spec.ts:138:7 › Homepage content and links › the homepage has no horizontal scroll at 375px 
+    [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:20:7 › Homepage countdown and event info › before the start the countdown shows 02 05 09 with labels and Coming soon 
+    [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:32:7 › Homepage countdown and event info › the minutes value drops by one after a minute passes 
+    [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:41:7 › Homepage countdown and event info › at the event start the countdown reads 00 and Coming soon is hidden 
+    [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:50:7 › Homepage countdown and event info › after the event start the countdown stays at 00 and Coming soon stays hidden 
+    [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:58:7 › Homepage countdown and event info › event date, venue and livestream note show the Figma content 
+    [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:66:7 › Homepage countdown and event info › the hero shows the ROOT FURTHER title 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:28:7 › Homepage header navigation › header stays fixed at the top after scrolling 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:36:7 › Homepage header navigation › About SAA 2025 is the active nav item on / 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:42:7 › Homepage header navigation › clicking the active About item scrolls the homepage to the top 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:51:7 › Homepage header navigation › logo click returns to the top of / from the homepage and from a placeholder 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:64:7 › Homepage header navigation › footer About link from a placeholder page opens the homepage 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:73:7 › Homepage header navigation › Awards Information and Sun* Kudos nav items navigate to their pages 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:82:7 › Homepage header navigation › hovering a nav item changes its colours 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:91:7 › Homepage header navigation › language selector shows VN by default and the page is lang vi 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:97:7 › Homepage header navigation › language menu opens with exactly the VN and EN options 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:105:7 › Homepage header navigation › choosing EN switches the homepage to English and keeps it after reload 
+    [chromium] › e2e/homepage-header-and-menus.spec.ts:117:7 › Homepage header navigation › choosing VN again restores the Vietnamese homepage 
+    [chromium] › e2e/language-selector-localization.spec.ts:123:7 › Language selector and localization › the homepage landing follows the locale cookie 
+    [chromium] › e2e/login-screen-layout-and-button.spec.ts:114:7 › Login screen layout › clicking login redirects the same tab to Google PKCE start 
+  32 passed (5.9m)
+error: script "test:e2e" exited with code 1
+EXIT=1 DURATION=354s

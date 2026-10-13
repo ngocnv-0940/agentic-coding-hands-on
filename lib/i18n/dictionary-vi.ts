@@ -1,3 +1,5 @@
+import { homeVi } from './dictionary-home-vi'
+
 export const vi = {
   'meta.title': 'Đăng nhập - SAA 2025',
   'login.logoAlt': 'Sun* Annual Awards 2025',
@@ -15,6 +17,7 @@ export const vi = {
   'todo.emailLabel': 'Email',
   'todo.logout': 'Đăng xuất',
   'todo.emailMissing': '—',
+  ...homeVi,
 } as const
 
 /** Key set is derived from `vi`; `en` must provide every key (compile-time parity, F002:BR-002). */

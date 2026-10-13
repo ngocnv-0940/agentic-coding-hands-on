@@ -33,6 +33,7 @@
 |------|------|------|----------|-----------|----------|
 | F001_Auth | Auth | ui | TypeScript | Next.js app (root) | P0 |
 | F002_Localization | Localization | ui | TypeScript | Next.js app (root) | P1 |
+| F003_Homepage | Homepage | ui | TypeScript | Next.js app (root) | P0 |
 
 ## Feature Details
 
@@ -113,12 +114,43 @@
 
 ---
 
+### F003_Homepage: Homepage
+
+**Type**: ui
+**Status**: implemented
+**Description**: Trang chủ SAA 2025 `/` chỉ dành cho người đã đăng nhập: header cố định (điều hướng, thông báo, ngôn ngữ, menu tài khoản có đăng xuất), hero ROOT FURTHER với đếm ngược tới `EVENT_START_AT`, thông tin sự kiện, lưới 6 hạng mục giải thưởng, khối Sun* Kudos, nút widget và footer. Đăng nhập xong người dùng vào `/` thay cho `/todo`; các trang đích còn thiếu (`/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin`) là trang giữ chỗ được bảo vệ, `/admin` chỉ cho admin.
+
+**Workspace**: Next.js app (root)
+**Languages**: TypeScript
+**Components**: 15 thành phần hiển thị trong `app/(main)/_components`, hook và menu trong `app/(main)/_behavior`, container trong `app/(main)/_wiring`
+
+**Related Screens**:
+- SCR003_Homepage: Homepage
+
+**Related User Stories**:
+- TBD (draft) — mã US### toàn cục cấp khi đối chiếu sau khi có mã (xem `docs/features/F003_Homepage/functional-spec.md` § 7).
+
+**Related APIs/Routes**:
+- (GET) /
+- (GET) /awards-information, /sun-kudos, /standards, /profile, /admin (trang giữ chỗ)
+
+**Related Data Models**:
+- No data
+
+**Related Background Logic**:
+- No data
+
+**Related Permissions**:
+- TBD (draft) — mã PERM### cấp khi đối chiếu; xem `docs/system/permissions.md`.
+
+---
+
 ## Summary
 
-- **Total Features**: 2
-- **Total Screens**: 2
+- **Total Features**: 3
+- **Total Screens**: 3
 - **Total User Stories**: 8
-- **Total Routes**: 5 (2 backend ROUTE###: ROUTE001, ROUTE002; 3 trang giao diện: /, /login, /todo)
+- **Total Routes**: 10 (2 backend ROUTE###: ROUTE001, ROUTE002; 8 trang giao diện: /, /login, /todo, /awards-information, /sun-kudos, /standards, /profile, /admin)
 - **Total Data Models**: 0
 - **Total Background Logic**: 0
 - **Total Permissions**: 9

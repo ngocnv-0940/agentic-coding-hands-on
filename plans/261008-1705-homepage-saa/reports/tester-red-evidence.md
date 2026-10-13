@@ -1,0 +1,38 @@
+# Tester RED evidence — homepage (phase 01)
+
+Source: `evidence/temper-run-red.json` (raw outputs: `evidence/e2e-red-output.txt`, `evidence/e2e-red-invalid-env-output.txt`).
+
+- **redCommand:** `bun run test:e2e`
+- **redExitCode:** 1
+- **redTestFiles:**
+  - `e2e/auth-flow-and-route-guards.spec.ts`
+  - `e2e/homepage-access-and-landing.spec.ts`
+  - `e2e/homepage-account-and-dropdown-menus.spec.ts`
+  - `e2e/homepage-content-and-links.spec.ts`
+  - `e2e/homepage-countdown-and-event-info.spec.ts`
+  - `e2e/homepage-header-and-menus.spec.ts`
+  - `e2e/language-selector-localization.spec.ts`
+  - `e2e/login-screen-layout-and-button.spec.ts`
+- **redFailure:**
+  - [e2e/auth-flow-and-route-guards.spec.ts] Auth flow and route guards › successful Google sign-in lands on the homepage / :: Error: expect(page).toHaveURL(expected) failed :: Expected pattern: /\/$/ :: > 34 |     await expect(page).toHaveURL(/\/$/)
+  - [e2e/auth-flow-and-route-guards.spec.ts] Auth flow and route guards › authenticated visitor on /login is redirected to / :: Error: expect(page).toHaveURL(expected) failed :: Expected pattern: /\/$/ :: > 80 |     await expect(page).toHaveURL(/\/$/)
+  - [e2e/auth-flow-and-route-guards.spec.ts] Auth flow and route guards › a fresh login after a failed one succeeds :: Error: expect(page).toHaveURL(expected) failed :: Expected pattern: /\/$/ :: > 131 |     await expect(page).toHaveURL(/\/$/)
+  - [e2e/homepage-access-and-landing.spec.ts] Homepage access and landing › guest opening any placeholder or nested route is redirected to /login :: Error: GET /awards-information :: Expected pattern: /\/login$/ :: > 21 |       await expect(page, `GET ${path}`).toHaveURL(/\/login$/)
+  - [e2e/homepage-access-and-landing.spec.ts] Homepage access and landing › callback with next=https://evil.example still lands on the homepage / :: Error: expect(page).toHaveURL(expected) failed :: Expected pattern: /\/$/ :: > 31 |     await expect(page).toHaveURL(/\/$/)
+  - [e2e/homepage-access-and-landing.spec.ts] Homepage access and landing › a non-admin opening /admin is sent to the homepage / :: Error: expect(page).toHaveURL(expected) failed :: Expected pattern: /\/$/ :: > 48 |     await expect(page).toHaveURL(/\/$/)
+  - [e2e/homepage-account-and-dropdown-menus.spec.ts] Homepage dropdown menus › bell opens an empty notifications panel with no badge :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 24 |     await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-account-and-dropdown-menus.spec.ts] Homepage dropdown menus › account menu for a regular user has Profile and Sign out but no Admin Dashboard :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 35 |     await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-account-and-dropdown-menus.spec.ts] Homepage dropdown menus › account menu for an admin adds Admin Dashboard :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 46 |     await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-content-and-links.spec.ts] Homepage content and links › ABOUT AWARDS and ABOUT KUDOS open their pages :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 20 |     await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-content-and-links.spec.ts] Homepage content and links › the six award cards link to /awards-information with their slug :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 20 |     await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-content-and-links.spec.ts] Homepage content and links › image, title and Chi tiết of a card each open its award section :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 20 |     await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-countdown-and-event-info.spec.ts] Homepage countdown and event info › before the start the countdown shows 02 05 09 with labels and Coming soon :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 15 |   await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-countdown-and-event-info.spec.ts] Homepage countdown and event info › the minutes value drops by one after a minute passes :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 15 |   await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-countdown-and-event-info.spec.ts] Homepage countdown and event info › at the event start the countdown reads 00 and Coming soon is hidden :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 15 |   await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-header-and-menus.spec.ts] Homepage header navigation › header stays fixed at the top after scrolling :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 24 |     await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-header-and-menus.spec.ts] Homepage header navigation › About SAA 2025 is the active nav item on / :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 24 |     await expect(hero(page)).toBeVisible()
+  - [e2e/homepage-header-and-menus.spec.ts] Homepage header navigation › clicking the active About item scrolls the homepage to the top :: Error: expect(locator).toBeVisible() failed :: Expected: visible :: > 24 |     await expect(hero(page)).toBeVisible()
+  - [e2e/language-selector-localization.spec.ts] Language selector and localization › the homepage landing follows the locale cookie :: Error: expect(page).toHaveURL(expected) failed :: Expected pattern: /\/$/ :: > 130 |     await expect(page).toHaveURL(/\/$/)
+  - [e2e/login-screen-layout-and-button.spec.ts] Login screen layout › clicking login redirects the same tab to Google PKCE start :: Error: expect(page).toHaveURL(expected) failed :: Expected pattern: /\/$/ :: > 121 |     await expect(page).toHaveURL(/\/$/)
+
+- **Second run:** `E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid` → exit 1

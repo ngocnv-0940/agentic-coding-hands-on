@@ -1,0 +1,157 @@
+{
+  "mobile-375": {
+    "innerWidth": 375,
+    "scrollWidth": 375,
+    "desktopNavVisible": false,
+    "controls": {
+      "notifications-trigger": {
+        "left": 275,
+        "right": 315,
+        "width": 40,
+        "visible": true,
+        "insideViewport": true
+      },
+      "language-selector-trigger": {
+        "left": 169,
+        "right": 271,
+        "width": 102,
+        "visible": true,
+        "insideViewport": true
+      },
+      "account-trigger": {
+        "left": 319,
+        "right": 359,
+        "width": 40,
+        "visible": true,
+        "insideViewport": true
+      },
+      "widget-button": {
+        "left": 253,
+        "right": 359,
+        "width": 106,
+        "visible": true,
+        "insideViewport": true
+      }
+    },
+    "offenders": [],
+    "noHorizontalOverflow": true
+  },
+  "tablet-768": {
+    "innerWidth": 768,
+    "scrollWidth": 768,
+    "desktopNavVisible": false,
+    "controls": {
+      "notifications-trigger": {
+        "left": 624,
+        "right": 664,
+        "width": 40,
+        "visible": true,
+        "insideViewport": true
+      },
+      "language-selector-trigger": {
+        "left": 498,
+        "right": 608,
+        "width": 110,
+        "visible": true,
+        "insideViewport": true
+      },
+      "account-trigger": {
+        "left": 680,
+        "right": 720,
+        "width": 40,
+        "visible": true,
+        "insideViewport": true
+      },
+      "widget-button": {
+        "left": 643,
+        "right": 749,
+        "width": 106,
+        "visible": true,
+        "insideViewport": true
+      }
+    },
+    "offenders": [],
+    "noHorizontalOverflow": true
+  },
+  "laptop-1024": {
+    "innerWidth": 1024,
+    "scrollWidth": 1024,
+    "desktopNavVisible": true,
+    "controls": {
+      "notifications-trigger": {
+        "left": 880,
+        "right": 920,
+        "width": 40,
+        "visible": true,
+        "insideViewport": true
+      },
+      "language-selector-trigger": {
+        "left": 754,
+        "right": 864,
+        "width": 110,
+        "visible": true,
+        "insideViewport": true
+      },
+      "account-trigger": {
+        "left": 936,
+        "right": 976,
+        "width": 40,
+        "visible": true,
+        "insideViewport": true
+      },
+      "widget-button": {
+        "left": 899,
+        "right": 1005,
+        "width": 106,
+        "visible": true,
+        "insideViewport": true
+      }
+    },
+    "offenders": [
+      "A[award-card-top-project-leader] class=flex w-full flex-col gap-4 rounded-3xl transition-[transform right=1136",
+      "IMG[] class=aspect-square w-full rounded-3xl border border-saa-gold shad right=1136",
+      "DIV[] class=flex flex-col gap-1 right=1136",
+      "H3[] class=m-0 font-[family-name:var(--font-montserrat)] text-xl leadin right=1136",
+      "P[award-card-description] class=m-0 line-clamp-2 font-[family-name:var(--font-montserrat)] t right=1136",
+      "SPAN[] class=flex items-center gap-1 py-4 font-[family-name:var(--font-mo right=1136"
+    ],
+    "noHorizontalOverflow": true
+  },
+  "desktop-1280": {
+    "innerWidth": 1280,
+    "scrollWidth": 1280,
+    "desktopNavVisible": true,
+    "controls": {
+      "notifications-trigger": {
+        "left": 1040,
+        "right": 1080,
+        "width": 40,
+        "visible": true,
+        "insideViewport": true
+      },
+      "language-selector-trigger": {
+        "left": 914,
+        "right": 1024,
+        "width": 110,
+        "visible": true,
+        "insideViewport": true
+      },
+      "account-trigger": {
+        "left": 1096,
+        "right": 1136,
+        "width": 40,
+        "visible": true,
+        "insideViewport": true
+      },
+      "widget-button": {
+        "left": 1155,
+        "right": 1261,
+        "width": 106,
+        "visible": true,
+        "insideViewport": true
+      }
+    },
+    "offenders": [],
+    "noHorizontalOverflow": true
+  }
+}

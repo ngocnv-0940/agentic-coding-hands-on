@@ -1,0 +1,9 @@
+[
+  {"command":"bun run test:e2e","exitCode":1,"summary":"run1: 79 passed, 1 failed (countdown 'minutes drop by one' expected 08 received 09; app lag, see countdown-minute-lag-probe-output.txt)"},
+  {"command":"bun run test:e2e","exitCode":1,"summary":"run2: 79 passed, 1 failed, same test and same error (deterministic, not flaky)"},
+  {"command":"E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid","exitCode":0,"summary":"run1: 2 passed"},
+  {"command":"E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid","exitCode":0,"summary":"run2: 2 passed"},
+  {"command":"bunx tsc --noEmit","exitCode":0,"summary":"typecheck clean"},
+  {"command":"bun run lint","exitCode":0,"summary":"eslint clean"},
+  {"command":"node visual-capture.cjs (desktop-1512, tablet-768, mobile-375)","exitCode":0,"summary":"captured full-page and section screenshots; 0 console errors; mobile countdown overflow found"}
+]

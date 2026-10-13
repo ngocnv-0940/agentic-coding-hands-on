@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
-const SUCCESS_PATH = "/todo";
+const SUCCESS_PATH = "/";
 // BR-001: one fixed flag; provider error text is never forwarded.
 const FAILURE_PATH = "/login?error=auth_failed";
 const MAX_CODE_LENGTH = 2048;
@@ -28,7 +28,7 @@ async function exchangeCode(code: string): Promise<boolean> {
   }
 }
 
-// DEC-002 / BR-002: success always lands on /todo; `next` is never read.
+// BR-005 / BR-002: success always lands on "/"; `next` is never read (no open redirect).
 export async function GET(request: NextRequest): Promise<Response> {
   const { searchParams } = request.nextUrl;
   const code = searchParams.get("code");

@@ -1,0 +1,12 @@
+$ playwright test --grep @event-env-invalid
+[WebServer] $ next dev -p "3100"
+
+Running 2 tests using 2 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  1 [chromium] › e2e/homepage-countdown-invalid-env.spec.ts:18:7 › @event-env-invalid Homepage with an invalid EVENT_START_AT › countdown reads 00, Coming soon is hidden and the event date shows a dash (4.5s)
+  ✓  2 [chromium] › e2e/homepage-countdown-invalid-env.spec.ts:28:7 › @event-env-invalid Homepage with an invalid EVENT_START_AT › the rest of the homepage still renders around the bad configuration (4.6s)
+
+  2 passed (4.7m)
+exit=0

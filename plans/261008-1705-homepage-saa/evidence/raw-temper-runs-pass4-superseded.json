@@ -1,0 +1,6 @@
+[
+  {"command":"E2E_PROD=1 bun run test:e2e","exitCode":0,"summary":"full suite after polish round 2, production server: 80 passed, 0 failed (5.5m)"},
+  {"command":"bunx tsc --noEmit","exitCode":0,"summary":"typecheck clean"},
+  {"command":"bun run lint","exitCode":0,"summary":"eslint clean"},
+  {"command":"node element-rect-recheck.cjs (768, 1024, 1280, 1512)","exitCode":0,"summary":"element rects: all cards, kudos card+logo, hero, root-further, footer links, header controls inside container and viewport at 768/1024/1512; 1280: awards cards 3 and 6 extend 96px past the grid (1232 vs 1136), still inside viewport (defect)"}
+]

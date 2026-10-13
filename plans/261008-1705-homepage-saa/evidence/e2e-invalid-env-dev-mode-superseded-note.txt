@@ -1,0 +1,1 @@
+Superseded: invalid-env run in dev mode exited 1 (exit=1) with "Another next dev server is already running" (pid 1123732 holds :3000 for this directory). Environment failure, not an app result. Re-run in production mode (E2E_PROD=1) passed both times. See e2e-green-invalid-env-run1-output.txt.

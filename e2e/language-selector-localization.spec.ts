@@ -120,14 +120,25 @@ test.describe('Language selector and localization', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'vi')
   })
 
-  test('/todo labels follow the locale cookie', async ({ page, context }) => {
+  test('the homepage landing follows the locale cookie', async ({ page, context }) => {
     await context.addCookies([{ name: 'NEXT_LOCALE', value: 'en', url: 'http://localhost:3100' }])
     await stubGoogleAuthorize(page)
     await page.goto('/login')
     const button = page.getByRole('button', { name: /login with google/i })
     await expect(button).toBeVisible()
     await button.click()
-    await expect(page).toHaveURL(/\/todo$/)
+    await expect(page).toHaveURL(/\/$/)
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+    await expect(trigger(page)).toContainText('EN')
+  })
+
+  test('/todo labels follow the locale cookie', async ({ page, context }) => {
+    await context.addCookies([{ name: 'NEXT_LOCALE', value: 'en', url: 'http://localhost:3100' }])
+    await stubGoogleAuthorize(page)
+    await page.goto('/login')
+    await page.getByRole('button', { name: /login with google/i }).click()
+    await page.waitForURL((url) => !url.pathname.startsWith('/login') && !url.pathname.startsWith('/auth/'))
+    await page.goto('/todo')
     await expect(page.getByRole('button', { name: /logout/i })).toBeVisible()
     await expect(page.getByRole('button', { name: /đăng xuất/i })).toHaveCount(0)
   })

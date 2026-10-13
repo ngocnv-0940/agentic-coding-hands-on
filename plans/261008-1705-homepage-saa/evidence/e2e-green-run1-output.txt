@@ -1,0 +1,104 @@
+$ playwright test
+[WebServer] $ next dev -p "3100"
+
+Running 80 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   4 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:10:7 › Auth flow and route guards › unauthenticated visitor sees the login screen (3.1s)
+  ✓   2 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:17:7 › Auth flow and route guards › root path redirects to /login (3.3s)
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   1 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:23:7 › Auth flow and route guards › unauthenticated /todo, nested and query variants redirect to /login (6.2s)
+  ✓   6 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:47:7 › Auth flow and route guards › callback with a rejected code returns to /login with the inline error (3.8s)
+  ✓   3 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:32:7 › Auth flow and route guards › successful Google sign-in lands on the homepage / (7.3s)
+  ✓   5 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:39:7 › Auth flow and route guards › cancelled Google consent returns to /login with the inline error (4.1s)
+  ✓   7 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:53:7 › Auth flow and route guards › callback without code or error returns to /login with the inline error (2.3s)
+  ✓   9 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:69:7 › Auth flow and route guards › HTML in the error flag is not injected into the page (2.6s)
+  ✓   8 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:60:7 › Auth flow and route guards › an error flag shows exactly one fixed alert; a clean /login shows none (3.3s)
+[WebServer] Route /todo is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  10 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:77:7 › Auth flow and route guards › authenticated visitor on /login is redirected to / (9.9s)
+  ✓  13 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:115:7 › Auth flow and route guards › garbage in the session cookies redirects /todo to /login (8.9s)
+  ✓  11 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:86:7 › Auth flow and route guards › logout returns to /login and /todo is guarded again (11.6s)
+  ✓  12 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:98:7 › Auth flow and route guards › browser Back after logout never shows the previous user data (10.5s)
+  ✓  15 [chromium] › e2e/homepage-access-and-landing.spec.ts:11:7 › Homepage access and landing › guest on / is redirected to /login and never sees the homepage hero (1.7s)
+  ✓  14 [chromium] › e2e/auth-flow-and-route-guards.spec.ts:124:7 › Auth flow and route guards › a fresh login after a failed one succeeds (4.4s)
+  ✓  17 [chromium] › e2e/homepage-access-and-landing.spec.ts:27:7 › Homepage access and landing › callback with next=https://evil.example still lands on the homepage / (4.3s)
+  ✓  16 [chromium] › e2e/homepage-access-and-landing.spec.ts:18:7 › Homepage access and landing › guest opening any placeholder or nested route is redirected to /login (8.0s)
+  ✓  18 [chromium] › e2e/homepage-access-and-landing.spec.ts:37:7 › Homepage access and landing › /todo stays reachable for a signed-in user (7.3s)
+  ✓  19 [chromium] › e2e/homepage-access-and-landing.spec.ts:45:7 › Homepage access and landing › a non-admin opening /admin is sent to the homepage / (7.7s)
+[WebServer] Route /admin is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  20 [chromium] › e2e/homepage-access-and-landing.spec.ts:54:7 › Homepage access and landing › an admin opening /admin sees the Coming soon placeholder with header and footer (8.4s)
+[WebServer] Route /awards-information is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  23 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:22:7 › Homepage dropdown menus › bell opens an empty notifications panel with no badge (5.1s)
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /standards is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  24 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:33:7 › Homepage dropdown menus › account menu for a regular user has Profile and Sign out but no Admin Dashboard (4.5s)
+  ✓  22 [chromium] › e2e/homepage-access-and-landing.spec.ts:76:7 › Homepage access and landing › the active nav item follows the current placeholder route (10.8s)
+  ✓  25 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:44:7 › Homepage dropdown menus › account menu for an admin adds Admin Dashboard (5.3s)
+[WebServer] Route /profile is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  27 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:65:7 › Homepage dropdown menus › account menu toggles on click and closes on a second click or outside click (6.2s)
+  ✓  21 [chromium] › e2e/homepage-access-and-landing.spec.ts:64:7 › Homepage access and landing › signed-in placeholder pages show the shared header, footer and Coming soon (17.9s)
+  ✓  26 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:54:7 › Homepage dropdown menus › Sign out returns to /login and the homepage is guarded afterwards (8.3s)
+  ✓  28 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:79:7 › Homepage dropdown menus › keyboard opens the account menu with Enter or Space and Escape returns focus to the trigger (6.7s)
+  ✓  29 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:93:7 › Homepage dropdown menus › opening the bell closes the account menu and the reverse (4.2s)
+  ✓  30 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:104:7 › Homepage dropdown menus › opening the account menu closes the language menu (5.0s)
+  ✓  32 [chromium] › e2e/homepage-content-and-links.spec.ts:33:7 › Homepage content and links › the six award cards link to /awards-information with their slug (5.5s)
+  ✓  31 [chromium] › e2e/homepage-content-and-links.spec.ts:24:7 › Homepage content and links › ABOUT AWARDS and ABOUT KUDOS open their pages (8.3s)
+  ✓  34 [chromium] › e2e/homepage-content-and-links.spec.ts:54:7 › Homepage content and links › hovering an award card changes its transform or shadow (4.5s)
+[WebServer] [browser] Image with src "/images/homepage/awards/top-talent.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[WebServer] Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+  ✓  36 [chromium] › e2e/homepage-content-and-links.spec.ts:78:7 › Homepage content and links › every award description is clamped to at most two lines (5.8s)
+  ✓  35 [chromium] › e2e/homepage-content-and-links.spec.ts:64:7 › Homepage content and links › award grid is 3 columns on desktop and 2 on tablet and phone (8.5s)
+  ✓  37 [chromium] › e2e/homepage-content-and-links.spec.ts:92:7 › Homepage content and links › the Sun* Kudos Chi tiết button opens /sun-kudos (5.9s)
+  ✓  33 [chromium] › e2e/homepage-content-and-links.spec.ts:42:7 › Homepage content and links › image, title and Chi tiết of a card each open its award section (13.3s)
+[WebServer] [browser] Image with src "/images/homepage/kudos-background.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[WebServer] Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+  ✓  38 [chromium] › e2e/homepage-content-and-links.spec.ts:99:7 › Homepage content and links › the widget button stays fixed in the bottom-right corner after scrolling (5.6s)
+  ✓  39 [chromium] › e2e/homepage-content-and-links.spec.ts:110:7 › Homepage content and links › footer shows the four navigation links and the copyright line (5.4s)
+  ✓  40 [chromium] › e2e/homepage-content-and-links.spec.ts:120:7 › Homepage content and links › footer Tiêu chuẩn chung opens the standards placeholder (5.0s)
+  ✓  41 [chromium] › e2e/homepage-content-and-links.spec.ts:127:7 › Homepage content and links › every internal link on the homepage answers below 400 (8.0s)
+  ✓  44 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:35:7 › Homepage countdown and event info › the minutes value drops by one after a minute passes (5.7s)
+  ✓  43 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:23:7 › Homepage countdown and event info › before the start the countdown shows 02 05 09 with labels and Coming soon (6.3s)
+  ✓  42 [chromium] › e2e/homepage-content-and-links.spec.ts:138:7 › Homepage content and links › the homepage has no horizontal scroll at 375px (7.0s)
+  ✓  45 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:44:7 › Homepage countdown and event info › at the event start the countdown reads 00 and Coming soon is hidden (4.0s)
+  ✓  47 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:61:7 › Homepage countdown and event info › event date, venue and livestream note show the Figma content (5.2s)
+  ✓  46 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:53:7 › Homepage countdown and event info › after the event start the countdown stays at 00 and Coming soon stays hidden (5.5s)
+  ✓  48 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:69:7 › Homepage countdown and event info › the hero shows the ROOT FURTHER title (5.2s)
+[WebServer] [browser] Image with src "/images/homepage/kudos-background.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[WebServer] Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+  ✓  49 [chromium] › e2e/homepage-header-and-menus.spec.ts:28:7 › Homepage header navigation › header stays fixed at the top after scrolling (5.6s)
+[WebServer] [browser] Image with src "/images/homepage/kudos-background.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[WebServer] Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+  ✓  50 [chromium] › e2e/homepage-header-and-menus.spec.ts:36:7 › Homepage header navigation › About SAA 2025 is the active nav item on / (5.7s)
+  ✓  51 [chromium] › e2e/homepage-header-and-menus.spec.ts:42:7 › Homepage header navigation › clicking the active About item scrolls the homepage to the top (7.5s)
+  ✓  52 [chromium] › e2e/homepage-header-and-menus.spec.ts:51:7 › Homepage header navigation › logo click returns to the top of / from the homepage and from a placeholder (8.3s)
+  ✓  53 [chromium] › e2e/homepage-header-and-menus.spec.ts:64:7 › Homepage header navigation › footer About link from a placeholder page opens the homepage (6.9s)
+  ✓  54 [chromium] › e2e/homepage-header-and-menus.spec.ts:73:7 › Homepage header navigation › Awards Information and Sun* Kudos nav items navigate to their pages (7.4s)
+  ✓  56 [chromium] › e2e/homepage-header-and-menus.spec.ts:91:7 › Homepage header navigation › language selector shows VN by default and the page is lang vi (4.3s)
+  ✓  55 [chromium] › e2e/homepage-header-and-menus.spec.ts:82:7 › Homepage header navigation › hovering a nav item changes its colours (5.5s)
+  ✓  57 [chromium] › e2e/homepage-header-and-menus.spec.ts:97:7 › Homepage header navigation › language menu opens with exactly the VN and EN options (5.9s)
+  ✓  60 [chromium] › e2e/language-selector-localization.spec.ts:14:7 › Language selector and localization › defaults to Vietnamese with the VN label and html lang vi (2.7s)
+  ✓  61 [chromium] › e2e/language-selector-localization.spec.ts:22:7 › Language selector and localization › shows a flag left of VN and a chevron right of it (2.9s)
+  ✓  62 [chromium] › e2e/language-selector-localization.spec.ts:35:7 › Language selector and localization › clicking the selector opens the menu (3.0s)
+  ✓  59 [chromium] › e2e/homepage-header-and-menus.spec.ts:117:7 › Homepage header navigation › choosing VN again restores the Vietnamese homepage (7.7s)
+  ✓  63 [chromium] › e2e/language-selector-localization.spec.ts:45:7 › Language selector and localization › hovering the selector shows a pointer cursor (2.8s)
+  ✓  58 [chromium] › e2e/homepage-header-and-menus.spec.ts:105:7 › Homepage header navigation › choosing EN switches the homepage to English and keeps it after reload (9.7s)
+  ✓  64 [chromium] › e2e/language-selector-localization.spec.ts:52:7 › Language selector and localization › menu closes on re-click, Escape and outside click (4.1s)
+  ✓  65 [chromium] › e2e/language-selector-localization.spec.ts:68:7 › Language selector and localization › keyboard: Enter opens the menu and Tab reaches the options (2.8s)
+  ✓  68 [chromium] › e2e/language-selector-localization.spec.ts:116:7 › Language selector and localization › an unknown NEXT_LOCALE value falls back to Vietnamese (1.9s)
+  ✓  67 [chromium] › e2e/language-selector-localization.spec.ts:107:7 › Language selector and localization › picking the current language writes no cookie (2.8s)
+  ✓  66 [chromium] › e2e/language-selector-localization.spec.ts:81:7 › Language selector and localization › picking EN switches the copy, persists a cookie, and survives reload (4.1s)
+  ✓  69 [chromium] › e2e/language-selector-localization.spec.ts:123:7 › Language selector and localization › the homepage landing follows the locale cookie (3.6s)
+  ✓  71 [chromium] › e2e/login-screen-layout-and-button.spec.ts:19:7 › Login screen layout › logo sits top-left at every size and is not interactive (2.9s)
+  ✓  72 [chromium] › e2e/login-screen-layout-and-button.spec.ts:34:7 › Login screen layout › language selector sits top-right at every size (2.7s)
+  ✓  73 [chromium] › e2e/login-screen-layout-and-button.spec.ts:46:7 › Login screen layout › header stays fixed while the page scrolls (2.5s)
+  ✓  70 [chromium] › e2e/language-selector-localization.spec.ts:135:7 › Language selector and localization › /todo labels follow the locale cookie (5.9s)
+  ✓  75 [chromium] › e2e/login-screen-layout-and-button.spec.ts:72:7 › Login screen layout › hero shows key visual, title and descriptions as static text (2.3s)
+  ✓  74 [chromium] › e2e/login-screen-layout-and-button.spec.ts:58:7 › Login screen layout › footer is fixed at the bottom, visible on scroll, and not interactive (2.6s)
+  ✓  76 [chromium] › e2e/login-screen-layout-and-button.spec.ts:83:7 › Login screen layout › login button is below the descriptions and shows the Google icon (2.4s)
+  ✓  77 [chromium] › e2e/login-screen-layout-and-button.spec.ts:95:7 › Login screen layout › login button shows a shadow on hover (2.7s)
+  ✓  78 [chromium] › e2e/login-screen-layout-and-button.spec.ts:103:7 › Login screen layout › login button is disabled with a loader while the Google sign-in starts (2.6s)
+  ✓  80 [chromium] › e2e/login-screen-layout-and-button.spec.ts:134:7 › Login screen layout › no horizontal scroll at 375px (1.8s)
+  ✓  79 [chromium] › e2e/login-screen-layout-and-button.spec.ts:114:7 › Login screen layout › clicking login redirects the same tab to Google PKCE start (3.5s)
+
+  80 passed (6.4m)
+exit=0

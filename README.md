@@ -1,6 +1,6 @@
 # agentic-coding-hands-on
 
-Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có hai màn hình: `/login` và `/todo` (chỉ người đã đăng nhập xem được; hiện email và nút đăng xuất). Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
+Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có ba màn hình: `/login`, trang chủ SAA 2025 `/` (đích sau đăng nhập; header, đếm ngược tới sự kiện, lưới giải thưởng, footer) và `/todo` (hiện email và nút đăng xuất). Các trang `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` hiện chỉ là trang giữ chỗ "Coming soon"; `/admin` chỉ cho người dùng có `app_metadata.role = 'admin'`. Mọi trang trừ `/login` đều cần đăng nhập. Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
 
 ## Yêu cầu
 
@@ -58,6 +58,8 @@ cp .env.example .env.local
 
 Cả `NEXT_PUBLIC_SUPABASE_URL` và `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` đều bắt buộc: `lib/supabase/config.ts` ném lỗi khi thiếu, nên `bun run build` cũng cần chúng (CI phải đặt cả hai).
 
+`EVENT_START_AT` (không bắt buộc, chỉ đọc ở phía máy chủ, không có tiền tố `NEXT_PUBLIC_`) là mốc bắt đầu sự kiện của trang chủ: chuỗi ISO-8601 **bắt buộc kèm offset hoặc `Z`**, ví dụ `2025-12-26T18:30:00+07:00` (đã có sẵn trong `.env.example`). Thiếu, thiếu offset, sai định dạng hoặc ngày không có thật (ví dụ `2025-02-30`) thì đếm ngược hiện `00`, ẩn dòng "Coming soon" và ngày sự kiện hiện "—"; trang vẫn chạy bình thường. Ngày hiển thị theo `dd/MM/yyyy`, múi giờ Asia/Ho_Chi_Minh.
+
 ### 4. Chạy ứng dụng
 
 ```bash
@@ -76,14 +78,16 @@ Mở **`http://localhost:3000`**, không dùng `127.0.0.1`: cookie PKCE của Su
 | `bun run lint` | ESLint |
 | `bun run test:e2e` | Playwright E2E |
 
-E2E không cần Supabase thật: `playwright.config.ts` tự khởi động một Supabase giả ở cổng `54399` và ứng dụng ở cổng `3100`. Đặt `E2E_PROD=1` để chạy bằng `build` + `start` thay cho `next dev` (dùng khi một `next dev` khác đang giữ khoá thư mục). `E2E_SMOKE=1` bật các spec gắn tag `@smoke` (chạy với Supabase thật), nhưng hiện chưa có spec nào như vậy — luồng Google thật phải kiểm thủ công.
+E2E không cần Supabase thật: `playwright.config.ts` tự khởi động một Supabase giả ở cổng `54399` và ứng dụng ở cổng `3100` (4 worker khi chạy cục bộ, 2 trên CI), với `EVENT_START_AT` cố định `2025-12-26T18:30:00+07:00`. Supabase giả có thêm hai danh tính để thử quyền admin: `app_metadata.role = 'admin'` và một tài khoản chỉ có `admin` trong `user_metadata` (không được cấp quyền). Muốn thử mốc sự kiện khác, đặt `E2E_EVENT_START_AT`; ví dụ `E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid` chạy riêng nhóm kiểm giá trị sai. Đặt `E2E_PROD=1` để chạy bằng `build` + `start` thay cho `next dev` (dùng khi một `next dev` khác đang giữ khoá thư mục). `E2E_SMOKE=1` bật các spec gắn tag `@smoke` (chạy với Supabase thật), nhưng hiện chưa có spec nào như vậy — luồng Google thật phải kiểm thủ công.
 
 ## Cấu trúc chính
 
 | Đường dẫn | Nội dung |
 |---|---|
 | `proxy.ts`, `lib/supabase/` | Làm mới phiên và chặn route; client Supabase |
-| `app/login/`, `app/todo/` | Hai màn hình |
+| `app/login/`, `app/todo/` | Màn hình đăng nhập và `/todo` |
+| `app/(main)/` | Trang chủ `/` và các trang giữ chỗ; layout chung có header, footer (kiểm lại phiên); `_components` hiển thị, `_behavior` menu và hook, `_wiring` container |
+| `lib/event/`, `lib/awards/`, `lib/auth/` | Đọc `EVENT_START_AT` và đếm ngược; danh mục 6 giải thưởng; người dùng hiện tại và vai trò admin |
 | `app/auth/callback/`, `app/auth/logout/` | `GET` đổi mã OAuth; `POST` đăng xuất |
 | `lib/i18n/` | Từ điển vi/en và cookie `NEXT_LOCALE` |
 | `supabase/config.toml` | Cấu hình Supabase cục bộ (Google đã bật) |

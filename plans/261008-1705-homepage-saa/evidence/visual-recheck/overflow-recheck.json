@@ -1,0 +1,74 @@
+{
+  "mobile-320": {
+    "innerWidth": 320,
+    "scrollWidth": 320,
+    "bodyScrollWidth": 320,
+    "heroRight": 304,
+    "countdownDays": {
+      "left": 16,
+      "right": 94,
+      "width": 78
+    },
+    "countdownHours": {
+      "left": 106,
+      "right": 184,
+      "width": 78
+    },
+    "countdownMinutes": {
+      "left": 196,
+      "right": 274,
+      "width": 78
+    },
+    "offenders": []
+  },
+  "mobile-375": {
+    "innerWidth": 375,
+    "scrollWidth": 375,
+    "bodyScrollWidth": 375,
+    "heroRight": 359,
+    "countdownDays": {
+      "left": 16,
+      "right": 94,
+      "width": 78
+    },
+    "countdownHours": {
+      "left": 106,
+      "right": 184,
+      "width": 78
+    },
+    "countdownMinutes": {
+      "left": 196,
+      "right": 274,
+      "width": 78
+    },
+    "offenders": []
+  },
+  "tablet-768": {
+    "innerWidth": 768,
+    "scrollWidth": 812,
+    "bodyScrollWidth": 812,
+    "heroRight": 720,
+    "countdownDays": {
+      "left": 48,
+      "right": 164,
+      "width": 116
+    },
+    "countdownHours": {
+      "left": 204,
+      "right": 320,
+      "width": 116
+    },
+    "countdownMinutes": {
+      "left": 360,
+      "right": 478,
+      "width": 118
+    },
+    "offenders": [
+      "DIV.flex items-center gap-1 sm:gap-4 right=812",
+      "DIV.relative right=812",
+      "BUTTON.account-trigger right=812",
+      "svg.[object SVGAnimatedString] right=801",
+      "path.[object SVGAnimatedString] right=798"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+---
+status: draft
+authored_by: takumi
+created: 2026-10-08
+lang: vi
+---
+
+# Permissions
+
+**Project**: agentic-coding-hands-on
+**Generated**: 2026-10-08
+**Analysis Scope**: Bản nháp thiết kế (chưa có mã) cho thay đổi "Homepage SAA": `/` yêu cầu đăng nhập, đích sau đăng nhập đổi từ `/todo` sang `/`. Cơ sở là bản hiện hành của tài liệu này, `proxy.ts`, `lib/supabase/proxy.ts`, `app/auth/callback/route.ts`, `app/auth/logout/route.ts` và `plans/261008-1705-homepage-saa/clarifications.md`.
+
+> **Curated, plain-language view.** This document is for PM, BA, and client audiences who
+> need to understand access without reading raw codes. The raw PERM### matrix lives at
+> [permissions-matrix.md](../generated/permissions-matrix.md). Derive this prose FROM that matrix.
+> No PERM### codes and no matrix tables belong here.
+>
+> **Bản nháp forward-authored.** Mô tả hành vi *dự kiến*, chưa quan sát từ mã. Mã PERM### chưa được cấp (`TBD (draft)`), sẽ được gán khi đối chiếu với mã đã viết. Lý do thiết kế nằm ở ADR (`TBD (draft)`), không nằm ở đây.
+
+## Authorization System Type
+
+**System Type**: `other` — vẫn chỉ phân biệt đã đăng nhập hay chưa. Chưa có RBAC đầy đủ: cờ `admin` (xem dưới) chỉ quyết định hai việc, *hiện hay ẩn mục menu Admin Dashboard* và *cho hay chặn truy cập `/admin` ở phía máy chủ*. Không có phân quyền theo bản ghi, không có dữ liệu riêng của từng người dùng.
+
+**Identified Roles**:
+- `anonymous` — chưa có phiên Supabase hợp lệ (chưa đăng nhập, phiên hết hạn, hoặc không xác minh được).
+- `authenticated` — có phiên hợp lệ do đăng nhập bằng Google. Mọi tài khoản Google đều được, không giới hạn theo tên miền.
+- `admin` (cờ phụ, không phải vai trò độc lập) — một `authenticated` có `user.app_metadata.role === 'admin'`. Làm hiện mục "Admin Dashboard" trong menu tài khoản và là điều kiện để vào `/admin`. Giá trị này nằm ở `app_metadata`, chỉ phía máy chủ/dashboard Supabase ghi được; người dùng không tự sửa được (khác với `user_metadata`).
+
+## Curated View
+
+- **anonymous** xem được trang đăng nhập `/login`, đổi ngôn ngữ VN/EN và bấm "LOGIN With Google". Mở `/` hay bất kỳ trang được bảo vệ nào (liệt kê ở Access Boundaries) đều bị chuyển về `/login`. Bấm đăng xuất không có tác dụng, vì chưa có phiên.
+- **authenticated** vào được trang chủ `/`, `/todo` và các trang giữ chỗ (`/awards-information`, `/sun-kudos`, `/standards`, `/profile`). Mở thẳng `/admin` mà không phải admin thì bị chuyển về `/`. Đăng nhập xong thì về `/`. Mở `/login` thì bị chuyển sang `/`. Đăng xuất từ menu tài khoản trên trang chủ.
+- **admin** thấy y như `authenticated`, thêm mục "Admin Dashboard" trong menu tài khoản, dẫn tới `/admin`, và là người duy nhất vào được trang đó (hiện chỉ là trang giữ chỗ, chưa có dữ liệu).
+- Mọi người, kể cả khách, tải được ảnh và tài nguyên tĩnh (ảnh trang đăng nhập, favicon, tệp của Next.js). Các tài nguyên này không kiểm tra đăng nhập.
+- Trang `/` giờ là trang chủ thật (không còn chỉ chuyển hướng). Khách không thấy nội dung của nó.
+- Ngoài mục Admin Dashboard, hai nhóm người dùng nhìn thấy cùng một ứng dụng, chỉ khác trang nào được phép vào.
+
+## Access Boundaries
+
+Ranh giới chính vẫn là **đã đăng nhập hay chưa**, và danh tính được xác minh với máy chủ Supabase Auth ở mỗi yêu cầu (không tin cookie phiên đứng một mình). Cổng kiểm được đặt ở nhiều lớp:
+
+- **Lớp 1, proxy (`proxy.ts`)**: chạy trước mọi trang. Danh sách đường dẫn được bảo vệ mở rộng thành: `/`, `/todo`, `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` và đường dẫn con của chúng. Riêng `/` chỉ khớp đúng `/` (không được coi mọi đường dẫn là con của `/`, vì như vậy `/login` cũng thành được bảo vệ và gây vòng chuyển hướng). Khách vào các đường dẫn này bị chuyển về `/login`; người đã đăng nhập vào `/login` bị chuyển sang `/` (trước đây là `/todo`). Khi chuyển hướng, proxy giữ lại cookie phiên vừa làm mới. Nếu máy chủ Auth không trả lời hoặc không xác minh được phiên, proxy xử lý như chưa đăng nhập (từ chối khi nghi ngờ, không mở cửa khi lỗi) — giữ nguyên như hiện nay, vẫn dùng `getUser()` chứ không dùng `getSession()`.
+- **Lớp 2, từng trang được bảo vệ**: mỗi trang tự hỏi lại Supabase xem có người dùng không, không có thì chuyển về `/login`, như `/todo` đang làm. Trang chủ cũng theo cách này. Lớp này bắt trường hợp phiên mất hiệu lực sau khi đã qua proxy. Với trang giữ chỗ chỉ có chữ "Coming soon" và không có dữ liệu, lớp 2 là `TBD (draft)` (xem Open Gaps); lớp 1 là đủ ở giai đoạn này. Ngoại lệ là `/admin`: trang tự kiểm tra thêm vai trò admin phía máy chủ (xem dưới).
+- **Các đường dẫn `/auth/`** (đăng nhập qua Google quay về, và đăng xuất): proxy vẫn bỏ qua hoàn toàn để việc đổi mã đăng nhập không bị ghi đè cookie. Vì vậy từng handler tự bảo vệ:
+  - **Quay về từ Google** (`GET /auth/callback`): không cần phiên có sẵn. Chỉ tạo phiên khi không có tham số lỗi, có mã đăng nhập và mã không dài quá 2048 ký tự. Thiếu hoặc sai điều kiện nào, hoặc đổi mã thất bại, người dùng về `/login?error=auth_failed`. Nội dung lỗi của Google không bao giờ được chuyển tiếp hay hiển thị.
+  - **Đích chuyển hướng cố định**: sau callback chỉ có hai đích là `/` (thành công, trước đây là `/todo`) và `/login?error=auth_failed` (thất bại). Tham số `next` vẫn không được đọc, và đích là đường dẫn tương đối, nên không thể lợi dụng để đưa người dùng sang trang bên ngoài. Hệ quả: người bị chuyển về `/login` từ một trang sâu (ví dụ `/profile`) đăng nhập xong vẫn về `/`, không quay lại trang đang mở dở.
+  - **Đăng xuất** (`POST /auth/logout`, không đổi): Route Handler chỉ nhận POST. Gõ địa chỉ này trên trình duyệt (GET) nhận lỗi 405, không đăng xuất. Handler kết thúc phiên trên thiết bị hiện tại và luôn đưa người dùng về `/login`. Nếu việc đăng xuất ở phía Supabase thất bại, cookie phiên vẫn bị xóa. Handler không từ chối ai: khách gọi cũng chỉ nhận lại chuyển hướng về `/login`. Nút "Sign out" trong menu tài khoản của trang chủ gửi form POST tới đây.
+- **Admin Dashboard: ẩn mục và chặn truy cập**: ẩn liên kết trong menu chỉ là giao diện, không ngăn ai gõ thẳng `/admin`. Vì vậy `/admin` còn được chặn ở phía máy chủ: người đã đăng nhập nhưng `app_metadata.role` khác `admin` bị chuyển về `/` (khách thì đã bị proxy chuyển về `/login`). Khi `/admin` có nội dung thật, mọi API của nó cũng phải kiểm tra vai trò admin ở phía máy chủ.
+- **Ngôn ngữ không phải quyền**: lựa chọn VN/EN (cookie `NEXT_LOCALE`) chỉ đổi chữ hiển thị. Không chức năng, trang hay dữ liệu nào bật hoặc tắt theo ngôn ngữ. Giá trị ngôn ngữ lạ bị bỏ qua. Ai cũng đổi được, kể cả khách.
+
+## Special Conditions
+
+- **Phiên và cookie**: cookie phiên do thư viện Supabase quản lý (dạng `sb-<ref>-auth-token`, có thể chia nhiều mảnh), ứng dụng không tự đọc hay ghi tay. Chỉ proxy và Route Handler mới ghi được cookie; trang chỉ đọc, nên việc làm mới phiên nằm ở proxy.
+- **Địa chỉ quay về**: địa chỉ callback dựng từ origin hiện tại của trình duyệt. Khi chạy local nên dùng một host duy nhất (ví dụ `localhost`) từ lúc bắt đầu đăng nhập tới lúc quay về, để cookie xác minh đăng nhập khớp.
+- **Chỉ đăng xuất thiết bị hiện tại**: đăng xuất không thu hồi phiên ở thiết bị khác.
+- **Đổi vai trò admin có hiệu lực chậm**: `app_metadata.role` nằm trong phiên của người dùng; đổi giá trị ở Supabase chỉ phản ánh sau khi phiên được làm mới hoặc đăng nhập lại. Độ trễ này đã được chấp nhận (không thu hồi quyền tức thì).
+- Không có điều kiện theo thời gian, địa chỉ IP, feature flag hay môi trường (production/dev) làm đổi quyền truy cập. Chi tiết từng cổng kiểm nằm ở [permissions-matrix.md](../generated/permissions-matrix.md).
+
+## Open Gaps
+
+- Không còn điểm mở. Đã chốt: các trang giữ chỗ khác `/admin` chỉ dựa vào proxy (không có dữ liệu riêng; proxy dùng `getUser()` và chặn khi lỗi).

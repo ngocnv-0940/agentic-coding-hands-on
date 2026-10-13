@@ -133,8 +133,8 @@ Empty: N/A — màn không có vùng hiển thị dữ liệu động.
 
 | From | Trigger there | Condition | Source |
 |------|----------------|-----------|--------|
-| external | Mở địa chỉ `/login` hoặc mở ứng dụng | Chưa có phiên hợp lệ | `app/page.tsx`, `lib/supabase/proxy.ts` |
-| SCR002_Todo | Bấm Logout | Luôn | `app/auth/logout/route.ts` |
+| external | Mở địa chỉ `/login` hoặc mở ứng dụng | Chưa có phiên hợp lệ (mở `/` cũng bị proxy chuyển về đây) | `lib/supabase/proxy.ts` |
+| SCR002_Todo, SCR003_Homepage | Bấm Logout / Sign out | Luôn | `app/auth/logout/route.ts` |
 | external | Google/Supabase quay về sau khi huỷ hoặc lỗi, kèm cờ lỗi | Đăng nhập thất bại hoặc bị huỷ | `app/auth/callback/route.ts` |
 | SCR002_Todo | Mở `/todo` khi chưa đăng nhập | Không có phiên hợp lệ | `lib/supabase/proxy.ts` |
 
@@ -143,7 +143,7 @@ Empty: N/A — màn không có vùng hiển thị dữ liệu động.
 | Action | Element | Condition | Destination | Result | Source |
 |--------|---------|-----------|-------------|--------|--------|
 | Bắt đầu đăng nhập Google | E07 | Nút sẵn sàng | external (trang đăng nhập Google qua Supabase) | redirect (cùng tab) | `lib/auth/sign-in-with-google.ts` |
-| Mở màn khi đã có phiên | — | Có phiên hợp lệ | SCR002_Todo | redirect | `lib/supabase/proxy.ts` |
+| Mở màn khi đã có phiên | — | Có phiên hợp lệ | SCR003_Homepage | redirect | `lib/supabase/proxy.ts` |
 
 ## 9. Accessibility
 

@@ -1,0 +1,35 @@
+{
+  "desktop-1512:header": "captured",
+  "desktop-1512:hero": "captured",
+  "desktop-1512:countdown-days": "captured",
+  "desktop-1512:event-date": "captured",
+  "desktop-1512:awards-grid": "captured",
+  "desktop-1512:kudos-promo": "captured",
+  "desktop-1512:footer": "captured",
+  "cardHoverCssRest": {
+    "transform": "none",
+    "boxShadow": "none",
+    "borderColor": "rgb(255, 255, 255)"
+  },
+  "desktop-1512:consoleErrors": [],
+  "desktop-1512:testidCount": 26,
+  "tablet-768:header": "captured",
+  "tablet-768:hero": "captured",
+  "tablet-768:countdown-days": "captured",
+  "tablet-768:event-date": "captured",
+  "tablet-768:awards-grid": "captured",
+  "tablet-768:kudos-promo": "captured",
+  "tablet-768:footer": "captured",
+  "tablet-768:consoleErrors": [],
+  "tablet-768:testidCount": 26,
+  "mobile-375:header": "captured",
+  "mobile-375:hero": "captured",
+  "mobile-375:countdown-days": "captured",
+  "mobile-375:event-date": "captured",
+  "mobile-375:awards-grid": "captured",
+  "mobile-375:kudos-promo": "captured",
+  "mobile-375:footer": "captured",
+  "mobile-375:consoleErrors": [],
+  "mobile-375:testidCount": 26
+}
+exit=0

@@ -2,7 +2,7 @@
 
 **Project**: agentic-coding-hands-on
 **Generated**: 2026-10-08
-**Analysis Scope**: Luồng chuyển màn hình của SCR001_Login và SCR002_Todo: chuyển hướng ở `app/page.tsx`, guard ở `proxy.ts` + `lib/supabase/proxy.ts`, `GET /auth/callback` (ROUTE001), `POST /auth/logout` (ROUTE002). Toàn bộ chuyển màn hình là chuyển hướng phía máy chủ hoặc điều hướng của trình duyệt; không có `<Link>`, `useRouter` hay `window.location` điều hướng trong `app/` (chỉ `window.location.origin` để dựng `redirectTo`, `lib/auth/sign-in-with-google.ts:17`).
+**Analysis Scope**: Luồng chuyển màn hình của SCR001_Login, SCR002_Todo và SCR003_Homepage: `app/page.tsx` đã xoá (`/` là trang chủ), guard ở `proxy.ts` + `lib/supabase/proxy.ts`, `GET /auth/callback` (ROUTE001), `POST /auth/logout` (ROUTE002). Toàn bộ chuyển màn hình là chuyển hướng phía máy chủ hoặc điều hướng của trình duyệt; không có `<Link>`, `useRouter` hay `window.location` điều hướng trong `app/` (chỉ `window.location.origin` để dựng `redirectTo`, `lib/auth/sign-in-with-google.ts:17`).
 
 **Code Format**: All SCR codes MUST follow `SCR###_NameSlug` format (e.g., SCR001_LoginForm, SCR002_Dashboard) | `SCR###/REG###` for region-scoped transitions
 
@@ -10,14 +10,17 @@
 
 ```mermaid
 graph TD
-    A["Truy cập /"] -->|"redirect /login (app/page.tsx:6)"| B["SCR001_Login"]
+    A["Truy cập / khi chưa đăng nhập"] -->|"Proxy redirect /login"| B["SCR001_Login"]
     B -->|"Bấm LOGIN With Google, cùng tab"| G["Google qua Supabase Auth"]
     G -->|"GET /auth/callback (ROUTE001)"| H{"Đổi code lấy phiên"}
-    H -->|"Thành công, 307 /todo"| C["SCR002_Todo"]
+    H -->|"Thành công, 307 /"| HP["SCR003_Homepage"]
     H -->|"Lỗi, 307 /login?error=auth_failed"| B
     C -->|"POST /auth/logout, 303 /login (ROUTE002)"| B
     X["Vào /todo khi chưa đăng nhập"] -->|"Proxy redirect /login"| B
-    Y["Vào /login khi đã đăng nhập"] -->|"Proxy redirect /todo"| C
+    Y["Vào /login khi đã đăng nhập"] -->|"Proxy redirect /"| HP
+    HP -->|"Sign out: POST /auth/logout, 303 /login"| B
+    HP -->|"Header, footer, thẻ giải thưởng"| PH["Trang giữ chỗ: /awards-information, /sun-kudos, /standards, /profile, /admin"]
+    PH -->|"Logo hoặc About SAA 2025"| HP
 ```
 
 ## Feature Entry Points
@@ -30,13 +33,17 @@ graph TD
 
 | From Screen | To Screen | Action/Trigger | Conditions | Region |
 |-------------|-----------|----------------|------------|--------|
-| Truy cập `/` | SCR001_Login | `redirect("/login")` ở `app/page.tsx:6` | Chưa đăng nhập. Đã đăng nhập thì lượt `/login` kế tiếp bị proxy chuyển tiếp sang SCR002_Todo | |
+| Truy cập `/` | SCR001_Login | Proxy `redirect /login`, bỏ query (`lib/supabase/proxy.ts:82`); layout `(main)` kiểm lại (`app/(main)/layout.tsx:32-33`) | Chưa đăng nhập hoặc Auth server không trả lời (fail closed) | |
+| Truy cập `/` | SCR003_Homepage | Tải trang (`app/(main)/page.tsx`) | Đã đăng nhập | |
+| SCR003_Homepage | Trang giữ chỗ (`/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin`) | Bấm mục điều hướng, nút CTA, thẻ giải thưởng, footer hoặc menu tài khoản | Đã đăng nhập; `/admin` chỉ khi `app_metadata.role === 'admin'`, người khác bị proxy chuyển về `/` (`lib/supabase/proxy.ts:85-87`) | |
+| Trang giữ chỗ | SCR003_Homepage | Bấm logo hoặc About SAA 2025 (header dùng lại) | Đã đăng nhập | |
+| SCR003_Homepage | SCR001_Login | Sign out trong menu tài khoản: form `POST /auth/logout`, `303 Location: /login` (`app/(main)/_behavior/account-menu.tsx:33`) | Luôn chuyển về `/login` | |
 | URL trực tiếp `/login` | SCR001_Login | Tải trang | Chưa đăng nhập (`getUser()` không trả người dùng) | |
-| URL trực tiếp `/login` | SCR002_Todo | Proxy `redirect /todo` (`lib/supabase/proxy.ts:66`) | Đã đăng nhập | |
-| URL trực tiếp `/todo` | SCR001_Login | Proxy `redirect /login`, bỏ query (`lib/supabase/proxy.ts:65`) | Chưa đăng nhập hoặc Auth server không trả lời (fail closed) | |
+| URL trực tiếp `/login` | SCR003_Homepage | Proxy `redirect /` (`lib/supabase/proxy.ts:83`) | Đã đăng nhập | |
+| URL trực tiếp `/todo` | SCR001_Login | Proxy `redirect /login`, bỏ query (`lib/supabase/proxy.ts:82`) | Chưa đăng nhập hoặc Auth server không trả lời (fail closed) | |
 | URL trực tiếp `/todo` | SCR002_Todo | Tải trang | Đã đăng nhập | |
 | SCR001_Login | Google (Supabase Auth), ngoài ứng dụng | Bấm nút LOGIN With Google: `signInWithOAuth` chuyển trình duyệt đi, cùng tab (`lib/auth/sign-in-with-google.ts:15-18`) | `status` không phải `initiating`; khởi tạo OAuth không lỗi | |
-| Google (Supabase Auth) | SCR002_Todo | `GET /auth/callback` đổi `code`, `307 Location: /todo` (`app/auth/callback/route.ts:40`) | Có `code` hợp lệ (không rỗng, dài tối đa 2048), không có tham số `error`, `exchangeCodeForSession` không lỗi | |
+| Google (Supabase Auth) | SCR003_Homepage | `GET /auth/callback` đổi `code`, `307 Location: /` (`app/auth/callback/route.ts:4,40`) | Có `code` hợp lệ (không rỗng, dài tối đa 2048), không có tham số `error`, `exchangeCodeForSession` không lỗi | |
 | Google (Supabase Auth) | SCR001_Login | `GET /auth/callback`, `307 Location: /login?error=auth_failed` (`app/auth/callback/route.ts:36-40`) | Có `?error=`, thiếu `code`, `code` dài hơn 2048, đổi `code` lỗi hoặc ném ngoại lệ | |
 | SCR002_Todo | SCR001_Login | Bấm Đăng xuất: form `POST /auth/logout`, `303 Location: /login` (`app/todo/page.tsx:39`, `app/auth/logout/route.ts:32-35`) | Luôn chuyển về `/login`, kể cả khi `signOut` lỗi | |
 | SCR002_Todo | SCR001_Login | `redirect('/login')` khi `getUser()` không trả người dùng (`app/todo/page.tsx:28`) | Phiên mất hiệu lực sau khi qua proxy (guard lớp hai) | |
@@ -48,7 +55,7 @@ graph TD
 ### SCR001_Login (Login)
 
 **Entry Points**:
-- Truy cập `/` rồi `redirect("/login")` (`app/page.tsx:6`)
+- Truy cập `/` khi chưa đăng nhập: proxy chuyển về `/login`
 - URL trực tiếp `/login` khi chưa đăng nhập
 - Từ SCR002_Todo: đăng xuất (`POST /auth/logout`, 303)
 - Từ SCR002_Todo hoặc proxy: phiên mất hiệu lực, chuyển về `/login`
@@ -56,11 +63,11 @@ graph TD
 
 **Exit Points**:
 - Tới Google (ngoài ứng dụng) rồi `GET /auth/callback`: bấm nút LOGIN With Google
-- Tới SCR002_Todo: đăng nhập thành công (qua `GET /auth/callback`), hoặc người đã đăng nhập mở `/login` (proxy)
+- Tới SCR003_Homepage: đăng nhập thành công (qua `GET /auth/callback`), hoặc người đã đăng nhập mở `/login` (proxy)
 - Ở lại SCR001_Login (cùng URL): chọn VN/EN gọi Server Action `setLocale` (ghi cookie `NEXT_LOCALE`, `refresh()`, render lại chuỗi theo ngôn ngữ mới, không đổi màn hình); chọn đúng ngôn ngữ đang dùng hoặc giá trị không hợp lệ thì không làm gì (`lib/i18n/set-locale-action.ts:17-20`)
 
 **Decision Points**:
-- Proxy khi vào `/login`: nếu `getUser()` có người dùng → SCR002_Todo, ngược lại → hiện SCR001_Login (`lib/supabase/proxy.ts:66`)
+- Proxy khi vào `/login`: nếu `getUser()` có người dùng → SCR003_Homepage, ngược lại → hiện SCR001_Login (`lib/supabase/proxy.ts:83`)
 - Khởi tạo OAuth: nếu `signInWithGoogle()` trả `ok: true` → trình duyệt đang rời trang, nút giữ trạng thái `initiating`; nếu `ok: false` → trạng thái `error`, hiện lỗi, đưa focus về nút (`app/login/google-login-container.tsx:35-39`)
 - Có `?error=` không rỗng khi mở trang → hiện lỗi cố định ngay ở trạng thái `idle` (`app/login/page.tsx:22-24`, `google-login-container.tsx:31`)
 
@@ -69,8 +76,6 @@ graph TD
 ### SCR002_Todo (Todo)
 
 **Entry Points**:
-- Từ SCR001_Login: `GET /auth/callback` thành công (307 `/todo`)
-- Từ proxy khi người đã đăng nhập mở `/login`
 - URL trực tiếp `/todo` khi đã đăng nhập
 
 **Exit Points**:
@@ -78,8 +83,27 @@ graph TD
 - Tới SCR001_Login: phiên mất hiệu lực (proxy hoặc `redirect('/login')` ở `app/todo/page.tsx:28`)
 
 **Decision Points**:
-- Proxy khi vào `/todo` hoặc `/todo/*`: có người dùng → cho qua, không có → `/login` (`lib/supabase/proxy.ts:65`)
+- Proxy khi vào `/todo` hoặc `/todo/*`: có người dùng → cho qua, không có → `/login` (`lib/supabase/proxy.ts:82`)
 - Trang `/todo`: `getUser()` không trả người dùng → `redirect('/login')`, ngược lại hiện email và nút đăng xuất (`app/todo/page.tsx:27-28`)
+
+---
+
+### SCR003_Homepage (Homepage)
+
+**Entry Points**:
+- Từ SCR001_Login: `GET /auth/callback` thành công (307 `/`)
+- Từ proxy khi người đã đăng nhập mở `/login` (redirect `/`)
+- URL trực tiếp `/` khi đã đăng nhập; từ trang giữ chỗ (logo, About SAA 2025)
+
+**Exit Points**:
+- Tới trang giữ chỗ `/awards-information` (kèm `#<slug>` từ thẻ), `/sun-kudos`, `/standards`, `/profile`, `/admin` (header, footer, nút CTA, thẻ giải thưởng, menu tài khoản)
+- Tới SCR001_Login: Sign out (`POST /auth/logout`, 303 `/login`) hoặc phiên mất hiệu lực (`app/(main)/layout.tsx:33`)
+- Ở lại SCR003_Homepage: đổi VN/EN (`setLocale`), mở hoặc đóng menu tài khoản và bảng thông báo, bấm logo (cuộn lên đầu trang)
+
+**Decision Points**:
+- Proxy khi vào `/`: có người dùng → cho qua, không có → `/login` (`lib/supabase/proxy.ts:82`); layout `(main)` kiểm lại, không có người dùng → `redirect('/login')` (`app/(main)/layout.tsx:32-33`)
+- Proxy khi vào `/admin*`: không phải admin → `/` (`lib/supabase/proxy.ts:85-87`); trang `/admin` kiểm lại (`app/(main)/admin/page.tsx:20`)
+- Mục Admin Dashboard chỉ hiện khi `isAdmin` (`app/(main)/_behavior/account-menu.tsx:27-31`)
 
 ---
 
@@ -94,18 +118,19 @@ N/A — SCR001_Login và SCR002_Todo đều atomic, không có vùng (REG) nào 
 ```mermaid
 graph LR
     A["Khách chưa đăng nhập"] -->|"Mở /login"| B["SCR001_Login"]
-    A -->|"Mở /todo"| C["Proxy: chuyển /login"]
+    A -->|"Mở / hoặc /todo hoặc trang giữ chỗ"| C["Proxy: chuyển /login"]
     C --> B
     B -->|"LOGIN With Google"| D["Google qua Supabase Auth"]
-    D -->|"GET /auth/callback thành công"| E["SCR002_Todo"]
+    D -->|"GET /auth/callback thành công"| E["SCR003_Homepage"]
     D -->|"Lỗi hoặc huỷ"| B
     E -->|"POST /auth/logout"| B
-    F["Đã đăng nhập mở /login"] -->|"Proxy: chuyển /todo"| E
+    F["Đã đăng nhập mở /login"] -->|"Proxy: chuyển /"| E
 ```
 
 | Screen | Authentication Required | Authorization Level |
 |--------|------------------------|-------------------|
-| SCR001_Login | No (người đã đăng nhập bị chuyển sang SCR002_Todo) | Public |
+| SCR001_Login | No (người đã đăng nhập bị chuyển sang SCR003_Homepage) | Public |
+| SCR003_Homepage | Yes (proxy chặn khách; layout `(main)` kiểm lại bằng `getCurrentUser()`) | User; mục Admin Dashboard và `/admin` chỉ cho `app_metadata.role === 'admin'` |
 | SCR002_Todo | Yes (phiên Supabase, xác minh bằng `getUser()`) | User (mọi tài khoản Google đều được, không phân vai trò) |
 
 ---
@@ -119,7 +144,7 @@ graph LR
 | SCR001_Login | Trang được khôi phục từ bfcache đang kẹt `initiating` | Sự kiện `pageshow` có `persisted` đặt lại `idle` (`google-login-container.tsx:23-29`) | screen |
 | SCR001_Login | `setLocale` nhận giá trị lạ hoặc đúng ngôn ngữ hiện tại | Bỏ qua, không ghi cookie, không báo lỗi (`lib/i18n/set-locale-action.ts:17-20`) | screen |
 | SCR001_Login | `GET /auth/callback` nhận `?error=`, thiếu `code`, `code` dài hơn 2048, đổi `code` lỗi hoặc ném ngoại lệ | `307 Location: /login?error=auth_failed`, `Cache-Control: private, no-store`; không chuyển nội dung lỗi của nhà cung cấp, không đọc tham số `next` (`app/auth/callback/route.ts:36-40`) | screen |
-| SCR002_Todo | Chưa đăng nhập hoặc phiên hết hạn | Proxy `redirect /login`; nếu lọt qua, trang `redirect('/login')` (`lib/supabase/proxy.ts:65`, `app/todo/page.tsx:28`) | screen |
+| SCR002_Todo | Chưa đăng nhập hoặc phiên hết hạn | Proxy `redirect /login`; nếu lọt qua, trang `redirect('/login')` (`lib/supabase/proxy.ts:82`, `app/todo/page.tsx:28`) | screen |
 | SCR002_Todo | Auth server không trả lời khi proxy gọi `getUser()` | Coi như chưa đăng nhập (fail closed), chuyển `/login` (`lib/supabase/proxy.ts:49-51`) | screen |
 | SCR002_Todo | `signOut` lỗi hoặc ném ngoại lệ khi đăng xuất | Xóa cookie có tên `sb-*-auth-token*` rồi vẫn `303 /login` (`app/auth/logout/route.ts:25-30`) | screen |
 | SCR002_Todo | Thiếu email trong `User` | Hiện giá trị thay thế `todo.emailMissing` (`app/todo/page.tsx:37`) | screen |
@@ -132,7 +157,7 @@ graph LR
 ## Circular Dependencies Check
 
 - [x] Có một vòng điều hướng do người dùng điều khiển: SCR001_Login → (Google, callback) → SCR002_Todo → (đăng xuất) → SCR001_Login. Đây là chu trình đăng nhập/đăng xuất bình thường, mỗi bước cần một thao tác của người dùng, không phải vòng chuyển hướng tự động.
-- [x] Hai guard của proxy loại trừ nhau theo trạng thái phiên (`/todo` chỉ chặn khi không có người dùng, `/login` chỉ chuyển khi có người dùng, `lib/supabase/proxy.ts:65-66`), nên với phiên không đổi không có vòng chuyển hướng vô hạn
+- [x] Hai guard của proxy loại trừ nhau theo trạng thái phiên (`/todo` chỉ chặn khi không có người dùng, `/login` chỉ chuyển khi có người dùng, `lib/supabase/proxy.ts:82-83`), nên với phiên không đổi không có vòng chuyển hướng vô hạn
 - [x] All screens have valid entry/exit points
 - [x] All navigation paths terminate (mọi đường đều kết thúc ở một trong hai màn hình hoặc dừng chờ thao tác người dùng)
 
@@ -142,25 +167,26 @@ graph LR
 
 Guard của ứng dụng gồm một lớp ở proxy (Next.js 16 dùng `proxy.ts` thay cho `middleware.ts`) và một lớp phòng thủ chiều sâu ngay trong trang. Chi tiết quyền xem permissions.md.
 
-### GUARD-001 — SignedOutToLogin on /todo và /todo/*
+### GUARD-001 — SignedOutToLogin on /, /todo và trang giữ chỗ (kèm đường dẫn con; `/` khớp đúng)
 **trigger:** `proxy` (`proxy.ts:4-6` gọi `updateSession`; matcher `proxy.ts:8-12` bỏ qua `_next/static`, `_next/image`, `favicon.ico` và ảnh tĩnh)
-**source:** `lib/supabase/proxy.ts:65`
+**source:** `lib/supabase/proxy.ts:25-27,82`
 **logic:**
 ```pseudo
 if (path startsWith "/auth/") → pass through, no cookie change   // lib/supabase/proxy.ts:21
 user = getUser()   // on error → user = null (fail closed)
-if (!user && (path == "/todo" || path startsWith "/todo/")) → redirect /login (query stripped)
+if (!user && (path == "/" || path under /todo, /awards-information, /sun-kudos, /standards, /profile, /admin)) → redirect /login (query stripped)
 ```
 **failure path:** redirect `/login`, mang theo cookie đã làm mới và header cache của Supabase (`lib/supabase/proxy.ts:55-63`)
 
 ---
 
-### GUARD-002 — SignedInToTodo on /login
-**trigger:** `proxy` (`lib/supabase/proxy.ts:66`)
-**source:** `lib/supabase/proxy.ts:66`
+### GUARD-002 — SignedInToHome on /login
+**trigger:** `proxy` (`lib/supabase/proxy.ts:83`)
+**source:** `lib/supabase/proxy.ts:83`
 **logic:**
 ```pseudo
-if (user && path == "/login") → redirect /todo (query stripped)
+if (user && path == "/login") → redirect / (query stripped)
+if (user && path under /admin && role != "admin") → redirect / (lib/supabase/proxy.ts:85-87)
 ```
 **failure path:** không có nhánh lỗi; người chưa đăng nhập được cho qua và thấy SCR001_Login
 
