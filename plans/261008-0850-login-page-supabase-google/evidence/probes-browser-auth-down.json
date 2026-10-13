@@ -1,0 +1,17 @@
+[
+ {
+  "id": "P5e auth server down: /todo fails closed to /login",
+  "ok": true,
+  "detail": {
+   "url": "http://localhost:3100/login",
+   "status": 200
+  }
+ },
+ {
+  "id": "P5e auth server down: /login still renders",
+  "ok": true,
+  "detail": {
+   "status": 200
+  }
+ }
+]

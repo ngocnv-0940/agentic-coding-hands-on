@@ -1,0 +1,32 @@
+[
+  {
+    "label": "tsc",
+    "command": "NODE_OPTIONS=--max-old-space-size=4096 bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "Typecheck clean, exit 0, no diagnostics. Run twice (second run output in tsc-output-v2.txt); both exit 0."
+  },
+  {
+    "label": "lint",
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "eslint flat config clean, exit 0, no findings. Output: lint-output-v2.txt."
+  },
+  {
+    "label": "e2e-green",
+    "command": "E2E_PROD=1 DEBUG=pw:webserver bun run test:e2e",
+    "exitCode": 0,
+    "summary": "34 passed, 0 failed, 0 skipped, 0 flaky, 0 retries (single run, retries=0). Prod build inside the run succeeded with Cache Components; no Date.now or prerender lines in the server log (0 matches). DEBUG=pw:webserver only echoes server output; specs untouched. Log: e2e-green-v2-output.txt."
+  },
+  {
+    "label": "probes",
+    "command": "node probe-logout-and-oauth.mjs (Playwright chromium, prod app :3100, mock :54398 behind fault proxy :54399) && curl P1/P4/logout set",
+    "exitCode": 0,
+    "summary": "PASS: P6a normal logout -> /login, no sb-* cookies, Back and hard reload stay on /login with no /todo content (previous P6b FAIL resolved); P6b signOut 500 fallback -> /login, cookies cleared; P6c auth server dropped -> /login, cookies cleared; P6d garbage real-name cookies cleared by logout; P6e GET /auth/logout -> 405; P7a OAuth start failure -> button re-enabled, one alert, focus on button, no navigation; P1/P4 Host spoof and callback bounds -> relative /login?error=auth_failed, never 500. NOT EXERCISED: P7 bfcache pageshow persisted branch (/login is Cache-Control no-store, Chromium did not restore from bfcache; page re-rendered idle). P3 not re-run this round (accepted earlier). Output: probes-browser-v2-output.txt, probes-browser-v2.json, probes-curl-v2-output.txt."
+  },
+  {
+    "label": "visual",
+    "command": "node capture-visual-v2.mjs (1440x1024 VN, EN, VN menu open, VN hover) + PIL pixel metrics vs figma-reference-GzbNeVGJHz-1440x1024.png",
+    "exitCode": 0,
+    "summary": "Capture exit 0. Visual gate verdict NOT PASS: material mismatch in the hero key visual. Impl hero artwork ends near y=800 and fades to flat #00101A; Figma keeps artwork to the footer rule at y=933 (band 800-925 mean luma 14.0 impl vs 26.0 Figma). Right-side artwork dimmer (mean 59.2 vs 72.3, mean abs diff 21.5). Full-frame mean abs diff 8.8 (not zero, so not exact). CTA 305px wide matches; height 60 DOM (fractional y 672.5) vs 59 px in Figma pixels (1px, antialias-level, minor). Subtitle weight lighter than Figma (qualitative). Hover state has no Figma reference frame, not compared. Screenshots: login-vn/en/language-menu-open/button-hover-1440x1024-v2.png."
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "command": "E2E_PROD=1 bun run test:e2e",
+  "exitCode": 1,
+  "summary": "Final attempt (run5, after infra-only fixes; no retries, 8 workers): 33 tests, 32 passed, 1 failed, 0 skipped, 0 flaky. Only failure: e2e/login-screen-layout-and-button.spec.ts:95 'login button shows a shadow on hover': toHaveCSS('box-shadow','none') received 5 transparent layers at rest (Tailwind v4 shadow-none). Assertion defect, not changed. Infra edits made: (1) new e2e/support/app-alert.ts; auth-flow spec uses appAlert() to exclude Next's #__next-route-announcer__ role=alert; (2) ROOT FURTHER lookups use getByRole('heading') (same text); (3) loader test click uses noWaitAfter:true; stub hold mode answers as attachment download instead of a held navigation. Full log: e2e-green-run5-output.txt. Earlier attempts run1-4 logs kept for traceability."
+}

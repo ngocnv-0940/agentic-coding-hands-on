@@ -1,0 +1,5 @@
+{
+  "command": "E2E_PROD=1 bun run test:e2e",
+  "exitCode": 1,
+  "summary": "RED e2e-red-first: 33 tests in 3 spec files (chromium) ran against the un-implemented Login screen; 33 failed, 0 passed, 0 config/infra failures. Mock Supabase (:54399) and app build+start (:3100) came up; every failure is a screen assertion (element not found, /login or /todo URL mismatch, text/CSS/position checks). Default `bun run test:e2e` (next dev) was blocked by a pre-existing user dev server on :3000 holding the Next dev lock, so E2E_PROD=1 was used."
+}

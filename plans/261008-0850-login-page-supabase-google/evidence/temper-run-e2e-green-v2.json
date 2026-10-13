@@ -1,0 +1,5 @@
+{
+  "command": "E2E_PROD=1 DEBUG=pw:webserver bun run test:e2e",
+  "exitCode": 0,
+  "summary": "34 passed, 0 failed, 0 skipped, 0 flaky, 0 retries (single run, retries=0). Prod build inside the run succeeded with Cache Components; no Date.now or prerender lines in the server log (0 matches). DEBUG=pw:webserver only echoes server output; specs untouched. Log: e2e-green-v2-output.txt."
+}

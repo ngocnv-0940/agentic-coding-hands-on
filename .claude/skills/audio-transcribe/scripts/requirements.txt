@@ -1,0 +1,17 @@
+# Audio Transcribe Skill — dependencies
+# Python 3.10+
+
+httpx>=0.27          # HTTP client: tách được connect/read timeout, và MockTransport để test
+python-dotenv>=1.0   # đọc .env lấy AUDIO_TRANS_API_KEY (trước kia cài ké qua CLI cũ)
+
+# Ngoài ra skill CẦN ffmpeg + ffprobe trên PATH.
+# ffprobe là BẮT BUỘC, kể cả với file audio thuần: nó đo thời lượng để gửi
+# estimated_duration_seconds. Bỏ trống trường đó là server đoán theo dung lượng
+# (960 KB/phút) — video bị vống ~8.7 lần và ăn tới 1/5 quota tháng cho một file.
+#   macOS:   brew install ffmpeg
+#   Ubuntu:  sudo apt-get install ffmpeg
+#   Windows: https://ffmpeg.org/download.html
+#
+# Xác thực: AUDIO_TRANS_API_KEY — tự tạo ở Integrations > API Keys trên
+# https://audio-transcribe.sun-asterisk.ai (đăng nhập bằng mail công ty).
+# Key hiện đúng MỘT lần lúc tạo. Quota mặc định 600 phút/tháng/user.

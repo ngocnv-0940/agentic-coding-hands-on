@@ -1,0 +1,39 @@
+{
+  "commands": [
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=4096 bunx tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "Typecheck clean, exit 0. Output tsc-output-v3.txt.",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run lint",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "eslint clean, exit 0. Output lint-output-v3.txt.",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_PROD=1 DEBUG=pw:webserver bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "34 passed, 0 failed, 0 skipped, 0 flaky, 0 retries. Server log: Playwright ran its own `bun run build && bun run start -p 3100` (Compiled, next start Ready), no foreign server on :3100. Date.now/prerender matches: 0. Output e2e-green-v3-rerun-output.txt. Attempt 1 (exit 1) was invalid: a preview server held :3100.",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node capture-visual-v3.mjs (1440x1024 VN, EN, VN menu open, VN hover; own prod app on :3100 + mock :54399) + python metric (channel-mean luma, MAD) vs figma-reference-GzbNeVGJHz-1440x1024.png",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "Capture exit 0. Verdict NOT PASS overall (hero key visual matched; CTA label and footer typography differ, listed below). Band x400-1200 y800-925 mean luma: Figma 26.0, v3 25.6 (delta 0.4; v2 14.0, delta 12.0). Right box x1200-1440 y80-800: Figma 73.0, v3 73.1 (delta -0.1; v2 63.9, delta 9.1). Right-box MAD: v2 19.4, v3 10.5. Full-frame MAD: v2 8.80, v3 4.37. Not exact (MAD != 0). Discrepancies: CTA label ink width 227px vs Figma 222px (+5px, Figma 186-408, v3 186-413); footer copyright ink 278px vs 271px and starts 3px left in v3 (581 vs 585); residual MAD highest in CTA (16.8). Hover and menu states: no Figma reference frame, not compared. Screenshots *-v3.png in visual/. USER ACCEPTED 2026-10-08: residual text-width ~2-3% as font-rendering tolerance (clarifications.md).",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node probe-logout-and-oauth.mjs (Playwright chromium, prod app :3100, mock :54398 behind fault proxy :54399) && curl P1/P4/logout set",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "[v2 probes, unaffected by later CSS-only change] PASS: P6a normal logout -> /login, no sb-* cookies, Back and hard reload stay on /login with no /todo content (previous P6b FAIL resolved); P6b signOut 500 fallback -> /login, cookies cleared; P6c auth server dropped -> /login, cookies cleared; P6d garbage real-name cookies cleared by logout; P6e GET /auth/logout -> 405; P7a OAuth start failure -> button re-enabled, one alert, focus on button, no navigation; P1/P4 Host spoof and callback bounds -> relative /login?error=auth_failed, never 500. NOT EXERCISED: P7 bfcache pageshow persisted branch (/login is Cache-Control no-store, Chromium did not restore from bfcache; page re-rendered idle). P3 not re-run this round (accepted earlier). Output: probes-browser-v2-output.txt, probes-browser-v2.json, probes-curl-v2-output.txt.",
+      "ts": "1970-01-01T00:00:00.000Z"
+    }
+  ]
+}

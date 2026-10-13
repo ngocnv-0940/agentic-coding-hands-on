@@ -1,0 +1,32 @@
+[
+  {
+    "command": "bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "Typecheck clean, exit 0, no diagnostics."
+  },
+  {
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "eslint flat config clean, exit 0. Ignores are only .claude/**, plans/**, playwright-report/**, test-results/**; app/, lib/, proxy.ts still linted."
+  },
+  {
+    "command": "NEXT_PUBLIC_SUPABASE_URL=http://localhost:54399 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=e2e-publishable-key bun run build",
+    "exitCode": 0,
+    "summary": "next build 16.4.0 (Turbopack), Cache Components enabled, compiled and static pages generated, exit 0. Routes /login, /todo, / and /auth/callback are dynamic (f). No build-time error. Log: build-output.txt."
+  },
+  {
+    "command": "E2E_PROD=1 bun run test:e2e",
+    "exitCode": 1,
+    "summary": "Final attempt (run5, after infra-only fixes; no retries, 8 workers): 33 tests, 32 passed, 1 failed, 0 skipped, 0 flaky. Only failure: e2e/login-screen-layout-and-button.spec.ts:95 'login button shows a shadow on hover': toHaveCSS('box-shadow','none') received 5 transparent layers at rest (Tailwind v4 shadow-none). Assertion defect, not changed. Infra edits made: (1) new e2e/support/app-alert.ts; auth-flow spec uses appAlert() to exclude Next's #__next-route-announcer__ role=alert; (2) ROOT FURTHER lookups use getByRole('heading') (same text); (3) loader test click uses noWaitAfter:true; stub hold mode answers as attachment download instead of a held navigation. Full log: e2e-green-run5-output.txt. Earlier attempts run1-4 logs kept for traceability."
+  },
+  {
+    "command": "node probes-browser.mjs main + mockdown (Playwright chromium) and curl P1-P9 against :3100/:54399",
+    "exitCode": 1,
+    "summary": "Probe gate FAILED (runner process exit 0; gate treated as failed). PASS: P1 (Host/X-Forwarded-Host spoof -> relative /login?error=auth_failed, no-store), P2 (next=https://evil.test, next=//evil.test -> /todo), P4 (over-length code, missing code, error+code, duplicate code -> 307 auth_failed), P5a/b/c/d/e (flipped byte, truncated chunk, foreign ref, bad cookie on /login, auth server down -> fail closed), P6a (signOut 500 -> /login, no sb-* cookies), P7 (simulated OAuth start failure -> button re-enabled, one alert, focus on button, no navigation), P8 (matcher edges, garbage NEXT_LOCALE -> vi, signed-in /login?error=x -> /todo, locale cookie Path=/ SameSite=Lax), P9 (no service_role value in src or bundle; .env* ignored; .env.example placeholders only). FAIL: P3 raw query string is present in HTML source (Next RSC payload field q: ?error=...SECRET; JSON-escaped, not rendered into DOM, no raw script tag); P6b back-after-logout DOM still shows /todo heading and e2e@example.com while URL is /login (only a hard reload clears it; P6c passes). NOT RUN: P6 garbage-cookie logout, P7 bfcache pageshow, P8 setLocale('xx') Set-Cookie check, P5 Cache-Control on Supabase refresh."
+  },
+  {
+    "command": "node capture-login.mjs (1440x1024 VN, EN, VN menu open) + pixel measurement vs Figma GzbNeVGJHz frame 662:14387",
+    "exitCode": 1,
+    "summary": "Visual gate NOT PASS (discrepancies listed). Header, logo, VN selector, H1 position, subtitle/tagline position, footer line and copy match. Discrepancies: CTA 310x60 vs Figma 305x59 (+5px w, +1px h), Google glyph larger than Figma's 18px (about 20px in 24px box), subtitle/tagline weight looks lighter than Figma (qualitative). Known stopgap not counted: hero key visual is a cropped raster with hard left seam at x=600 and missing gradient/lower artwork. EN state: baked Vietnamese copy '...25.' inside key-visual.jpg shows at x 605-635 y 588 behind EN subtitle (material). No deterministic pixel metric equals zero, so judgment is qualitative. Screenshots: login-vn-1440x1024.png, login-en-1440x1024.png, login-vn-language-menu-open-1440x1024.png, figma-reference-GzbNeVGJHz-1440x1024.png, cta-compare-figma-top-impl-bottom.png."
+  }
+]

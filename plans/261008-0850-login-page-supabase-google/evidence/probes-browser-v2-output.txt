@@ -1,0 +1,8 @@
+{"id":"P6a-normal-logout-back-reload","before":{"url":"http://localhost:3100/todo","email":1,"cookies":["sb-localhost-auth-token-flow-8ca163fac948898757e32ae03201b8bb-code-verifier","sb-localhost-auth-token-flows-code-verifier","sb-localhost-auth-token"]},"afterLogout":{"url":"http://localhost:3100/login","email":0,"cookies":[]},"afterBack":{"url":"http://localhost:3100/login","email":0,"heading":["ROOT FURTHER"]},"afterReload":{"url":"http://localhost:3100/login","email":0}}
+{"id":"P6b-signout-500-fallback","url":"http://localhost:3100/login","email":0,"cookies":[]}
+{"id":"P6c-auth-server-down-logout","url":"http://localhost:3100/login","email":0,"cookies":[]}
+{"id":"P6d-garbage-cookie-logout","cookiesBefore":["sb-localhost-auth-token.0","sb-localhost-auth-token.1"],"url":"http://localhost:3100/login","cookiesAfter":[]}
+{"id":"P6e-get-logout-405","getStatus":405,"stillOnTodo":"http://localhost:3100/todo","email":1}
+{"id":"P7a-oauth-start-failure","url":"http://localhost:3100/login","disabled":false,"alerts":["Sign-in failed. Please try again."],"focusedIsButton":true}
+{"id":"P7b-bfcache-pageshow","stubUrl":"http://localhost:54399/auth/v1/authorize?provider=google&redirect_to=http%3A%2F%2Flocalhost%3A3100%2Fauth%2Fcallback&code_challenge=Xv_FoW6GsN1_OtKuZv6as8Oal3ZO_TlOQoUAmQkfcM4&code_challenge_method=s256","afterBackUrl":"http://localhost:3100/login","disabled":false,"restoredFromBfcache":"back_forward"}
+saved 7

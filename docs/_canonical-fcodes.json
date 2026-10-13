@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-10-08T01:22:58Z",
+  "plan": "261008-0850-login-page-supabase-google",
+  "features": [
+    {
+      "fcode": "F001",
+      "name": "Auth",
+      "slug": "F001_Auth",
+      "priority": "P0",
+      "type": "ui",
+      "related": {
+        "screens": [
+          "SCR001_Login",
+          "SCR002_Todo"
+        ],
+        "user_stories": [],
+        "routes": [],
+        "models": [],
+        "bl": [],
+        "perms": []
+      }
+    },
+    {
+      "fcode": "F002",
+      "name": "Localization",
+      "slug": "F002_Localization",
+      "priority": "P1",
+      "type": "ui",
+      "related": {
+        "screens": [],
+        "user_stories": [],
+        "routes": [],
+        "models": [],
+        "bl": [],
+        "perms": []
+      }
+    }
+  ]
+}

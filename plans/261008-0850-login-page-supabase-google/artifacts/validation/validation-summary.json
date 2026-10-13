@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-10-08T06:51:37Z",
+  "overall_status": "PASS",
+  "plan": "261008-0850-login-page-supabase-google",
+  "schema_version": 1,
+  "totals": {
+    "critical": 0,
+    "failed_specs": 0,
+    "passed_specs": 0,
+    "warning": 0
+  },
+  "validators": {
+    "api_map": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    },
+    "behavior_logic": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    },
+    "feature_existence": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    },
+    "id_contiguity": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    },
+    "route_list": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    },
+    "screen_flow": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    },
+    "screen_list": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    }
+  }
+}

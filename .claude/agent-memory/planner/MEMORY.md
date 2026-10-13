@@ -1,0 +1,1 @@
+- [Next docs access + cacheComponents](project-next-docs-access-and-cache-components.md) — read local Next docs via `cd`; cacheComponents on shapes cookie-reading layouts

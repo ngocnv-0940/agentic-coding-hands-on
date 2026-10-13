@@ -1,0 +1,93 @@
+{
+  "score": 9,
+  "criticalCount": 0,
+  "decision": "SEALED",
+  "acceptanceCovered": [
+    "/login renders header (logo left, VN language selector right, fixed), hero key visual, ROOT FURTHER title, intro texts, LOGIN With Google button, fixed footer — matching the MoMorph design — proven by: e2e/login-screen-layout-and-button.spec.ts (logo top-left, selector top-right, header fixed on scroll, footer fixed, hero key visual/title/descriptions, button below descriptions with Google icon, no h-scroll at 375px) green in e2e-green-v3-rerun-output.txt; visual v3 band luma 25.6 vs Figma 26.0, residual ~2-3% text width accepted in clarifications.md",
+    "Language selector defaults to VN with flag + chevron; click opens VN/EN menu; choosing EN sets NEXT_LOCALE cookie and re-renders all login text in English — proven by: e2e/language-selector-localization.spec.ts (defaults VN + html lang vi, flag left/chevron right, click opens menu, EN switches copy + persists cookie + survives reload, same-locale writes no cookie, unknown value falls back to vi); code: lib/i18n/set-locale-action.ts whitelists via isLocale then refresh()",
+    "Clicking LOGIN With Google disables the button, shows a loader, and same-tab redirects to Supabase /auth/v1/authorize with provider=google and redirect_to /auth/callback — proven by: e2e 'login button is disabled with a loader while the Google sign-in starts' and 'clicking login redirects the same tab to Google PKCE start' (no popup, provider=google, redirect_to contains /auth/callback, code_challenge present, method s256)",
+    "/auth/callback exchanges the PKCE code and redirects to /todo on success; failure or cancel redirects to /login?error=... and the inline error 'Đăng nhập không thành công. Vui lòng thử lại.' is shown — proven by: e2e success lands on /todo (server-side verifier lookup proven since auth-js throws AuthPKCECodeVerifierMissingError otherwise), cancelled consent / rejected code / no code-or-error all return /login with the inline error, exactly one fixed alert, HTML in error flag not injected; probes P1/P4 relative Location /login?error=auth_failed, never 500",
+    "Unauthenticated access to /todo redirects to /login; authenticated access to /login redirects to /todo — proven by: e2e 'unauthenticated /todo, nested and query variants redirect to /login', 'authenticated visitor on /login is redirected to /todo', 'garbage in the session cookies redirects /todo to /login'; code: lib/supabase/proxy.ts getUser()-based guards + app/todo/page.tsx defense-in-depth getUser()",
+    "/todo shows the signed-in user's email and a Logout button; logout returns to /login — proven by: e2e success shows signed-in email, 'logout returns to /login and /todo is guarded again', 'browser Back after logout never shows the previous user data'; probes P6a-P6e (normal, signOut 500, auth down, garbage cookies all end on /login with sb-* cookies cleared; GET /auth/logout -> 405)",
+    "Login button shows shadow/elevation on hover; language selector shows pointer + highlight on hover — proven by: e2e 'login button shows a shadow on hover' and 'hovering the selector shows a pointer cursor'; code: hover:bg-white/10 on selector trigger, hover:bg-white/15 on options",
+    "supabase/ config (config.toml with Google provider via env) and .env.example committed; no secrets committed — proven by: re-verified supabase/config.toml (supabase init CLI 2.120.0 render, no unrendered Go template; remaining {{ .Code }} at :264/:312 are legitimate SMS/MFA OTP templates), [auth.external.google] enabled with client_id/secret via env() at :342-347, all non-commented credentials use env(); coordinator-attested live `supabase start` healthy with external.google=true; .env.example un-ignored via !.env.example, supabase/.env and .env.local git-ignored via .env*; no keys/JWTs in source"
+  ],
+  "regressionChecked": [
+    "proxy matcher scope and /auth/* skip (callback/logout unaffected)",
+    "proxy redirect cookie + cache-header propagation",
+    "Route Handler cookie merge into raw Response (next app-route module.js:283-291)",
+    "cookieStore.delete default path=/ (normalizeCookie)",
+    "root layout instant=false vs instant.md static-shell validation",
+    "connection() before supabase-js Date.now on /todo",
+    "refresh() only inside Server Action (refresh.md)",
+    "app/page.tsx redirect chain for signed-in users",
+    "@supabase/ssr DEFAULT_COOKIE_OPTIONS sameSite=lax (logout CSRF posture)",
+    "env handling: config.ts import-time throw impact on build/lint/tsc (now documented in README.md:59)",
+    "mocks confined to e2e/; no mock reference in app/lib/proxy",
+    "200-line limit across all new files",
+    "evidence freshness: no app/lib/proxy file newer than e2e-green-v3-rerun output",
+    "replaced supabase/config.toml: no unrendered template, site_url/redirect allowlist match localhost:3000, secrets via env()"
+  ],
+  "contractStatus": "CHANGED",
+  "refuted": [],
+  "unproven": [],
+  "reachableRegressions": [],
+  "findings": [
+    {
+      "severity": "Low",
+      "category": "Documentation",
+      "location": "plans/261008-0850-login-page-supabase-google/phase-06-todo-page-and-logout.md:40-52",
+      "summary": "phase-06 body still plans logout-action.ts Server Action; F001 tech spec, permissions.md and plan.md:33 now reflect POST /auth/logout (downgraded from Medium)",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Security",
+      "location": "lib/supabase/proxy.ts:55-63",
+      "summary": "proxy redirects build absolute URL from request Host (nextUrl.clone) unlike relative Location in callback/logout; not exploitable but inconsistent",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "lib/supabase/proxy.ts:32-39",
+      "summary": "setAll reassigns cacheHeaders and recreates response per call; a second setAll would drop cache headers and first-batch cookies; unreachable today",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Performance",
+      "location": "app/auth/logout/route.ts:18",
+      "summary": "redundant getUser() before signOut(); one extra Auth round-trip",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Security",
+      "location": "app/auth/logout/route.ts:12-36",
+      "summary": "no Origin check on logout POST; mitigated by explicit SameSite=Lax session cookies",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Build",
+      "location": "lib/supabase/config.ts:10-18",
+      "summary": "import-time throw makes next build require NEXT_PUBLIC_SUPABASE_*; now documented in README.md:59 — resolved",
+      "disposition": "Reject"
+    },
+    {
+      "severity": "Low",
+      "category": "Testing",
+      "location": "playwright.config.ts:21-22",
+      "summary": "@smoke grepInvert gate exists and README.md:79 says @smoke specs exist, but no spec in e2e/ is tagged @smoke",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Testing",
+      "location": "e2e/support/mock-supabase-server.ts:78-83",
+      "summary": "mock does not verify code_verifier against S256 code_challenge",
+      "disposition": "Defer"
+    }
+  ]
+}
