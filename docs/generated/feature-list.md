@@ -35,6 +35,7 @@
 | F002_Localization | Localization | ui | TypeScript | Next.js app (root) | P1 |
 | F003_Homepage | Homepage | ui | TypeScript | Next.js app (root) | P0 |
 | F004_AwardsInformation | Awards Information | ui | TypeScript | Next.js app (root) | P1 |
+| F005_CountdownPrelaunch | Countdown Prelaunch | mixed | TypeScript | Next.js app (root) | P1 |
 
 ## Feature Details
 
@@ -174,12 +175,41 @@
 **Related Permissions**:
 - TBD (draft) — dùng lại lớp bảo vệ route của F003; xem `docs/system/permissions.md`.
 
+### F005_CountdownPrelaunch: Countdown Prelaunch
+
+**Type**: mixed
+**Status**: implemented
+**Description**: Trang `/prelaunch` công khai (route cấp cao ngoài `(main)`) đếm ngược tới `EVENT_START_AT` với ba khối Days, Hours, Minutes, kèm lớp khóa site trong `lib/supabase/proxy.ts`: trước mốc mọi đường dẫn ngoài `/login`, `/auth/*`, `/prelaunch` bị 307 về `/prelaunch`; từ mốc (hoặc khi biến thiếu/sai) `/prelaunch` chuyển về `/` và trang tự chuyển khi tới mốc.
+
+**Workspace**: Next.js app (root)
+**Languages**: TypeScript
+
+**Related Screens**:
+- SCR005_CountdownPrelaunch: Countdown Prelaunch
+
+**Related User Stories**:
+- TBD (draft) — mã US### toàn cục cấp khi đối chiếu (xem `docs/features/F005_CountdownPrelaunch/functional-spec.md`).
+
+**Related APIs/Routes**:
+- (GET) /prelaunch
+
+**Related Data Models**:
+- No data
+
+**Related Background Logic**:
+- No data
+
+**Related Permissions**:
+- PERM010_PrelaunchSiteLock: Khóa site trước ngày ra mắt, `/prelaunch` công khai
+
+---
+
 ---
 
 ## Summary
 
-- **Total Features**: 4
-- **Total Screens**: 4
+- **Total Features**: 5
+- **Total Screens**: 5
 - **Total User Stories**: 8
 - **Total Routes**: 10 (2 backend ROUTE###: ROUTE001, ROUTE002; 8 trang giao diện: /, /login, /todo, /awards-information, /sun-kudos, /standards, /profile, /admin)
 - **Total Data Models**: 0

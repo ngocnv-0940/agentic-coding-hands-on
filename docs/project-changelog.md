@@ -2,6 +2,21 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-13 — Trang đếm ngược trước ngày ra mắt và khóa site (F005_CountdownPrelaunch, SCR005)
+
+**Thêm**
+
+- `/prelaunch` (`app/prelaunch/`, route cấp cao ngoài `(main)`, công khai): nền tối, tiêu đề và ba khối Days, Hours, Minutes đếm tới `EVENT_START_AT`, dùng chung bộ đếm với trang chủ. Từ điển vi/en có thêm khoá `prelaunch.title`, `prelaunch.metaTitle`; ảnh nền `public/images/prelaunch/prelaunch-bg.png`.
+- Khóa site trong `lib/supabase/proxy.ts` qua hàm thuần `decidePrelaunchAccess` (`lib/event/prelaunch-access.ts`): trước `EVENT_START_AT`, mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` và `/prelaunch` bị 307 về `/prelaunch`, với mọi vai trò. Từ mốc, `/prelaunch` bị 307 về `/`. Mốc thiếu hoặc sai nghĩa là đã mở (không khóa).
+- Chuyển trang phía máy khách (`useNavigateHomeAtEventStart`): chờ `remainingMs` do máy chủ gửi (không so đồng hồ trình duyệt với mốc), kẹp tối thiểu 1 giây kể cả khi `remainingMs <= 0`; tab ẩn lúc qua mốc thì `reload` khi hiện lại.
+- 5 spec E2E `e2e/prelaunch-*.spec.ts` và `e2e/support/prelaunch-locators-and-clock.ts`; nhóm `@prelaunch` chỉ chạy khi đặt `E2E_EVENT_START_AT` ở tương lai.
+
+**Thay đổi**
+
+- `CountdownDisplay` (`app/(main)/_components/countdown-display.tsx`) có prop tuỳ chọn `size` (`default` | `prelaunch`); `prelaunch` chỉ thêm kích thước lớn từ 1024px, trang chủ không truyền nên giữ nguyên.
+- `PERM010_PrelaunchSiteLock` (permissions-matrix), `GUARD-004` (screen-flow), hàng `/prelaunch` trong route-list.
+- `README.md`: nêu khóa site, nhóm E2E `@prelaunch` và cấu trúc `app/prelaunch/`.
+
 ## 2026-10-13 — Trang Hệ thống giải (F004_AwardsInformation, SCR004)
 
 **Thêm**

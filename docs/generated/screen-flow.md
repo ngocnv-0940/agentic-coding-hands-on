@@ -24,6 +24,8 @@ graph TD
     AW -->|"Chi tiết (khối Sun* Kudos), header, footer"| PH
     HP -->|"Header, footer, nút CTA, menu tài khoản"| PH["Trang giữ chỗ: /sun-kudos, /standards, /profile, /admin"]
     PH -->|"Logo hoặc About SAA 2025"| HP
+    Z["Mọi đường dẫn ngoài /login, /auth/*, /_next/* trước EVENT_START_AT"] -->|"Proxy 307 /prelaunch"| PL["SCR005_CountdownPrelaunch"]
+    PL -->|"Từ EVENT_START_AT: hẹn giờ phía máy khách hoặc proxy 307 /"| HP
 ```
 
 ## Feature Entry Points
@@ -36,6 +38,8 @@ graph TD
 
 | From Screen | To Screen | Action/Trigger | Conditions | Region |
 |-------------|-----------|----------------|------------|--------|
+| Mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` (kể cả không tồn tại) | SCR005_CountdownPrelaunch | Proxy `redirect /prelaunch` (`lib/supabase/proxy.ts:84-86`, `decidePrelaunchAccess` = `lock`) | Trước `EVENT_START_AT` (mốc hợp lệ, `now < start`), mọi vai trò | |
+| SCR005_CountdownPrelaunch | SCR003_Homepage | Hẹn giờ phía máy khách `window.location.replace('/')` theo `remainingMs` máy chủ gửi, kẹp tối thiểu 1 giây (`app/prelaunch/_behavior/use-navigate-home-at-event-start.ts`); hoặc proxy `redirect /` khi mở `/prelaunch` (`decidePrelaunchAccess` = `unlock`) | Từ `EVENT_START_AT` hoặc `EVENT_START_AT` thiếu/sai; đã đăng nhập (khách được guard cũ đưa tiếp sang `/login`) | |
 | Truy cập `/` | SCR001_Login | Proxy `redirect /login`, bỏ query (`lib/supabase/proxy.ts:82`); layout `(main)` kiểm lại (`app/(main)/layout.tsx:32-33`) | Chưa đăng nhập hoặc Auth server không trả lời (fail closed) | |
 | Truy cập `/` | SCR003_Homepage | Tải trang (`app/(main)/page.tsx`) | Đã đăng nhập | |
 | SCR003_Homepage | SCR004_AwardsInformation | Bấm mục "Awards Information" ở header, nút ABOUT AWARDS, thẻ giải thưởng (mở `/awards-information#<slug>`) hoặc liên kết ở footer (`app/(main)/_wiring/build-home-screen-props.ts:6`, `lib/awards/award-categories.ts:27-29`) | Đã đăng nhập | |
@@ -131,6 +135,21 @@ graph TD
 - Proxy khi vào `/awards-information*`: có người dùng → cho qua, không có → `/login` (`lib/supabase/proxy.ts:82`)
 - Hash lúc tải: khớp một trong 6 slug → cuộn tới thẻ đó; không khớp → ở đầu trang, mục đầu active (`app/(main)/_behavior/award-hash.ts:8-18`)
 
+### SCR005_CountdownPrelaunch (Countdown Prelaunch)
+
+**Entry Points**:
+- Mọi đường dẫn bị khóa trước `EVENT_START_AT` (proxy 307 `/prelaunch`)
+- URL trực tiếp `/prelaunch` (công khai, kể cả đã đăng nhập)
+
+**Exit Points**:
+- Tới `/`: hẹn giờ phía máy khách tại mốc, hoặc proxy 307 khi mở `/prelaunch` từ mốc / khi `EVENT_START_AT` thiếu hay sai; khách sau đó bị guard cũ đưa sang `/login`
+- Tab ẩn lúc qua mốc: khi tab hiện lại thì `window.location.reload()` để proxy quyết định
+- Tới SCR001_Login: truy cập thẳng `/login` (không bị khóa)
+
+**Decision Points**:
+- Proxy: `decidePrelaunchAccess(pathname, now, start)` trả `lock` / `unlock` / `pass` (`lib/event/prelaunch-access.ts`)
+- Phía máy khách: không so `Date.now()` với mốc; chờ `remainingMs` do máy chủ gửi, kẹp mọi độ trễ tối thiểu 1 giây (kể cả `remainingMs <= 0`) để đồng hồ máy lệch không gây vòng lặp
+
 ---
 
 ## Region Transitions
@@ -203,6 +222,20 @@ user = getUser()   // on error → user = null (fail closed)
 if (!user && (path == "/" || path under /todo, /awards-information, /sun-kudos, /standards, /profile, /admin)) → redirect /login (query stripped)
 ```
 **failure path:** redirect `/login`, mang theo cookie đã làm mới và header cache của Supabase (`lib/supabase/proxy.ts:55-63`)
+
+---
+
+### GUARD-004 — PrelaunchSiteLock (khóa trước ngày ra mắt, chạy trước GUARD-001)
+**trigger:** `proxy` (`lib/supabase/proxy.ts:84-87`), sau bước làm mới phiên, trước mọi guard phiên
+**source:** `lib/event/prelaunch-access.ts` (`decidePrelaunchAccess`)
+**logic:**
+```pseudo
+start = readEventStartFromEnv()            // null nếu thiếu hoặc sai
+locked = start != null and now < start     // now == start là đã mở
+if (!locked) → path == "/prelaunch" ? redirect "/" : pass
+if (locked) → path == "/prelaunch" or "/login" or startsWith "/auth/" or "/_next/" ? pass : redirect "/prelaunch"
+```
+**failure path:** không đọc `user`; redirect mang theo cookie đã làm mới (BR-004)
 
 ---
 

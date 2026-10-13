@@ -160,3 +160,10 @@ Trang tối thiểu được bảo vệ, nguồn `app/todo/page.tsx:11`. Hiện 
 **Route:** /awards-information
 **Description:** Trang Hệ thống giải SAA 2025 (thiết kế MoMorph `zFYDgyj_pD`) cho người đã đăng nhập: keyvisual, tiêu đề, menu 6 hạng mục dính dưới header (tab cuộn ngang dưới 1024px) có scroll-spy và liên kết `#slug`, 6 thẻ giải (ảnh, mô tả, số lượng, giá trị), khối Sun* Kudos. Đặc tả đầy đủ ở `docs/screens/SCR004_AwardsInformation/spec.md`.
 **States:** success
+
+## SCR005_CountdownPrelaunch: Countdown Prelaunch
+
+**Feature:** F005 — Countdown Prelaunch
+**Route:** /prelaunch
+**Description:** Trang đếm ngược công khai trước ngày ra mắt (thiết kế MoMorph `8PJQswPZmU`): nền tối họa tiết, tiêu đề "Sự kiện sẽ bắt đầu sau", ba khối DAYS, HOURS, MINUTES, tự cập nhật theo phút và tự chuyển về `/` khi tới `EVENT_START_AT`. Nằm ngoài nhóm `(main)`, không header, không kiểm phiên. Đặc tả đầy đủ ở `docs/screens/SCR005_CountdownPrelaunch/spec.md`.
+**States:** success

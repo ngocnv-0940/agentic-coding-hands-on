@@ -7,5 +7,8 @@ Mọi tính năng trong sản phẩm. Mở một cái và đọc trọn vẹn qu
 
 - [F001_Auth](F001_Auth/)
 - [F002_Localization](F002_Localization/)
+- [F003_Homepage](F003_Homepage/)
+- [F004_AwardsInformation](F004_AwardsInformation/)
+- [F005_CountdownPrelaunch](F005_CountdownPrelaunch/)
 
 <!-- end-generated -->
