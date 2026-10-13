@@ -1,0 +1,12 @@
+$ playwright test "e2e/zz-visual-capture.spec.ts"
+[WebServer] $ next build
+[WebServer] $ next start -p "3100"
+
+Running 3 tests using 3 workers
+
+  ✓  2 [chromium] › e2e/zz-visual-capture.spec.ts:15:9 › @prelaunch visual capture › @prelaunch visual 375 (522ms)
+  ✓  3 [chromium] › e2e/zz-visual-capture.spec.ts:15:9 › @prelaunch visual capture › @prelaunch visual 768 (620ms)
+  ✓  1 [chromium] › e2e/zz-visual-capture.spec.ts:15:9 › @prelaunch visual capture › @prelaunch visual 1440 (656ms)
+
+  3 passed (4.6m)
+exit=0

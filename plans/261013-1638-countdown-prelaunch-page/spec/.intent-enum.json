@@ -1,0 +1,5 @@
+{
+  "mode": "single",
+  "intents": ["(visitor, wait for launch, sees a public countdown to EVENT_START_AT while every other page is locked until the event starts)"],
+  "justification": ""
+}

@@ -1,0 +1,20 @@
+{ "score": 9, "criticalCount": 0, "decision": "SEALED",
+  "acceptanceCovered": [
+    "SC-001 /prelaunch is public before the start for guests and signed-in users — proven by e2e TC ACCESS-1/2/3 (session-expiry clause superseded by public-page decision)",
+    "SC-002 before the start every other page 307s to /prelaunch with refreshed cookies; /login, /auth/*, static images stay reachable; a fast browser clock does not unlock — proven by e2e lock matrix, FR-601 fast-clock test, and the new expired-session Set-Cookie test (e2e/prelaunch-lock-and-access.spec.ts:118-141)",
+    "SC-003 title, three units with two LED tiles each, white uppercase DAYS/HOURS/MINUTES labels, full background, no header/footer — carried from the previous verdict",
+    "SC-004 two-digit values in range; days under one day show 00; at or after the start 00 00 00 — carried from the previous verdict",
+    "SC-005 minutes update without a reload — carried from the previous verdict",
+    "SC-006 at the real start the open page goes to /; /prelaunch after the start or with an invalid EVENT_START_AT goes to /; no redirect loop — proven by e2e redirect-at-event-start tests (FR-402/DEC-004, FR-403 wake tests) and the 1s delay clamp (use-navigate-home-at-event-start.ts:27)",
+    "SC-007 VI/EN copy matches Figma with key parity; EVENT_START_AT is the single source — carried from the previous verdict",
+    "SC-008 existing guard suites stay green after the start — carried from the previous verdict"
+  ],
+  "regressionChecked": ["existing proxy guards order: lock precedes auth/admin gates, no loop in locked/unlocked/invalid matrices", "/auth/* early return and /auth/logout 303 unchanged", "/login exact-match exemption and signed-in /login -> / -> /prelaunch", "matcher exemptions (static images, _next/static|image) + /_next/ prefix", "CountdownDisplay default class strings byte-identical to master (homepage untouched)", "playwright grepInvert keeps @prelaunch off the default server; custom env forces fresh server", "i18n keys added to both vi and en", "hook delay clamp: remainingMs<=0 now waits the 1s minimum; FR-403 wake paths covered by positive and negative e2e"],
+  "contractStatus": "OK", "refuted": [], "unproven": [], "reachableRegressions": [],
+  "findings": [
+    { "severity": "Medium", "category": "Testing", "location": "e2e/prelaunch-lock-and-access.spec.ts:181-193", "summary": "addressed — SC-002 requires refreshed Set-Cookie on the lock 307; no test asserts it (code correct via redirectWithCookies)", "disposition": "Accept" },
+    { "severity": "Medium", "category": "Testing", "location": "app/prelaunch/_behavior/use-navigate-home-at-event-start.ts:99-105", "summary": "addressed — FR-403 visibilitychange wake re-check has no e2e coverage", "disposition": "Accept" },
+    { "severity": "Low", "category": "Logic", "location": "app/prelaunch/_behavior/use-navigate-home-at-event-start.ts:78", "summary": "addressed — remainingMs<=0 yields delay 0, bypassing the 1s clamp; comment's 'at most once per second' is inaccurate; tight loop possible only under multi-instance clock skew", "disposition": "Accept" },
+    { "severity": "Low", "category": "Logic", "summary": "monotonic-clock timer may fire late after system sleep with no visibilitychange; optional pageshow/focus re-check", "disposition": "Defer" },
+    { "severity": "Low", "category": "Performance", "summary": "getUser() awaited before lock decision adds auth round-trip on locked requests; required for BR-004 cookie refresh", "disposition": "Reject" }
+  ] }

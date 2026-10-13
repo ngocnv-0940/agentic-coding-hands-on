@@ -1,0 +1,12 @@
+[WebServer] $ next dev -p "3100"
+
+Running 5 tests using 4 workers
+
+  ✓  4 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:35:7 › @prelaunch Redirect home at the real event start › FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows (11.1s)
+  ✓  2 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:35:7 › @prelaunch Redirect home at the real event start › FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows (11.2s)
+  ✓  1 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:35:7 › @prelaunch Redirect home at the real event start › FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows (11.2s)
+  ✓  3 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:35:7 › @prelaunch Redirect home at the real event start › FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows (11.2s)
+  ✓  5 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:35:7 › @prelaunch Redirect home at the real event start › FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows (5.9s)
+
+  5 passed (4.8m)
+exit=0

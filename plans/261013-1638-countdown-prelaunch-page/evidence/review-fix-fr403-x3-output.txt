@@ -1,0 +1,13 @@
+$ playwright test --grep "FR-403: a tab|FR-403: a tab woken before" "--repeat-each=3"
+[WebServer] $ next dev -p "3100"
+
+Running 6 tests using 4 workers
+
+  ✓  2 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:98:7 › @prelaunch Redirect home at the real event start › FR-403: a tab woken before the wall clock reaches the start does not reload (4.0s)
+  ✓  1 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:98:7 › @prelaunch Redirect home at the real event start › FR-403: a tab woken before the wall clock reaches the start does not reload (4.1s)
+  ✓  4 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:75:7 › @prelaunch Redirect home at the real event start › FR-403: a tab woken after the wall clock passed the start reloads once and stays on /prelaunch (4.1s)
+  ✓  3 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:75:7 › @prelaunch Redirect home at the real event start › FR-403: a tab woken after the wall clock passed the start reloads once and stays on /prelaunch (4.2s)
+  ✓  6 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:98:7 › @prelaunch Redirect home at the real event start › FR-403: a tab woken before the wall clock reaches the start does not reload (3.7s)
+  ✓  5 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:75:7 › @prelaunch Redirect home at the real event start › FR-403: a tab woken after the wall clock passed the start reloads once and stays on /prelaunch (3.8s)
+
+  6 passed (4.7m)
