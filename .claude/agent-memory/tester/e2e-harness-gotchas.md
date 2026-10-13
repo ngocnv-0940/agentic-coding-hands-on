@@ -75,3 +75,35 @@ fails on its own screen element (`homepage-hero` not found), which is the diagno
 **Why:** Login helper + F001 regressions (logout, Back, cookies, fresh login) need `/todo` after login; the homepage
 landing would have broken them for a reason they do not test.
 **How to apply:** after login, specs that test /todo call `page.goto('/todo')` explicitly.
+
+**Why:** the Bash tool runs zsh, so `${PIPESTATUS[0]}` after a pipe is empty and a piped exit code reads blank.
+**How to apply:** run the command without a pipe, redirect to a file, then `echo "exit=$?"` on the next statement.
+
+**Why (awards RED, 2026-10-13):** 27 specs with 4 workers took 5.6 min because each missing-screen assertion waits the
+5 s expect timeout. Login-only tests (guest redirect, unknown-route 404) already pass before the screen exists.
+**How to apply:** expect a slow RED on a not-yet-built screen; do not count a pre-passing guard test as proof of the screen.
+
+**Why (awards visual, 2026-10-13):** the Playwright MCP browser fails on init with `Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome` on this box. The e2e suite still works because it uses the bundled chromium-1248.
+**How to apply:** for visual captures, drive the bundled Chromium from a scratchpad script that requires `node_modules/@playwright/test`. Stub login = `page.route('**/auth/v1/authorize**')` returning a 302 to the callback with `code=stub-code`.
+
+**Why:** `playwright test` list reporter buffers stdout until the run ends, so a background full-suite run shows an empty output file for ~7 minutes.
+**How to apply:** do not read progress from the output file. Wait on the completion marker and read the file after exit.
+
+**Why (awards fix-round regression, 2026-10-13):** the awards hero pushes the category menu below the fold at scrollY 0.
+Playwright's `click()` scrolls an off-screen target into view first, so a scroll baseline or a scrollend probe taken before
+the click counted that scroll (679px jump, early scrollend).
+**How to apply:** `scrollIntoViewIfNeeded()` + settle before recording any baseline or installing scroll probes.
+
+**Why (awards fix-round, 2026-10-13):** run 1 failed all 10 specs at login (`/login?error=auth_failed`) because Playwright printed
+`EADDRINUSE 54399` for the mock Supabase and then reused whatever answered `/health` (a stale process). A rerun a minute later
+passed 10/10.
+**How to apply:** when every spec dies at login, check `ss -ltnp | grep 54399` first; it is an environment failure, not a test RED.
+
+**Why:** a full-page screenshot taken without scrolling leaves `next/image` lazy images at naturalWidth 0 (the last cards looked missing).
+**How to apply:** scroll the page in steps and wait for `img.complete && naturalWidth > 0` before a full-page capture.
+
+**Why (PageUp precondition race, awards nav, 2026-10-13):** `locator.click()` resolves once the click is dispatched, but a
+`scrollIntoView({behavior:'smooth'})` only moves the page on a later frame. A same-tick `page.evaluate` read of `scrollY`
+can still see the pre-click offset (failed 1 of 3 dev repeats, read 679 = pre-click value).
+**How to apply:** when a test needs a smooth scroll "in flight", wait with a bounded `expect.poll` until `scrollY` moved
+by N px or a `scrollend` fired, then assert the in-flight state. Never weaken the precondition assertions themselves.
