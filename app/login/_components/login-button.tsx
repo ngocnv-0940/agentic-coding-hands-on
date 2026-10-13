@@ -16,12 +16,12 @@ export function LoginButton({ label, loadingLabel, loading = false, disabled = f
       onClick={onClick}
       disabled={disabled || loading}
       aria-busy={loading}
-      className="flex h-[60px] w-fit cursor-pointer items-center gap-2 rounded-lg bg-[#FFEA9E] px-6 py-4 [box-shadow:none] transition-shadow duration-200 hover:[box-shadow:0_4px_20px_rgba(255,234,158,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:[box-shadow:none]"
+      className="flex h-[60px] w-fit cursor-pointer items-center gap-2 rounded-lg bg-[#FFEA9E] px-6 py-4 [box-shadow:none] transition-shadow duration-200 hover:[box-shadow:0_4px_20px_rgba(255,234,158,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:[box-shadow:none]"
     >
       {/* mm:I662:14426;186:1935 */}
       <span className="flex items-center gap-1">
         {/* mm:I662:14426;186:1568 */}
-        <span className="shrink-0 whitespace-nowrap md:w-[225px] md:text-center font-[family-name:var(--font-montserrat)] text-lg leading-7 font-bold text-[#00101A] md:text-[22px]">
+        <span className="w-[225px] shrink-0 text-center whitespace-nowrap font-[family-name:var(--font-montserrat)] text-[22px] leading-7 font-bold text-[#00101A]">
           {label}
         </span>
       </span>

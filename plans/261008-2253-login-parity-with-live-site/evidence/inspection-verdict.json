@@ -1,0 +1,30 @@
+{ "score": 9, "criticalCount": 0, "decision": "SEALED",
+  "acceptanceCovered": [
+    "Container max-w 1152 + 12/24/32 gutters in header and hero (144 at 1440)",
+    "ROOT FURTHER 120/160/451 sizing by breakpoint",
+    "Figma desktop spacing (gap 80, text indent 16, footer 91) gated at xl",
+    "Text 20/40 700 and button label 22px at all sizes",
+    "Background full-cover right-center below lg, Figma top-anchored at lg+",
+    "Login button disabled opacity 50%",
+    "Language dropdown: panel p-6px #00070C border #998C5F r8, items h-56 p-16 no gap, selected 20% gold r2, hover #FFEA9E1A, chevron rotates, menu 8px below right-aligned",
+    "EN tagline and login/home footer strings",
+    "All new arbitrary Tailwind classes present in compiled CSS"
+  ],
+  "regressionChecked": [
+    "Homepage SiteHeader with shared LanguageSelector: width at 375, z-40 in sticky z-30 header, right alignment, focus outlines",
+    "375 horizontal overflow (button 305 in 351 space; e2e scrollWidth check)",
+    "VI copy unchanged",
+    "Logo non-interactive (no link, cursor-default)",
+    "Login button hover box-shadow unchanged",
+    "Fixed header/footer positioning unchanged",
+    "aria attributes on trigger/menu/button unchanged",
+    "No stale references to old EN strings in repo"
+  ],
+  "contractStatus": "OK", "refuted": [], "unproven": [], "reachableRegressions": [],
+  "findings": [
+    { "severity": "Low", "category": "Accessibility/Visual", "location": "app/login/_components/language-selector.tsx:99", "summary": "focus-visible:bg-[#FFEA9E1A] overrides selected bg-[#FFEA9E]/20 so the selected item dims to 10% on keyboard focus; hover precedence depends on Tailwind emit order", "disposition": "Accept" },
+    { "severity": "Low", "category": "Responsive", "location": "app/login/_components/login-footer.tsx:8-10", "summary": "EN footer string at 16px likely wraps to 2 lines at 375 (~97px vs main pb 91); only measured in VI at 375", "disposition": "Defer" },
+    { "severity": "Low", "category": "Consistency", "location": "app/(main)/_behavior/dropdown-panel-styles.ts:3", "summary": "Homepage language menu now uses Figma gold-border panel while notification/account menus keep grey panel", "disposition": "Defer" },
+    { "severity": "Low", "category": "Maintainability", "location": "app/login/_components/login-screen.tsx:25", "summary": "lg:inset-x-0 and lg:bottom-auto are redundant with inset-0 / top+height", "disposition": "Reject" },
+    { "severity": "Low", "category": "Accessibility", "location": "app/login/_components/language-selector.tsx:83", "summary": "Chevron rotate transition has no motion-reduce variant", "disposition": "Defer" }
+  ] }

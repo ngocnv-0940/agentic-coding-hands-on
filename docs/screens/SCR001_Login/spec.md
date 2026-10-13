@@ -159,7 +159,12 @@ Empty: N/A — màn không có vùng hiển thị dữ liệu động.
 
 | Breakpoint | Region / Element | Behavior | Source |
 |------------|-------------------|----------|--------|
-| từ `md` trở lên | toàn màn | Bố cục desktop theo thiết kế | clarifications.md, 2026-10-08 |
-| dưới `md` | R1 (E01, E02) | Logo giữ góc trên trái, bộ chọn ngôn ngữ giữ góc trên phải; thu nhỏ cỡ chữ và padding | clarifications.md, 2026-10-08 |
-| dưới `md` | R2 | Cùng bố cục, thu nhỏ cỡ chữ và padding; không có cuộn ngang | clarifications.md, 2026-10-08 |
+| từ 1440 | toàn màn | Bố cục desktop đúng Figma; không đổi so với thiết kế | clarifications.md, 2026-10-08 |
+| mọi kích thước | R1, R2, R3 | Khung nội dung căn giữa, rộng tối đa 1152px; padding hai bên 12px (<640), 24px (640–767), 32px (≥768); header dùng cùng khung nên logo thẳng hàng với hero | `plans/261008-2253-login-parity-with-live-site/clarifications.md`; `login-screen.tsx`, `login-header.tsx` |
+| mọi kích thước | R2 (E04) | Ảnh ROOT FURTHER cao 120px (<640), cao 160px (640–1023), rộng 451px (≥1024) | `plans/261008-2253-login-parity-with-live-site/clarifications.md`; `login-hero-intro.tsx` |
+| dưới `xl` / từ `xl` | R2 | Khoảng cách ảnh → chữ 40px dưới `xl`, 80px từ `xl` (≥1280); thụt lề trái 16px của khối chữ chỉ từ `xl` | `plans/261008-2253-login-parity-with-live-site/clarifications.md`; `login-hero-intro.tsx` |
+| mọi kích thước | R2 (E05, E06, E07) | Không thu nhỏ chữ: Montserrat 700 20/40; nhãn nút 22px, nút rộng 305px; nút vô hiệu mờ 50% | `plans/261008-2253-login-parity-with-live-site/clarifications.md`; `login-hero-intro.tsx`, `login-button.tsx` |
+| mọi kích thước | R3 | Chữ footer 16px; padding dọc 24px dưới `xl`, footer cao 91px từ `xl` | `plans/261008-2253-login-parity-with-live-site/clarifications.md`; `login-footer.tsx` |
+| dưới `lg` / từ `lg` | E03 (nền) | Dưới `lg`: ảnh nền phủ kín viewport, neo giữa-phải; từ `lg`: các lớp nền neo trên theo Figma | `plans/261008-2253-login-parity-with-live-site/clarifications.md`; `login-screen.tsx` |
+| mọi kích thước | E02 (bộ chọn ngôn ngữ) | Nút padding 16px; hover nền `#FFEA9E1A`; mũi tên xoay khi menu mở | `plans/261008-2253-login-parity-with-live-site/clarifications.md`; `language-selector.tsx` |
 | mọi kích thước cửa sổ | R3 | Footer cố định ở đáy, không đổi khi cuộn | `app/login/_components/login-footer.tsx` |

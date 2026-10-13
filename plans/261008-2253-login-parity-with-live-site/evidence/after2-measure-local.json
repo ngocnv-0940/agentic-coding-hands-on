@@ -1,0 +1,434 @@
+{
+ "768x1024": {
+  "logo": {
+   "box": [
+    32,
+    16,
+    52,
+    48
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "0px",
+    "opacity": "1"
+   }
+  },
+  "header": {
+   "box": [
+    0,
+    0,
+    768,
+    80
+   ]
+  },
+  "langTrigger": {
+   "box": [
+    625.7,
+    12,
+    110.3,
+    56
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "16px",
+    "opacity": "1"
+   }
+  },
+  "hero": {
+   "box": [
+    32,
+    328.5,
+    360.8,
+    160
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "0px",
+    "opacity": "1"
+   }
+  },
+  "text": {
+   "box": [
+    32,
+    528.5,
+    496,
+    40
+   ],
+   "css": {
+    "weight": "700",
+    "size": "20px",
+    "lh": "40px",
+    "family": "Montserrat",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "Bắt đầu hành trình của bạn cùng SAA 2025."
+  },
+  "button": {
+   "box": [
+    32,
+    632.5,
+    305,
+    60
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "16px 24px",
+    "opacity": "1"
+   }
+  },
+  "buttonLabel": {
+   "box": [
+    56,
+    648.5,
+    225,
+    28
+   ],
+   "css": {
+    "weight": "700",
+    "size": "22px",
+    "lh": "28px",
+    "family": "Montserrat",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "LOGIN With Google"
+  },
+  "footer": {
+   "box": [
+    0,
+    951,
+    768,
+    73
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "24px 90px",
+    "opacity": "1"
+   }
+  },
+  "footerText": {
+   "box": [
+    244,
+    976,
+    280,
+    24
+   ],
+   "css": {
+    "weight": "700",
+    "size": "16px",
+    "lh": "24px",
+    "family": "\"Montserrat Alternates\"",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "Bản quyền thuộc về Sun* © 2025"
+  },
+  "lang": "vi",
+  "scrollHeight": 1024,
+  "scrollWidth": 768
+ },
+ "1024x768": {
+  "logo": {
+   "box": [
+    32,
+    16,
+    52,
+    48
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "0px",
+    "opacity": "1"
+   }
+  },
+  "header": {
+   "box": [
+    0,
+    0,
+    1024,
+    80
+   ]
+  },
+  "langTrigger": {
+   "box": [
+    881.7,
+    12,
+    110.3,
+    56
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "16px",
+    "opacity": "1"
+   }
+  },
+  "hero": {
+   "box": [
+    32,
+    180.5,
+    451,
+    200
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "0px",
+    "opacity": "1"
+   }
+  },
+  "text": {
+   "box": [
+    32,
+    420.5,
+    496,
+    40
+   ],
+   "css": {
+    "weight": "700",
+    "size": "20px",
+    "lh": "40px",
+    "family": "Montserrat",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "Bắt đầu hành trình của bạn cùng SAA 2025."
+  },
+  "button": {
+   "box": [
+    32,
+    524.5,
+    305,
+    60
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "16px 24px",
+    "opacity": "1"
+   }
+  },
+  "buttonLabel": {
+   "box": [
+    56,
+    540.5,
+    225,
+    28
+   ],
+   "css": {
+    "weight": "700",
+    "size": "22px",
+    "lh": "28px",
+    "family": "Montserrat",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "LOGIN With Google"
+  },
+  "footer": {
+   "box": [
+    0,
+    695,
+    1024,
+    73
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "24px 90px",
+    "opacity": "1"
+   }
+  },
+  "footerText": {
+   "box": [
+    372,
+    720,
+    280,
+    24
+   ],
+   "css": {
+    "weight": "700",
+    "size": "16px",
+    "lh": "24px",
+    "family": "\"Montserrat Alternates\"",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "Bản quyền thuộc về Sun* © 2025"
+  },
+  "lang": "vi",
+  "scrollHeight": 768,
+  "scrollWidth": 1024
+ },
+ "1440x900": {
+  "logo": {
+   "box": [
+    144,
+    16,
+    52,
+    48
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "0px",
+    "opacity": "1"
+   }
+  },
+  "header": {
+   "box": [
+    0,
+    0,
+    1440,
+    80
+   ]
+  },
+  "langTrigger": {
+   "box": [
+    1185.7,
+    12,
+    110.3,
+    56
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "16px",
+    "opacity": "1"
+   }
+  },
+  "hero": {
+   "box": [
+    144,
+    226.5,
+    451,
+    200
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "0px",
+    "opacity": "1"
+   }
+  },
+  "text": {
+   "box": [
+    160,
+    506.5,
+    480,
+    40
+   ],
+   "css": {
+    "weight": "700",
+    "size": "20px",
+    "lh": "40px",
+    "family": "Montserrat",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "Bắt đầu hành trình của bạn cùng SAA 2025."
+  },
+  "button": {
+   "box": [
+    160,
+    610.5,
+    305,
+    60
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "16px 24px",
+    "opacity": "1"
+   }
+  },
+  "buttonLabel": {
+   "box": [
+    184,
+    626.5,
+    225,
+    28
+   ],
+   "css": {
+    "weight": "700",
+    "size": "22px",
+    "lh": "28px",
+    "family": "Montserrat",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "LOGIN With Google"
+  },
+  "footer": {
+   "box": [
+    0,
+    809,
+    1440,
+    91
+   ],
+   "css": {
+    "weight": "400",
+    "size": "16px",
+    "lh": "24px",
+    "family": "Arial",
+    "pad": "33px 90px",
+    "opacity": "1"
+   }
+  },
+  "footerText": {
+   "box": [
+    580,
+    843,
+    280,
+    24
+   ],
+   "css": {
+    "weight": "700",
+    "size": "16px",
+    "lh": "24px",
+    "family": "\"Montserrat Alternates\"",
+    "pad": "0px",
+    "opacity": "1"
+   },
+   "text": "Bản quyền thuộc về Sun* © 2025"
+  },
+  "lang": "vi",
+  "scrollHeight": 900,
+  "scrollWidth": 1440
+ }
+}
