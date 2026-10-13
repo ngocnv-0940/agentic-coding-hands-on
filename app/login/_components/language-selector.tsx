@@ -62,7 +62,7 @@ export function LanguageSelector({ locale, labels, onSelect, pending = false }: 
         aria-haspopup="true"
         aria-controls={open ? menuId : undefined}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-14 cursor-pointer items-center justify-between gap-0.5 rounded px-3 py-4 transition-colors duration-200 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white md:px-4"
+        className="flex h-14 cursor-pointer items-center justify-between gap-0.5 rounded-sm px-4 py-4 transition-colors duration-200 hover:bg-[#FFEA9E1A] focus-visible:outline-2 focus-visible:outline-white"
       >
         {/* mm:I662:14391;186:1696;186:1821;186:1937 */}
         <span className="flex items-center gap-1">
@@ -74,12 +74,19 @@ export function LanguageSelector({ locale, labels, onSelect, pending = false }: 
           </span>
         </span>
         {/* mm:I662:14391;186:1696;186:1821;186:1441 */}
-        <Image src="/images/login/chevron-down.svg" alt="" width={24} height={24} unoptimized />
+        <Image
+          src="/images/login/chevron-down.svg"
+          alt=""
+          width={24}
+          height={24}
+          unoptimized
+          className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        />
       </button>
       {open && (
         <ul
           id={menuId}
-          className="absolute top-full right-0 z-40 m-0 mt-1 flex min-w-[140px] list-none flex-col gap-1 rounded-lg border border-[#2E3940] bg-[#0B0F12] p-1"
+          className="absolute top-full right-0 z-40 m-0 mt-2 flex min-w-[140px] list-none flex-col rounded-lg border border-[#998C5F] bg-[#00070C] p-1.5 shadow-lg"
         >
           {OPTIONS.map(({ locale: value, flag }) => (
             <li key={value}>
@@ -89,12 +96,10 @@ export function LanguageSelector({ locale, labels, onSelect, pending = false }: 
                 aria-current={value === locale ? 'true' : undefined}
                 disabled={pending}
                 onClick={() => choose(value)}
-                className={`flex w-full cursor-pointer items-center gap-2 rounded px-3 py-3 text-left transition-colors duration-200 hover:bg-white/15 focus-visible:bg-white/15 focus-visible:outline-2 focus-visible:outline-white disabled:cursor-wait ${value === locale ? 'bg-white/10' : ''}`}
+                className={`flex h-14 w-full cursor-pointer items-center gap-1 rounded-[2px] p-4 text-left transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white disabled:cursor-wait ${value === locale ? 'bg-[#FFEA9E]/20' : 'hover:bg-[#FFEA9E1A] focus-visible:bg-[#FFEA9E1A]'}`}
               >
                 <Image src={flag} alt="" width={24} height={24} unoptimized />
-                <span className="font-[family-name:var(--font-montserrat)] text-base leading-6 font-bold text-white">
-                  {labels[value]}
-                </span>
+                <span className="font-[family-name:var(--font-montserrat)] text-base leading-6 font-bold text-white">{labels[value]}</span>
               </button>
             </li>
           ))}
