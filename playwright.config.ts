@@ -18,10 +18,11 @@ const EVENT_START_AT = process.env.E2E_EVENT_START_AT ?? '2025-12-26T18:30:00+07
 const customEventEnv = process.env.E2E_EVENT_START_AT !== undefined
 
 // Tagged groups are excluded unless their run asks for them: @smoke needs the real stack,
-// @event-env-invalid needs its own server (a custom EVENT_START_AT).
+// @event-env-invalid and @prelaunch need their own server (a custom EVENT_START_AT; @prelaunch
+// runs with E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch).
 const grepInvert = [
   ...(process.env.E2E_SMOKE ? [] : [/@smoke/]),
-  ...(customEventEnv ? [] : [/@event-env-invalid/]),
+  ...(customEventEnv ? [] : [/@event-env-invalid/, /@prelaunch/]),
 ]
 
 export default defineConfig({
