@@ -53,7 +53,7 @@ export const homeEn: { [K in keyof typeof homeVi]: string } = {
   'home.kudos.detail': 'Details',
   'home.kudos.imageAlt': 'Sun* Kudos',
   'home.footer.standards': 'General standards',
-  'home.footer.copyright': 'Copyright © 2025 Sun*',
+  'home.footer.copyright': 'Copyright © 2025 Sun* All rights reserved',
   'home.widget.label': 'Quick actions',
   'comingSoon.title': 'Coming soon',
 }
