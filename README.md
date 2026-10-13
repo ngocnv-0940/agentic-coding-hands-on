@@ -34,9 +34,11 @@ SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET=<client secret>
 ### 2. Chạy Supabase
 
 ```bash
-supabase start
-supabase status   # lấy Publishable key (sb_publishable_...)
+bun run supabase:start   # tự dùng socket Podman nếu không có Docker
+supabase status          # lấy Publishable key (sb_publishable_...)
 ```
+
+`bun run supabase:start` (`scripts/start-local-supabase.sh`) gom các bước Podman bên dưới: không có `DOCKER_HOST` và không có `/var/run/docker.sock` thì trỏ sang socket Podman của user, tạo hai thư mục bind-mount rồi chạy `supabase start` với các dịch vụ phụ bị loại. Dừng bằng `bun run supabase:stop`.
 
 #### Dùng Podman thay Docker
 
@@ -75,6 +77,8 @@ Mở **`http://localhost:3000`**, không dùng `127.0.0.1`: cookie PKCE của Su
 | `bun run dev` | Chạy dev server |
 | `bun run build` | Build production |
 | `bun run start` | Chạy bản build |
+| `bun run supabase:start` | Chạy Supabase cục bộ (Docker hoặc Podman) |
+| `bun run supabase:stop` | Dừng Supabase cục bộ |
 | `bun run lint` | ESLint |
 | `bun run test:e2e` | Playwright E2E |
 
