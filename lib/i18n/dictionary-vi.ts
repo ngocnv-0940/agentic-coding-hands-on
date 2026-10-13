@@ -18,6 +18,8 @@ export const vi = {
   'todo.emailLabel': 'Email',
   'todo.logout': 'Đăng xuất',
   'todo.emailMissing': '—',
+  'prelaunch.title': 'Sự kiện sẽ bắt đầu sau',
+  'prelaunch.metaTitle': 'SAA 2025',
   ...homeVi,
   ...awardsVi,
 } as const

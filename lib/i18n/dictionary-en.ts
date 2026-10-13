@@ -19,6 +19,8 @@ export const en: Dictionary = {
   'todo.emailLabel': 'Email',
   'todo.logout': 'Logout',
   'todo.emailMissing': '—',
+  'prelaunch.title': 'Event starts in',
+  'prelaunch.metaTitle': 'SAA 2025',
   ...homeEn,
   ...awardsEn,
 }
