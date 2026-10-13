@@ -2,6 +2,15 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-09 — Màn Login: cập nhật kích thước theo từng khổ màn hình (SCR001, chỉ giao diện)
+
+**Thay đổi**
+
+- `app/login/_components/*`: khung nội dung 1152px căn giữa, padding 12/24/32; ảnh ROOT FURTHER và khoảng cách hero theo breakpoint; không thu nhỏ chữ; nền phủ viewport dưới `lg`; nút vô hiệu mờ 50%. Khổ 1440 giữ đúng Figma.
+- Bộ chọn ngôn ngữ (dùng chung với header trang chủ) theo Figma `hUyaaugye2`: panel padding 6px, nền `#00070C`, viền `#998C5F`, mục cao 56px, hover `#FFEA9E1A`, mũi tên xoay khi mở.
+- Từ điển en: `login.tagline` "Login to explore!"; `login.footer` và `home.footer.copyright` "Copyright © 2025 Sun* All rights reserved".
+- Không đổi props, xác thực hay routing.
+
 ## 2026-10-08 — Trang chủ SAA 2025 (F003_Homepage)
 
 **Thêm**

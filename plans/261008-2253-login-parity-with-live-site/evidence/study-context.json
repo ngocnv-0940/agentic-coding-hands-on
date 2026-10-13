@@ -1,0 +1,24 @@
+{
+  "task": "Make /login match saa.sun-asterisk.vn/login where Figma is silent (responsive, EN copy) and restore the language dropdown to Figma hUyaaugye2, keeping 1440 identical to Figma GzbNeVGJHz",
+  "mode": "interactive",
+  "acceptanceCriteria": [
+    "Container max-w 1152 + 12/24/32 gutters in header and hero (144 at 1440)",
+    "ROOT FURTHER 120/160/451 sizing by breakpoint",
+    "Figma desktop spacing (gap 80, text indent 16, footer 91) gated at xl",
+    "Text 20/40 700 and button label 22px at all sizes",
+    "Language dropdown: panel p-6px #00070C border #998C5F r8",
+    "EN tagline and login/home footer strings"
+  ],
+  "touchpoints": [
+    "app/login/_components/login-screen.tsx",
+    "app/login/_components/login-header.tsx",
+    "app/login/_components/login-hero-intro.tsx",
+    "app/login/_components/login-button.tsx",
+    "app/login/_components/login-footer.tsx",
+    "app/login/_components/language-selector.tsx",
+    "lib/i18n/dictionary-en.ts",
+    "lib/i18n/dictionary-home-en.ts"
+  ],
+  "blastRadius": ["login screen layout at all widths", "homepage header language selector", "homepage EN footer"],
+  "contracts": ["LanguageSelector props and data-testids", "LoginScreen props", "dictionary keys (values only changed)"]
+}
