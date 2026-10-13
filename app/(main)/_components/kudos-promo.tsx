@@ -11,19 +11,27 @@ export type KudosPromoProps = {
   href: string
   /** Alt text of the KUDOS logo artwork. */
   imageAlt: string
+  /** "wide" matches the 1152px Kudos block of the Awards Information frame (mm:335:12023); default is the homepage 1120px block. */
+  variant?: 'default' | 'wide'
 }
 
-export function KudosPromo({ eyebrow, title, body, detailLabel, href, imageAlt }: KudosPromoProps) {
+const VARIANT = {
+  default: { card: 'max-w-[1120px]', content: 'max-w-[521px]', logo: 'xl:right-[84px]' },
+  wide: { card: 'max-w-[1152px]', content: 'max-w-[553px]', logo: 'xl:right-[79px]' },
+} as const
+
+export function KudosPromo({ eyebrow, title, body, detailLabel, href, imageAlt, variant = 'default' }: KudosPromoProps) {
+  const v = VARIANT[variant]
   return (
     // mm:3390:10349
     <section
       data-testid="kudos-promo"
-      className="relative mx-auto flex min-h-[500px] w-full max-w-[1120px] items-center overflow-hidden rounded-2xl bg-[#0f0f0f]"
+      className={`relative mx-auto flex min-h-[500px] w-full ${v.card} items-center overflow-hidden rounded-2xl bg-[#0f0f0f]`}
     >
       {/* mm:I3390:10349;313:8416 */}
       <Image src="/images/homepage/kudos-background.png" alt="" fill sizes="(min-width: 1120px) 1120px, 100vw" className="object-cover object-right" />
       {/* mm:I3390:10349;313:8419 */}
-      <div className="relative flex w-full max-w-[521px] flex-col gap-8 p-6 md:py-[46px] md:pr-8 md:pl-16">
+      <div className={`relative flex w-full ${v.content} flex-col gap-8 p-6 md:py-[46px] md:pr-8 md:pl-16`}>
         {/* mm:I3390:10349;313:8420 */}
         <div className="flex flex-col gap-4">
           {/* mm:I3390:10349;313:8421 */}
@@ -53,7 +61,7 @@ export function KudosPromo({ eyebrow, title, body, detailLabel, href, imageAlt }
         width={364}
         height={74}
         unoptimized
-        className="absolute top-[215px] right-4 hidden lg:block xl:right-[84px]"
+        className={`absolute top-[215px] right-4 hidden lg:block ${v.logo}`}
       />
     </section>
   )

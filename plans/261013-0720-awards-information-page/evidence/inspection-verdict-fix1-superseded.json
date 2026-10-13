@@ -1,0 +1,115 @@
+{
+  "score": 8,
+  "criticalCount": 0,
+  "decision": "SEALED",
+  "acceptanceCovered": [
+    "AC1 access/guest redirect/header nav (ID-0, ID-1, ID-2)",
+    "AC2 layout order hero>menu+cards>Kudos (ID-3)",
+    "AC3 caption + gold h1 (Figma casing per clarifications)",
+    "AC4 six menu items in order (ID-5)",
+    "AC5 six cards with 336x336 image, copy, quantity, prize (ID-6, ID-7, D005)",
+    "AC6 Kudos block + Chi tiết -> /sun-kudos (ID-8, ID-12)",
+    "AC7 click smooth-scroll + single active + hover (ID-9, ID-11, ID-10, BR-002 no-flicker)",
+    "AC8 scroll-spy follows manual scroll, URL untouched",
+    "AC9 deep link #mvp and homepage card #best-manager",
+    "AC10 unknown hash no error, stays top, default active (ID-13)",
+    "AC11 sticky desktop menu, horizontal tab row <1024, active survives resize",
+    "AC12 VN/EN localized, compile-time parity (37/37 keys), EN switch test"
+  ],
+  "regressionChecked": [
+    "KudosPromo default variant class strings byte-identical (homepage)",
+    "Homepage placeholder spec loop drops only /awards-information",
+    "Dictionary/Dictionary-type parity across vi/en spreads",
+    "awardHref + AWARD_SLUGS anchor contract unchanged",
+    "(main) layout auth/Suspense untouched; page nests under it",
+    "Next 16.4 app-router replaceState patch accepts null state (no router desync)",
+    "Hook listener/timer/rAF cleanup and StrictMode double-effect",
+    "tsc and lint re-run on current tree: exit 0"
+  ],
+  "contractStatus": "OK",
+  "refuted": [],
+  "unproven": [],
+  "reachableRegressions": [],
+  "findings": [
+    {
+      "severity": "Medium",
+      "category": "Concurrency",
+      "location": "app/(main)/_behavior/use-award-category-spy.ts:85-89",
+      "summary": "addressed — Idle-timer release ignores hasReachedSection; a >150ms scroll-event gap unlocks mid smooth-scroll (BR-002). Gate release on target reached or a hard deadline.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Medium",
+      "category": "UX/Accessibility",
+      "location": "app/(main)/_behavior/use-award-category-spy.ts:91-92",
+      "summary": "addressed — Unconditional preventDefault blocks modifier-click/open-in-new-tab on menu anchors.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Medium",
+      "category": "Documentation",
+      "location": "docs/screens/SCR004_AwardsInformation/spec.md:28-184",
+      "summary": "Promoted screen spec contradicts clarifications/code: stacking below 1024 (code 768), E12 '10 Đơn vị' (Figma '10 Cá nhân'), image always left (code alternates).",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "app/(main)/_behavior/use-award-category-spy.ts:136-145",
+      "summary": "addressed — Keyboard/scrollbar interruption is not a user takeover; touchstart on the tab row releases the page lock mid-scroll.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Maintainability",
+      "location": "app/(main)/_wiring/awards-category-menu-container.tsx:18-28",
+      "summary": "addressed — Spy order from AWARD_SLUGS while items come from AWARD_DETAILS, plus an 'as AwardSlug' cast.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Maintainability",
+      "location": "app/(main)/_wiring/build-awards-information-props.ts:44-51",
+      "summary": "addressed — KUDOS_PATH and kudos dictionary mapping duplicated from build-home-screen-props.ts.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Structure",
+      "summary": "await connection() redundant after cookies() in page.tsx; harmless, mirrors layout.",
+      "disposition": "Reject"
+    },
+    {
+      "severity": "Low",
+      "category": "i18n",
+      "summary": "EN prize values keep VN number format '7.000.000 VNĐ'; product decision.",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Performance",
+      "summary": "KudosPromo wide variant keeps sizes hint at 1120px for a 1152px card; negligible.",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Accessibility",
+      "summary": "Award image alt repeats adjacent h2 title; acceptable as the PNG carries name artwork.",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "app/(main)/_behavior/award-scroll-lock.ts:144",
+      "summary": "Vertical wheel/touch starting on the overflowing tab row (<1024) is treated as a sideways row scroll, so the lock is not cancelled; the deadline release then pins anchorY at an unreached offset and the active item stays stale until the next scroll. Fix: exclude only sideways gestures, or release(false) and recompute when the deadline expires with the target unreached.",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Testing",
+      "location": "e2e/awards-information-category-navigation.spec.ts:62",
+      "summary": "Fix round added no regression test for modifier-click or scroll-key takeover. Add a Ctrl-click test and a PageDown-during-click-scroll test.",
+      "disposition": "Accept"
+    }
+  ]
+}

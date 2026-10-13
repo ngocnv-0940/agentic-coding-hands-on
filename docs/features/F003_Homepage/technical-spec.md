@@ -52,7 +52,7 @@ flowchart LR
 | **A4** | `AccountMenu#onToggle` | browser · click | FR-402, FR-403, FR-404, FR-602, BR-004, DEC-002, US007 | — *(đăng xuất xoá cookie phiên, do F001_Auth xử lý)* | § 3.2 |
 | **A5** | `NotificationPanel#onToggle` | browser · click | FR-401, FR-404, US008 | — *(read-only)* | § 3.2 |
 | **A6** | `LanguageSelector` → `setLocale` *(dùng lại của F002_Localization)* | browser · server action | FR-404, FR-405, US009 | cookie `NEXT_LOCALE` | § 3.2 |
-| **A7** | `ComingSoonPage` | `GET` `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` | FR-002, FR-603, DEC-004, US006, US007 | — *(read-only)* | § 3.2 |
+| **A7** | `ComingSoonPage` | `GET` `/sun-kudos`, `/standards`, `/profile`, `/admin` *(`/awards-information` nay là trang thật, xem F004_AwardsInformation)* | FR-002, FR-603, DEC-004, US006, US007 | — *(read-only)* | § 3.2 |
 | **A8** | `CountdownTimer#tick` | browser · timer mỗi phút | FR-001, FR-203, FR-204, BR-001, BR-002, DEC-001, ALG-001, US003 | — *(read-only)* | § 3.3 |
 | **A9** | `AwardCard` · `HeroCtaButtons` · `KudosPromo` | browser · điều hướng | FR-206, FR-208, FR-209, FR-210, BR-006, US004, US005 | — *(read-only)* | § 3.4 |
 
@@ -163,7 +163,7 @@ flowchart LR
 ---
 
 #### A7 · Trang giữ chỗ "Coming soon"
-`GET /awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` → `` `ComingSoonPage` ``
+`GET /sun-kudos`, `/standards`, `/profile`, `/admin` → `` `ComingSoonPage` `` *(`/awards-information` nay do F004_AwardsInformation phục vụ; vẫn trong nhóm được bảo vệ)*
 `FR-002` `FR-603` `DEC-004` `US006` `US007` · `SCR003_Homepage`
 
 **Who** · Người dùng đã đăng nhập; riêng `/admin` chỉ admin *(gate A1 và A0 — § 4.4)*
@@ -178,7 +178,7 @@ flowchart LR
 | **DEC-004** | flow | `có người dùng đã xác minh`, trang là `/admin`, vai trò không phải admin | Bị chuyển về `/` | `lib/supabase/proxy.ts:85-87`, `app/(main)/admin/page.tsx:16-20` |
 | **DEC-004** | render | `có người dùng đã xác minh`, trang là `/admin`, vai trò là admin | Thấy "Coming soon" kèm header và footer | `lib/supabase/proxy.ts:85-87`, `app/(main)/admin/page.tsx:16-20` |
 
-**Result** · US006 (điều hướng không gặp link chết) và FR-002: mọi liên kết trên trang chủ có đích. US007 (với admin): Admin Dashboard mở được `/admin`. Thẻ giải thưởng trỏ `/awards-information#<slug>`; trang giữ chỗ không cần có mục neo thật.
+**Result** · US006 (điều hướng không gặp link chết) và FR-002: mọi liên kết trên trang chủ có đích. US007 (với admin): Admin Dashboard mở được `/admin`. Thẻ giải thưởng trỏ `/awards-information#<slug>`; trang đích nay là trang thật của F004_AwardsInformation, mỗi thẻ có `id` bằng slug nên mục neo hoạt động.
 **Source:** `app/(main)/{awards-information,sun-kudos,standards,profile,admin}/page.tsx`, `app/(main)/_behavior/coming-soon-content.tsx:22-28`, `lib/supabase/proxy.ts:7-27,82-87`, `app/(main)/admin/page.tsx:16-24`
 
 ---
@@ -214,10 +214,10 @@ flowchart LR
 `FR-206` `FR-208` `FR-209` `FR-210` `US004` `US005` · `SCR003_Homepage`
 
 **Who** · Người dùng đã đăng nhập *(gate A0 — § 4.4)*
-**FE** · Lưới 6 thẻ (FR-208: 3 cột desktop, 2 cột tablet và mobile; mô tả cắt ở 2 dòng; thẻ nhô nhẹ và sáng viền khi rê chuột). Dữ liệu 6 thẻ là danh sách tĩnh trong mã gồm slug, ảnh, tên, mô tả (BR-006). Cả thẻ là một liên kết: bấm ảnh, tên hay "Chi tiết" cho cùng kết quả. Hai nút CTA ở hero và nút "Chi tiết" của khối Kudos là liên kết thường.
+**FE** · Lưới 6 thẻ (FR-208: 3 cột desktop, 2 cột tablet và mobile; mô tả cắt ở 2 dòng; thẻ nhô nhẹ và sáng viền khi rê chuột). Dữ liệu 6 thẻ là danh sách tĩnh trong mã gồm slug, ảnh, tên, mô tả (BR-006). Cả thẻ là một liên kết: bấm ảnh, tên hay "Chi tiết" cho cùng kết quả. Hai nút CTA ở hero và nút "Chi tiết" của khối Kudos là liên kết thường. `KudosPromo` có prop tuỳ chọn `variant` (`default` 1120px dùng ở trang chủ, `wide` 1152px dùng ở F004_AwardsInformation); trang chủ không truyền nên không đổi. Props của khối dựng bởi `buildKudosPromoProps` (`app/(main)/_wiring/build-kudos-promo-props.ts`), dùng chung với F004.
 **Request** · điều hướng phía client tới `/awards-information#<slug>` (FR-209), `/awards-information` (FR-206, nút ABOUT AWARDS), `/sun-kudos` (FR-206 nút ABOUT KUDOS, và FR-210 nút "Chi tiết" của Kudos)
 **Rule** · **BR-006 — Sáu hạng mục có slug cố định.** `top-talent`, `top-project`, `top-project-leader`, `best-manager`, `signature-2025-creator`, `mvp`; mô tả lấy nguyên văn từ node Figma của từng thẻ (điền khi triển khai, không tự soạn). Thẻ không có slug thì liên kết tới `/awards-information` không kèm `#`.
-**Result** · read-only; người dùng tới trang giữ chỗ (A7) và với thẻ có slug thì URL mang mục neo. US004 (mở đúng hạng mục) và US005 (đi tới Awards, Kudos từ hero và khối Kudos) được phục vụ ở đây.
+**Result** · read-only; người dùng tới trang Hệ thống giải (F004_AwardsInformation; `/sun-kudos` vẫn là trang giữ chỗ, A7) và với thẻ có slug thì URL mang mục neo. US004 (mở đúng hạng mục) và US005 (đi tới Awards, Kudos từ hero và khối Kudos) được phục vụ ở đây.
 **Source:** `lib/awards/award-categories.ts:1-29`, `app/(main)/_components/awards-section.tsx:30-37`, `app/(main)/_components/award-card.tsx:7-42`, `app/(main)/_wiring/build-home-screen-props.ts:31-60`
 
 ---
@@ -385,7 +385,7 @@ Mã nguồn đã có. Điểm chạm: `lib/supabase/proxy.ts` (A1), `app/auth/ca
 ```text
 Request / -> proxy (getUser, DEC-003) -> HomePage (EVENT_START_AT, NEXT_LOCALE, role) -> HTML
 Browser tick (1 min) -> CountdownTimer -> ALG-001 -> 3 ô + cờ Coming soon
-Click thẻ -> điều hướng /awards-information#<slug> -> ComingSoonPage
+Click thẻ -> điều hướng /awards-information#<slug> -> AwardsInformationPage (F004)
 ```
 
 ### 5.5 Artifact References

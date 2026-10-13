@@ -1,0 +1,35 @@
+{
+  "task": "Implement the Awards Information page (/awards-information) from MoMorph screen zFYDgyj_pD 'Hệ thống giải', replacing the Coming soon placeholder.",
+  "mode": "interactive",
+  "acceptanceCriteria": [
+    "AC1: Signed-in user opening /awards-information sees the Awards System page (TC ID-0); guest is redirected to /login (TC ID-1); header nav 'Awards Information' opens it (TC ID-2).",
+    "AC2: Layout = keyvisual hero + section title, category menu on the left (desktop), 6 award cards in the center, Sun* Kudos block at the bottom, shared header/footer (TC ID-3).",
+    "AC3: Title shows caption 'Sun* Annual Awards 2025' (Figma casing, per clarifications.md 2026-10-13; TC ID-4 wrote it lowercase) and gold heading 'Hệ thống giải thưởng SAA 2025' (TC ID-4).",
+    "AC4: Menu lists 6 items in order Top Talent, Top Project, Top Project Leader, Best Manager, Signature 2025 - Creator, MVP (TC ID-5).",
+    "AC5: 6 award cards show image (336x336), title, description, quantity and prize value per Figma (TC ID-6, ID-7).",
+    "AC6: Sun* Kudos block shows eyebrow, title, description and 'Chi tiết' button linking to /sun-kudos (TC ID-8, ID-12).",
+    "AC7: Clicking a menu item smooth-scrolls to its section and makes only that item active (gold + underline) (TC ID-9, ID-11); hover highlights items (TC ID-10).",
+    "AC8: Scroll-spy: the section in view sets the active menu item.",
+    "AC9: Deep link /awards-information#<slug> scrolls to and activates that award; homepage award card links land on the right section.",
+    "AC10: Unknown hash causes no JS error and no crash (TC ID-13).",
+    "AC11: Desktop (>=1024px) menu is sticky below the site header; below 1024px it becomes one row of horizontally scrolling tabs with the same active styling.",
+    "AC12: All copy is localized VN (verbatim Figma) / EN via lib/i18n dictionaries with parity."
+  ],
+  "touchpoints": [
+    "app/(main)/awards-information/page.tsx",
+    "app/(main)/_components/* (new awards-information components; reuse KudosPromo, home hero pieces)",
+    "lib/awards/award-categories.ts",
+    "lib/i18n/dictionary-*.ts",
+    "e2e/*awards-information*.spec.ts"
+  ],
+  "blastRadius": [
+    "Homepage award cards and KudosPromo (shared components / data if refactored)",
+    "Shared (main) layout header active state",
+    "i18n dictionary parity type"
+  ],
+  "contracts": [
+    "Route /awards-information stays protected by proxy.ts + (main) layout",
+    "Section anchor ids = AWARD_SLUGS so awardHref(slug) keeps working",
+    "VN/EN dictionary key parity"
+  ]
+}

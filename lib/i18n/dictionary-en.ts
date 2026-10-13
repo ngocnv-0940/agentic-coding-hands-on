@@ -1,4 +1,5 @@
 import { homeEn } from './dictionary-home-en'
+import { awardsEn } from './dictionary-awards-en'
 import type { Dictionary } from './dictionary-vi'
 
 export const en: Dictionary = {
@@ -19,4 +20,5 @@ export const en: Dictionary = {
   'todo.logout': 'Logout',
   'todo.emailMissing': '—',
   ...homeEn,
+  ...awardsEn,
 }

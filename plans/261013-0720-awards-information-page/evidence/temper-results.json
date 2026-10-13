@@ -1,0 +1,53 @@
+{
+  "commands": [
+    {
+      "command": "bunx tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final2: typecheck clean, no diagnostics (tsc-final2-output.txt).",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run lint",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final2: eslint clean, no findings (lint-final2-output.txt).",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run build",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final2: next build compiled, 11 routes incl. /awards-information (dynamic), 0 warnings (build-final2-output.txt).",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e e2e/awards-information-category-navigation.spec.ts --repeat-each=3 (after PageUp precondition fix: bounded poll until scrollY moved 20px or scroll ended)",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final2 dev: 30 passed, 0 failed, 5.2 min (e2e-nav-repeat3-final-output.txt).",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_PROD=1 bun run test:e2e e2e/awards-information-category-navigation.spec.ts --repeat-each=3",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final2 prod (build + start): 30 passed, 0 failed, 5.1 min (e2e-nav-repeat3-prod-final-output.txt).",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e e2e/awards-information-category-navigation.spec.ts --grep PageUp --repeat-each=10 (dev)",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final2 PageUp flakiness check: 10 passed, 0 failed (e2e-pageup-repeat10-dev-output.txt).",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final2 full suite: 112 passed, 0 failed, 5.8 min (e2e-full-final2-output.txt).",
+      "ts": "1970-01-01T00:00:00.000Z"
+    }
+  ]
+}

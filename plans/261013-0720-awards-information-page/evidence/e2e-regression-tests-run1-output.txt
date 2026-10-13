@@ -1,0 +1,22 @@
+$ playwright test "e2e/awards-information-category-navigation.spec.ts"
+[WebServer] $ next dev -p "3100"
+
+Running 10 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /awards-information is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   2 [chromium] › e2e/awards-information-category-navigation.spec.ts:133:7 › Awards Information category navigation › ID-10: hovering an inactive menu item changes its computed style (10.6s)
+  ✓   1 [chromium] › e2e/awards-information-category-navigation.spec.ts:96:7 › Awards Information category navigation › D007: a click sets #slug without adding a history entry (11.6s)
+  ✓   4 [chromium] › e2e/awards-information-category-navigation.spec.ts:85:7 › Awards Information category navigation › ID-9/ID-11: default active is Top Talent; each click scrolls to its section and leaves only it active (13.1s)
+  ✓   3 [chromium] › e2e/awards-information-category-navigation.spec.ts:107:7 › Awards Information category navigation › BR-002: no flicker, only the clicked item ever gains aria-current during a click scroll (16.6s)
+  ✓   5 [chromium] › e2e/awards-information-category-navigation.spec.ts:147:7 › Awards Information category navigation › scroll-spy: manual scrolling moves the active item and leaves the URL untouched (6.6s)
+  ✓   6 [chromium] › e2e/awards-information-category-navigation.spec.ts:161:7 › Awards Information category navigation › deep link #mvp scrolls to MVP and activates it (5.9s)
+  ✓   7 [chromium] › e2e/awards-information-category-navigation.spec.ts:169:7 › Awards Information category navigation › homepage Best Manager card opens #best-manager with that section active (6.8s)
+  ✓   8 [chromium] › e2e/awards-information-category-navigation.spec.ts:179:7 › Awards Information category navigation › ID-13: an unknown hash raises no page error, keeps the top of the page and Top Talent active (8.8s)
+  ✓   9 [chromium] › e2e/awards-information-category-navigation.spec.ts:194:7 › Awards Information category navigation › modifier-click: Ctrl-click on an inactive item leaves scroll, active item and URL hash untouched (12.2s)
+  ✓  10 [chromium] › e2e/awards-information-category-navigation.spec.ts:235:7 › Awards Information category navigation › scroll-key takeover: PageUp during the smooth scroll to MVP makes the active item follow the section in view (13.5s)
+
+  10 passed (5.1m)
+
+[harness] exit=0 (bun run test:e2e e2e/awards-information-category-navigation.spec.ts, dev mode, rerun after mock port was held by a stale process)

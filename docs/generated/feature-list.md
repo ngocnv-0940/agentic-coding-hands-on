@@ -34,6 +34,7 @@
 | F001_Auth | Auth | ui | TypeScript | Next.js app (root) | P0 |
 | F002_Localization | Localization | ui | TypeScript | Next.js app (root) | P1 |
 | F003_Homepage | Homepage | ui | TypeScript | Next.js app (root) | P0 |
+| F004_AwardsInformation | Awards Information | ui | TypeScript | Next.js app (root) | P1 |
 
 ## Feature Details
 
@@ -132,7 +133,7 @@
 
 **Related APIs/Routes**:
 - (GET) /
-- (GET) /awards-information, /sun-kudos, /standards, /profile, /admin (trang giữ chỗ)
+- (GET) /sun-kudos, /standards, /profile, /admin (trang giữ chỗ); `/awards-information` đã thành trang thật ở F004
 
 **Related Data Models**:
 - No data
@@ -145,10 +146,40 @@
 
 ---
 
+### F004_AwardsInformation: Awards Information
+
+**Type**: ui
+**Status**: implemented
+**Description**: Trang `/awards-information` (Hệ thống giải SAA 2025) chỉ dành cho người đã đăng nhập, thay trang giữ chỗ của F003: keyvisual và tiêu đề, menu 6 hạng mục (Top Talent, Top Project, Top Project Leader, Best Manager, Signature 2025 - Creator, MVP) dính dưới header trên desktop và thành hàng tab cuộn ngang dưới 1024px; bấm mục thì cuộn mượt tới thẻ, đổi `#slug` bằng `replaceState`; cuộn trang thì mục active tự đổi theo phần đang xem; mở bằng `#slug` (từ thẻ trang chủ) thì tới đúng giải. Mỗi thẻ có ảnh, mô tả đầy đủ, số lượng và giá trị giải; cuối trang là khối Sun* Kudos dẫn tới `/sun-kudos`.
+
+**Workspace**: Next.js app (root)
+**Languages**: TypeScript
+**Components**: `AwardsInformationPage` (`app/(main)/awards-information/page.tsx`); `AwardsInformationScreen`, `AwardsInformationHero`, `AwardsCategoryMenu`, `AwardDetailCard`, `award-icons` (`app/(main)/_components/awards-information/`); `AwardsCategoryMenuContainer`, `buildAwardsInformationProps`, `buildKudosPromoProps` (`app/(main)/_wiring/`); `useAwardCategorySpy`, `useKeepActiveTabInView`, `createScrollLock`, `parseAwardHash` (`app/(main)/_behavior/`); `AWARD_DETAILS` (`lib/awards/award-details.ts`); từ điển `lib/i18n/dictionary-awards-{vi,en}.ts`; `KudosPromo` thêm prop `variant` (`app/(main)/_components/kudos-promo.tsx`)
+
+**Related Screens**:
+- SCR004_AwardsInformation: Awards Information
+
+**Related User Stories**:
+- TBD (draft) — mã US### toàn cục cấp khi đối chiếu (xem `docs/features/F004_AwardsInformation/functional-spec.md`).
+
+**Related APIs/Routes**:
+- (GET) /awards-information
+
+**Related Data Models**:
+- No data
+
+**Related Background Logic**:
+- No data
+
+**Related Permissions**:
+- TBD (draft) — dùng lại lớp bảo vệ route của F003; xem `docs/system/permissions.md`.
+
+---
+
 ## Summary
 
-- **Total Features**: 3
-- **Total Screens**: 3
+- **Total Features**: 4
+- **Total Screens**: 4
 - **Total User Stories**: 8
 - **Total Routes**: 10 (2 backend ROUTE###: ROUTE001, ROUTE002; 8 trang giao diện: /, /login, /todo, /awards-information, /sun-kudos, /standards, /profile, /admin)
 - **Total Data Models**: 0

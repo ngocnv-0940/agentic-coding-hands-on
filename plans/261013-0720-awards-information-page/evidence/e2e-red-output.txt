@@ -1,0 +1,916 @@
+$ playwright test "e2e/awards-information-access-and-content.spec.ts" "e2e/awards-information-category-navigation.spec.ts" "e2e/awards-information-responsive-layout.spec.ts"
+[WebServer] $ next dev -p "3100"
+
+Running 27 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   3 [chromium] › e2e/awards-information-access-and-content.spec.ts:58:7 › Awards Information access and content › ID-1: a guest opening the page is redirected to /login (1.4s)
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /awards-information is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✘   5 [chromium] › e2e/awards-information-access-and-content.spec.ts:89:7 › Awards Information access and content › ID-4: caption "Sun* annual awards 2025" and gold heading "Hệ thống giải thưởng SAA 2025" (8.8s)
+  ✘   2 [chromium] › e2e/awards-information-access-and-content.spec.ts:76:7 › Awards Information access and content › ID-3: title sits above the menu and cards; the Kudos block sits below the last award (10.1s)
+  ✘   4 [chromium] › e2e/awards-information-access-and-content.spec.ts:50:7 › Awards Information access and content › ID-0: a signed-in user sees the awards page and no Coming soon (10.3s)
+  ✘   1 [chromium] › e2e/awards-information-access-and-content.spec.ts:66:7 › Awards Information access and content › ID-2: the header "Awards Information" item opens the page (10.6s)
+  ✘   6 [chromium] › e2e/awards-information-access-and-content.spec.ts:97:7 › Awards Information access and content › ID-5: the category menu lists six items in order, each linking to its section (8.9s)
+  ✘   7 [chromium] › e2e/awards-information-access-and-content.spec.ts:107:7 › Awards Information access and content › ID-6: six award sections in order, each with quantity and prize values (9.2s)
+  ✘   9 [chromium] › e2e/awards-information-access-and-content.spec.ts:140:7 › Awards Information access and content › ID-7: each award image renders 336 x 336 at 1440px (8.5s)
+  ✘   8 [chromium] › e2e/awards-information-access-and-content.spec.ts:124:7 › Awards Information access and content › D005: the section description is the full Figma copy, not the homepage card copy (9.7s)
+[WebServer] Route /_not-found is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  12 [chromium] › e2e/awards-information-access-and-content.spec.ts:171:7 › Awards Information access and content › ID-14: an unknown route under /awards-information answers 404 (3.9s)
+  ✘  10 [chromium] › e2e/awards-information-access-and-content.spec.ts:151:7 › Awards Information access and content › ID-8: the Sun* Kudos block shows eyebrow, title and the Chi tiết link (8.1s)
+  ✘  11 [chromium] › e2e/awards-information-access-and-content.spec.ts:160:7 › Awards Information access and content › ID-12: Chi tiết opens /sun-kudos in the same tab (8.1s)
+  ✘  13 [chromium] › e2e/awards-information-access-and-content.spec.ts:179:7 › Awards Information access and content › AC12: switching to English localizes the page with no raw awards.* keys (8.8s)
+  ✘  14 [chromium] › e2e/awards-information-category-navigation.spec.ts:64:7 › Awards Information category navigation › ID-9/ID-11: default active is Top Talent; each click scrolls to its section and leaves only it active (8.0s)
+  ✘  15 [chromium] › e2e/awards-information-category-navigation.spec.ts:75:7 › Awards Information category navigation › D007: a click sets #slug without adding a history entry (8.0s)
+  ✘  16 [chromium] › e2e/awards-information-category-navigation.spec.ts:86:7 › Awards Information category navigation › BR-002: no flicker, only the clicked item ever gains aria-current during a click scroll (9.1s)
+  ✘  17 [chromium] › e2e/awards-information-category-navigation.spec.ts:112:7 › Awards Information category navigation › ID-10: hovering an inactive menu item changes its computed style (7.3s)
+  ✘  18 [chromium] › e2e/awards-information-category-navigation.spec.ts:126:7 › Awards Information category navigation › scroll-spy: manual scrolling moves the active item and leaves the URL untouched (7.3s)
+  ✘  19 [chromium] › e2e/awards-information-category-navigation.spec.ts:140:7 › Awards Information category navigation › deep link #mvp scrolls to MVP and activates it (5.8s)
+  ✘  20 [chromium] › e2e/awards-information-category-navigation.spec.ts:148:7 › Awards Information category navigation › homepage Best Manager card opens #best-manager with that section active (6.4s)
+  ✘  21 [chromium] › e2e/awards-information-category-navigation.spec.ts:158:7 › Awards Information category navigation › ID-13: an unknown hash raises no page error, keeps the top of the page and Top Talent active (7.4s)
+  ✘  22 [chromium] › e2e/awards-information-responsive-layout.spec.ts:42:7 › Awards Information responsive layout › FR-406: at 1440px the menu is left of the cards and stays sticky under the header (7.2s)
+  ✘  23 [chromium] › e2e/awards-information-responsive-layout.spec.ts:67:9 › Awards Information responsive layout › FR-407: at 768px the menu is one horizontal row of tabs with no page-level horizontal scroll (7.2s)
+  ✘  24 [chromium] › e2e/awards-information-responsive-layout.spec.ts:67:9 › Awards Information responsive layout › FR-407: at 375px the menu is one horizontal row of tabs with no page-level horizontal scroll (6.7s)
+  ✘  25 [chromium] › e2e/awards-information-responsive-layout.spec.ts:82:7 › Awards Information responsive layout › D009: from 768px each award card puts image and text side by side (7.1s)
+  ✘  26 [chromium] › e2e/awards-information-responsive-layout.spec.ts:94:7 › Awards Information responsive layout › D009: below 768px each award card stacks the image above the text (7.3s)
+  ✘  27 [chromium] › e2e/awards-information-responsive-layout.spec.ts:105:7 › Awards Information responsive layout › DEC-002: resizing from 1440px to 375px keeps the active menu item (6.8s)
+
+
+  1) [chromium] › e2e/awards-information-access-and-content.spec.ts:50:7 › Awards Information access and content › ID-0: a signed-in user sees the awards page and no Coming soon 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      51 |     await openAwardsSignedIn(page)
+      52 |     await expect(page).toHaveURL(/\/awards-information$/)
+    > 53 |     await expect(awardsPage(page)).toBeVisible()
+         |                                    ^
+      54 |     await expect(placeholderComingSoon(page)).toHaveCount(0)
+      55 |   })
+      56 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:53:36
+
+    Error Context: test-results/awards-information-access--5ccee-rds-page-and-no-Coming-soon-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--5ccee-rds-page-and-no-Coming-soon-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--5ccee-rds-page-and-no-Coming-soon-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/awards-information-access-and-content.spec.ts:66:7 › Awards Information access and content › ID-2: the header "Awards Information" item opens the page 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      69 |     await navLink(page, /Awards Information/i).click()
+      70 |     await expect(page).toHaveURL(/\/awards-information$/)
+    > 71 |     await expect(awardsPage(page)).toBeVisible()
+         |                                    ^
+      72 |     await expect(navLink(page, /Awards Information/i)).toHaveAttribute('aria-current', 'page')
+      73 |   })
+      74 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:71:36
+
+    Error Context: test-results/awards-information-access--32f7d-rmation-item-opens-the-page-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--32f7d-rmation-item-opens-the-page-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--32f7d-rmation-item-opens-the-page-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/awards-information-access-and-content.spec.ts:76:7 › Awards Information access and content › ID-3: title sits above the menu and cards; the Kudos block sits below the last award 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      76 |   test('ID-3: title sits above the menu and cards; the Kudos block sits below the last award', async ({ page }) => {
+      77 |     await openAwardsSignedIn(page)
+    > 78 |     await expect(awardsPage(page)).toBeVisible()
+         |                                    ^
+      79 |     const title = await awardsTitle(page).boundingBox()
+      80 |     const firstAward = await awardSection(page, AWARD_MENU_SLUGS[0]).boundingBox()
+      81 |     const lastAward = await awardSection(page, 'mvp').boundingBox()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:78:36
+
+    Error Context: test-results/awards-information-access--00635-k-sits-below-the-last-award-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--00635-k-sits-below-the-last-award-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--00635-k-sits-below-the-last-award-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/awards-information-access-and-content.spec.ts:89:7 › Awards Information access and content › ID-4: caption "Sun* annual awards 2025" and gold heading "Hệ thống giải thưởng SAA 2025" 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByTestId('awards-caption')
+    Expected: "Sun* annual awards 2025"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByTestId('awards-caption') with timeout 5000ms
+      - waiting for getByTestId('awards-caption')
+
+
+      89 |   test('ID-4: caption "Sun* annual awards 2025" and gold heading "Hệ thống giải thưởng SAA 2025"', async ({ page }) => {
+      90 |     await openAwardsSignedIn(page)
+    > 91 |     await expect(awardsCaption(page)).toHaveText('Sun* annual awards 2025')
+         |                                       ^
+      92 |     await expect(awardsTitle(page)).toHaveText('Hệ thống giải thưởng SAA 2025')
+      93 |     expect(await computedColor(awardsTitle(page))).not.toBe(await computedColor(awardsCaption(page)))
+      94 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:91:39
+
+    Error Context: test-results/awards-information-access--6aac0-thống-giải-thưởng-SAA-2025--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--6aac0-thống-giải-thưởng-SAA-2025--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--6aac0-thống-giải-thưởng-SAA-2025--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › e2e/awards-information-access-and-content.spec.ts:97:7 › Awards Information access and content › ID-5: the category menu lists six items in order, each linking to its section 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-category-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-category-menu') with timeout 5000ms
+      - waiting for getByTestId('awards-category-menu')
+
+
+       97 |   test('ID-5: the category menu lists six items in order, each linking to its section', async ({ page }) => {
+       98 |     await openAwardsSignedIn(page)
+    >  99 |     await expect(awardsMenu(page)).toBeVisible()
+          |                                    ^
+      100 |     await expect(awardsMenu(page).getByRole('link')).toHaveText([...AWARD_MENU_LABELS])
+      101 |     for (const slug of AWARD_MENU_SLUGS) {
+      102 |       await expect(awardsMenuItem(page, slug), slug).toHaveAttribute('href', `#${slug}`)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:99:36
+
+    Error Context: test-results/awards-information-access--999c4-each-linking-to-its-section-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--999c4-each-linking-to-its-section-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--999c4-each-linking-to-its-section-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › e2e/awards-information-access-and-content.spec.ts:107:7 › Awards Information access and content › ID-6: six award sections in order, each with quantity and prize values 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      107 |   test('ID-6: six award sections in order, each with quantity and prize values', async ({ page }) => {
+      108 |     await openAwardsSignedIn(page)
+    > 109 |     await expect(awardsPage(page)).toBeVisible()
+          |                                    ^
+      110 |     const ids = await awardsPage(page).locator('section[id]').evaluateAll((els) => els.map((el) => el.id))
+      111 |     expect(ids).toEqual([...AWARD_MENU_SLUGS])
+      112 |     for (const { slug, quantity, prize } of DETAILS) {
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:109:36
+
+    Error Context: test-results/awards-information-access--ab39a-h-quantity-and-prize-values-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--ab39a-h-quantity-and-prize-values-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--ab39a-h-quantity-and-prize-values-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › e2e/awards-information-access-and-content.spec.ts:124:7 › Awards Information access and content › D005: the section description is the full Figma copy, not the homepage card copy 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('award-detail-top-talent').getByTestId('award-detail-description')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('award-detail-top-talent').getByTestId('award-detail-description') with timeout 5000ms
+      - waiting for getByTestId('award-detail-top-talent').getByTestId('award-detail-description')
+
+
+      130 |     await page.goto(AWARDS_PATH)
+      131 |     const description = awardDetailDescription(page, 'top-talent')
+    > 132 |     await expect(description).toBeVisible()
+          |                               ^
+      133 |     const fullCopy = (await description.textContent())?.trim() ?? ''
+      134 |     expect(fullCopy).not.toBe(homepageCopy)
+      135 |     expect(fullCopy.length).toBeGreaterThan(homepageCopy.length)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:132:31
+
+    Error Context: test-results/awards-information-access--abefb--not-the-homepage-card-copy-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--abefb--not-the-homepage-card-copy-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--abefb--not-the-homepage-card-copy-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › e2e/awards-information-access-and-content.spec.ts:140:7 › Awards Information access and content › ID-7: each award image renders 336 x 336 at 1440px 
+
+    Error: top-talent
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('award-detail-top-talent').getByTestId('award-detail-image')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - top-talent getByTestId('award-detail-top-talent').getByTestId('award-detail-image') with timeout 5000ms
+      - waiting for getByTestId('award-detail-top-talent').getByTestId('award-detail-image')
+
+
+      142 |     for (const slug of AWARD_MENU_SLUGS) {
+      143 |       const image = awardDetailImage(page, slug)
+    > 144 |       await expect(image, slug).toBeVisible()
+          |                                 ^
+      145 |       const box = await image.boundingBox()
+      146 |       expect(box && { width: box.width, height: box.height }, slug).toEqual({ width: 336, height: 336 })
+      147 |     }
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:144:33
+
+    Error Context: test-results/awards-information-access--ac8db-renders-336-x-336-at-1440px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--ac8db-renders-336-x-336-at-1440px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--ac8db-renders-336-x-336-at-1440px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › e2e/awards-information-access-and-content.spec.ts:151:7 › Awards Information access and content › ID-8: the Sun* Kudos block shows eyebrow, title and the Chi tiết link 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('kudos-promo')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('kudos-promo') with timeout 5000ms
+      - waiting for getByTestId('kudos-promo')
+
+
+      151 |   test('ID-8: the Sun* Kudos block shows eyebrow, title and the Chi tiết link', async ({ page }) => {
+      152 |     await openAwardsSignedIn(page)
+    > 153 |     await expect(awardsKudosBlock(page)).toBeVisible()
+          |                                          ^
+      154 |     await expect(awardsKudosBlock(page)).toContainText('Phong trào ghi nhận')
+      155 |     await expect(awardsKudosBlock(page)).toContainText('Sun* Kudos')
+      156 |     await expect(awardsKudosDetail(page)).toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:153:42
+
+    Error Context: test-results/awards-information-access--ab581-title-and-the-Chi-tiết-link-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--ab581-title-and-the-Chi-tiết-link-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--ab581-title-and-the-Chi-tiết-link-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › e2e/awards-information-access-and-content.spec.ts:160:7 › Awards Information access and content › ID-12: Chi tiết opens /sun-kudos in the same tab 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('kudos-promo').getByRole('link', { name: /Chi tiết|Details/ })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('kudos-promo').getByRole('link', { name: /Chi tiết|Details/ }) with timeout 5000ms
+      - waiting for getByTestId('kudos-promo').getByRole('link', { name: /Chi tiết|Details/ })
+
+
+      161 |     await openAwardsSignedIn(page)
+      162 |     const link = awardsKudosDetail(page)
+    > 163 |     await expect(link).toBeVisible()
+          |                        ^
+      164 |     await expect(link).toHaveAttribute('href', '/sun-kudos')
+      165 |     await expect(link).not.toHaveAttribute('target', '_blank')
+      166 |     await link.click()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:163:24
+
+    Error Context: test-results/awards-information-access--3cb26-s-sun-kudos-in-the-same-tab-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--3cb26-s-sun-kudos-in-the-same-tab-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--3cb26-s-sun-kudos-in-the-same-tab-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › e2e/awards-information-access-and-content.spec.ts:179:7 › Awards Information access and content › AC12: switching to English localizes the page with no raw awards.* keys 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      184 |     await page.getByTestId('language-option-en').click()
+      185 |     await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+    > 186 |     await expect(awardsPage(page)).toBeVisible()
+          |                                    ^
+      187 |     await expect(awardsTitle(page)).not.toHaveText('Hệ thống giải thưởng SAA 2025')
+      188 |     await expect(awardsPage(page)).not.toContainText('Số lượng giải thưởng')
+      189 |     await expect(awardsPage(page)).not.toContainText(/\b(awards|home)\.[a-z]+\.[a-z]+/)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-access-and-content.spec.ts:186:36
+
+    Error Context: test-results/awards-information-access--466f9-age-with-no-raw-awards-keys-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-access--466f9-age-with-no-raw-awards-keys-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-access--466f9-age-with-no-raw-awards-keys-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › e2e/awards-information-category-navigation.spec.ts:64:7 › Awards Information category navigation › ID-9/ID-11: default active is Top Talent; each click scrolls to its section and leaves only it active 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      22 |   await loginThroughStubbedGoogle(page)
+      23 |   await page.goto(AWARDS_PATH)
+    > 24 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      25 | }
+      26 |
+      27 | /** Slugs of the items that carry aria-current="location", read from their href="#<slug>". */
+        at openAwardsSignedIn (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:24:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:65:5
+
+    Error Context: test-results/awards-information-categor-7250b-n-and-leaves-only-it-active-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-categor-7250b-n-and-leaves-only-it-active-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-categor-7250b-n-and-leaves-only-it-active-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › e2e/awards-information-category-navigation.spec.ts:75:7 › Awards Information category navigation › D007: a click sets #slug without adding a history entry 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      22 |   await loginThroughStubbedGoogle(page)
+      23 |   await page.goto(AWARDS_PATH)
+    > 24 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      25 | }
+      26 |
+      27 | /** Slugs of the items that carry aria-current="location", read from their href="#<slug>". */
+        at openAwardsSignedIn (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:24:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:76:5
+
+    Error Context: test-results/awards-information-categor-d62b0-hout-adding-a-history-entry-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-categor-d62b0-hout-adding-a-history-entry-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-categor-d62b0-hout-adding-a-history-entry-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [chromium] › e2e/awards-information-category-navigation.spec.ts:86:7 › Awards Information category navigation › BR-002: no flicker, only the clicked item ever gains aria-current during a click scroll 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      22 |   await loginThroughStubbedGoogle(page)
+      23 |   await page.goto(AWARDS_PATH)
+    > 24 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      25 | }
+      26 |
+      27 | /** Slugs of the items that carry aria-current="location", read from their href="#<slug>". */
+        at openAwardsSignedIn (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:24:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:87:5
+
+    Error Context: test-results/awards-information-categor-92863-rrent-during-a-click-scroll-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-categor-92863-rrent-during-a-click-scroll-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-categor-92863-rrent-during-a-click-scroll-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [chromium] › e2e/awards-information-category-navigation.spec.ts:112:7 › Awards Information category navigation › ID-10: hovering an inactive menu item changes its computed style 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      22 |   await loginThroughStubbedGoogle(page)
+      23 |   await page.goto(AWARDS_PATH)
+    > 24 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      25 | }
+      26 |
+      27 | /** Slugs of the items that carry aria-current="location", read from their href="#<slug>". */
+        at openAwardsSignedIn (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:24:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:113:5
+
+    Error Context: test-results/awards-information-categor-8e849--changes-its-computed-style-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-categor-8e849--changes-its-computed-style-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-categor-8e849--changes-its-computed-style-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [chromium] › e2e/awards-information-category-navigation.spec.ts:126:7 › Awards Information category navigation › scroll-spy: manual scrolling moves the active item and leaves the URL untouched 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      22 |   await loginThroughStubbedGoogle(page)
+      23 |   await page.goto(AWARDS_PATH)
+    > 24 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      25 | }
+      26 |
+      27 | /** Slugs of the items that carry aria-current="location", read from their href="#<slug>". */
+        at openAwardsSignedIn (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:24:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:127:5
+
+    Error Context: test-results/awards-information-categor-0f212-nd-leaves-the-URL-untouched-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-categor-0f212-nd-leaves-the-URL-untouched-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-categor-0f212-nd-leaves-the-URL-untouched-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [chromium] › e2e/awards-information-category-navigation.spec.ts:140:7 › Awards Information category navigation › deep link #mvp scrolls to MVP and activates it 
+
+    Error: active item for mvp
+
+    active item for mvp
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+    - Array [
+    -   "mvp",
+    - ]
+    + Array []
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      31 |
+      32 | async function expectOnlyActive(page: Page, slug: AwardMenuSlug): Promise<void> {
+    > 33 |   await expect.poll(() => activeSlugs(page), `active item for ${slug}`).toEqual([slug])
+         |                                                                         ^
+      34 | }
+      35 |
+      36 | /** The section top sits at or below the bottom edge of the sticky site header. */
+        at expectOnlyActive (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:33:73)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:143:11
+
+    Error Context: test-results/awards-information-categor-d0a6d-lls-to-MVP-and-activates-it-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-categor-d0a6d-lls-to-MVP-and-activates-it-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-categor-d0a6d-lls-to-MVP-and-activates-it-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [chromium] › e2e/awards-information-category-navigation.spec.ts:148:7 › Awards Information category navigation › homepage Best Manager card opens #best-manager with that section active 
+
+    Error: active item for best-manager
+
+    active item for best-manager
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+    - Array [
+    -   "best-manager",
+    - ]
+    + Array []
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      31 |
+      32 | async function expectOnlyActive(page: Page, slug: AwardMenuSlug): Promise<void> {
+    > 33 |   await expect.poll(() => activeSlugs(page), `active item for ${slug}`).toEqual([slug])
+         |                                                                         ^
+      34 | }
+      35 |
+      36 | /** The section top sits at or below the bottom edge of the sticky site header. */
+        at expectOnlyActive (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:33:73)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:153:11
+
+    Error Context: test-results/awards-information-categor-cd36b-er-with-that-section-active-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-categor-cd36b-er-with-that-section-active-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-categor-cd36b-er-with-that-section-active-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [chromium] › e2e/awards-information-category-navigation.spec.ts:158:7 › Awards Information category navigation › ID-13: an unknown hash raises no page error, keeps the top of the page and Top Talent active 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      161 |     page.on('pageerror', (error) => pageErrors.push(error.message))
+      162 |     await page.goto(`${AWARDS_PATH}#abc`)
+    > 163 |     await expect(awardsPage(page)).toBeVisible()
+          |                                    ^
+      164 |     await expect(awardsMenu(page)).toBeVisible()
+      165 |     await expectOnlyActive(page, 'top-talent')
+      166 |     await waitForScrollSettled(page)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-category-navigation.spec.ts:163:36
+
+    Error Context: test-results/awards-information-categor-65e06--page-and-Top-Talent-active-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-categor-65e06--page-and-Top-Talent-active-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-categor-65e06--page-and-Top-Talent-active-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [chromium] › e2e/awards-information-responsive-layout.spec.ts:42:7 › Awards Information responsive layout › FR-406: at 1440px the menu is left of the cards and stays sticky under the header 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      27 |   await loginThroughStubbedGoogle(page)
+      28 |   await page.goto(AWARDS_PATH)
+    > 29 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      30 | }
+      31 |
+      32 | async function activeSlugs(page: Page): Promise<string[]> {
+        at openAwardsAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:29:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:43:5
+
+    Error Context: test-results/awards-information-respons-97660-ays-sticky-under-the-header-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-respons-97660-ays-sticky-under-the-header-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-respons-97660-ays-sticky-under-the-header-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [chromium] › e2e/awards-information-responsive-layout.spec.ts:67:9 › Awards Information responsive layout › FR-407: at 768px the menu is one horizontal row of tabs with no page-level horizontal scroll 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      27 |   await loginThroughStubbedGoogle(page)
+      28 |   await page.goto(AWARDS_PATH)
+    > 29 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      30 | }
+      31 |
+      32 | async function activeSlugs(page: Page): Promise<string[]> {
+        at openAwardsAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:29:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:68:7
+
+    Error Context: test-results/awards-information-respons-ff956-age-level-horizontal-scroll-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-respons-ff956-age-level-horizontal-scroll-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-respons-ff956-age-level-horizontal-scroll-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [chromium] › e2e/awards-information-responsive-layout.spec.ts:67:9 › Awards Information responsive layout › FR-407: at 375px the menu is one horizontal row of tabs with no page-level horizontal scroll 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      27 |   await loginThroughStubbedGoogle(page)
+      28 |   await page.goto(AWARDS_PATH)
+    > 29 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      30 | }
+      31 |
+      32 | async function activeSlugs(page: Page): Promise<string[]> {
+        at openAwardsAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:29:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:68:7
+
+    Error Context: test-results/awards-information-respons-4e315-age-level-horizontal-scroll-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-respons-4e315-age-level-horizontal-scroll-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-respons-4e315-age-level-horizontal-scroll-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [chromium] › e2e/awards-information-responsive-layout.spec.ts:82:7 › Awards Information responsive layout › D009: from 768px each award card puts image and text side by side 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      27 |   await loginThroughStubbedGoogle(page)
+      28 |   await page.goto(AWARDS_PATH)
+    > 29 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      30 | }
+      31 |
+      32 | async function activeSlugs(page: Page): Promise<string[]> {
+        at openAwardsAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:29:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:83:5
+
+    Error Context: test-results/awards-information-respons-67087-image-and-text-side-by-side-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-respons-67087-image-and-text-side-by-side-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-respons-67087-image-and-text-side-by-side-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [chromium] › e2e/awards-information-responsive-layout.spec.ts:94:7 › Awards Information responsive layout › D009: below 768px each award card stacks the image above the text 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      27 |   await loginThroughStubbedGoogle(page)
+      28 |   await page.goto(AWARDS_PATH)
+    > 29 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      30 | }
+      31 |
+      32 | async function activeSlugs(page: Page): Promise<string[]> {
+        at openAwardsAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:29:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:95:5
+
+    Error Context: test-results/awards-information-respons-b0e01-ks-the-image-above-the-text-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-respons-b0e01-ks-the-image-above-the-text-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-respons-b0e01-ks-the-image-above-the-text-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [chromium] › e2e/awards-information-responsive-layout.spec.ts:105:7 › Awards Information responsive layout › DEC-002: resizing from 1440px to 375px keeps the active menu item 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('awards-information')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('awards-information') with timeout 5000ms
+      - waiting for getByTestId('awards-information')
+
+
+      27 |   await loginThroughStubbedGoogle(page)
+      28 |   await page.goto(AWARDS_PATH)
+    > 29 |   await expect(awardsPage(page)).toBeVisible()
+         |                                  ^
+      30 | }
+      31 |
+      32 | async function activeSlugs(page: Page): Promise<string[]> {
+        at openAwardsAt (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:29:34)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/awards-information-responsive-layout.spec.ts:106:5
+
+    Error Context: test-results/awards-information-respons-db0fd--keeps-the-active-menu-item-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/awards-information-respons-db0fd--keeps-the-active-menu-item-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/awards-information-respons-db0fd--keeps-the-active-menu-item-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25 failed
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:50:7 › Awards Information access and content › ID-0: a signed-in user sees the awards page and no Coming soon 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:66:7 › Awards Information access and content › ID-2: the header "Awards Information" item opens the page 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:76:7 › Awards Information access and content › ID-3: title sits above the menu and cards; the Kudos block sits below the last award 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:89:7 › Awards Information access and content › ID-4: caption "Sun* annual awards 2025" and gold heading "Hệ thống giải thưởng SAA 2025" 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:97:7 › Awards Information access and content › ID-5: the category menu lists six items in order, each linking to its section 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:107:7 › Awards Information access and content › ID-6: six award sections in order, each with quantity and prize values 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:124:7 › Awards Information access and content › D005: the section description is the full Figma copy, not the homepage card copy 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:140:7 › Awards Information access and content › ID-7: each award image renders 336 x 336 at 1440px 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:151:7 › Awards Information access and content › ID-8: the Sun* Kudos block shows eyebrow, title and the Chi tiết link 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:160:7 › Awards Information access and content › ID-12: Chi tiết opens /sun-kudos in the same tab 
+    [chromium] › e2e/awards-information-access-and-content.spec.ts:179:7 › Awards Information access and content › AC12: switching to English localizes the page with no raw awards.* keys 
+    [chromium] › e2e/awards-information-category-navigation.spec.ts:64:7 › Awards Information category navigation › ID-9/ID-11: default active is Top Talent; each click scrolls to its section and leaves only it active 
+    [chromium] › e2e/awards-information-category-navigation.spec.ts:75:7 › Awards Information category navigation › D007: a click sets #slug without adding a history entry 
+    [chromium] › e2e/awards-information-category-navigation.spec.ts:86:7 › Awards Information category navigation › BR-002: no flicker, only the clicked item ever gains aria-current during a click scroll 
+    [chromium] › e2e/awards-information-category-navigation.spec.ts:112:7 › Awards Information category navigation › ID-10: hovering an inactive menu item changes its computed style 
+    [chromium] › e2e/awards-information-category-navigation.spec.ts:126:7 › Awards Information category navigation › scroll-spy: manual scrolling moves the active item and leaves the URL untouched 
+    [chromium] › e2e/awards-information-category-navigation.spec.ts:140:7 › Awards Information category navigation › deep link #mvp scrolls to MVP and activates it 
+    [chromium] › e2e/awards-information-category-navigation.spec.ts:148:7 › Awards Information category navigation › homepage Best Manager card opens #best-manager with that section active 
+    [chromium] › e2e/awards-information-category-navigation.spec.ts:158:7 › Awards Information category navigation › ID-13: an unknown hash raises no page error, keeps the top of the page and Top Talent active 
+    [chromium] › e2e/awards-information-responsive-layout.spec.ts:42:7 › Awards Information responsive layout › FR-406: at 1440px the menu is left of the cards and stays sticky under the header 
+    [chromium] › e2e/awards-information-responsive-layout.spec.ts:67:9 › Awards Information responsive layout › FR-407: at 768px the menu is one horizontal row of tabs with no page-level horizontal scroll 
+    [chromium] › e2e/awards-information-responsive-layout.spec.ts:67:9 › Awards Information responsive layout › FR-407: at 375px the menu is one horizontal row of tabs with no page-level horizontal scroll 
+    [chromium] › e2e/awards-information-responsive-layout.spec.ts:82:7 › Awards Information responsive layout › D009: from 768px each award card puts image and text side by side 
+    [chromium] › e2e/awards-information-responsive-layout.spec.ts:94:7 › Awards Information responsive layout › D009: below 768px each award card stacks the image above the text 
+    [chromium] › e2e/awards-information-responsive-layout.spec.ts:105:7 › Awards Information responsive layout › DEC-002: resizing from 1440px to 375px keeps the active menu item 
+  2 passed (5.6m)
+error: script "test:e2e" exited with code 1

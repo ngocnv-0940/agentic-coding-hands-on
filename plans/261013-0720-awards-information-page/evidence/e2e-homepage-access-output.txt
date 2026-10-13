@@ -1,0 +1,24 @@
+$ playwright test "e2e/homepage-access-and-landing.spec.ts"
+[WebServer] $ next dev -p "3100"
+
+Running 9 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  1 [chromium] › e2e/homepage-access-and-landing.spec.ts:11:7 › Homepage access and landing › guest on / is redirected to /login and never sees the homepage hero (984ms)
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  2 [chromium] › e2e/homepage-access-and-landing.spec.ts:27:7 › Homepage access and landing › callback with next=https://evil.example still lands on the homepage / (2.2s)
+[WebServer] Route /todo is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  3 [chromium] › e2e/homepage-access-and-landing.spec.ts:37:7 › Homepage access and landing › /todo stays reachable for a signed-in user (3.5s)
+  ✓  5 [chromium] › e2e/homepage-access-and-landing.spec.ts:45:7 › Homepage access and landing › a non-admin opening /admin is sent to the homepage / (2.6s)
+  ✓  4 [chromium] › e2e/homepage-access-and-landing.spec.ts:18:7 › Homepage access and landing › guest opening any placeholder or nested route is redirected to /login (3.8s)
+[WebServer] Route /admin is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  6 [chromium] › e2e/homepage-access-and-landing.spec.ts:54:7 › Homepage access and landing › an admin opening /admin sees the Coming soon placeholder with header and footer (2.3s)
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  7 [chromium] › e2e/homepage-access-and-landing.spec.ts:64:7 › Homepage access and landing › a user_metadata admin claim does not open /admin: the user is sent to the homepage (1.8s)
+[WebServer] Route /awards-information is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /standards is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  9 [chromium] › e2e/homepage-access-and-landing.spec.ts:86:7 › Homepage access and landing › the active nav item follows the current placeholder route (2.2s)
+[WebServer] Route /profile is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  8 [chromium] › e2e/homepage-access-and-landing.spec.ts:74:7 › Homepage access and landing › signed-in placeholder pages show the shared header, footer and Coming soon (2.7s)
+
+  9 passed (4.7m)

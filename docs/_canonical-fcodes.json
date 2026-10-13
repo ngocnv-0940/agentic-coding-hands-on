@@ -51,6 +51,23 @@
         "bl": [],
         "perms": []
       }
+    },
+    {
+      "fcode": "F004",
+      "name": "Awards Information",
+      "slug": "F004_AwardsInformation",
+      "priority": "P1",
+      "type": "ui",
+      "related": {
+        "screens": [
+          "SCR004_AwardsInformation"
+        ],
+        "user_stories": [],
+        "routes": [],
+        "models": [],
+        "bl": [],
+        "perms": []
+      }
     }
   ]
 }

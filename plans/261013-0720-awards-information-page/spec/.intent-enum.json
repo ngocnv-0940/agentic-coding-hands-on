@@ -1,0 +1,5 @@
+{
+  "mode": "single",
+  "intents": ["(signed-in Sun* member, browse SAA 2025 award system, learn each award's description, quantity and prize value and jump between categories)"],
+  "justification": ""
+}
