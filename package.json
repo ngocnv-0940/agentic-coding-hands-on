@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "supabase:start": "sh scripts/start-local-supabase.sh",
+    "supabase:stop": "supabase stop",
     "lint": "eslint",
     "test:e2e": "playwright test"
   },
