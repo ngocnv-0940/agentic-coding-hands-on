@@ -85,6 +85,23 @@
         "bl": [],
         "perms": []
       }
+    },
+    {
+      "fcode": "F006",
+      "name": "Kudos Live Board",
+      "slug": "F006_KudosLiveBoard",
+      "priority": "P1",
+      "type": "ui",
+      "related": {
+        "screens": [
+          "SCR006_KudosLiveBoard"
+        ],
+        "user_stories": [],
+        "routes": [],
+        "models": [],
+        "bl": [],
+        "perms": []
+      }
     }
   ]
 }

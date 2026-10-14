@@ -167,3 +167,10 @@ Trang tối thiểu được bảo vệ, nguồn `app/todo/page.tsx:11`. Hiện 
 **Route:** /prelaunch
 **Description:** Trang đếm ngược công khai trước ngày ra mắt (thiết kế MoMorph `8PJQswPZmU`): nền tối họa tiết, tiêu đề "Sự kiện sẽ bắt đầu sau", ba khối DAYS, HOURS, MINUTES, tự cập nhật theo phút và tự chuyển về `/` khi tới `SITE_LAUNCH_AT`. Nằm ngoài nhóm `(main)`, không header, không kiểm phiên. Đặc tả đầy đủ ở `docs/screens/SCR005_CountdownPrelaunch/spec.md`.
 **States:** success
+
+## SCR006_KudosLiveBoard: Sun* Kudos - Live board
+
+**Feature:** F006 — Kudos Live Board
+**Route:** /sun-kudos
+**Description:** Live board Sun* Kudos (thiết kế MoMorph `MaZUn5xHXZ`) cho người đã đăng nhập, thay trang giữ chỗ trong nhóm `(main)`: banner KUDOS và thanh ghi nhận, Highlight Kudos (5 kudo nhiều tim nhất, carousel), Spotlight board (kéo, phóng to, tìm tên), ALL KUDOS cuộn vô hạn và sidebar số liệu cá nhân. Lọc theo hashtag, phòng ban qua URL (`?hashtag=&department=`), thả tim qua RPC `toggle_kudo_like`, sao chép liên kết kudo; `/sun-kudos/<id>` là trang giữ chỗ. Dữ liệu thật từ Postgres của Supabase. Đặc tả đầy đủ ở `docs/screens/SCR006_KudosLiveBoard/spec.md`.
+**States:** loading, empty, error, saving, success

@@ -2,6 +2,28 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-14 — Sun* Kudos Live board và schema Postgres đầu tiên (F006_KudosLiveBoard, SCR006)
+
+**Thêm**
+
+- `/sun-kudos` thay trang giữ chỗ: banner, Highlight Kudos (top 5 theo số tim, carousel), Spotlight board (pan/zoom bằng CSS transform, tìm tên không phân biệt dấu), ALL KUDOS cuộn vô hạn (10 mục mỗi trang, con trỏ `(created_at, id)`), bộ lọc hashtag và phòng ban lưu trong URL (`?hashtag=<slug>&department=<code>`, giá trị lạ bị bỏ), nút tim, Copy Link kèm toast, sidebar số liệu và 10 hộp quà mở gần nhất. Mã ở `app/(main)/sun-kudos/` (`_components`, `_behavior`, `_wiring`) và `lib/kudos/`; chuỗi UI ở `lib/i18n/dictionary-kudos-{vi,en}.ts`; ảnh ở `public/images/kudos/`.
+- `/sun-kudos/[id]`: trang giữ chỗ chi tiết Kudo (dựng lại Coming soon).
+- Schema Postgres đầu tiên của repo, ba migration trong `supabase/migrations/`: `…095439_kudos_live_board_tables.sql` (9 bảng, chỉ mục, RLS chỉ cho `authenticated` đọc, thu quyền ghi), `…095441_kudos_live_board_functions.sql` (5 RPC đọc `SECURITY INVOKER`, RPC `toggle_kudo_like` `SECURITY DEFINER`, hàm trợ giúp ở schema `kudos_private`), `…095442_kudos_live_board_grants.sql` (`execute` chỉ cho `authenticated`). Dữ liệu mẫu `supabase/seed.sql`.
+- Luật tim ở Postgres: một tim mỗi người mỗi Kudo, người gửi không tự thích (`self_like`), người dùng không có hàng `sunners` bị từ chối (`sunner_not_found`, không tự tạo hàng), ngày đặc biệt (`special_days`, ngày `Asia/Ho_Chi_Minh`) tặng 2 tim, bỏ thích thu hồi đúng số tim đã lưu.
+- Hai Server Action: `loadMoreKudos`, `toggleKudoLikeAction` (`lib/kudos/`).
+- Quy trình cơ sở dữ liệu cục bộ: `supabase db reset` (migration + seed) và `supabase test db` (pgTAP ở `supabase/tests/database/`: `kudos-like-rules`, `kudos-rls-and-reads`, `kudos-seed-matches-e2e-fixture`).
+- 6 spec E2E `e2e/kudos-*.spec.ts`; Supabase giả (`e2e/support/mock-supabase-server.ts`, `mock-kudos-*.ts`) phục vụ thêm 6 RPC với dữ liệu theo từng danh tính và hai endpoint điều khiển chỉ có ở mock.
+
+**Thay đổi**
+
+- `e2e/homepage-access-and-landing.spec.ts` không còn coi `/sun-kudos` là trang Coming soon; `/sun-kudos/x` vẫn được kiểm qua trang giữ chỗ `[id]`.
+- Từ điển vi/en gộp thêm từ điển Kudos.
+- `README.md`, `docs/system/*`, `docs/generated/*` cập nhật theo F006; quyết định ở `plans/261014-0900-kudos-live-board/clarifications.md`.
+
+**Lưu ý**
+
+- Mock E2E và SQL là hai bản cài đặt của cùng luật tim; bản SQL là chuẩn. Số sao hero trên stack thật có thể ít hơn trên mock vì suy ra từ Kudo trong seed.
+
 ## 2026-10-13 — Trang đếm ngược trước ngày ra mắt và khóa site (F005_CountdownPrelaunch, SCR005)
 
 **Thêm**
