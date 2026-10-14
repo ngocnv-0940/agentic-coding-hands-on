@@ -73,7 +73,7 @@ test.describe('Homepage access and landing', () => {
   // FR-002/D010: every placeholder reuses the homepage header and footer, with Coming soon in the body
   test('signed-in placeholder pages show the shared header, footer and Coming soon', async ({ page }) => {
     await loginThroughStubbedGoogle(page)
-    for (const path of ['/sun-kudos', '/standards', '/profile']) {
+    for (const path of ['/standards', '/profile']) {
       await page.goto(path)
       await expect(page, `GET ${path}`).toHaveURL(new RegExp(`${path}$`))
       await expect(header(page)).toBeVisible()

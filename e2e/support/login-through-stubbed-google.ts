@@ -1,15 +1,27 @@
 import { expect, type Page, type Route } from '@playwright/test'
-import { STUB_CODE, STUB_CODE_ADMIN, STUB_CODE_USERMETA_ADMIN } from './mock-supabase-server'
+import {
+  STUB_CODE,
+  STUB_CODE_ADMIN,
+  STUB_CODE_KUDOS_EMPTY,
+  STUB_CODE_KUDOS_LIKER,
+  STUB_CODE_KUDOS_OUTSIDER,
+  STUB_CODE_KUDOS_SENDER,
+  STUB_CODE_USERMETA_ADMIN,
+} from './mock-supabase-server'
 
 export const LOGIN_BUTTON = /login with google/i
 const APP_ORIGIN = 'http://localhost:3100'
 
 /** user: no admin claim; admin: app_metadata.role; usermeta-admin: user_metadata.role only (must not grant admin). */
-export type StubIdentity = 'user' | 'admin' | 'usermeta-admin'
+export type StubIdentity = 'user' | 'admin' | 'usermeta-admin' | 'kudos-sender' | 'kudos-liker' | 'kudos-outsider' | 'kudos-empty'
 const CODE_FOR_IDENTITY: Record<StubIdentity, string> = {
   user: STUB_CODE,
   admin: STUB_CODE_ADMIN,
   'usermeta-admin': STUB_CODE_USERMETA_ADMIN,
+  'kudos-sender': STUB_CODE_KUDOS_SENDER,
+  'kudos-liker': STUB_CODE_KUDOS_LIKER,
+  'kudos-outsider': STUB_CODE_KUDOS_OUTSIDER,
+  'kudos-empty': STUB_CODE_KUDOS_EMPTY,
 }
 
 export interface GoogleAuthorizeStub {

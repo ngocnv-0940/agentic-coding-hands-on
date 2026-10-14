@@ -9,12 +9,18 @@
  */
 import { randomUUID } from 'node:crypto'
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http'
+import { handleKudosRest, KUDOS_EMPTY_USER_ID } from './mock-kudos-rest-routes'
 
 export const MOCK_PORT = Number(process.env.E2E_SUPABASE_PORT ?? 54399)
 export const STUB_CODE = 'stub-code'
 export const STUB_CODE_ADMIN = 'stub-code-admin'
 /** Security negative: `role: 'admin'` only in user_metadata (user-editable). The app must NOT grant admin. */
 export const STUB_CODE_USERMETA_ADMIN = 'stub-code-usermeta-admin'
+/** Kudos identities: sender/liker act on the board; outsider has no sunner row; empty sees no data. */
+export const STUB_CODE_KUDOS_SENDER = 'stub-code-kudos-sender'
+export const STUB_CODE_KUDOS_LIKER = 'stub-code-kudos-liker'
+export const STUB_CODE_KUDOS_OUTSIDER = 'stub-code-kudos-outsider'
+export const STUB_CODE_KUDOS_EMPTY = 'stub-code-kudos-empty'
 
 interface MockUser {
   id: string
@@ -53,11 +59,18 @@ const USERMETA_ADMIN_USER: MockUser = {
   user_metadata: { full_name: 'E2E Usermeta Admin', role: 'admin' },
 }
 
+/** Kudos identity: the base USER shape with its own id and email (no admin claim). */
+const kudosUser = (id: string): MockUser => ({ ...USER, id, email: `${id}@example.com`, user_metadata: { full_name: id } })
+
 /** Auth code issued by the stubbed Google redirect -> the identity the code signs in. */
 const USERS: Record<string, MockUser> = {
   [STUB_CODE]: USER,
   [STUB_CODE_ADMIN]: ADMIN_USER,
   [STUB_CODE_USERMETA_ADMIN]: USERMETA_ADMIN_USER,
+  [STUB_CODE_KUDOS_SENDER]: kudosUser('kudos-sender'),
+  [STUB_CODE_KUDOS_LIKER]: kudosUser('kudos-liker'),
+  [STUB_CODE_KUDOS_OUTSIDER]: kudosUser('kudos-outsider'),
+  [STUB_CODE_KUDOS_EMPTY]: kudosUser(KUDOS_EMPTY_USER_ID),
 }
 
 /** access token -> owner. A user endpoint call resolves the owner, so each session keeps its identity. */
@@ -142,6 +155,9 @@ async function handle(req: IncomingMessage, res: ServerResponse) {
     return send(res, 204)
   }
 
+  if (pathname.startsWith('/rest/v1/') || pathname.startsWith('/__e2e/kudos/')) {
+    return handleKudosRest(req, res, pathname, accessOwners.get(bearerToken(req) ?? ''))
+  }
   console.error(`[e2e-mock-supabase] unhandled ${req.method} ${pathname}`)
   return send(res, 404, { code: 404, msg: `e2e mock has no route for ${req.method} ${pathname}` })
 }
