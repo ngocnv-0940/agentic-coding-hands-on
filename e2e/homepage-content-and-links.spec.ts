@@ -54,7 +54,12 @@ test.describe('Homepage content and links', () => {
   test('hovering an award card changes its transform or shadow', async ({ page }) => {
     const card = awardCard(page, 'top-talent')
     await expect(card).toBeVisible()
-    const lookOf = () => card.evaluate((el) => `${getComputedStyle(el).transform}|${getComputedStyle(el).boxShadow}`)
+    // Tailwind v4 lifts via the standalone `translate` property, so `transform` alone stays `none`
+    const lookOf = () =>
+      card.evaluate((el) => {
+        const style = getComputedStyle(el)
+        return `${style.translate}|${style.transform}|${style.boxShadow}`
+      })
     const before = await lookOf()
     await card.hover()
     await expect.poll(lookOf).not.toBe(before)

@@ -10,15 +10,16 @@ export function AwardCard({ award, detailLabel }: { award: AwardCardData; detail
     <Link
       href={award.href}
       data-testid={`award-card-${award.slug}`}
-      className="flex w-full flex-col gap-4 rounded-3xl transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(250,226,135,0.2)] focus-visible:outline-2 focus-visible:outline-saa-gold md:gap-6"
+      className="group flex w-full flex-col gap-4 rounded-3xl transition-transform duration-200 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-saa-gold md:gap-6"
     >
-      {/* mm:I2167:9075;214:1019 — award BG (mm:I2167:9075;214:1019;81:2442) and name artwork are pre-composited into the slug PNG */}
+      {/* mm:I2167:9075;214:1019 — award BG (mm:I2167:9075;214:1019;81:2442) and name artwork are pre-composited into the slug PNG.
+          Hover glows the image only: the card has no padding (per design), so a card-wide shadow would crowd the text. */}
       <Image
         src={award.imageSrc}
         alt=""
         width={336}
         height={336}
-        className="aspect-square w-full rounded-3xl border border-saa-gold shadow-[0_4px_4px_rgba(0,0,0,0.25),0_0_6px_#fae287]"
+        className="aspect-square w-full rounded-3xl border border-saa-gold shadow-[0_4px_4px_rgba(0,0,0,0.25),0_0_6px_#fae287] transition-shadow duration-200 group-hover:shadow-[0_4px_4px_rgba(0,0,0,0.25),0_0_20px_#fae287]"
       />
       {/* mm:I2167:9075;214:1020 */}
       <div className="flex flex-col gap-1">
