@@ -4,8 +4,8 @@ import { appAlert } from './support/app-alert'
 import { startBrowserClockAt } from './support/event-clock'
 import { browserTimeAfterStart, DAY_MS, naturalWidthOf, prelaunchScreen } from './support/prelaunch-locators-and-clock'
 
-// Run on the locked server only (E2E_EVENT_START_AT in the future):
-//   E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch
+// Run on the locked server only (E2E_SITE_LAUNCH_AT in the future):
+//   E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch
 // Spec ids: TC ACCESS-1..4, FR-101..105, FR-601, BR-001, BR-003, DEC-001, US002, US003, SC-001, SC-002.
 
 const VI_ERROR = 'Đăng nhập không thành công. Vui lòng thử lại.'

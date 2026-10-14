@@ -11,20 +11,20 @@ const MID_MINUTE_MS = 30_000
 const FAST_FORWARD_STEP_MS = 20 * DAY_MS
 
 /**
- * The locked server's start instant, from the run command
- * (`E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch`).
+ * The locked server's launch instant, from the run command
+ * (`E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch`).
  * Throws with the run command when a @prelaunch spec runs without it: a missing value
  * would otherwise read as "already started" and fail for the wrong reason.
  */
 export function prelaunchTargetMs(): number {
-  const raw = process.env.E2E_EVENT_START_AT
+  const raw = process.env.E2E_SITE_LAUNCH_AT
   if (!raw) {
     throw new Error(
-      'Run @prelaunch specs with E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch',
+      'Run @prelaunch specs with E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch',
     )
   }
   const ms = Date.parse(raw)
-  if (Number.isNaN(ms)) throw new Error(`E2E_EVENT_START_AT is not a date: ${raw}`)
+  if (Number.isNaN(ms)) throw new Error(`E2E_SITE_LAUNCH_AT is not a date: ${raw}`)
   return ms
 }
 
@@ -33,7 +33,7 @@ export function browserTimeWithMinutesLeft(minutesLeft: number): Date {
   return new Date(prelaunchTargetMs() - minutesLeft * MINUTE_MS - MID_MINUTE_MS)
 }
 
-/** Browser time `ms` after the start (a client clock ahead of the real start). */
+/** Browser time `ms` after the launch (a client clock ahead of the real launch). */
 export function browserTimeAfterStart(ms: number): Date {
   return new Date(prelaunchTargetMs() + ms)
 }

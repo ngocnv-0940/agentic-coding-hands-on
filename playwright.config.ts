@@ -11,18 +11,24 @@ const appCommand = process.env.E2E_PROD
   ? `bun run build && bun run start -p ${APP_PORT}`
   : `bun run dev -p ${APP_PORT}`
 
-// One app server per run means one EVENT_START_AT per run. The default run pins the
-// Figma event start; E2E_EVENT_START_AT starts a separate server with another value
-// (invalid-env run: `E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid`).
+// One app server per run means one EVENT_START_AT and one SITE_LAUNCH_AT per run. The default run
+// pins the Figma event start (homepage countdown) and leaves SITE_LAUNCH_AT unset (no site lock).
+// E2E_EVENT_START_AT / E2E_SITE_LAUNCH_AT start a separate server with another value:
+//   homepage invalid env: E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid
+//   prelaunch invalid env: E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid
 const EVENT_START_AT = process.env.E2E_EVENT_START_AT ?? '2025-12-26T18:30:00+07:00'
 const customEventEnv = process.env.E2E_EVENT_START_AT !== undefined
+const SITE_LAUNCH_AT = process.env.E2E_SITE_LAUNCH_AT
+const customLaunchEnv = SITE_LAUNCH_AT !== undefined
 
 // Tagged groups are excluded unless their run asks for them: @smoke needs the real stack,
-// @event-env-invalid and @prelaunch need their own server (a custom EVENT_START_AT; @prelaunch
-// runs with E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch).
+// @event-env-invalid needs a custom EVENT_START_AT, and @launch-env-invalid / @prelaunch need a custom
+// SITE_LAUNCH_AT (@prelaunch runs with
+// E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch).
 const grepInvert = [
   ...(process.env.E2E_SMOKE ? [] : [/@smoke/]),
-  ...(customEventEnv ? [] : [/@event-env-invalid/, /@prelaunch/]),
+  ...(customEventEnv ? [] : [/@event-env-invalid/]),
+  ...(customLaunchEnv ? [] : [/@launch-env-invalid/, /@prelaunch/]),
 ]
 
 export default defineConfig({
@@ -49,14 +55,17 @@ export default defineConfig({
     {
       command: appCommand,
       url: `${APP_URL}/`,
-      // A reused server would keep whatever EVENT_START_AT it was started with, so a custom
-      // event env always gets a fresh server.
-      reuseExistingServer: !process.env.CI && !customEventEnv,
+      // A reused server would keep whatever EVENT_START_AT / SITE_LAUNCH_AT it was started with, so a
+      // custom event or launch env always gets a fresh server.
+      reuseExistingServer: !process.env.CI && !customEventEnv && !customLaunchEnv,
       timeout: 180_000,
       env: {
         NEXT_PUBLIC_SUPABASE_URL: MOCK_URL,
         NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: 'e2e-publishable-key',
         EVENT_START_AT,
+        // Empty by default => no lock. Always pinned: a defined (even empty) value beats
+        // .env.local in @next/env, so a local SITE_LAUNCH_AT can never lock the default run.
+        SITE_LAUNCH_AT: SITE_LAUNCH_AT ?? '',
       },
     },
   ],

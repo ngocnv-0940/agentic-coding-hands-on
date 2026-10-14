@@ -12,9 +12,9 @@ import {
   trackRootNavigations,
 } from './support/prelaunch-locators-and-clock'
 
-// Run on the locked server only: E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch
+// Run on the locked server only: E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch
 // Spec ids: FR-402, FR-403, DEC-004, ALG-002, US004, SC-006.
-// The start is ~73 years out, far past the 2^31-1 ms setTimeout ceiling: a naive timer would fire at once and loop.
+// The launch time is ~73 years out, far past the 2^31-1 ms setTimeout ceiling: a naive timer would fire at once and loop.
 
 /** Quiet window for "no request" checks. Absence over a fixed window, no polling race. */
 const QUIET_WINDOW_MS = 3_000
@@ -29,9 +29,9 @@ async function wakeTab(page: Page): Promise<void> {
   })
 }
 
-test.describe('@prelaunch Redirect home at the real event start', () => {
-  // ALG-002 overflow guard: a far-future start on a real clock must not fire the redirect at once
-  test('ALG-002 / FR-403: on a real clock a 2099 start makes no / request for 3 s and the URL stays /prelaunch', async ({ page }) => {
+test.describe('@prelaunch Redirect home at the real launch time', () => {
+  // ALG-002 overflow guard: a far-future launch on a real clock must not fire the redirect at once
+  test('ALG-002 / FR-403: on a real clock a 2099 launch makes no / request for 3 s and the URL stays /prelaunch', async ({ page }) => {
     const roots = trackRootNavigations(page)
     await page.goto('/prelaunch')
     await expect(prelaunchScreen(page)).toBeVisible()
@@ -40,8 +40,8 @@ test.describe('@prelaunch Redirect home at the real event start', () => {
     await expect(page).toHaveURL(/\/prelaunch$/)
   })
 
-  // FR-402 / DEC-004: at the real start the page goes to / once; the locked proxy returns it to /prelaunch, no loop
-  test('FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows', async ({ page }) => {
+  // FR-402 / DEC-004: at the real launch the page goes to / once; the locked proxy returns it to /prelaunch, no loop
+  test('FR-402 / DEC-004: past the real launch one / request goes out, the guest is back on /prelaunch and no loop follows', async ({ page }) => {
     await page.clock.install()
     await page.goto('/prelaunch')
     await expect(prelaunchScreen(page)).toBeVisible()
@@ -59,8 +59,8 @@ test.describe('@prelaunch Redirect home at the real event start', () => {
     expect(roots.length, 'second / request within 3 s (redirect loop)').toBe(1)
   })
 
-  // FR-403 / DEC-004: a client clock already past the start must not send the page home (server time decides)
-  test('FR-403 / DEC-004: a browser clock an hour past the start makes no / request for 3 s', async ({ page }) => {
+  // FR-403 / DEC-004: a client clock already past the launch must not send the page home (server time decides)
+  test('FR-403 / DEC-004: a browser clock an hour past the launch makes no / request for 3 s', async ({ page }) => {
     await startBrowserClockAt(page, browserTimeAfterStart(60 * MINUTE_MS).toISOString())
     const roots = trackRootNavigations(page)
     await page.goto('/prelaunch')
@@ -94,8 +94,8 @@ test.describe('@prelaunch Redirect home at the real event start', () => {
     expect(rootDocs, 'document requests to / after the wake').toHaveLength(0)
   })
 
-  // FR-403 negative: a wake before the wall clock reaches the start must not reload
-  test('FR-403: a tab woken before the wall clock reaches the start does not reload', async ({ page }) => {
+  // FR-403 negative: a wake before the wall clock reaches the launch must not reload
+  test('FR-403: a tab woken before the wall clock reaches the launch does not reload', async ({ page }) => {
     await page.clock.install()
     await page.goto('/prelaunch')
     await expect(prelaunchScreen(page)).toBeVisible()

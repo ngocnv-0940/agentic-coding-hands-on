@@ -10,18 +10,21 @@ import {
   digitTiles,
   expectCountdown,
   expectNoHydrationErrors,
+  DAY_MS,
   languageTrigger,
   MINUTE_MS,
   naturalWidthOf,
   prelaunchBackground,
   prelaunchScreen,
+  prelaunchTargetMs,
   prelaunchTitle,
   recordPageProblems,
   type CountdownUnit,
   unitLabel,
 } from './support/prelaunch-locators-and-clock'
 
-// Run on the locked server only: E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch
+// Run on the locked server only: E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch
+// Launch time = SITE_LAUNCH_AT (the homepage EVENT_START_AT stays at its past default in this run).
 // Spec ids: TC GUI 5-11, FUNCTION 12-17; FR-002, FR-201..206, FR-401, DEC-003, US001, SC-003..SC-005, SC-007.
 // Values come from the browser clock: each case sets the browser time to (start − minutesLeft − 30 s),
 // so the page reads exactly `minutesLeft` whole minutes. The server lock still uses the real clock.
@@ -150,6 +153,18 @@ test.describe('@prelaunch Prelaunch countdown display', () => {
       expectNoHydrationErrors(page)
       await page.close()
     }
+  })
+
+  // Split (F005 follow-up): the target is SITE_LAUNCH_AT, never EVENT_START_AT. On the real clock the
+  // days are those left to 2099; EVENT_START_AT (2025-12-26, past) would read 00 00 00.
+  test('SITE_LAUNCH_AT drives the countdown: real clock shows the days left to 2099, not the past EVENT_START_AT', async ({ page }) => {
+    await page.goto('/prelaunch')
+    await expect(prelaunchScreen(page)).toBeVisible()
+    const daysLeft = Math.floor((prelaunchTargetMs() - Date.now()) / DAY_MS)
+    expect(daysLeft).toBeGreaterThan(20_000)
+    const shown = Number(((await countdownUnitBox(page, 'days').textContent()) ?? '').replace(/\s/g, ''))
+    expect(shown).toBeGreaterThan(20_000)
+    expect(Math.abs(shown - daysLeft)).toBeLessThanOrEqual(1)
   })
 
   // TC FUNCTION 16 / FR-206 / DEC-003: 30 s left reads 00 00 00 and the page stays on /prelaunch
