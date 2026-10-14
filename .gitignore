@@ -46,3 +46,7 @@ playwright-report/
 
 # keep the committed env template
 !.env.example
+
+# Python bytecode
+__pycache__/
+*.pyc
