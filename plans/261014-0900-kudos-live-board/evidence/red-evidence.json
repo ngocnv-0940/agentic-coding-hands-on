@@ -1,0 +1,70 @@
+{
+  "phase": 1,
+  "feature": "kudos-live-board",
+  "testPolicy": "e2e-red-first",
+  "status": "valid-red",
+  "redTestFiles": [
+    "e2e/kudos-board-access-and-layout.spec.ts",
+    "e2e/kudos-highlight-and-filters.spec.ts",
+    "e2e/kudos-feed-and-cards.spec.ts",
+    "e2e/kudos-spotlight.spec.ts",
+    "e2e/kudos-sidebar-and-modal.spec.ts",
+    "e2e/kudos-like-and-hearts.spec.ts",
+    "e2e/support/kudos-board-session.ts",
+    "e2e/support/kudos-locators.ts",
+    "e2e/support/kudos-fixture-ids.ts",
+    "e2e/support/mock-kudos-rest-routes.ts",
+    "e2e/support/mock-kudos-board-queries.ts",
+    "e2e/support/mock-kudos-like-rules.ts",
+    "e2e/support/mock-kudos-state.ts",
+    "e2e/support/mock-kudos-fixture-people.ts",
+    "e2e/support/mock-kudos-fixture-kudos.ts"
+  ],
+  "redCommand": "bun run test:e2e e2e/kudos-",
+  "redExitCode": 1,
+  "redCounts": {
+    "total": 57,
+    "failed": 52,
+    "notRun": 4,
+    "passed": 1,
+    "passedTest": "TC ACCESSING 3 / FR-106: a guest on /sun-kudos is redirected to /login (existing guard, expected green)",
+    "notRunReason": "kudos-like-and-hearts.spec.ts is serial; the first test failed on the board precondition, so Playwright did not run the remaining 4 serial tests"
+  },
+  "redFailure": [
+    "51 tests: expect(getByTestId('kudos-board')).toBeVisible() times out on /sun-kudos (Coming soon page still served; the board is not built yet)",
+    "1 test: FR-103 /sun-kudos/abc expects getByTestId('coming-soon') visible; the [id] placeholder route does not exist yet (404 path)",
+    "all 52 failure messages are screen assertions; no webServer, compile, browser-install, or mock 404 errors in the run"
+  ],
+  "redEvidenceFiles": [
+    "evidence/e2e-red-kudos-output.txt",
+    "evidence/e2e-red-kudos-exit.txt"
+  ],
+  "regression": {
+    "command": "bun run test:e2e --grep-invert kudos",
+    "exitCode": 0,
+    "counts": { "passed": 110, "failed": 0 },
+    "evidenceFiles": ["evidence/e2e-regression-nonkudos-output.txt", "evidence/e2e-regression-nonkudos-exit.txt"],
+    "note": "First attempt in this session failed 78 of 110 with login callbacks landing on /login?error=auth_failed, right after a cold dev-server start. The identical rerun on the same tree passed 110/110. The cause was not isolated; the isolated auth file (14/14), the homepage pair (21/21), and the single login test all pass. Output of the first attempt was overwritten by the rerun."
+  },
+  "mockProbe": {
+    "command": "bun run e2e/support/start-mock-supabase.ts + curl",
+    "result": "pkce token issued for stub-code and stub-code-kudos-sender; kudos_highlight order [25,20,18,15,21]; kudos_sidebar viewer {received:3,sent:2,hearts:3,boxesOpened:2,boxesUnopened:1}; no bearer -> 401 PGRST301; unknown /rest/v1 path -> 404 with stderr log; /auth/v1/user 200"
+  },
+  "tsc": { "command": "bunx tsc --noEmit", "exitCode": 0, "evidenceFile": "evidence/tsc-phase1-output.txt" },
+  "eslint": { "command": "bun run lint", "exitCode": 0, "evidenceFile": "evidence/lint-phase1-output.txt" },
+  "authoredFiles": {
+    "specs": 6,
+    "maxLinesPerFile": 168,
+    "tcMapping": "evidence/tc-mapping.md (41 TCs; 37 automated, 4 mapped to a reason or another owner)"
+  },
+  "selectorContractAdditions": [
+    "kudo-person-star (one per star)",
+    "spotlight-panzoom-toggle (Pan/Zoom button)",
+    "kudo-person contains <a> links to /profile (avatar and name)",
+    "kudo-detail-link is the 'Xem chi tiết' link; kudo-content is clickable to /sun-kudos/<id>",
+    "kudo-card has data-kudo-id, data-variant, data-active on the centre highlight card; neighbours inert"
+  ],
+  "notMeasured": [
+    "per-test runtime of the GREEN run (RED fails at the first screen assertion, ~5 s each)"
+  ]
+}

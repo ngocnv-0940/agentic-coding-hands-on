@@ -1,0 +1,67 @@
+== viewer: probe-a@example.test
+PASS  filter options keys hashtags=7 departments=4
+PASS  hashtag keys 
+PASS  department keys 
+PASS  highlight <= 5 n=5
+PASS  card keys canLike,content,createdAt,hashtags,id,images,likeCount,likedByViewer,receiver,sender,title
+PASS  person keys avatarUrl,department,heroTitle,id,name,receivedCount
+PASS  createdAt shape 2026-10-10T06:10:00.000Z
+PASS  page 1 size <= 10 n=10 next=yes
+PASS  page 2 size <= 10 n=10 next=yes
+PASS  page 3 size <= 10 n=5 next=null
+PASS  no duplicate across pages total=25
+PASS  spotlight keys receivers,recent,total
+PASS  spotlight total == paged total 25 vs 25
+PASS  spotlight receiver keys 
+PASS  spotlight recent keys 
+PASS  sidebar keys hasSunner=true stats={"sent":2,"hearts":0,"received":0,"boxesOpened":1,"boxesUnopened":0}
+PASS  sidebar stats keys 
+PASS  gift keys avatarUrl,name,openedAt,prize,sunnerId
+PASS  hashtag filter applies n=4
+PASS  unknown filter sanitised to null 
+PASS  loadMoreKudos first page n=10
+PASS  loadMoreKudos rejects {"cursor":{"createdAt":"2026-01-01'; dro 
+PASS  loadMoreKudos rejects {"cursor":{"createdAt":"2026-10-10T06:10 
+PASS  loadMoreKudos rejects {"cursor":"x","hashtag":null,"department 
+PASS  loadMoreKudos rejects null 
+PASS  forged filter strings -> unfiltered page, no error 
+PASS  like: malformed id rejected 
+PASS  like toggles on then off {"ok":true,"liked":true,"likeCount":1001} {"ok":true,"liked":false,"likeCount":1000}
+INFO  like on unknown kudo -> {"ok":false,"code":"kudo_not_found"}
+== probe-a@example.test: failures=0
+== viewer: probe-b@example.test
+PASS  filter options keys hashtags=7 departments=4
+PASS  hashtag keys 
+PASS  department keys 
+PASS  highlight <= 5 n=5
+PASS  card keys canLike,content,createdAt,hashtags,id,images,likeCount,likedByViewer,receiver,sender,title
+PASS  person keys avatarUrl,department,heroTitle,id,name,receivedCount
+PASS  createdAt shape 2026-10-10T06:10:00.000Z
+PASS  page 1 size <= 10 n=10 next=yes
+PASS  page 2 size <= 10 n=10 next=yes
+PASS  page 3 size <= 10 n=5 next=null
+PASS  no duplicate across pages total=25
+PASS  spotlight keys receivers,recent,total
+PASS  spotlight total == paged total 25 vs 25
+PASS  spotlight receiver keys 
+PASS  spotlight recent keys 
+PASS  sidebar keys hasSunner=false stats={"sent":0,"hearts":0,"received":0,"boxesOpened":0,"boxesUnopened":0}
+PASS  sidebar stats keys 
+PASS  gift keys avatarUrl,name,openedAt,prize,sunnerId
+PASS  hashtag filter applies n=4
+PASS  unknown filter sanitised to null 
+PASS  loadMoreKudos first page n=10
+PASS  loadMoreKudos rejects {"cursor":{"createdAt":"2026-01-01'; dro 
+PASS  loadMoreKudos rejects {"cursor":{"createdAt":"2026-10-10T06:10 
+PASS  loadMoreKudos rejects {"cursor":"x","hashtag":null,"department 
+PASS  loadMoreKudos rejects null 
+PASS  forged filter strings -> unfiltered page, no error 
+PASS  like: malformed id rejected 
+INFO  like on a card with canLike=false -> {"ok":false,"code":"sunner_not_found"}
+INFO  like on unknown kudo -> {"ok":false,"code":"sunner_not_found"}
+== probe-b@example.test: failures=0
+== viewer: 
+THREW KudosDataError(kudos_filter_options) message="Kudos data request failed: kudos_filter_options" cause={"code":"42501","details":null,"hint":null,"message":"permission denied for function kudos_filter_options"}
+== : failures=1
+
+NOTE: the anonymous run's single THREW is the expected result (anon has no execute on the RPCs); it surfaces as KudosDataError with a generic message and the PostgREST text only in cause.

@@ -1,0 +1,24 @@
+# PostgREST smoke 2026-10-14T17:00:11+07:00: viewer sunner 0101 linked to a temporary auth user, unlinked afterwards
+## anon -> kudos_spotlight (expect 401/42501)
+{"code":"PGRST301","details":null,"hint":null,"message":"Empty JWT is sent in Authorization header"} HTTP 401
+## anon -> select kudos table (expect [] via RLS)
+{"code":"PGRST301","details":null,"hint":null,"message":"Empty JWT is sent in Authorization header"} HTTP 401
+## authenticated -> private helper kudo_cards (expect 404, schema not exposed)
+{"code":"PGRST202","details":"Searched for the function public.kudo_cards with parameters p_kudo_ids, p_viewer_id or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.","hint":null,"message":"Could not find the function public.kudo_cards(p_kudo_ids, p_viewer_id) in the schema cache"} HTTP 404
+## authenticated -> insert kudo_likes directly (expect 401/403 42501)
+{"code":"42501","details":null,"hint":"Grant the required privileges to the current role with: GRANT INSERT ON public.kudo_likes TO authenticated;","message":"permission denied for table kudo_likes"} HTTP 403
+## authenticated -> kudos_sidebar stats
+{"stats": {"sent": 2, "hearts": 3, "received": 3, "boxesOpened": 2, "boxesUnopened": 1}, "hasSunner": true, "latestGifts": [{"name": "Nguyễn Hoàng Linh", "prize": "Voucher 500.000 VND", "openedAt": "2026-10-12T03:00:0
+## authenticated -> kudos_feed_page limit 2 (named args as phase 4 will send)
+[{"id": "00000000-0000-4000-8000-000000000225", "title": null, "images": [], "sender": {"id": "00000000-0000-4000-8000-000000000108", "name": "Trần Minh Đức", "avatarUrl": null, "heroTitle": null, "department": "Development", "receivedCount": 4}, "canLike": true, "content": "Cảm ơn chị vì luôn tận tụy và lan tỏa tinh thần Sun* đến mọi người.", "hashtags": [{"slug": "de
+## authenticated -> toggle_kudo_like k24 twice
+{"liked": true, "likeCount": 1} HTTP 200
+{"liked": false, "likeCount": 0} HTTP 200
+## authenticated -> toggle_kudo_like own kudo k4 (expect P0001 self_like)
+{"code":"P0001","details":null,"hint":null,"message":"self_like"} HTTP 400
+## (rerun with real anon key) anon -> kudos_spotlight (expect 401/42501)
+{"code":"42501","details":null,"hint":null,"message":"permission denied for function kudos_spotlight"} HTTP 401
+## (rerun) anon -> toggle_kudo_like (expect 401/42501)
+{"code":"42501","details":null,"hint":null,"message":"permission denied for function toggle_kudo_like"} HTTP 401
+## (rerun) anon -> select kudos table (expect [] via RLS)
+[] HTTP 200

@@ -1,0 +1,34 @@
+### pure helpers
+PASS time 03:00Z -> 10:00 VN 
+PASS time midnight VN (17:00Z) is 00:xx not 24 
+PASS time invalid 
+PASS likes 1000 
+PASS likes 999 
+PASS likes 1234567 
+PASS likes 0 
+PASS stars 
+PASS position deterministic 
+PASS positions within 6..94 
+INFO sample position {"x":8.02,"y":85.02}
+PASS normalize 
+PASS normalize ĐỖ 
+PASS sanitize ok 
+PASS sanitize array first 
+PASS sanitize unknown/empty/number 
+PASS sanitize non-string 
+PASS query 
+PASS query empty 
+PASS key 
+PASS cursor null 
+PASS cursor ok 
+PASS cursor bad date 
+PASS cursor bad month 
+PASS cursor bad id 
+PASS cursor string 
+PASS isUuid 
+== failures 0
+== viewer: probe-a@example.test
+self_like probe -> {"ok":false,"code":"self_like"}
+== viewer: 
+anonymous toggle -> {"ok":false,"code":"unknown"}
+anonymous loadMore rejected -> Unauthorized

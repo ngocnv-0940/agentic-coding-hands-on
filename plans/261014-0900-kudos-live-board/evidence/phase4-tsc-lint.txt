@@ -1,0 +1,5 @@
+$ bunx tsc --noEmit
+exit 0
+$ bun run lint
+$ eslint
+exit 0

@@ -1,0 +1,46 @@
+$ playwright test "e2e/kudos-zz-mutation-probe"
+[WebServer] $ next dev -p "3100"
+
+Running 2 tests using 2 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+PROBE fade-removed neighbour opacity 0.674509
+  ✓  2 [chromium] › e2e/kudos-zz-mutation-probe.spec.ts:17:5 › probe: fade removed -> the fade check must fail (3.2s)
+PROBE clamp-removed box {"h":384,"lh":32,"overflows":false}
+  ✘  1 [chromium] › e2e/kudos-zz-mutation-probe.spec.ts:7:5 › probe: clamp removed -> the clamp box check must fail (4.4s)
+
+
+  1) [chromium] › e2e/kudos-zz-mutation-probe.spec.ts:7:5 › probe: clamp removed -> the clamp box check must fail 
+
+    Error: probe: 5-line box
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 2
+    Received:    224
+
+      12 |   const box = await k.kudoContent(card).evaluate((node) => ({ h: node.clientHeight, lh: parseFloat(getComputedStyle(node).lineHeight), overflows: node.scrollHeight > node.clientHeight }))
+      13 |   console.log('PROBE clamp-removed box', JSON.stringify(box))
+    > 14 |   expect(Math.abs(box.h - 5 * box.lh), 'probe: 5-line box').toBeLessThanOrEqual(2)
+         |                                                             ^
+      15 | })
+      16 |
+      17 | test('probe: fade removed -> the fade check must fail', async ({ page }) => {
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/kudos-zz-mutation-probe.spec.ts:14:61
+
+    Error Context: test-results/kudos-zz-mutation-probe-pr-cba51-e-clamp-box-check-must-fail-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/kudos-zz-mutation-probe-pr-cba51-e-clamp-box-check-must-fail-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/kudos-zz-mutation-probe-pr-cba51-e-clamp-box-check-must-fail-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/kudos-zz-mutation-probe.spec.ts:7:5 › probe: clamp removed -> the clamp box check must fail 
+  1 passed (4.6m)
+error: script "test:e2e" exited with code 1

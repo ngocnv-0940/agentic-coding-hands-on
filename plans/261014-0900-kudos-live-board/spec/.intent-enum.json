@@ -1,0 +1,5 @@
+{
+  "mode": "single",
+  "intents": ["(Sunner, Sun* Kudos live board, browse the company's kudos — highlight, spotlight, feed, own stats — and react to them: like, copy link, filter)"],
+  "justification": ""
+}

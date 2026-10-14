@@ -1,0 +1,29 @@
+{
+  "375": {
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "pageHeight": 15247,
+    "pager": "2/5",
+    "feedCards": 25,
+    "spotlightNodes": 8,
+    "imagesIncomplete": 0
+  },
+  "768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "pageHeight": 14681,
+    "pager": "2/5",
+    "feedCards": 25,
+    "spotlightNodes": 8,
+    "imagesIncomplete": 0
+  },
+  "1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "pageHeight": 13540,
+    "pager": "2/5",
+    "feedCards": 25,
+    "spotlightNodes": 8,
+    "imagesIncomplete": 0
+  }
+}

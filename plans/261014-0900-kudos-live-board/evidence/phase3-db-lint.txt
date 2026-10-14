@@ -1,0 +1,9 @@
+$ supabase db lint --level warning   # 2026-10-14T16:59:50+07:00
+Connecting to local database...
+Linting schema: extensions
+Linting schema: kudos_private
+Linting schema: public
+
+No schema errors found
+{"results":[],"message":"db lint"}
+exit=0

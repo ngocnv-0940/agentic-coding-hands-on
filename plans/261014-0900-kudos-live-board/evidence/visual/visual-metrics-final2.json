@@ -1,0 +1,287 @@
+{
+  "375": {
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "pageHeight": 15247,
+    "kudos-banner": {
+      "x": 0,
+      "y": 0,
+      "w": 375,
+      "h": 535
+    },
+    "kudos-compose-pill": {
+      "x": 16,
+      "y": 311,
+      "w": 343,
+      "h": 72
+    },
+    "kudos-profile-search-pill": {
+      "x": 16,
+      "y": 399,
+      "w": 343,
+      "h": 72
+    },
+    "kudos-highlight": {
+      "x": 0,
+      "y": 535,
+      "w": 375,
+      "h": 948
+    },
+    "kudos-carousel": {
+      "x": 0,
+      "y": 802,
+      "w": 375,
+      "h": 581
+    },
+    "kudos-carousel-pager": {
+      "x": 164,
+      "y": 1423,
+      "w": 48,
+      "h": 60
+    },
+    "kudos-spotlight": {
+      "x": 0,
+      "y": 1483,
+      "w": 375,
+      "h": 759
+    },
+    "spotlight-total": {
+      "x": 41,
+      "y": 1814,
+      "w": 157,
+      "h": 44
+    },
+    "spotlight-canvas": {
+      "x": 17,
+      "y": 1743,
+      "w": 341,
+      "h": 458
+    },
+    "kudos-feed": {
+      "x": 16,
+      "y": 2456,
+      "w": 343,
+      "h": 11333
+    },
+    "kudos-sidebar": {
+      "x": 16,
+      "y": 13821,
+      "w": 343,
+      "h": 937
+    },
+    "sidebar-open-box": {
+      "x": 41,
+      "y": 14143,
+      "w": 293,
+      "h": 60
+    },
+    "kudo-card": {
+      "x": -351,
+      "y": 802,
+      "w": 343,
+      "h": 581
+    },
+    "feedCards": 25,
+    "pager": "2/5",
+    "sidebarStats": [
+      "3",
+      "2",
+      "3",
+      "2",
+      "1"
+    ],
+    "spotlightTotal": "25 KUDOS",
+    "spotlightNodes": 8,
+    "imagesIncomplete": 0
+  },
+  "768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "pageHeight": 14681,
+    "kudos-banner": {
+      "x": 0,
+      "y": 0,
+      "w": 768,
+      "h": 544
+    },
+    "kudos-compose-pill": {
+      "x": 48,
+      "y": 408,
+      "w": 417,
+      "h": 72
+    },
+    "kudos-profile-search-pill": {
+      "x": 497,
+      "y": 408,
+      "w": 223,
+      "h": 72
+    },
+    "kudos-highlight": {
+      "x": 0,
+      "y": 544,
+      "w": 768,
+      "h": 874
+    },
+    "kudos-carousel": {
+      "x": 0,
+      "y": 777,
+      "w": 768,
+      "h": 541
+    },
+    "kudos-carousel-pager": {
+      "x": 360,
+      "y": 1358,
+      "w": 48,
+      "h": 60
+    },
+    "kudos-spotlight": {
+      "x": 0,
+      "y": 1418,
+      "w": 768,
+      "h": 911
+    },
+    "spotlight-total": {
+      "x": 289,
+      "y": 1761,
+      "w": 191,
+      "h": 44
+    },
+    "spotlight-canvas": {
+      "x": 49,
+      "y": 1747,
+      "w": 670,
+      "h": 546
+    },
+    "kudos-feed": {
+      "x": 48,
+      "y": 2618,
+      "w": 672,
+      "h": 10693
+    },
+    "kudos-sidebar": {
+      "x": 48,
+      "y": 13343,
+      "w": 672,
+      "h": 909
+    },
+    "sidebar-open-box": {
+      "x": 73,
+      "y": 13665,
+      "w": 622,
+      "h": 60
+    },
+    "kudo-card": {
+      "x": -432,
+      "y": 777,
+      "w": 528,
+      "h": 541
+    },
+    "feedCards": 25,
+    "pager": "2/5",
+    "sidebarStats": [
+      "3",
+      "2",
+      "3",
+      "2",
+      "1"
+    ],
+    "spotlightTotal": "25 KUDOS",
+    "spotlightNodes": 8,
+    "imagesIncomplete": 0
+  },
+  "1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "pageHeight": 13540,
+    "kudos-banner": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 544
+    },
+    "kudos-compose-pill": {
+      "x": 144,
+      "y": 408,
+      "w": 739,
+      "h": 72
+    },
+    "kudos-profile-search-pill": {
+      "x": 915,
+      "y": 408,
+      "w": 381,
+      "h": 72
+    },
+    "kudos-highlight": {
+      "x": 0,
+      "y": 544,
+      "w": 1440,
+      "h": 810
+    },
+    "kudos-carousel": {
+      "x": 0,
+      "y": 713,
+      "w": 1440,
+      "h": 541
+    },
+    "kudos-carousel-pager": {
+      "x": 696,
+      "y": 1294,
+      "w": 48,
+      "h": 60
+    },
+    "kudos-spotlight": {
+      "x": 0,
+      "y": 1354,
+      "w": 1440,
+      "h": 911
+    },
+    "spotlight-total": {
+      "x": 625,
+      "y": 1697,
+      "w": 191,
+      "h": 44
+    },
+    "spotlight-canvas": {
+      "x": 145,
+      "y": 1683,
+      "w": 1150,
+      "h": 546
+    },
+    "kudos-feed": {
+      "x": 144,
+      "y": 2554,
+      "w": 680,
+      "h": 10693
+    },
+    "kudos-sidebar": {
+      "x": 874,
+      "y": 2554,
+      "w": 422,
+      "h": 788
+    },
+    "sidebar-open-box": {
+      "x": 899,
+      "y": 2876,
+      "w": 372,
+      "h": 60
+    },
+    "kudo-card": {
+      "x": 0,
+      "y": 713,
+      "w": 528,
+      "h": 541
+    },
+    "feedCards": 25,
+    "pager": "2/5",
+    "sidebarStats": [
+      "3",
+      "2",
+      "3",
+      "2",
+      "1"
+    ],
+    "spotlightTotal": "25 KUDOS",
+    "spotlightNodes": 8,
+    "imagesIncomplete": 0
+  }
+}

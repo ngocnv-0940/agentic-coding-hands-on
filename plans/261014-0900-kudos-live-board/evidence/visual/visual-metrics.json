@@ -1,0 +1,188 @@
+{
+  "375": {
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "pageHeight": 18114,
+    "banner": {
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 471
+    },
+    "composePill": {
+      "x": 16,
+      "y": 311,
+      "width": 343,
+      "height": 72
+    },
+    "highlight": {
+      "x": 0,
+      "y": 471,
+      "width": 375,
+      "height": 964
+    },
+    "spotlight": {
+      "x": 0,
+      "y": 1435,
+      "width": 375,
+      "height": 759
+    },
+    "feed": {
+      "x": 16,
+      "y": 2408,
+      "width": 343,
+      "height": 14248
+    },
+    "sidebar": {
+      "x": 16,
+      "y": 16688,
+      "width": 343,
+      "height": 937
+    },
+    "highlightCards": 5,
+    "highlightCardWidths": [
+      343,
+      343,
+      343,
+      343,
+      343
+    ],
+    "feedCards": 25,
+    "pager": "1/5",
+    "spotlightTotal": "25 KUDOS",
+    "spotlightNodes": 8,
+    "sidebarStats": [
+      "3",
+      "2",
+      "3",
+      "2",
+      "1"
+    ],
+    "firstFeedTime": "13:10 - 10/10/2026",
+    "likeCountOf1000": true
+  },
+  "768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "pageHeight": 17266,
+    "banner": {
+      "x": 0,
+      "y": 0,
+      "width": 768,
+      "height": 456
+    },
+    "composePill": {
+      "x": 48,
+      "y": 384,
+      "width": 411,
+      "height": 72
+    },
+    "highlight": {
+      "x": 0,
+      "y": 456,
+      "width": 768,
+      "height": 858
+    },
+    "spotlight": {
+      "x": 0,
+      "y": 1314,
+      "width": 768,
+      "height": 821
+    },
+    "feed": {
+      "x": 48,
+      "y": 2368,
+      "width": 672,
+      "height": 13528
+    },
+    "sidebar": {
+      "x": 48,
+      "y": 15928,
+      "width": 672,
+      "height": 909
+    },
+    "highlightCards": 5,
+    "highlightCardWidths": [
+      528,
+      528,
+      528,
+      528,
+      528
+    ],
+    "feedCards": 25,
+    "pager": "1/5",
+    "spotlightTotal": "25 KUDOS",
+    "spotlightNodes": 8,
+    "sidebarStats": [
+      "3",
+      "2",
+      "3",
+      "2",
+      "1"
+    ],
+    "firstFeedTime": "13:10 - 10/10/2026",
+    "likeCountOf1000": true
+  },
+  "1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "pageHeight": 16125,
+    "banner": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 456
+    },
+    "composePill": {
+      "x": 144,
+      "y": 384,
+      "width": 728,
+      "height": 72
+    },
+    "highlight": {
+      "x": 0,
+      "y": 456,
+      "width": 1440,
+      "height": 794
+    },
+    "spotlight": {
+      "x": 0,
+      "y": 1250,
+      "width": 1440,
+      "height": 821
+    },
+    "feed": {
+      "x": 144,
+      "y": 2304,
+      "width": 680,
+      "height": 13528
+    },
+    "sidebar": {
+      "x": 874,
+      "y": 2304,
+      "width": 422,
+      "height": 788
+    },
+    "highlightCards": 5,
+    "highlightCardWidths": [
+      528,
+      528,
+      528,
+      528,
+      528
+    ],
+    "feedCards": 25,
+    "pager": "1/5",
+    "spotlightTotal": "25 KUDOS",
+    "spotlightNodes": 8,
+    "sidebarStats": [
+      "3",
+      "2",
+      "3",
+      "2",
+      "1"
+    ],
+    "firstFeedTime": "13:10 - 10/10/2026",
+    "likeCountOf1000": true
+  }
+}

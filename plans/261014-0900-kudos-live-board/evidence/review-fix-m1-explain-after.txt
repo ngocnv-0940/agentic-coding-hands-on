@@ -1,0 +1,82 @@
+BEGIN
+INSERT 0 20000
+ANALYZE
+SET
+== AFTER: feed keyset path with the filters inlined (no filters, with cursor) ==
+PREPARE
+                                                                                                                                QUERY PLAN                                                                                                                                 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit (actual rows=11 loops=1)
+   Buffers: shared hit=4
+   ->  Index Scan using kudos_created_at_id_idx on kudos k (actual rows=11 loops=1)
+         Index Cond: (ROW(created_at, id) < ROW(CASE WHEN (($3 IS NOT NULL) AND ($4 IS NOT NULL)) THEN $3 ELSE 'infinity'::timestamp with time zone END, CASE WHEN (($3 IS NOT NULL) AND ($4 IS NOT NULL)) THEN $4 ELSE 'ffffffff-ffff-ffff-ffff-ffffffffffff'::uuid END))
+         Filter: (((NULLIF($2, ''::text) IS NULL) OR (ANY (receiver_id = (hashed SubPlan 4).col1))) AND ((NULLIF($1, ''::text) IS NULL) OR (ANY (id = (hashed SubPlan 2).col1))))
+         Buffers: shared hit=4
+         SubPlan 4
+                       Index Cond: (code = $2)
+                       Recheck Cond: (department_id = d.id)
+                             Index Cond: (department_id = d.id)
+         SubPlan 2
+                       Index Cond: (slug = $1)
+                       Recheck Cond: (hashtag_id = h.id)
+                             Index Cond: (hashtag_id = h.id)
+ Planning:
+   Buffers: shared hit=195
+ Planning Time: 0.608 ms
+ Execution Time: 0.105 ms
+(26 rows)
+
+== AFTER: first page (no cursor) ==
+                                                                                                                                QUERY PLAN                                                                                                                                 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit (actual rows=11 loops=1)
+   Buffers: shared hit=3
+   ->  Index Scan using kudos_created_at_id_idx on kudos k (actual rows=11 loops=1)
+         Index Cond: (ROW(created_at, id) < ROW(CASE WHEN (($3 IS NOT NULL) AND ($4 IS NOT NULL)) THEN $3 ELSE 'infinity'::timestamp with time zone END, CASE WHEN (($3 IS NOT NULL) AND ($4 IS NOT NULL)) THEN $4 ELSE 'ffffffff-ffff-ffff-ffff-ffffffffffff'::uuid END))
+         Filter: (((NULLIF($2, ''::text) IS NULL) OR (ANY (receiver_id = (hashed SubPlan 4).col1))) AND ((NULLIF($1, ''::text) IS NULL) OR (ANY (id = (hashed SubPlan 2).col1))))
+         Buffers: shared hit=3
+         SubPlan 4
+                       Index Cond: (code = $2)
+                       Recheck Cond: (department_id = d.id)
+                             Index Cond: (department_id = d.id)
+         SubPlan 2
+                       Index Cond: (slug = $1)
+                       Recheck Cond: (hashtag_id = h.id)
+                             Index Cond: (hashtag_id = h.id)
+ Planning Time: 0.012 ms
+ Execution Time: 0.052 ms
+(24 rows)
+
+== AFTER: hashtag filter + cursor ==
+                                                                                                                                QUERY PLAN                                                                                                                                 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit (actual rows=0 loops=1)
+   Buffers: shared hit=317
+   ->  Index Scan using kudos_created_at_id_idx on kudos k (actual rows=0 loops=1)
+         Index Cond: (ROW(created_at, id) < ROW(CASE WHEN (($3 IS NOT NULL) AND ($4 IS NOT NULL)) THEN $3 ELSE 'infinity'::timestamp with time zone END, CASE WHEN (($3 IS NOT NULL) AND ($4 IS NOT NULL)) THEN $4 ELSE 'ffffffff-ffff-ffff-ffff-ffffffffffff'::uuid END))
+         Filter: (((NULLIF($2, ''::text) IS NULL) OR (ANY (receiver_id = (hashed SubPlan 4).col1))) AND ((NULLIF($1, ''::text) IS NULL) OR (ANY (id = (hashed SubPlan 2).col1))))
+         Rows Removed by Filter: 15026
+         Buffers: shared hit=317
+         SubPlan 4
+                       Index Cond: (code = $2)
+                       Recheck Cond: (department_id = d.id)
+                             Index Cond: (department_id = d.id)
+         SubPlan 2
+           ->  Nested Loop (actual rows=0 loops=1)
+                 Buffers: shared hit=1
+                 ->  Index Scan using hashtags_slug_key on hashtags h (actual rows=0 loops=1)
+                       Index Cond: (slug = $1)
+                       Buffers: shared hit=1
+                       Recheck Cond: (hashtag_id = h.id)
+                             Index Cond: (hashtag_id = h.id)
+ Planning Time: 0.085 ms
+ Execution Time: 1.821 ms
+(27 rows)
+
+== The real RPC end to end (function as shipped), 20000 extra rows ==
+ rows_returned 
+---------------
+            11
+(1 row)
+
+ROLLBACK

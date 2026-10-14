@@ -1,0 +1,52 @@
+[WebServer] $ next dev -p "3100"
+
+Running 2 tests using 1 worker
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✘  1 [chromium] › e2e/kudos-like-and-hearts.spec.ts:84:7 › Sun* Kudos likes and hearts (serial, shared mock state) › FR-405 / BR-004: a like on a special day adds 2 hearts, and unliking revokes exactly those 2 (11.0s)
+  -  2 [chromium] › e2e/kudos-like-and-hearts.spec.ts:106:7 › Sun* Kudos likes and hearts (serial, shared mock state) › FR-402: an identity without a sunner row sees a disabled heart on any kudo
+
+
+  1) [chromium] › e2e/kudos-like-and-hearts.spec.ts:84:7 › Sun* Kudos likes and hearts (serial, shared mock state) › FR-405 / BR-004: a like on a special day adds 2 hearts, and unliking revokes exactly those 2 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('sidebar-stat-hearts')
+    Expected: "2"
+    Received: "9"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('sidebar-stat-hearts') with timeout 5000ms
+      - waiting for getByTestId('sidebar-stat-hearts')
+        14 × locator resolved to <span data-testid="sidebar-stat-hearts" class="font-[family-name:var(--font-montserrat)] font-bold min-w-[46px] text-right text-[32px] leading-10 text-saa-gold">9</span>
+           - unexpected value "9"
+
+
+      91 |       await expect(k.likeButton(card)).toHaveAttribute('aria-pressed', 'true')
+      92 |       await sender.page.reload()
+    > 93 |       await expect(k.sidebarStat(sender.page, 'hearts')).toHaveText('2')
+         |                                                          ^
+      94 |       expect((await request.post(`${MOCK}/__e2e/kudos/special-today`, { data: { on: false } })).ok(), 'special day off').toBeTruthy()
+      95 |       await k.likeButton(card).click()
+      96 |       await expect(k.likeButton(card)).toHaveAttribute('aria-pressed', 'false')
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/kudos-like-and-hearts.spec.ts:93:58
+
+    Error Context: test-results/kudos-like-and-hearts-Sun--81027-ing-revokes-exactly-those-2-chromium/error-context.md
+
+    Error Context: test-results/kudos-like-and-hearts-Sun--81027-ing-revokes-exactly-those-2-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/kudos-like-and-hearts-Sun--81027-ing-revokes-exactly-those-2-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/kudos-like-and-hearts-Sun--81027-ing-revokes-exactly-those-2-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/kudos-like-and-hearts.spec.ts:84:7 › Sun* Kudos likes and hearts (serial, shared mock state) › FR-405 / BR-004: a like on a special day adds 2 hearts, and unliking revokes exactly those 2 
+  1 did not run
+exit 1
