@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import { connection } from 'next/server'
 import { getDictionary } from '@/lib/i18n/get-dictionary'
 import { getLocale } from '@/lib/i18n/get-locale'
+import { readSiteLaunchFromEnv } from '@/lib/event/event-start-config'
 import { readEventSnapshot } from '../(main)/_wiring/read-event-snapshot'
 import { PrelaunchScreen } from './_components/prelaunch-screen'
 import { PrelaunchCountdownContainer } from './_wiring/prelaunch-countdown-container'
@@ -32,7 +33,7 @@ async function PrelaunchContent() {
   // Date.now() below must not run during prerender (docs: 04-functions/connection.md).
   await connection()
   const dict = getDictionary(await getLocale())
-  const event = readEventSnapshot()
+  const event = readEventSnapshot(readSiteLaunchFromEnv())
   const remainingMs = msUntil(event.targetIso)
 
   return (

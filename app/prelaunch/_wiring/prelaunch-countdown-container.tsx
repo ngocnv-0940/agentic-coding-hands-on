@@ -6,7 +6,7 @@ import type { CountdownValue } from '@/lib/event/event-start-config'
 import { useNavigateHomeAtEventStart } from '../_behavior/use-navigate-home-at-event-start'
 
 type PrelaunchCountdownContainerProps = {
-  /** ISO string of the event start, or null when EVENT_START_AT is missing/invalid. */
+  /** ISO string of the site launch, or null when SITE_LAUNCH_AT is missing/invalid. */
   targetIso: string | null
   /** Server snapshot: first client render must equal it (no hydration mismatch). */
   initial: CountdownValue

@@ -11,9 +11,11 @@ export type EventSnapshot = {
   countdown: CountdownValue
 }
 
-/** Request-time snapshot of EVENT_START_AT + the clock. Call only after `await connection()`. */
-export function readEventSnapshot(): EventSnapshot {
-  const target = readEventStartFromEnv()
+/**
+ * Request-time snapshot of a target instant + the clock (default: EVENT_START_AT; /prelaunch passes
+ * SITE_LAUNCH_AT). Call only after `await connection()`.
+ */
+export function readEventSnapshot(target: Date | null = readEventStartFromEnv()): EventSnapshot {
   return {
     targetIso: target?.toISOString() ?? null,
     date: formatEventDate(target),

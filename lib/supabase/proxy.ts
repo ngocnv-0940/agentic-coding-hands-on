@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import type { User } from "@supabase/supabase-js";
 import { NextResponse, type NextRequest } from "next/server";
 import { isAdminUser } from "@/lib/auth/user-role";
-import { readEventStartFromEnv } from "@/lib/event/event-start-config";
+import { readSiteLaunchFromEnv } from "@/lib/event/event-start-config";
 import { decidePrelaunchAccess, PRELAUNCH_PATH } from "@/lib/event/prelaunch-access";
 import { supabasePublishableKey, supabaseUrl } from "./config";
 
@@ -82,7 +82,7 @@ export async function updateSession(request: NextRequest): Promise<NextResponse>
   };
 
   // ALG-001 / DEC-001: pre-launch lock, decided on the server clock only; never reads `user`.
-  const access = decidePrelaunchAccess(pathname, Date.now(), readEventStartFromEnv());
+  const access = decidePrelaunchAccess(pathname, Date.now(), readSiteLaunchFromEnv());
   if (access === "lock") return redirectWithCookies(PRELAUNCH_PATH);
   if (access === "unlock") return redirectWithCookies(HOME_PATH);
 

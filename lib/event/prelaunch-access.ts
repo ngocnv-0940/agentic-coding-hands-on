@@ -13,7 +13,7 @@ export type PrelaunchAccess = 'lock' | 'unlock' | 'pass'
 
 /**
  * ALG-001: pre-launch lock decision. Pure: the caller supplies the server clock and the
- * parsed `EVENT_START_AT`, so nothing from the client can influence it (FR-601).
+ * parsed `SITE_LAUNCH_AT`, so nothing from the client can influence it (FR-601).
  *
  * - BR-001: `start === null` (missing or invalid env) means "already started" — no lock, on
  *   purpose, so a broken config never locks everyone out.

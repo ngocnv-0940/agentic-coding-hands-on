@@ -35,7 +35,7 @@ function daysInMonth(year: number, month: number): number {
 }
 
 /**
- * Strict parse of `EVENT_START_AT`; missing, empty, offset-less, malformed or impossible
+ * Strict parse of an ISO-8601 env value (`EVENT_START_AT` and `SITE_LAUNCH_AT` share it); missing, empty, offset-less, malformed or impossible
  * calendar/clock/offset values (e.g. `2025-02-30`, `24:00`, `+25:00`) → null, never rolled over.
  */
 export function parseEventStart(raw: string | undefined | null): Date | null {
@@ -59,6 +59,11 @@ export function parseEventStart(raw: string | undefined | null): Date | null {
 /** Server-only env read (non-`NEXT_PUBLIC_`); the caller passes the result to the client as a prop. */
 export function readEventStartFromEnv(): Date | null {
   return parseEventStart(process.env.EVENT_START_AT)
+}
+
+/** Server-only env read of the pre-launch lock time; independent of {@link readEventStartFromEnv}. */
+export function readSiteLaunchFromEnv(): Date | null {
+  return parseEventStart(process.env.SITE_LAUNCH_AT)
 }
 
 /** `dd/MM/yyyy` in Asia/Ho_Chi_Minh, no time of day; null → "—". */
