@@ -1,0 +1,973 @@
+$ playwright test --grep @prelaunch
+[WebServer] $ next dev -p "3100"
+
+Running 31 tests using 4 workers
+
+  ✘   3 [chromium] › e2e/prelaunch-countdown-display.spec.ts:69:7 › @prelaunch Prelaunch countdown display › TC GUI 8 / FR-201: the unit labels are white (rgb 255, 255, 255) (12.2s)
+  ✘   2 [chromium] › e2e/prelaunch-countdown-display.spec.ts:77:7 › @prelaunch Prelaunch countdown display › FR-002 / DEC-003: the default (vi) title reads "Sự kiện sẽ bắt đầu sau" (12.5s)
+  ✘   4 [chromium] › e2e/prelaunch-countdown-display.spec.ts:83:7 › @prelaunch Prelaunch countdown display › FR-002: NEXT_LOCALE=en shows "Event starts in" and no raw prelaunch. key (12.8s)
+  ✘   1 [chromium] › e2e/prelaunch-countdown-display.spec.ts:58:7 › @prelaunch Prelaunch countdown display › TC GUI 5-7 / FR-201: DAYS, HOURS and MINUTES each show two digit tiles and a label (13.4s)
+  ✘   5 [chromium] › e2e/prelaunch-countdown-display.spec.ts:91:7 › @prelaunch Prelaunch countdown display › FR-205: no banner, contentinfo, language trigger or coming-soon marker (6.7s)
+  ✘   6 [chromium] › e2e/prelaunch-countdown-display.spec.ts:100:7 › @prelaunch Prelaunch countdown display › FR-204: the background covers the 1440 x 900 viewport and decodes (7.3s)
+  ✘   7 [chromium] › e2e/prelaunch-countdown-display.spec.ts:110:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 13 / FR-202: 5h 5m left reads 00 05 05 (7.2s)
+  ✘   8 [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / TC GUI 10 / TC GUI 11 / FR-202: 31d 23h 59m reads 31 23 59 (6.9s)
+  ✘   9 [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / FR-202: 10d 10h 10m reads 10 10 10 (5.8s)
+  ✘  10 [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / TC GUI 11 / FR-202: 9d 9h 9m reads 09 09 09 (6.2s)
+  ✘  11 [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 10 / TC GUI 11 / FR-202: 1d 0h 0m reads 01 00 00 (6.5s)
+  ✘  12 [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC FUNCTION 17 / FR-202: 120d reads three day digits 120 00 00 (6.7s)
+  ✘  13 [chromium] › e2e/prelaunch-countdown-display.spec.ts:131:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 12 / FR-401: the minutes drop by one after clock.runFor 01:00, no reload (5.9s)
+  ✘  14 [chromium] › e2e/prelaunch-countdown-display.spec.ts:140:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 14-15 / FR-203: ~30 sampled offsets read the exact days, hours (00-23) and minutes (00-59) (6.3s)
+  ✘  15 [chromium] › e2e/prelaunch-countdown-display.spec.ts:156:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 16 / DEC-003: 30 s left reads 00 00 00 and the URL stays /prelaunch (6.2s)
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✘  16 [chromium] › e2e/prelaunch-countdown-display.spec.ts:163:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 16 / FR-206: a browser clock an hour past the start reads 00 00 00 (6.1s)
+  ✘  20 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:45:7 › @prelaunch Prelaunch lock and access › TC ACCESS-1 step 4 / FR-102: locked paths answer 307 to /prelaunch for guests and signed-in users (746ms)
+  ✘  17 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:22:7 › @prelaunch Prelaunch lock and access › TC ACCESS-2 / FR-101: a guest sees /prelaunch and is not sent to /login (6.3s)
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /_not-found is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  22 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:60:7 › @prelaunch Prelaunch lock and access › FR-103: /login renders for a guest (3.7s)
+  ✘  18 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:29:7 › @prelaunch Prelaunch lock and access › TC ACCESS-1 / FR-101: a signed-in user sees /prelaunch (14.9s)
+  ✘  19 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:37:7 › @prelaunch Prelaunch lock and access › TC ACCESS-3 / FR-101: the admin identity sees /prelaunch (13.6s)
+  ✓  25 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:88:7 › @prelaunch Prelaunch lock and access › FR-103: POST /auth/logout answers 303 to /login (482ms)
+  ✘  21 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:67:7 › @prelaunch Prelaunch lock and access › FR-103 / US003: the full stubbed login ends on /prelaunch (11.8s)
+  ✓  24 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:81:7 › @prelaunch Prelaunch lock and access › FR-103: /auth/callback?error=x lands on /login with the fixed alert (1.9s)
+  ✓  26 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:95:7 › @prelaunch Prelaunch lock and access › FR-102: /images/login/logo.png answers 200 and the login key visual decodes (2.0s)
+  ✘  23 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:74:7 › @prelaunch Prelaunch lock and access › FR-105: a signed-in goto /login ends on /prelaunch (10.4s)
+  ✘  27 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:115:7 › @prelaunch Prelaunch lock and access › FR-601 / BR-001: a browser clock past the start still shows /prelaunch for a guest (6.4s)
+  ✘  28 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:24:7 › @prelaunch Redirect home at the real event start › ALG-002 / FR-403: on a real clock a 2099 start makes no / request for 3 s and the URL stays /prelaunch (6.5s)
+  ✘  30 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:34:7 › @prelaunch Redirect home at the real event start › FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows (6.7s)
+  ✘  29 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:104:7 › @prelaunch Prelaunch lock and access › TC ACCESS-4 / FR-101: garbage sb-* session cookies still show /prelaunch (9.9s)
+  ✘  31 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:48:7 › @prelaunch Redirect home at the real event start › FR-403 / DEC-004: a browser clock an hour past the start makes no / request for 3 s (6.3s)
+
+
+  1) [chromium] › e2e/prelaunch-countdown-display.spec.ts:58:7 › @prelaunch Prelaunch countdown display › TC GUI 5-7 / FR-201: DAYS, HOURS and MINUTES each show two digit tiles and a label 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:59:5
+
+    Error Context: test-results/prelaunch-countdown-displa-2de14-two-digit-tiles-and-a-label-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-2de14-two-digit-tiles-and-a-label-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-2de14-two-digit-tiles-and-a-label-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/prelaunch-countdown-display.spec.ts:69:7 › @prelaunch Prelaunch countdown display › TC GUI 8 / FR-201: the unit labels are white (rgb 255, 255, 255) 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:70:5
+
+    Error Context: test-results/prelaunch-countdown-displa-5fd04--are-white-rgb-255-255-255--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-5fd04--are-white-rgb-255-255-255--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-5fd04--are-white-rgb-255-255-255--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/prelaunch-countdown-display.spec.ts:77:7 › @prelaunch Prelaunch countdown display › FR-002 / DEC-003: the default (vi) title reads "Sự kiện sẽ bắt đầu sau" 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:78:5
+
+    Error Context: test-results/prelaunch-countdown-displa-7e831-ads-Sự-kiện-sẽ-bắt-đầu-sau--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-7e831-ads-Sự-kiện-sẽ-bắt-đầu-sau--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-7e831-ads-Sự-kiện-sẽ-bắt-đầu-sau--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/prelaunch-countdown-display.spec.ts:83:7 › @prelaunch Prelaunch countdown display › FR-002: NEXT_LOCALE=en shows "Event starts in" and no raw prelaunch. key 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:85:5
+
+    Error Context: test-results/prelaunch-countdown-displa-a5bc8-in-and-no-raw-prelaunch-key-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-a5bc8-in-and-no-raw-prelaunch-key-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-a5bc8-in-and-no-raw-prelaunch-key-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › e2e/prelaunch-countdown-display.spec.ts:91:7 › @prelaunch Prelaunch countdown display › FR-205: no banner, contentinfo, language trigger or coming-soon marker 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:92:5
+
+    Error Context: test-results/prelaunch-countdown-displa-2199e-igger-or-coming-soon-marker-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-2199e-igger-or-coming-soon-marker-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-2199e-igger-or-coming-soon-marker-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › e2e/prelaunch-countdown-display.spec.ts:100:7 › @prelaunch Prelaunch countdown display › FR-204: the background covers the 1440 x 900 viewport and decodes 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:102:5
+
+    Error Context: test-results/prelaunch-countdown-displa-89d6c--x-900-viewport-and-decodes-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-89d6c--x-900-viewport-and-decodes-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-89d6c--x-900-viewport-and-decodes-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › e2e/prelaunch-countdown-display.spec.ts:110:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 13 / FR-202: 5h 5m left reads 00 05 05 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:111:5
+
+    Error Context: test-results/prelaunch-countdown-displa-e1b92-2-5h-5m-left-reads-00-05-05-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-e1b92-2-5h-5m-left-reads-00-05-05-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-e1b92-2-5h-5m-left-reads-00-05-05-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / TC GUI 10 / TC GUI 11 / FR-202: 31d 23h 59m reads 31 23 59 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:125:7
+
+    Error Context: test-results/prelaunch-countdown-displa-97d17--31d-23h-59m-reads-31-23-59-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-97d17--31d-23h-59m-reads-31-23-59-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-97d17--31d-23h-59m-reads-31-23-59-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / FR-202: 10d 10h 10m reads 10 10 10 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:125:7
+
+    Error Context: test-results/prelaunch-countdown-displa-546c3--10d-10h-10m-reads-10-10-10-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-546c3--10d-10h-10m-reads-10-10-10-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-546c3--10d-10h-10m-reads-10-10-10-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / TC GUI 11 / FR-202: 9d 9h 9m reads 09 09 09 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:125:7
+
+    Error Context: test-results/prelaunch-countdown-displa-1e298-202-9d-9h-9m-reads-09-09-09-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-1e298-202-9d-9h-9m-reads-09-09-09-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-1e298-202-9d-9h-9m-reads-09-09-09-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 10 / TC GUI 11 / FR-202: 1d 0h 0m reads 01 00 00 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:125:7
+
+    Error Context: test-results/prelaunch-countdown-displa-da471-202-1d-0h-0m-reads-01-00-00-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-da471-202-1d-0h-0m-reads-01-00-00-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-da471-202-1d-0h-0m-reads-01-00-00-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC FUNCTION 17 / FR-202: 120d reads three day digits 120 00 00 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:125:7
+
+    Error Context: test-results/prelaunch-countdown-displa-20ef4--three-day-digits-120-00-00-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-20ef4--three-day-digits-120-00-00-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-20ef4--three-day-digits-120-00-00-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › e2e/prelaunch-countdown-display.spec.ts:131:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 12 / FR-401: the minutes drop by one after clock.runFor 01:00, no reload 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:132:5
+
+    Error Context: test-results/prelaunch-countdown-displa-7738e-lock-runFor-01-00-no-reload-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-7738e-lock-runFor-01-00-no-reload-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-7738e-lock-runFor-01-00-no-reload-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [chromium] › e2e/prelaunch-countdown-display.spec.ts:140:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 14-15 / FR-203: ~30 sampled offsets read the exact days, hours (00-23) and minutes (00-59) 
+
+    Error: prelaunch screen at 1 min
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - prelaunch screen at 1 min getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      145 |       await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      146 |       await page.goto('/prelaunch')
+    > 147 |       await expect(prelaunchScreen(page), `prelaunch screen at ${minutesLeft} min`).toBeVisible()
+          |                                                                                     ^
+      148 |       const want = expectedFor(minutesLeft)
+      149 |       await expectCountdown(page, want.days, want.hours, want.minutes)
+      150 |       expectNoHydrationErrors(page)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:147:85
+
+    Error Context: test-results/prelaunch-countdown-displa-65aaa-rs-00-23-and-minutes-00-59--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-65aaa-rs-00-23-and-minutes-00-59--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-65aaa-rs-00-23-and-minutes-00-59--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [chromium] › e2e/prelaunch-countdown-display.spec.ts:156:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 16 / DEC-003: 30 s left reads 00 00 00 and the URL stays /prelaunch 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      48 |   await startBrowserClockAt(page, browserTimeWithMinutesLeft(minutesLeft).toISOString())
+      49 |   await page.goto('/prelaunch')
+    > 50 |   await expect(prelaunchScreen(page)).toBeVisible()
+         |                                       ^
+      51 | }
+      52 |
+      53 | test.describe('@prelaunch Prelaunch countdown display', () => {
+        at openAtMinutesLeft (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:50:39)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:157:5
+
+    Error Context: test-results/prelaunch-countdown-displa-d93de-and-the-URL-stays-prelaunch-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-d93de-and-the-URL-stays-prelaunch-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-d93de-and-the-URL-stays-prelaunch-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [chromium] › e2e/prelaunch-countdown-display.spec.ts:163:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 16 / FR-206: a browser clock an hour past the start reads 00 00 00 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      164 |     await startBrowserClockAt(page, browserTimeAfterStart(60 * MINUTE_MS).toISOString())
+      165 |     await page.goto('/prelaunch')
+    > 166 |     await expect(prelaunchScreen(page)).toBeVisible()
+          |                                         ^
+      167 |     await expectCountdown(page, '00', '00', '00')
+      168 |   })
+      169 | })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-countdown-display.spec.ts:166:41
+
+    Error Context: test-results/prelaunch-countdown-displa-d5494-st-the-start-reads-00-00-00-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-countdown-displa-d5494-st-the-start-reads-00-00-00-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-countdown-displa-d5494-st-the-start-reads-00-00-00-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [chromium] › e2e/prelaunch-lock-and-access.spec.ts:22:7 › @prelaunch Prelaunch lock and access › TC ACCESS-2 / FR-101: a guest sees /prelaunch and is not sent to /login 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      22 |   test('TC ACCESS-2 / FR-101: a guest sees /prelaunch and is not sent to /login', async ({ page }) => {
+      23 |     await page.goto('/prelaunch')
+    > 24 |     await expect(prelaunchScreen(page)).toBeVisible()
+         |                                         ^
+      25 |     await expect(page).toHaveURL(/\/prelaunch$/)
+      26 |   })
+      27 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-lock-and-access.spec.ts:24:41
+
+    Error Context: test-results/prelaunch-lock-and-access--039a1-ch-and-is-not-sent-to-login-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-lock-and-access--039a1-ch-and-is-not-sent-to-login-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-lock-and-access--039a1-ch-and-is-not-sent-to-login-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [chromium] › e2e/prelaunch-lock-and-access.spec.ts:29:7 › @prelaunch Prelaunch lock and access › TC ACCESS-1 / FR-101: a signed-in user sees /prelaunch 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      30 |     await loginThroughStubbedGoogle(page)
+      31 |     await page.goto('/prelaunch')
+    > 32 |     await expect(prelaunchScreen(page)).toBeVisible()
+         |                                         ^
+      33 |     await expect(page).toHaveURL(/\/prelaunch$/)
+      34 |   })
+      35 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-lock-and-access.spec.ts:32:41
+
+    Error Context: test-results/prelaunch-lock-and-access--f647e-gned-in-user-sees-prelaunch-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-lock-and-access--f647e-gned-in-user-sees-prelaunch-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-lock-and-access--f647e-gned-in-user-sees-prelaunch-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [chromium] › e2e/prelaunch-lock-and-access.spec.ts:37:7 › @prelaunch Prelaunch lock and access › TC ACCESS-3 / FR-101: the admin identity sees /prelaunch 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      38 |     await loginThroughStubbedGoogle(page, { as: 'admin' })
+      39 |     await page.goto('/prelaunch')
+    > 40 |     await expect(prelaunchScreen(page)).toBeVisible()
+         |                                         ^
+      41 |     await expect(page).toHaveURL(/\/prelaunch$/)
+      42 |   })
+      43 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-lock-and-access.spec.ts:40:41
+
+    Error Context: test-results/prelaunch-lock-and-access--1ae2f-min-identity-sees-prelaunch-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-lock-and-access--1ae2f-min-identity-sees-prelaunch-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-lock-and-access--1ae2f-min-identity-sees-prelaunch-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [chromium] › e2e/prelaunch-lock-and-access.spec.ts:45:7 › @prelaunch Prelaunch lock and access › TC ACCESS-1 step 4 / FR-102: locked paths answer 307 to /prelaunch for guests and signed-in users 
+
+    Error: guest GET / location
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "/prelaunch"
+    Received: "/login"
+
+      47 |       const response = await request.get(path, { maxRedirects: 0 })
+      48 |       expect(response.status(), `guest GET ${path}`).toBe(307)
+    > 49 |       expect(locationPath(response.headers().location, response.url()), `guest GET ${path} location`).toBe('/prelaunch')
+         |                                                                                                       ^
+      50 |     }
+      51 |     await loginThroughStubbedGoogle(page)
+      52 |     for (const path of LOCKED_PATHS) {
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-lock-and-access.spec.ts:49:103
+
+    Error Context: test-results/prelaunch-lock-and-access--ca8d9--guests-and-signed-in-users-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-lock-and-access--ca8d9--guests-and-signed-in-users-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-lock-and-access--ca8d9--guests-and-signed-in-users-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [chromium] › e2e/prelaunch-lock-and-access.spec.ts:67:7 › @prelaunch Prelaunch lock and access › FR-103 / US003: the full stubbed login ends on /prelaunch 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/prelaunch$/
+    Received string:  "http://localhost:3100/"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        13 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/"
+
+
+      67 |   test('FR-103 / US003: the full stubbed login ends on /prelaunch', async ({ page }) => {
+      68 |     await loginThroughStubbedGoogle(page)
+    > 69 |     await expect(page).toHaveURL(/\/prelaunch$/)
+         |                        ^
+      70 |     await expect(prelaunchScreen(page)).toBeVisible()
+      71 |   })
+      72 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-lock-and-access.spec.ts:69:24
+
+    Error Context: test-results/prelaunch-lock-and-access--4c3b0-bed-login-ends-on-prelaunch-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-lock-and-access--4c3b0-bed-login-ends-on-prelaunch-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-lock-and-access--4c3b0-bed-login-ends-on-prelaunch-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [chromium] › e2e/prelaunch-lock-and-access.spec.ts:74:7 › @prelaunch Prelaunch lock and access › FR-105: a signed-in goto /login ends on /prelaunch 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/prelaunch$/
+    Received string:  "http://localhost:3100/"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        13 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/"
+
+
+      75 |     await loginThroughStubbedGoogle(page)
+      76 |     await page.goto('/login')
+    > 77 |     await expect(page).toHaveURL(/\/prelaunch$/)
+         |                        ^
+      78 |   })
+      79 |
+      80 |   // FR-103: an OAuth error is answered with the fixed alert, /login stays reachable
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-lock-and-access.spec.ts:77:24
+
+    Error Context: test-results/prelaunch-lock-and-access--1cfed-oto-login-ends-on-prelaunch-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-lock-and-access--1cfed-oto-login-ends-on-prelaunch-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-lock-and-access--1cfed-oto-login-ends-on-prelaunch-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [chromium] › e2e/prelaunch-lock-and-access.spec.ts:104:7 › @prelaunch Prelaunch lock and access › TC ACCESS-4 / FR-101: garbage sb-* session cookies still show /prelaunch 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/prelaunch$/
+    Received string:  "http://localhost:3100/login"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        14 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/login"
+
+
+      108 |     await context.addCookies(sessionCookies.map((c) => ({ ...c, value: 'garbage' })))
+      109 |     await page.goto('/')
+    > 110 |     await expect(page).toHaveURL(/\/prelaunch$/)
+          |                        ^
+      111 |     await expect(prelaunchScreen(page)).toBeVisible()
+      112 |   })
+      113 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-lock-and-access.spec.ts:110:24
+
+    Error Context: test-results/prelaunch-lock-and-access--8e217-ookies-still-show-prelaunch-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-lock-and-access--8e217-ookies-still-show-prelaunch-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-lock-and-access--8e217-ookies-still-show-prelaunch-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [chromium] › e2e/prelaunch-lock-and-access.spec.ts:115:7 › @prelaunch Prelaunch lock and access › FR-601 / BR-001: a browser clock past the start still shows /prelaunch for a guest 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/prelaunch$/
+    Received string:  "http://localhost:3100/login"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        13 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/login"
+
+
+      116 |     await startBrowserClockAt(page, browserTimeAfterStart(DAY_MS).toISOString())
+      117 |     await page.goto('/')
+    > 118 |     await expect(page).toHaveURL(/\/prelaunch$/)
+          |                        ^
+      119 |     await expect(prelaunchScreen(page)).toBeVisible()
+      120 |   })
+      121 | })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-lock-and-access.spec.ts:118:24
+
+    Error Context: test-results/prelaunch-lock-and-access--3766a-shows-prelaunch-for-a-guest-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-lock-and-access--3766a-shows-prelaunch-for-a-guest-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-lock-and-access--3766a-shows-prelaunch-for-a-guest-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:24:7 › @prelaunch Redirect home at the real event start › ALG-002 / FR-403: on a real clock a 2099 start makes no / request for 3 s and the URL stays /prelaunch 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      25 |     const roots = trackRootNavigations(page)
+      26 |     await page.goto('/prelaunch')
+    > 27 |     await expect(prelaunchScreen(page)).toBeVisible()
+         |                                         ^
+      28 |     await page.waitForTimeout(QUIET_WINDOW_MS)
+      29 |     expect(roots, 'document requests to / in 3 s on a real clock').toHaveLength(0)
+      30 |     await expect(page).toHaveURL(/\/prelaunch$/)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-redirect-at-event-start.spec.ts:27:41
+
+    Error Context: test-results/prelaunch-redirect-at-even-556ae-and-the-URL-stays-prelaunch-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-redirect-at-even-556ae-and-the-URL-stays-prelaunch-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-redirect-at-even-556ae-and-the-URL-stays-prelaunch-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:34:7 › @prelaunch Redirect home at the real event start › FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      35 |     await page.clock.install()
+      36 |     await page.goto('/prelaunch')
+    > 37 |     await expect(prelaunchScreen(page)).toBeVisible()
+         |                                         ^
+      38 |     const roots = trackRootNavigations(page)
+      39 |     await fastForwardInSteps(page, prelaunchTargetMs() - Date.now() + SLACK_MS)
+      40 |     await expect.poll(() => roots.length, { timeout: 10_000, message: 'one / request after the start' }).toBe(1)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-redirect-at-event-start.spec.ts:37:41
+
+    Error Context: test-results/prelaunch-redirect-at-even-9c120-elaunch-and-no-loop-follows-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-redirect-at-even-9c120-elaunch-and-no-loop-follows-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-redirect-at-even-9c120-elaunch-and-no-loop-follows-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:48:7 › @prelaunch Redirect home at the real event start › FR-403 / DEC-004: a browser clock an hour past the start makes no / request for 3 s 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('prelaunch-screen')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('prelaunch-screen') with timeout 5000ms
+      - waiting for getByTestId('prelaunch-screen')
+
+
+      50 |     const roots = trackRootNavigations(page)
+      51 |     await page.goto('/prelaunch')
+    > 52 |     await expect(prelaunchScreen(page)).toBeVisible()
+         |                                         ^
+      53 |     await expect(countdownUnitBox(page, 'minutes')).toHaveText('00')
+      54 |     await page.waitForTimeout(QUIET_WINDOW_MS)
+      55 |     expect(roots, 'document requests to / with a fast client clock').toHaveLength(0)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-redirect-at-event-start.spec.ts:52:41
+
+    Error Context: test-results/prelaunch-redirect-at-even-6110d-rt-makes-no-request-for-3-s-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-redirect-at-even-6110d-rt-makes-no-request-for-3-s-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-redirect-at-even-6110d-rt-makes-no-request-for-3-s-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27 failed
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:58:7 › @prelaunch Prelaunch countdown display › TC GUI 5-7 / FR-201: DAYS, HOURS and MINUTES each show two digit tiles and a label 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:69:7 › @prelaunch Prelaunch countdown display › TC GUI 8 / FR-201: the unit labels are white (rgb 255, 255, 255) 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:77:7 › @prelaunch Prelaunch countdown display › FR-002 / DEC-003: the default (vi) title reads "Sự kiện sẽ bắt đầu sau" 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:83:7 › @prelaunch Prelaunch countdown display › FR-002: NEXT_LOCALE=en shows "Event starts in" and no raw prelaunch. key 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:91:7 › @prelaunch Prelaunch countdown display › FR-205: no banner, contentinfo, language trigger or coming-soon marker 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:100:7 › @prelaunch Prelaunch countdown display › FR-204: the background covers the 1440 x 900 viewport and decodes 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:110:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 13 / FR-202: 5h 5m left reads 00 05 05 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / TC GUI 10 / TC GUI 11 / FR-202: 31d 23h 59m reads 31 23 59 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / FR-202: 10d 10h 10m reads 10 10 10 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / TC GUI 11 / FR-202: 9d 9h 9m reads 09 09 09 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC GUI 10 / TC GUI 11 / FR-202: 1d 0h 0m reads 01 00 00 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:124:9 › @prelaunch Prelaunch countdown display › TC FUNCTION 17 / FR-202: 120d reads three day digits 120 00 00 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:131:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 12 / FR-401: the minutes drop by one after clock.runFor 01:00, no reload 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:140:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 14-15 / FR-203: ~30 sampled offsets read the exact days, hours (00-23) and minutes (00-59) 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:156:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 16 / DEC-003: 30 s left reads 00 00 00 and the URL stays /prelaunch 
+    [chromium] › e2e/prelaunch-countdown-display.spec.ts:163:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 16 / FR-206: a browser clock an hour past the start reads 00 00 00 
+    [chromium] › e2e/prelaunch-lock-and-access.spec.ts:22:7 › @prelaunch Prelaunch lock and access › TC ACCESS-2 / FR-101: a guest sees /prelaunch and is not sent to /login 
+    [chromium] › e2e/prelaunch-lock-and-access.spec.ts:29:7 › @prelaunch Prelaunch lock and access › TC ACCESS-1 / FR-101: a signed-in user sees /prelaunch 
+    [chromium] › e2e/prelaunch-lock-and-access.spec.ts:37:7 › @prelaunch Prelaunch lock and access › TC ACCESS-3 / FR-101: the admin identity sees /prelaunch 
+    [chromium] › e2e/prelaunch-lock-and-access.spec.ts:45:7 › @prelaunch Prelaunch lock and access › TC ACCESS-1 step 4 / FR-102: locked paths answer 307 to /prelaunch for guests and signed-in users 
+    [chromium] › e2e/prelaunch-lock-and-access.spec.ts:67:7 › @prelaunch Prelaunch lock and access › FR-103 / US003: the full stubbed login ends on /prelaunch 
+    [chromium] › e2e/prelaunch-lock-and-access.spec.ts:74:7 › @prelaunch Prelaunch lock and access › FR-105: a signed-in goto /login ends on /prelaunch 
+    [chromium] › e2e/prelaunch-lock-and-access.spec.ts:104:7 › @prelaunch Prelaunch lock and access › TC ACCESS-4 / FR-101: garbage sb-* session cookies still show /prelaunch 
+    [chromium] › e2e/prelaunch-lock-and-access.spec.ts:115:7 › @prelaunch Prelaunch lock and access › FR-601 / BR-001: a browser clock past the start still shows /prelaunch for a guest 
+    [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:24:7 › @prelaunch Redirect home at the real event start › ALG-002 / FR-403: on a real clock a 2099 start makes no / request for 3 s and the URL stays /prelaunch 
+    [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:34:7 › @prelaunch Redirect home at the real event start › FR-402 / DEC-004: past the real start one / request goes out, the guest is back on /prelaunch and no loop follows 
+    [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:48:7 › @prelaunch Redirect home at the real event start › FR-403 / DEC-004: a browser clock an hour past the start makes no / request for 3 s 
+  4 passed (5.9m)
+error: script "test:e2e" exited with code 1

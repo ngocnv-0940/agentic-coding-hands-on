@@ -1,0 +1,193 @@
+{
+  "commands": [
+    {
+      "command": "node_modules/.bin/tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "typecheck clean (evidence/tsc-phase5-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node_modules/.bin/eslint .",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "lint clean (evidence/lint-phase5-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run build",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "production build clean, 0 warnings (evidence/build-phase5-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "D FULL default suite: 116 passed, 0 failed, 5.7 min (evidence/e2e-green-default-output.txt). Redirect spec excluded by @prelaunch grepInvert; its fix landed after this run and does not touch the D set",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "P dev: 31 passed, 0 failed, 4.8 min (evidence/e2e-green-prelaunch-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e e2e/prelaunch-redirect-at-event-start.spec.ts --repeat-each=5",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "nav/redirect spec dev x5: 15 passed, 0 failed (evidence/e2e-green-redirect-dev-x5-output.txt); FR-402 alone x5 also 5/5 (evidence/dev-redirect-fr402-x5-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "P prod (build+start): 31 passed, 0 failed, 4.8 min (evidence/e2e-green-prelaunch-prod-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e e2e/prelaunch-redirect-at-event-start.spec.ts --repeat-each=3",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "nav/redirect spec prod x3: 9 passed, 0 failed (evidence/e2e-green-redirect-prod-x3-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "I invalid 'not-a-date': 4 passed (evidence/e2e-green-invalid-not-a-date-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=2025-12-26T18:30:00 bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "I invalid offset-less ISO: 4 passed (evidence/e2e-green-invalid-offsetless-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=2025-02-30T10:00:00Z bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "I invalid impossible day 02-30: 4 passed (evidence/e2e-green-invalid-feb30-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 VISUAL_OUT=evidence/visual bun run test:e2e <temp visual-capture spec>",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "visual captures 1440/768/375 written to evidence/visual; temp spec deleted after run",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "review-fix dev: 34 passed, 0 failed, 4.9 min incl. new SC-002 set-cookie test and 2 FR-403 wake tests (evidence/review-fix-prelaunch-dev-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "review-fix prod: 34 passed, 0 failed, 2.5 min (evidence/review-fix-prelaunch-prod-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep \"FR-403: a tab|FR-403: a tab woken before\" --repeat-each=3",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "review-fix FR-403 wake + early-wake tests dev x3: 6 passed, 0 failed (evidence/review-fix-fr403-x3-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "review-fix FULL default suite: 116 passed, 0 failed, 3.4 min (evidence/review-fix-full-default-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node_modules/.bin/tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "typecheck clean (evidence/review-fix-tsc-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node_modules/.bin/eslint .",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "lint clean (evidence/review-fix-eslint-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node_modules/.bin/tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "clean",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node_modules/.bin/eslint .",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "clean",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "35 passed (dev), incl. new SITE_LAUNCH_AT independence test",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "35 passed (prod)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "116 passed (default, SITE_LAUNCH_AT unset)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "2 passed",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_SITE_LAUNCH_AT=2025-12-26T18:30:00 bun run test:e2e --grep @launch-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "2 passed (offset-less)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "2 passed (homepage invalid env)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "full default suite after pinning SITE_LAUNCH_AT to empty in playwright.config.ts: 116 passed, 6.8 min (evidence/split-launch-pin-full-default-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    }
+  ]
+}

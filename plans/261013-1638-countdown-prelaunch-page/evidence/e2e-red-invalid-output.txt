@@ -1,0 +1,77 @@
+$ playwright test --grep @event-env-invalid
+[WebServer] $ next dev -p "3100"
+
+Running 4 tests using 4 workers
+
+  ✘  1 [chromium] › e2e/prelaunch-invalid-env.spec.ts:11:7 › @event-env-invalid Prelaunch with an invalid EVENT_START_AT › @event-env-invalid FR-104 / BR-001: GET /prelaunch answers 307 to / with no lock (173ms)
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  4 [chromium] › e2e/homepage-countdown-invalid-env.spec.ts:32:7 › @event-env-invalid Homepage with an invalid EVENT_START_AT › the rest of the homepage still renders around the bad configuration (1.6s)
+  ✓  3 [chromium] › e2e/homepage-countdown-invalid-env.spec.ts:22:7 › @event-env-invalid Homepage with an invalid EVENT_START_AT › countdown reads 00, Coming soon is hidden and the event date shows a dash (1.8s)
+  ✘  2 [chromium] › e2e/prelaunch-invalid-env.spec.ts:17:7 › @event-env-invalid Prelaunch with an invalid EVENT_START_AT › @event-env-invalid FR-104 / BR-001: a guest opening /prelaunch ends on /login (5.5s)
+
+
+  1) [chromium] › e2e/prelaunch-invalid-env.spec.ts:11:7 › @event-env-invalid Prelaunch with an invalid EVENT_START_AT › @event-env-invalid FR-104 / BR-001: GET /prelaunch answers 307 to / with no lock 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 307
+    Received: 404
+
+      11 |   test('@event-env-invalid FR-104 / BR-001: GET /prelaunch answers 307 to / with no lock', async ({ request }) => {
+      12 |     const response = await request.get('/prelaunch', { maxRedirects: 0 })
+    > 13 |     expect(response.status()).toBe(307)
+         |                               ^
+      14 |     expect(new URL(response.headers().location ?? '', response.url()).pathname).toBe('/')
+      15 |   })
+      16 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-invalid-env.spec.ts:13:31
+
+    Error Context: test-results/prelaunch-invalid-env--eve-feb86-answers-307-to-with-no-lock-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-invalid-env--eve-feb86-answers-307-to-with-no-lock-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-invalid-env--eve-feb86-answers-307-to-with-no-lock-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/prelaunch-invalid-env.spec.ts:17:7 › @event-env-invalid Prelaunch with an invalid EVENT_START_AT › @event-env-invalid FR-104 / BR-001: a guest opening /prelaunch ends on /login 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/login$/
+    Received string:  "http://localhost:3100/prelaunch"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        14 × locator resolved to <html lang="vi" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">…</html>
+           - unexpected value "http://localhost:3100/prelaunch"
+
+
+      17 |   test('@event-env-invalid FR-104 / BR-001: a guest opening /prelaunch ends on /login', async ({ page }) => {
+      18 |     await page.goto('/prelaunch')
+    > 19 |     await expect(page).toHaveURL(/\/login$/)
+         |                        ^
+      20 |     await expect(page.getByRole('button', { name: LOGIN_BUTTON })).toBeVisible()
+      21 |   })
+      22 | })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/prelaunch-invalid-env.spec.ts:19:24
+
+    Error Context: test-results/prelaunch-invalid-env--eve-e9d3a-ing-prelaunch-ends-on-login-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/prelaunch-invalid-env--eve-e9d3a-ing-prelaunch-ends-on-login-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/prelaunch-invalid-env--eve-e9d3a-ing-prelaunch-ends-on-login-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › e2e/prelaunch-invalid-env.spec.ts:11:7 › @event-env-invalid Prelaunch with an invalid EVENT_START_AT › @event-env-invalid FR-104 / BR-001: GET /prelaunch answers 307 to / with no lock 
+    [chromium] › e2e/prelaunch-invalid-env.spec.ts:17:7 › @event-env-invalid Prelaunch with an invalid EVENT_START_AT › @event-env-invalid FR-104 / BR-001: a guest opening /prelaunch ends on /login 
+  2 passed (4.6m)
+error: script "test:e2e" exited with code 1

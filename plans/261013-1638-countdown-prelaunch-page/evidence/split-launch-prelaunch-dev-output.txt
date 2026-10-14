@@ -1,0 +1,44 @@
+$ playwright test --grep @prelaunch
+[WebServer] $ next dev -p "3100"
+
+Running 35 tests using 4 workers
+
+  ✓   2 [chromium] › e2e/prelaunch-countdown-display.spec.ts:80:7 › @prelaunch Prelaunch countdown display › FR-002 / DEC-003: the default (vi) title reads "Sự kiện sẽ bắt đầu sau" (1.2s)
+  ✓   1 [chromium] › e2e/prelaunch-countdown-display.spec.ts:86:7 › @prelaunch Prelaunch countdown display › FR-002: NEXT_LOCALE=en shows "Event starts in" and no raw prelaunch. key (1.3s)
+  ✓   3 [chromium] › e2e/prelaunch-countdown-display.spec.ts:72:7 › @prelaunch Prelaunch countdown display › TC GUI 8 / FR-201: the unit labels are white (rgb 255, 255, 255) (1.4s)
+  ✓   4 [chromium] › e2e/prelaunch-countdown-display.spec.ts:61:7 › @prelaunch Prelaunch countdown display › TC GUI 5-7 / FR-201: DAYS, HOURS and MINUTES each show two digit tiles and a label (1.4s)
+  ✓   5 [chromium] › e2e/prelaunch-countdown-display.spec.ts:94:7 › @prelaunch Prelaunch countdown display › FR-205: no banner, contentinfo, language trigger or coming-soon marker (1.9s)
+  ✓   7 [chromium] › e2e/prelaunch-countdown-display.spec.ts:113:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 13 / FR-202: 5h 5m left reads 00 05 05 (1.9s)
+  ✓   6 [chromium] › e2e/prelaunch-countdown-display.spec.ts:103:7 › @prelaunch Prelaunch countdown display › FR-204: the background covers the 1440 x 900 viewport and decodes (2.3s)
+  ✓   8 [chromium] › e2e/prelaunch-countdown-display.spec.ts:127:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / TC GUI 10 / TC GUI 11 / FR-202: 31d 23h 59m reads 31 23 59 (2.2s)
+  ✓   9 [chromium] › e2e/prelaunch-countdown-display.spec.ts:127:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / FR-202: 10d 10h 10m reads 10 10 10 (2.2s)
+  ✓  10 [chromium] › e2e/prelaunch-countdown-display.spec.ts:127:9 › @prelaunch Prelaunch countdown display › TC GUI 9 / TC GUI 11 / FR-202: 9d 9h 9m reads 09 09 09 (2.1s)
+  ✓  11 [chromium] › e2e/prelaunch-countdown-display.spec.ts:127:9 › @prelaunch Prelaunch countdown display › TC GUI 10 / TC GUI 11 / FR-202: 1d 0h 0m reads 01 00 00 (1.9s)
+  ✓  12 [chromium] › e2e/prelaunch-countdown-display.spec.ts:127:9 › @prelaunch Prelaunch countdown display › TC FUNCTION 17 / FR-202: 120d reads three day digits 120 00 00 (1.8s)
+  ✓  15 [chromium] › e2e/prelaunch-countdown-display.spec.ts:160:7 › @prelaunch Prelaunch countdown display › SITE_LAUNCH_AT drives the countdown: real clock shows the days left to 2099, not the past EVENT_START_AT (1.4s)
+  ✓  13 [chromium] › e2e/prelaunch-countdown-display.spec.ts:134:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 12 / FR-401: the minutes drop by one after clock.runFor 01:00, no reload (1.5s)
+  ✓  16 [chromium] › e2e/prelaunch-countdown-display.spec.ts:171:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 16 / DEC-003: 30 s left reads 00 00 00 and the URL stays /prelaunch (1.5s)
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  17 [chromium] › e2e/prelaunch-countdown-display.spec.ts:178:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 16 / FR-206: a browser clock an hour past the start reads 00 00 00 (908ms)
+  ✓  18 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:23:7 › @prelaunch Prelaunch lock and access › TC ACCESS-2 / FR-101: a guest sees /prelaunch and is not sent to /login (1.7s)
+[WebServer] Route /prelaunch is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  19 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:30:7 › @prelaunch Prelaunch lock and access › TC ACCESS-1 / FR-101: a signed-in user sees /prelaunch (4.0s)
+  ✓  20 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:38:7 › @prelaunch Prelaunch lock and access › TC ACCESS-3 / FR-101: the admin identity sees /prelaunch (3.3s)
+  ✓  21 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:46:7 › @prelaunch Prelaunch lock and access › TC ACCESS-1 step 4 / FR-102: locked paths answer 307 to /prelaunch for guests and signed-in users (2.7s)
+  ✓  22 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:61:7 › @prelaunch Prelaunch lock and access › FR-103: /login renders for a guest (1.1s)
+  ✓  25 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:82:7 › @prelaunch Prelaunch lock and access › FR-103: /auth/callback?error=x lands on /login with the fixed alert (1.2s)
+  ✓  23 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:68:7 › @prelaunch Prelaunch lock and access › FR-103 / US003: the full stubbed login ends on /prelaunch (2.3s)
+  ✓  26 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:89:7 › @prelaunch Prelaunch lock and access › FR-103: POST /auth/logout answers 303 to /login (400ms)
+  ✓  24 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:75:7 › @prelaunch Prelaunch lock and access › FR-105: a signed-in goto /login ends on /prelaunch (3.3s)
+  ✓  27 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:96:7 › @prelaunch Prelaunch lock and access › FR-102: /images/login/logo.png answers 200 and the login key visual decodes (1.5s)
+  ✓  30 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:144:7 › @prelaunch Prelaunch lock and access › FR-601 / BR-001: a browser clock past the start still shows /prelaunch for a guest (1.2s)
+  ✓  29 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:118:7 › @prelaunch Prelaunch lock and access › SC-002: a lock 307 for a request with an expired session carries the refreshed sb- set-cookie (2.2s)
+  ✓  28 [chromium] › e2e/prelaunch-lock-and-access.spec.ts:105:7 › @prelaunch Prelaunch lock and access › TC ACCESS-4 / FR-101: garbage sb-* session cookies still show /prelaunch (3.1s)
+  ✓  31 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:34:7 › @prelaunch Redirect home at the real launch time › ALG-002 / FR-403: on a real clock a 2099 launch makes no / request for 3 s and the URL stays /prelaunch (4.0s)
+  ✓  33 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:63:7 › @prelaunch Redirect home at the real launch time › FR-403 / DEC-004: a browser clock an hour past the launch makes no / request for 3 s (4.0s)
+  ✓  34 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:75:7 › @prelaunch Redirect home at the real launch time › FR-403: a tab woken after the wall clock passed the start reloads once and stays on /prelaunch (4.3s)
+  ✓  35 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:98:7 › @prelaunch Redirect home at the real launch time › FR-403: a tab woken before the wall clock reaches the launch does not reload (4.2s)
+  ✓  32 [chromium] › e2e/prelaunch-redirect-at-event-start.spec.ts:44:7 › @prelaunch Redirect home at the real launch time › FR-402 / DEC-004: past the real launch one / request goes out, the guest is back on /prelaunch and no loop follows (11.3s)
+  ✓  14 [chromium] › e2e/prelaunch-countdown-display.spec.ts:143:7 › @prelaunch Prelaunch countdown display › TC FUNCTION 14-15 / FR-203: ~30 sampled offsets read the exact days, hours (00-23) and minutes (00-59) (24.2s)
+
+  35 passed (5.1m)

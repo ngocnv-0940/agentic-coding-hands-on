@@ -9,7 +9,7 @@
 
 > **Code Column Contract:** `Code` is mandatory going forward — `ROUTE###`, contiguous and global across this one file (same shape as `SCR###`/`F###`). `Owner F###` carries the bare feature code that claims the route, or `—` when the route cannot be attributed to a single feature (shared/infra routes). Rare shared routes may list comma-separated multi-owners, e.g. `F001, F003`.
 
-Next.js App Router: route đến từ file-system (`app/**/route.ts`), không có file route tập trung. Session guard là `proxy.ts` (matcher loại `_next/static`, `_next/image`, `favicon.ico` và ảnh tĩnh), gọi `updateSession` trong `lib/supabase/proxy.ts`.
+Next.js App Router: route đến từ file-system (`app/**/route.ts`), không có file route tập trung. Session guard và khóa trước ngày ra mắt (F005) là `proxy.ts` (matcher loại `_next/static`, `_next/image`, `favicon.ico` và ảnh tĩnh), gọi `updateSession` trong `lib/supabase/proxy.ts`.
 
 ### File: app/auth/callback/route.ts
 
@@ -51,6 +51,12 @@ Ghi chú:
 | /profile | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
 | /admin | `AdminPage` (trang giữ chỗ; proxy và `AdminGate` chỉ cho `app_metadata.role === 'admin'`, người khác về /) | — |
 
+### File: app/prelaunch/page.tsx
+
+| Path | Component | Route Name |
+|------|-----------|------------|
+| /prelaunch | `PrelaunchPage` (Server Component, route cấp cao ngoài `(main)`, bọc `PrelaunchContent` trong `Suspense`; trang đếm ngược F005 / SCR005, công khai cho mọi vai trò; proxy chuyển về `/` từ `SITE_LAUNCH_AT` hoặc khi biến thiếu/sai; trước mốc mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` bị 307 về đây) | — |
+
 ### File: app/login/page.tsx
 
 | Path | Component | Route Name |
@@ -68,5 +74,5 @@ Ghi chú:
 | Category | Count |
 |----------|-------|
 | Backend Routes | 2 |
-| Frontend Pages | 8 |
-| Total | 10 |
+| Frontend Pages | 9 |
+| Total | 11 |

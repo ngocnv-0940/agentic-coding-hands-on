@@ -67,7 +67,7 @@ No data — không có thông báo trong ứng dụng hay đẩy ra ngoài. Dòn
 
 ### Type: middleware
 
-No data — không có middleware không phải xác thực. `proxy.ts` và `lib/supabase/proxy.ts` là guard phiên đăng nhập, thuộc Permissions và screen-flow.md (GUARD-001, GUARD-002), bị loại khỏi BL theo bảng Inclusion/Exclusion.
+No data — không có middleware không phải xác thực. `proxy.ts` và `lib/supabase/proxy.ts` là guard phiên đăng nhập, thuộc Permissions và screen-flow.md (GUARD-001, GUARD-002), bị loại khỏi BL theo bảng Inclusion/Exclusion. Cùng lý do với khóa trước ngày ra mắt của F005 (`decidePrelaunchAccess`: `lock` / `unlock` / `pass`, ALG-001): đó là guard route, ghi ở PERM010 và GUARD-004. Phần chuyển trang phía máy khách tại mốc (ALG-002, `useNavigateHomeAtEventStart`) là hẹn giờ một lần theo `remainingMs` máy chủ gửi, mỗi độ trễ kẹp tối thiểu 1 giây; xem Client-Side Logic.
 
 ### Type: custom-command
 
@@ -177,7 +177,7 @@ Document client-side patterns found in the codebase. For each, record: pattern t
 
 **Extraction signature:** timer wrapper around a handler — `setTimeout`, `clearTimeout`, `debounce(fn, ms)`, `throttle(fn, ms)`, `useDebounce`, `useDebouncedCallback`
 
-N/A — no debounce or throttle patterns detected. Chỉ có một `setTimeout(..., 0)` ở `app/todo/logout-button.tsx:13`; nó hoãn việc khóa nút đến sau sự kiện click để form vẫn gửi được, không gom hay giới hạn tần suất lời gọi, nên không phải debounce/throttle.
+N/A — no debounce or throttle patterns detected. Chỉ có một `setTimeout(..., 0)` ở `app/todo/logout-button.tsx:13`; nó hoãn việc khóa nút đến sau sự kiện click để form vẫn gửi được, không gom hay giới hạn tần suất lời gọi, nên không phải debounce/throttle. `app/prelaunch/_behavior/use-navigate-home-at-event-start.ts` (F005) cũng dùng `setTimeout`, nhưng là hẹn giờ một lần tới mốc (không gom hay giới hạn lời gọi) nên cũng không phải debounce/throttle.
 
 ### Optimistic UI
 

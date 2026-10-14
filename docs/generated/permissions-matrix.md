@@ -47,6 +47,7 @@
 | PERM007_LogoutPostOnly | Đăng xuất chỉ nhận POST, luôn kết thúc phiên cục bộ | action-permission | `app/auth/logout/route.ts:12-35` |
 | PERM008_OAuthCallbackCodeValidation | Callback chỉ đổi phiên khi `code` hợp lệ | action-permission | `app/auth/callback/route.ts:36-40` |
 | PERM009_OAuthCallbackFixedRedirect | Callback chỉ chuyển tới hai đích cố định, không mở redirect | route-guard | `app/auth/callback/route.ts:4-19,31-40` |
+| PERM010_PrelaunchSiteLock | Trước `SITE_LAUNCH_AT` khóa mọi đường dẫn ngoài danh sách miễn về `/prelaunch`; từ mốc `/prelaunch` về `/` | route-guard | `lib/supabase/proxy.ts:84-87`, `lib/event/prelaunch-access.ts` (`decidePrelaunchAccess`) |
 
 ---
 
@@ -342,10 +343,43 @@ Callback không yêu cầu phiên có sẵn (đây là bước tạo phiên, và
 
 ---
 
+## PERM010_PrelaunchSiteLock: Khóa site trước ngày ra mắt, `/prelaunch` công khai
+
+**Type**: route-guard
+**Enforced At**: `lib/supabase/proxy.ts:84-87` (`updateSession`, chạy trước các guard phiên); quyết định thuần ở `lib/event/prelaunch-access.ts` (`decidePrelaunchAccess`)
+
+### Description
+
+Chỉ dựa vào đồng hồ máy chủ và `SITE_LAUNCH_AT` (qua `readSiteLaunchFromEnv`); không đọc `user`, nên khách hay người đã đăng nhập, admin hay không đều bị đối xử như nhau. Khóa chỉ bật khi mốc hợp lệ và `now < start` (`now == start` tính là đã mở). Biến thiếu hoặc sai nghĩa là "đã mở": không khóa, để một cấu hình hỏng không khóa cả site. Miễn khóa: đúng `/prelaunch`, đúng `/login`, đường dẫn bắt đầu bằng `/auth/` hoặc `/_next/`. `/prelaunch/x` và đường dẫn không tồn tại vẫn bị khóa. Ảnh tĩnh nằm ngoài matcher của `proxy.ts`. Đường dẫn `/auth/*` đã được `updateSession` cho qua từ đầu (PERM003) nên không bao giờ tới nhánh này.
+
+### Related Routes
+
+- (GET) /prelaunch - frontend page (route-list.md § Frontend Routes/Pages, không có mã `ROUTE###`)
+
+### Related Screens
+
+- SCR005_CountdownPrelaunch - Countdown Prelaunch
+
+### Permission Rules
+
+| Role | Allow | Conditions |
+|------|-------|------------|
+| anonymous | ✓ `/prelaunch`, `/login`, `/auth/*` | Trước mốc: các đường dẫn khác redirect 307 `/prelaunch`. Từ mốc: `/prelaunch` redirect `/` |
+| authenticated | ✓ `/prelaunch`, `/login`, `/auth/*` | Như anonymous: khóa không xét phiên. Từ mốc: `/prelaunch` redirect `/` |
+
+### Related Modules
+
+- `proxy.ts`
+- `lib/supabase/proxy.ts`
+- `lib/event/prelaunch-access.ts`
+- `lib/event/event-start-config.ts`
+
+---
+
 ## Summary
 
-- **Total Permission Items**: 9
-- **By Type**: route-guard: 7, screen-permission: 0, action-permission: 2, data-permission: 0, role-based: 0, resource-ownership: 0, field-permission: 0, api-scope: 0, feature-flag: 0, experiment: 0, env-gate: 0, locale-gate: 0
+- **Total Permission Items**: 10
+- **By Type**: route-guard: 8, screen-permission: 0, action-permission: 2, data-permission: 0, role-based: 0, resource-ownership: 0, field-permission: 0, api-scope: 0, feature-flag: 0, experiment: 0, env-gate: 0, locale-gate: 0
 
 ---
 

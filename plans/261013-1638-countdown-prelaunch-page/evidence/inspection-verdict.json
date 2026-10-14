@@ -1,0 +1,94 @@
+{
+  "score": 9,
+  "criticalCount": 0,
+  "decision": "SEALED",
+  "acceptanceCovered": [
+    "SC-001 /prelaunch is public before the start for guests and signed-in users — proven by e2e TC ACCESS-1/2/3, now on the E2E_SITE_LAUNCH_AT server (session-expiry clause superseded by public-page decision)",
+    "SC-002 before the launch (SITE_LAUNCH_AT) every other page 307s to /prelaunch with refreshed cookies; /login, /auth/*, static images stay reachable; a fast browser clock does not unlock — proxy reads readSiteLaunchFromEnv() (lib/supabase/proxy.ts:85); proven by e2e lock matrix, FR-601 fast-clock test and expired-session Set-Cookie test run with E2E_SITE_LAUNCH_AT=2099 (dev 35/35, prod 35/35)",
+    "SC-003 title, three units with two LED tiles each, white uppercase DAYS/HOURS/MINUTES labels, full background, no header/footer — carried from the previous verdict",
+    "SC-004 two-digit values in range; days under one day show 00; at or after the start 00 00 00 — carried from the previous verdict",
+    "SC-005 minutes update without a reload — carried from the previous verdict",
+    "SC-006 at the real launch the open page goes to /; /prelaunch after the launch or with an invalid SITE_LAUNCH_AT goes to /; no redirect loop — /prelaunch target from readSiteLaunchFromEnv() (app/prelaunch/page.tsx:36); proven by e2e redirect-at-launch tests (FR-402/DEC-004, FR-403), default-run FR-104 with SITE_LAUNCH_AT unset, and @launch-env-invalid not-a-date 2/2 and offset-less 2/2",
+    "SC-007 VI/EN copy matches Figma with key parity; SITE_LAUNCH_AT alone drives the lock and the /prelaunch countdown while EVENT_START_AT alone drives the homepage countdown — copy parity carried; split proven by readEventSnapshot default param (app/(main)/_wiring/read-event-snapshot.ts:18, homepage call app/(main)/page.tsx:24 unchanged), new e2e e2e/prelaunch-countdown-display.spec.ts:160 (2099 days, not past EVENT_START_AT), homepage @event-env-invalid 2/2 and full default 116/116",
+    "SC-008 existing guard suites stay green after the start — full default suite 116/116 with SITE_LAUNCH_AT unset"
+  ],
+  "regressionChecked": [
+    "existing proxy guards order: lock precedes auth/admin gates, no loop in locked/unlocked/invalid matrices",
+    "/auth/* early return and /auth/logout 303 unchanged",
+    "/login exact-match exemption and signed-in /login -> / -> /prelaunch",
+    "matcher exemptions (static images, _next/static|image) + /_next/ prefix",
+    "CountdownDisplay default class strings byte-identical to master (homepage untouched)",
+    "homepage readEventSnapshot() call unchanged; default param keeps EVENT_START_AT; explicit null from invalid SITE_LAUNCH_AT not replaced by default",
+    "no remaining EVENT_START_AT read on lock or /prelaunch paths (grep app/ lib/)",
+    "SITE_LAUNCH_AT server-only: no NEXT_PUBLIC_ prefix, no next.config env, readSiteLaunchFromEnv not called from client modules",
+    "playwright grepInvert: default run excludes @prelaunch, @launch-env-invalid, @event-env-invalid; custom event or launch env forces fresh server (reuseExistingServer)",
+    "e2e diff is renames/tag swaps plus one added split test; no assertion removed",
+    "i18n keys added to both vi and en",
+    "hook delay clamp: remainingMs<=0 now waits the 1s minimum; FR-403 wake paths covered by positive and negative e2e"
+  ],
+  "contractStatus": "CHANGED",
+  "refuted": [],
+  "unproven": [],
+  "reachableRegressions": [],
+  "riskGate": {
+    "touchesSensitiveArea": true,
+    "signoffRequired": true,
+    "humanSignedOff": true
+  },
+  "findings": [
+    {
+      "severity": "Medium",
+      "category": "Testing",
+      "location": "e2e/prelaunch-lock-and-access.spec.ts:181-193",
+      "summary": "addressed — SC-002 requires refreshed Set-Cookie on the lock 307; no test asserts it (code correct via redirectWithCookies)",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Medium",
+      "category": "Testing",
+      "location": "app/prelaunch/_behavior/use-navigate-home-at-event-start.ts:99-105",
+      "summary": "addressed — FR-403 visibilitychange wake re-check has no e2e coverage",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "app/prelaunch/_behavior/use-navigate-home-at-event-start.ts:78",
+      "summary": "addressed — remainingMs<=0 yields delay 0, bypassing the 1s clamp; comment's 'at most once per second' is inaccurate; tight loop possible only under multi-instance clock skew",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "summary": "monotonic-clock timer may fire late after system sleep with no visibilitychange; optional pageshow/focus re-check",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Performance",
+      "summary": "getUser() awaited before lock decision adds auth round-trip on locked requests; required for BR-004 cookie refresh",
+      "disposition": "Reject"
+    },
+    {
+      "severity": "Medium",
+      "category": "Documentation",
+      "location": "docs/features/F005_CountdownPrelaunch/technical-spec.md:13",
+      "summary": "F005 functional/technical spec, SCR005 spec, system permissions/architecture, generated lists and project-changelog.md:9-12 still say EVENT_START_AT drives the lock and /prelaunch and 'no new env var'; SITE_LAUNCH_AT absent from docs/ — update via doc-writer",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Documentation",
+      "location": "app/prelaunch/_wiring/prelaunch-countdown-container.tsx:9",
+      "summary": "JSDoc says null when EVENT_START_AT missing/invalid; should be SITE_LAUNCH_AT",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Testing",
+      "location": "playwright.config.ts:67",
+      "summary": "default run leaves SITE_LAUNCH_AT unset so a future value in .env.local would lock the default suite; always pass SITE_LAUNCH_AT: SITE_LAUNCH_AT ?? '' (empty process env beats env files in @next/env)",
+      "disposition": "Accept"
+    }
+  ]
+}

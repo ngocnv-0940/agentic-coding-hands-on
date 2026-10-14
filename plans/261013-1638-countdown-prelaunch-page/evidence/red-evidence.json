@@ -1,0 +1,67 @@
+{
+  "phase": 1,
+  "testPolicy": "e2e-red-first",
+  "status": "valid-red",
+  "redTestFiles": [
+    "e2e/prelaunch-lock-and-access.spec.ts",
+    "e2e/prelaunch-countdown-display.spec.ts",
+    "e2e/prelaunch-redirect-at-event-start.spec.ts",
+    "e2e/prelaunch-after-event-start.spec.ts",
+    "e2e/prelaunch-invalid-env.spec.ts",
+    "e2e/support/prelaunch-locators-and-clock.ts"
+  ],
+  "redCommand": "E2E_EVENT_START_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+  "redCommandAlsoRun": [
+    "bun run test:e2e",
+    "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid"
+  ],
+  "redExitCode": 1,
+  "redExitCodes": {
+    "prelaunch (locked, @prelaunch)": 1,
+    "default (past start, full run)": 1,
+    "invalid (@event-env-invalid)": 1
+  },
+  "redCounts": {
+    "prelaunch": { "total": 31, "failed": 27, "passed": 4 },
+    "default": { "total": 116, "failed": 3, "passed": 113, "failedFile": "e2e/prelaunch-after-event-start.spec.ts" },
+    "invalid": { "total": 4, "failed": 2, "passed": 2 }
+  },
+  "redFailure": [
+    "prelaunch: getByTestId('prelaunch-screen') not found on GET /prelaunch (404): display, redirect, FUNCTION and most ACCESS tests fail at the screen precondition",
+    "prelaunch: guest GET / answers 307 to /login, expected 307 to /prelaunch (ACCESS step 4); no lock exists yet",
+    "prelaunch: full stubbed login and signed-in goto /login end on '/', expected /prelaunch (FR-103/US003, FR-105)",
+    "prelaunch: browser clock past the start still ends on '/', expected /prelaunch (FR-601)",
+    "prelaunch: redirect tests (ALG-002 real clock, FR-402 one-shot, FR-403 fast client clock) fail at the screen precondition, so the fast-forward path is not yet exercised",
+    "default: GET /prelaunch returns 404, expected 307 to / after the start (FR-104)",
+    "default: guest GET /prelaunch stays on /prelaunch, expected /login (DEC-002)",
+    "default: signed-in GET /prelaunch stays on /prelaunch, expected / with hero (DEC-002)",
+    "invalid: GET /prelaunch returns 404, expected 307 to / with no lock (FR-104/BR-001)",
+    "invalid: guest /prelaunch stays on /prelaunch, expected /login (FR-104/BR-001)"
+  ],
+  "alreadyPassingWithReason": [
+    "prelaunch: FR-103 /login renders for a guest (existing guard, must stay green)",
+    "prelaunch: FR-103 POST /auth/logout 303 /login (existing route, must stay green)",
+    "prelaunch: FR-103 /auth/callback?error=x -> /login with alert (existing, must stay green)",
+    "prelaunch: FR-102 /images/login/logo.png 200 and login key visual decodes (existing asset)",
+    "default: FR-106 guest / still goes to /login (existing guard)",
+    "invalid: pre-existing homepage-countdown-invalid-env specs (2) pass"
+  ],
+  "regression": {
+    "preExistingDefaultTests": 112,
+    "preExistingDefaultPassed": 112,
+    "note": "default run 116 total = 112 pre-existing + 4 new untagged; the 3 failures are the new after-start spec; config grepInvert edit is inert for untagged specs"
+  },
+  "notMeasured": [
+    "fast-forward helper runtime (~1.3k fastForward calls for a 73-year gap): not reached in RED, measure in GREEN"
+  ],
+  "tsc": { "command": "bunx tsc --noEmit", "exitCode": 0 },
+  "eslint": { "command": "bunx eslint e2e/prelaunch-*.ts e2e/support/prelaunch-locators-and-clock.ts playwright.config.ts", "exitCode": 0 },
+  "evidenceFiles": [
+    "evidence/e2e-red-prelaunch-output.txt",
+    "evidence/e2e-red-default-output.txt",
+    "evidence/e2e-red-default-exit.txt",
+    "evidence/e2e-red-invalid-output.txt",
+    "evidence/tsc-phase1-output.txt",
+    "evidence/eslint-phase1-output.txt"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "task": "Implement MoMorph screen 'Countdown - Prelaunch page' (8PJQswPZmU): public /prelaunch countdown page plus a proxy lock that sends every page except /login and /auth/* to /prelaunch before EVENT_START_AT",
+  "mode": "auto",
+  "acceptanceCriteria": [
+    "SC-001 /prelaunch is public before the start for guests and signed-in users",
+    "SC-002 before the launch (SITE_LAUNCH_AT) every other page 307s to /prelaunch with refreshed cookies; /login, /auth/*, static images stay reachable; a fast browser clock does not unlock",
+    "SC-003 title, three units with two LED tiles each, white uppercase DAYS/HOURS/MINUTES labels, full background, no header/footer",
+    "SC-004 two-digit values in range; days under one day show 00; at or after the start 00 00 00",
+    "SC-005 minutes update without a reload",
+    "SC-006 at the real launch the open page goes to /; /prelaunch after the launch or with an invalid SITE_LAUNCH_AT goes to /; no redirect loop",
+    "SC-007 VI/EN copy matches Figma with key parity; SITE_LAUNCH_AT alone drives the lock and the /prelaunch countdown while EVENT_START_AT alone drives the homepage countdown",
+    "SC-008 existing guard suites stay green after the start"
+  ],
+  "touchpoints": [
+    "lib/supabase/proxy.ts",
+    "lib/event/prelaunch-access.ts",
+    "app/prelaunch/page.tsx",
+    "app/prelaunch/_components/prelaunch-screen.tsx",
+    "app/prelaunch/_wiring/prelaunch-countdown-container.tsx",
+    "app/prelaunch/_behavior/use-navigate-home-at-event-start.ts",
+    "app/(main)/_components/countdown-display.tsx",
+    "lib/i18n/dictionary-vi.ts",
+    "lib/i18n/dictionary-en.ts",
+    "playwright.config.ts"
+  ],
+  "blastRadius": [
+    "every proxied route (auth guards, /login, /auth/*, /admin)",
+    "homepage countdown (shared CountdownDisplay)",
+    "e2e config grepInvert"
+  ],
+  "contracts": [
+    "proxy redirect semantics: 307 + refreshed Set-Cookie",
+    "CountdownDisplay default size unchanged",
+    "node .claude/skills/_shared/lib/evidence-gate.cjs --evidence-dir <abs> --stage hard",
+    "SITE_LAUNCH_AT (server-only, strict ISO-8601 + offset) drives the lock; EVENT_START_AT homepage-only; missing/invalid SITE_LAUNCH_AT = no lock"
+  ]
+}
