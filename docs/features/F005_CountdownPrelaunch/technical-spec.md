@@ -10,7 +10,7 @@ lang: vi
 
 ## 1. Technical Overview
 
-Feature thêm một route cấp cao công khai `/prelaunch` (ngoài nhóm `(main)`, nên không có header, footer, không kiểm phiên) và một lớp khóa nằm trong `updateSession` của `lib/supabase/proxy.ts`. Lớp khóa chạy sau bước làm mới phiên: nếu `EVENT_START_AT` hợp lệ và máy chủ chưa tới mốc thì mọi đường dẫn ngoài `/login`, `/auth/*`, `/prelaunch` (tài nguyên tĩnh đã nằm ngoài matcher) bị 307 tới `/prelaunch` kèm cookie vừa làm mới; từ mốc, hoặc khi biến thiếu hay sai, `/prelaunch` bị 307 về `/` và các guard cũ chạy như cũ. Hiển thị dùng lại `getCountdown`, `useCountdown` và ô số của trang chủ; chỉ thêm một thành phần client để tự chuyển về `/` khi tới mốc. Không có bảng dữ liệu, API hay biến môi trường mới.
+Feature thêm một route cấp cao công khai `/prelaunch` (ngoài nhóm `(main)`, nên không có header, footer, không kiểm phiên) và một lớp khóa nằm trong `updateSession` của `lib/supabase/proxy.ts`. Lớp khóa chạy sau bước làm mới phiên: nếu `SITE_LAUNCH_AT` hợp lệ và máy chủ chưa tới mốc thì mọi đường dẫn ngoài `/login`, `/auth/*`, `/prelaunch` (tài nguyên tĩnh đã nằm ngoài matcher) bị 307 tới `/prelaunch` kèm cookie vừa làm mới; từ mốc, hoặc khi biến thiếu hay sai, `/prelaunch` bị 307 về `/` và các guard cũ chạy như cũ. Hiển thị dùng lại `getCountdown`, `useCountdown` và ô số của trang chủ; chỉ thêm một thành phần client để tự chuyển về `/` khi tới mốc. Không có bảng dữ liệu hay API mới; một biến môi trường mới `SITE_LAUNCH_AT` (tách khỏi `EVENT_START_AT`).
 
 ```mermaid
 flowchart LR
@@ -83,7 +83,7 @@ flowchart LR
 
 **Who** · Mọi người, kể cả khách; quyết định khóa không phụ thuộc phiên. *(gate A0 — § 4.4)*
 **FE** · không có; người dùng thấy một redirect 307.
-**Request** · đường dẫn yêu cầu; cookie phiên; đồng hồ máy chủ (`Date.now()`); biến `EVENT_START_AT` đọc bằng `readEventStartFromEnv()`
+**Request** · đường dẫn yêu cầu; cookie phiên; đồng hồ máy chủ (`Date.now()`); biến `SITE_LAUNCH_AT` đọc bằng `readSiteLaunchFromEnv()`
 **BE** · Thứ tự trong `updateSession`: (1) `/auth/*` đi thẳng như cũ (không chạm cookie); (2) tạo client Supabase và `getUser()` để làm mới phiên như cũ; (3) **lớp khóa mới** chạy ngay sau bước làm mới và trước các guard cũ, dùng `redirectWithCookies` sẵn có (BR-004: cookie và header cache mang theo); (4) các guard cũ (khách vào trang bảo vệ về `/login`, đã đăng nhập vào `/login` về `/`, `/admin`). Lớp khóa không đọc `user`.
 **Rule** · **BR-001 / BR-003 / BR-005 — khóa chỉ khi mốc hợp lệ và `now < start`; miễn khóa chỉ `/login`, `/auth/*`, `/prelaunch`.** Chi tiết ở ALG-001 (§ 4.5). Hệ quả: đường dẫn lạ trước mốc cũng tới `/prelaunch` (không có 404).
 
@@ -92,8 +92,8 @@ flowchart LR
 | **DEC-001** | access | `start` hợp lệ và `now < start`, đường dẫn không thuộc nhóm miễn | 307 tới `/prelaunch` (FR-102) | TBD (draft) |
 | **DEC-001** | access | `start` hợp lệ và `now < start`, đường dẫn là `/login` | Không khóa; guard cũ của `/login` chạy (FR-103) | TBD (draft) |
 | **DEC-001** | access | `start` hợp lệ và `now < start`, đường dẫn là `/prelaunch` | Cho qua, trang hiển thị, kể cả khi đã đăng nhập (FR-101) | TBD (draft) |
-| **DEC-001** | access | `now >= start`, hoặc `EVENT_START_AT` thiếu hay sai, đường dẫn là `/prelaunch` | 307 về `/` (FR-104) | TBD (draft) |
-| **DEC-001** | access | `now >= start`, hoặc `EVENT_START_AT` thiếu hay sai, đường dẫn khác | Lớp khóa không làm gì; guard cũ chạy như trước (FR-106) | TBD (draft) |
+| **DEC-001** | access | `now >= start`, hoặc `SITE_LAUNCH_AT` thiếu hay sai, đường dẫn là `/prelaunch` | 307 về `/` (FR-104) | TBD (draft) |
+| **DEC-001** | access | `now >= start`, hoặc `SITE_LAUNCH_AT` thiếu hay sai, đường dẫn khác | Lớp khóa không làm gì; guard cũ chạy như trước (FR-106) | TBD (draft) |
 
 **Result** · read-only. Trước mốc mọi truy cập tập trung về `/prelaunch`; sau mốc ứng dụng chạy y như trước feature này. Đồng hồ máy người dùng không tham gia (FR-601). Máy chủ Auth không trả lời không làm thay đổi kết quả khóa.
 **Source:** TBD (draft)
@@ -121,7 +121,7 @@ flowchart LR
 | Action | Scenario | Behavior |
 |---|---|---|
 | A2 | Đường dẫn không tồn tại trước mốc | 307 tới `/prelaunch`, không 404 (FR-102) |
-| A2 | `EVENT_START_AT` thiếu hoặc sai | Không khóa; `/prelaunch` về `/` (BR-001, FR-104) |
+| A2 | `SITE_LAUNCH_AT` thiếu hoặc sai | Không khóa; `/prelaunch` về `/` (BR-001, FR-104) |
 | A2 | `now` bằng đúng `start` | Không khóa (BR-005) |
 | A2 | Máy chủ Auth không trả lời | Bước làm mới phiên coi như chưa đăng nhập; khóa vẫn áp dụng (FR-601) |
 | A2 | Yêu cầu `/auth/*` trước mốc | Đi thẳng, không bị khóa (FR-103) |
@@ -141,7 +141,7 @@ flowchart LR
 | `PrelaunchCountdownContainer` (planned, client) | `useCountdown` cho số hiển thị; hẹn giờ chuyển về `/` | A3, A4 | TBD (draft) trong `app/prelaunch/` (ví dụ `_wiring/`) |
 | `CountdownDisplay` *(có sẵn)* | Ba khối và ô số LED; có thể cần biến thể (ô lớn hơn, không dòng "Coming soon") | A1 | `app/(main)/_components/countdown-display.tsx` |
 | `useCountdown` *(có sẵn)* | Hook cập nhật theo phút | A3 | `lib/event/use-countdown.ts` |
-| `getCountdown`, `parseEventStart`, `readEventStartFromEnv` *(có sẵn)* | Tính đếm ngược; đọc và kiểm `EVENT_START_AT` | A1, A2, A3 | `lib/event/event-start-config.ts` |
+| `getCountdown`, `parseEventStart` *(có sẵn)*, `readSiteLaunchFromEnv` *(mới)* | Tính đếm ngược; đọc và kiểm `SITE_LAUNCH_AT` (`parseEventStart` dùng chung với `EVENT_START_AT`) | A1, A2, A3 | `lib/event/event-start-config.ts` |
 | `readEventSnapshot` *(có sẵn)* | Snapshot theo request (gọi sau `connection()`) | A1 | `app/(main)/_wiring/read-event-snapshot.ts` |
 | `updateSession` *(mở rộng)* | Thêm nhánh khóa sau bước làm mới phiên | A2 | `lib/supabase/proxy.ts` |
 | `home-fonts` *(có sẵn)* | Phông Montserrat và phông số LED (`--font-digital`) | A1 | `app/(main)/_components/home-fonts.ts` |
@@ -154,7 +154,7 @@ Dùng chung giữa `(main)` và `app/prelaunch` đòi hỏi `CountdownDisplay`, 
 
 | Entity | Table | Key Columns | Purpose |
 |--------|-------|-------------|---------|
-| — | — | — | Không có bảng; mốc là biến môi trường `EVENT_START_AT` |
+| — | — | — | Không có bảng; mốc là biến môi trường `SITE_LAUNCH_AT` |
 
 #### Polymorphic Behavior
 
@@ -162,14 +162,14 @@ N/A — no discriminator fields in Key Entities.
 
 ### 4.3 State Management
 
-None — giá trị đếm ngược là state cục bộ của `useCountdown`; trạng thái khóa không lưu ở đâu, được tính lại ở mỗi yêu cầu từ `Date.now()` và `EVENT_START_AT`. Không đủ ngưỡng thành state machine (chỉ hai trạng thái theo thời gian: DEC-001).
+None — giá trị đếm ngược là state cục bộ của `useCountdown`; trạng thái khóa không lưu ở đâu, được tính lại ở mỗi yêu cầu từ `Date.now()` và `SITE_LAUNCH_AT`. Không đủ ngưỡng thành state machine (chỉ hai trạng thái theo thời gian: DEC-001).
 
 ### 4.4 Shared Rules
 
 #### Bin 3 — cross-cutting, belongs to no single action
 
 **A0 · FR-001 / FR-002 / BR-002 / BR-004 — một mốc duy nhất, chuỗi từ từ điển, redirect giữ cookie.**
-FR-001 và BR-002: khóa, đếm ngược của `/prelaunch` và của trang chủ cùng đọc `EVENT_START_AT` qua `lib/event/event-start-config.ts`; không đọc `process.env` ở chỗ khác, không thêm biến hay API. FR-002: khoá mới (tiêu đề `prelaunch.title` hoặc tương đương; nhãn Days, Hours, Minutes có thể dùng lại khoá `home.hero.*` hiện có nếu chữ giống) thêm vào từ điển vi/en hiện có, cặp khoá khớp lúc biên dịch. BR-004: redirect khóa đi qua `redirectWithCookies` để không mất cookie phiên vừa làm mới. **Không phải quy tắc riêng của feature này** mà kế thừa từ F001_Auth, F002_Localization và F003_Homepage.
+FR-001 và BR-002: khóa và đếm ngược của `/prelaunch` cùng đọc `SITE_LAUNCH_AT` qua `readSiteLaunchFromEnv()` trong `lib/event/event-start-config.ts`; không đọc biến môi trường ở chỗ khác, không thêm API. `EVENT_START_AT` chỉ còn cho trang chủ. FR-002: khoá mới (tiêu đề `prelaunch.title` hoặc tương đương; nhãn Days, Hours, Minutes có thể dùng lại khoá `home.hero.*` hiện có nếu chữ giống) thêm vào từ điển vi/en hiện có, cặp khoá khớp lúc biên dịch. BR-004: redirect khóa đi qua `redirectWithCookies` để không mất cookie phiên vừa làm mới. **Không phải quy tắc riêng của feature này** mà kế thừa từ F001_Auth, F002_Localization và F003_Homepage.
 **Source:** TBD (draft)
 
 ### 4.5 Algorithms & Integrations
@@ -209,7 +209,7 @@ setTimeout(() => location.replace("/"), delay)    # waits above 2^31-1 ms are sp
 
 ### 4.6 Configuration
 
-`EVENT_START_AT` (có sẵn, chỉ phía máy chủ, không tiền tố `NEXT_PUBLIC_`): thời điểm ISO-8601 kèm offset hoặc `Z`. Nay còn điều khiển khóa site. Thiếu hoặc sai thì không khóa (BR-001). Không thêm cấu hình mới.
+`SITE_LAUNCH_AT` (mới, chỉ phía máy chủ, không tiền tố `NEXT_PUBLIC_`): thời điểm ISO-8601 kèm offset hoặc `Z`, parse bằng `parseEventStart`. Điều khiển khóa site và đếm ngược `/prelaunch`. Thiếu hoặc sai thì không khóa (BR-001). `EVENT_START_AT` chỉ còn điều khiển trang chủ. E2E: `E2E_SITE_LAUNCH_AT`.
 
 **Client behavior:** see behavior-logic.md, permissions.md, architecture.md
 
@@ -217,15 +217,15 @@ setTimeout(() => location.replace("/"), delay)    # waits above 2^31-1 ms are sp
 
 ### 5.1 Technical Verification
 
-Chính sách kiểm thử: `e2e-red-first` (Playwright đã có, chạy bằng `bun run test:e2e`): viết kịch bản E2E đỏ trước rồi làm xanh. Lớp khóa thay đổi proxy (an toàn: auth, guard, cấu hình), nên các bộ E2E guard hiện có phải chạy đủ. Test case MoMorph có 17 ca; những ca về giá trị không hợp lệ (TC "-1", "25", "60") không thể tạo từ phép tính, kiểm bằng unit test của `getCountdown` (khoảng hợp lệ trên nhiều thời điểm) thay vì E2E. Các test này cần một máy chủ riêng với `EVENT_START_AT` ở tương lai (cơ chế `E2E_EVENT_START_AT` có sẵn trong `playwright.config.ts`); bộ E2E mặc định dùng mốc quá khứ nên không bị khóa.
+Chính sách kiểm thử: `e2e-red-first` (Playwright đã có, chạy bằng `bun run test:e2e`): viết kịch bản E2E đỏ trước rồi làm xanh. Lớp khóa thay đổi proxy (an toàn: auth, guard, cấu hình), nên các bộ E2E guard hiện có phải chạy đủ. Test case MoMorph có 17 ca; những ca về giá trị không hợp lệ (TC "-1", "25", "60") không thể tạo từ phép tính, kiểm bằng unit test của `getCountdown` (khoảng hợp lệ trên nhiều thời điểm) thay vì E2E. Các test này cần một máy chủ riêng với `SITE_LAUNCH_AT` ở tương lai (`E2E_SITE_LAUNCH_AT` trong `playwright.config.ts`, nhóm `@prelaunch`; nhóm `@launch-env-invalid` kiểm giá trị sai); bộ E2E mặc định không đặt `SITE_LAUNCH_AT` nên không bị khóa.
 
 - **SC-001** *(A1)* Trước mốc, khách và người đã đăng nhập đều mở được `/prelaunch`; trang không chuyển về `/login`; phiên hết hạn không làm trang này đổi hành vi (covers FR-101, FR-602; TC ACCESSING 1, 2, 3, 4)
 - **SC-002** *(A2)* Trước mốc: `/`, `/awards-information`, `/admin` và một đường dẫn không tồn tại đều 307 tới `/prelaunch` (cả khách lẫn người đã đăng nhập), redirect mang `Set-Cookie` làm mới; `/login` hiển thị; `/auth/logout` vẫn chạy; ảnh tĩnh tải được (covers FR-102, FR-103, FR-105, FR-601, BR-001, BR-003, DEC-001; TC ACCESSING 1 bước 4). FR-601: đổi đồng hồ trình duyệt không mở khóa
 - **SC-003** *(A1)* Có tiêu đề, ba khối với hai ô LED mỗi khối, nhãn "DAYS", "HOURS", "MINUTES" in hoa màu trắng, nền ảnh phủ kín, không header, footer (covers FR-002, FR-201, FR-204, FR-205; TC GUI 5, 6, 7, 8)
 - **SC-004** *(A1)* Giá trị hai chữ số cho 0, 5, 9, 10, 23, 31, 59; Days 00 khi dưới một ngày; Hours trong 00 đến 23, Minutes trong 00 đến 59 trên nhiều thời điểm; ngày từ 100 hiện 3 chữ số; ở hoặc sau mốc là 00 00 00. Unit test `getCountdown` là chủ sở hữu, E2E kiểm hiển thị bằng đồng hồ trình duyệt giả (covers FR-202, FR-203, FR-206; TC GUI 9, 10, 11; FUNCTION 13, 14, 15, 16, 17)
 - **SC-005** *(A3)* Đẩy đồng hồ trình duyệt thì số phút đổi mà không tải lại (covers FR-401, DEC-003; TC FUNCTION 12)
-- **SC-006** *(A4)* Trang đang mở qua mốc thì tự vào `/`, khách thấy `/login`; đồng hồ trình duyệt nhanh hơn máy chủ không chuyển sớm và không tạo vòng lặp; mở `/prelaunch` sau mốc, hoặc với `EVENT_START_AT` sai, về `/` (covers FR-104, FR-402, FR-403, DEC-002, DEC-004, ALG-002; TC FUNCTION 16)
-- **SC-007** *(A0)* EN: "Event starts in"; VN đúng nguyên văn Figma; khoá vi/en khớp; đổi `EVENT_START_AT` thì cả khóa lẫn đếm ngược đổi theo, không có nguồn mốc thứ hai (covers FR-001, FR-002, BR-002)
+- **SC-006** *(A4)* Trang đang mở qua mốc thì tự vào `/`, khách thấy `/login`; đồng hồ trình duyệt nhanh hơn máy chủ không chuyển sớm và không tạo vòng lặp; mở `/prelaunch` sau mốc, hoặc với `SITE_LAUNCH_AT` sai, về `/` (covers FR-104, FR-402, FR-403, DEC-002, DEC-004, ALG-002; TC FUNCTION 16)
+- **SC-007** *(A0)* EN: "Event starts in"; VN đúng nguyên văn Figma; khoá vi/en khớp; đổi `SITE_LAUNCH_AT` thì cả khóa lẫn đếm ngược `/prelaunch` đổi theo, không có nguồn mốc thứ hai (`EVENT_START_AT` không ảnh hưởng) (covers FR-001, FR-002, BR-002)
 - **SC-008** *(A2)* Sau mốc, các bộ E2E guard hiện có (`auth-flow-and-route-guards`, `homepage-access-and-landing`, `awards-information-access-and-content`) vẫn xanh (covers FR-106)
 
 #### US001 *(A1, A3)*
@@ -253,7 +253,7 @@ Chính sách kiểm thử: `e2e-red-first` (Playwright đã có, chạy bằng `
 
 ### 5.2 Assumptions
 
-- *(A2)* Proxy chạy ở runtime Node (mặc định của `proxy.ts` Next.js 16) nên đọc được `process.env.EVENT_START_AT` và `Date.now()` ở mỗi yêu cầu; bước đọc phải kiểm lại bằng tài liệu trong `node_modules/next/dist/docs/` trước khi dựng.
+- *(A2)* Proxy chạy ở runtime Node (mặc định của `proxy.ts` Next.js 16) nên đọc được `process.env.SITE_LAUNCH_AT` và `Date.now()` ở mỗi yêu cầu; bước đọc phải kiểm lại bằng tài liệu trong `node_modules/next/dist/docs/` trước khi dựng.
 - *(A1)* Ảnh nền lấy từ node Figma `2268:35129`, lưu dưới `public/images/` với phần mở rộng thuộc matcher của proxy (png, jpg, webp) để không bị khóa.
 - *(A1)* Ô số LED dùng lại kiểu của trang chủ (phông `--font-digital`, nền kính mờ viền vàng) trừ khi Figma `2268:35139` lệch; khi lệch thì Figma thắng (clarifications.md).
 - *(A2)* Redirect 307 không bị trình duyệt cache lâu, nên mở khóa tại mốc có hiệu lực ngay.
@@ -265,7 +265,7 @@ Chính sách kiểm thử: `e2e-red-first` (Playwright đã có, chạy bằng `
 2. **Dùng chung thành phần ngoài `(main)`** *(A1)*: `CountdownDisplay`, `readEventSnapshot` và `home-fonts` đang nằm trong `app/(main)`. Chọn: import chéo từ `app/prelaunch` (ít đổi nhất, khuyến nghị), hoặc chuyển ra thư mục dùng chung (đụng F003_Homepage).
 3. **Kích thước ô số theo Figma** *(A1)*: ảnh khung cho thấy ô lớn hơn trang chủ; cần số đo từ node `2268:35139` lúc dựng, rồi quyết định thêm biến thể (prop kích thước) vào `CountdownDisplay` thay vì nhân đôi thành phần.
 4. **Tiêu đề thẻ trình duyệt** *(A1)*: đề xuất dùng lại khoá `meta.title` (D009).
-5. **Kiểm thử cần mốc tương lai** *(A2, A4)*: E2E của trang này cần một máy chủ Playwright riêng (`E2E_EVENT_START_AT` tương lai); cách đặt tên và gắn thẻ (ví dụ `@event-env-prelaunch`) chốt lúc viết test.
+5. **Kiểm thử cần mốc tương lai** *(A2, A4)*: E2E của trang này cần một máy chủ Playwright riêng (`E2E_SITE_LAUNCH_AT` tương lai, thẻ `@prelaunch`; giá trị sai dùng thẻ `@launch-env-invalid`, còn `@event-env-invalid` chỉ cho trang chủ).
 
 ### 5.4 Source References
 

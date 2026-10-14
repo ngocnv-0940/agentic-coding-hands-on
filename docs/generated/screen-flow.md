@@ -24,8 +24,8 @@ graph TD
     AW -->|"Chi tiết (khối Sun* Kudos), header, footer"| PH
     HP -->|"Header, footer, nút CTA, menu tài khoản"| PH["Trang giữ chỗ: /sun-kudos, /standards, /profile, /admin"]
     PH -->|"Logo hoặc About SAA 2025"| HP
-    Z["Mọi đường dẫn ngoài /login, /auth/*, /_next/* trước EVENT_START_AT"] -->|"Proxy 307 /prelaunch"| PL["SCR005_CountdownPrelaunch"]
-    PL -->|"Từ EVENT_START_AT: hẹn giờ phía máy khách hoặc proxy 307 /"| HP
+    Z["Mọi đường dẫn ngoài /login, /auth/*, /_next/* trước SITE_LAUNCH_AT"] -->|"Proxy 307 /prelaunch"| PL["SCR005_CountdownPrelaunch"]
+    PL -->|"Từ SITE_LAUNCH_AT: hẹn giờ phía máy khách hoặc proxy 307 /"| HP
 ```
 
 ## Feature Entry Points
@@ -38,8 +38,8 @@ graph TD
 
 | From Screen | To Screen | Action/Trigger | Conditions | Region |
 |-------------|-----------|----------------|------------|--------|
-| Mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` (kể cả không tồn tại) | SCR005_CountdownPrelaunch | Proxy `redirect /prelaunch` (`lib/supabase/proxy.ts:84-86`, `decidePrelaunchAccess` = `lock`) | Trước `EVENT_START_AT` (mốc hợp lệ, `now < start`), mọi vai trò | |
-| SCR005_CountdownPrelaunch | SCR003_Homepage | Hẹn giờ phía máy khách `window.location.replace('/')` theo `remainingMs` máy chủ gửi, kẹp tối thiểu 1 giây (`app/prelaunch/_behavior/use-navigate-home-at-event-start.ts`); hoặc proxy `redirect /` khi mở `/prelaunch` (`decidePrelaunchAccess` = `unlock`) | Từ `EVENT_START_AT` hoặc `EVENT_START_AT` thiếu/sai; đã đăng nhập (khách được guard cũ đưa tiếp sang `/login`) | |
+| Mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` (kể cả không tồn tại) | SCR005_CountdownPrelaunch | Proxy `redirect /prelaunch` (`lib/supabase/proxy.ts:84-86`, `decidePrelaunchAccess` = `lock`) | Trước `SITE_LAUNCH_AT` (mốc hợp lệ, `now < start`), mọi vai trò | |
+| SCR005_CountdownPrelaunch | SCR003_Homepage | Hẹn giờ phía máy khách `window.location.replace('/')` theo `remainingMs` máy chủ gửi, kẹp tối thiểu 1 giây (`app/prelaunch/_behavior/use-navigate-home-at-event-start.ts`); hoặc proxy `redirect /` khi mở `/prelaunch` (`decidePrelaunchAccess` = `unlock`) | Từ `SITE_LAUNCH_AT` hoặc `SITE_LAUNCH_AT` thiếu/sai; đã đăng nhập (khách được guard cũ đưa tiếp sang `/login`) | |
 | Truy cập `/` | SCR001_Login | Proxy `redirect /login`, bỏ query (`lib/supabase/proxy.ts:82`); layout `(main)` kiểm lại (`app/(main)/layout.tsx:32-33`) | Chưa đăng nhập hoặc Auth server không trả lời (fail closed) | |
 | Truy cập `/` | SCR003_Homepage | Tải trang (`app/(main)/page.tsx`) | Đã đăng nhập | |
 | SCR003_Homepage | SCR004_AwardsInformation | Bấm mục "Awards Information" ở header, nút ABOUT AWARDS, thẻ giải thưởng (mở `/awards-information#<slug>`) hoặc liên kết ở footer (`app/(main)/_wiring/build-home-screen-props.ts:6`, `lib/awards/award-categories.ts:27-29`) | Đã đăng nhập | |
@@ -138,11 +138,11 @@ graph TD
 ### SCR005_CountdownPrelaunch (Countdown Prelaunch)
 
 **Entry Points**:
-- Mọi đường dẫn bị khóa trước `EVENT_START_AT` (proxy 307 `/prelaunch`)
+- Mọi đường dẫn bị khóa trước `SITE_LAUNCH_AT` (proxy 307 `/prelaunch`)
 - URL trực tiếp `/prelaunch` (công khai, kể cả đã đăng nhập)
 
 **Exit Points**:
-- Tới `/`: hẹn giờ phía máy khách tại mốc, hoặc proxy 307 khi mở `/prelaunch` từ mốc / khi `EVENT_START_AT` thiếu hay sai; khách sau đó bị guard cũ đưa sang `/login`
+- Tới `/`: hẹn giờ phía máy khách tại mốc, hoặc proxy 307 khi mở `/prelaunch` từ mốc / khi `SITE_LAUNCH_AT` thiếu hay sai; khách sau đó bị guard cũ đưa sang `/login`
 - Tab ẩn lúc qua mốc: khi tab hiện lại thì `window.location.reload()` để proxy quyết định
 - Tới SCR001_Login: truy cập thẳng `/login` (không bị khóa)
 

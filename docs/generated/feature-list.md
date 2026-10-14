@@ -179,7 +179,7 @@
 
 **Type**: mixed
 **Status**: implemented
-**Description**: Trang `/prelaunch` công khai (route cấp cao ngoài `(main)`) đếm ngược tới `EVENT_START_AT` với ba khối Days, Hours, Minutes, kèm lớp khóa site trong `lib/supabase/proxy.ts`: trước mốc mọi đường dẫn ngoài `/login`, `/auth/*`, `/prelaunch` bị 307 về `/prelaunch`; từ mốc (hoặc khi biến thiếu/sai) `/prelaunch` chuyển về `/` và trang tự chuyển khi tới mốc.
+**Description**: Trang `/prelaunch` công khai (route cấp cao ngoài `(main)`) đếm ngược tới `SITE_LAUNCH_AT` với ba khối Days, Hours, Minutes, kèm lớp khóa site trong `lib/supabase/proxy.ts`: trước mốc mọi đường dẫn ngoài `/login`, `/auth/*`, `/prelaunch` bị 307 về `/prelaunch`; từ mốc (hoặc khi biến thiếu/sai) `/prelaunch` chuyển về `/` và trang tự chuyển khi tới mốc.
 
 **Workspace**: Next.js app (root)
 **Languages**: TypeScript

@@ -165,5 +165,5 @@ Trang tối thiểu được bảo vệ, nguồn `app/todo/page.tsx:11`. Hiện 
 
 **Feature:** F005 — Countdown Prelaunch
 **Route:** /prelaunch
-**Description:** Trang đếm ngược công khai trước ngày ra mắt (thiết kế MoMorph `8PJQswPZmU`): nền tối họa tiết, tiêu đề "Sự kiện sẽ bắt đầu sau", ba khối DAYS, HOURS, MINUTES, tự cập nhật theo phút và tự chuyển về `/` khi tới `EVENT_START_AT`. Nằm ngoài nhóm `(main)`, không header, không kiểm phiên. Đặc tả đầy đủ ở `docs/screens/SCR005_CountdownPrelaunch/spec.md`.
+**Description:** Trang đếm ngược công khai trước ngày ra mắt (thiết kế MoMorph `8PJQswPZmU`): nền tối họa tiết, tiêu đề "Sự kiện sẽ bắt đầu sau", ba khối DAYS, HOURS, MINUTES, tự cập nhật theo phút và tự chuyển về `/` khi tới `SITE_LAUNCH_AT`. Nằm ngoài nhóm `(main)`, không header, không kiểm phiên. Đặc tả đầy đủ ở `docs/screens/SCR005_CountdownPrelaunch/spec.md`.
 **States:** success

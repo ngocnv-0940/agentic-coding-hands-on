@@ -47,7 +47,7 @@
 | PERM007_LogoutPostOnly | Đăng xuất chỉ nhận POST, luôn kết thúc phiên cục bộ | action-permission | `app/auth/logout/route.ts:12-35` |
 | PERM008_OAuthCallbackCodeValidation | Callback chỉ đổi phiên khi `code` hợp lệ | action-permission | `app/auth/callback/route.ts:36-40` |
 | PERM009_OAuthCallbackFixedRedirect | Callback chỉ chuyển tới hai đích cố định, không mở redirect | route-guard | `app/auth/callback/route.ts:4-19,31-40` |
-| PERM010_PrelaunchSiteLock | Trước `EVENT_START_AT` khóa mọi đường dẫn ngoài danh sách miễn về `/prelaunch`; từ mốc `/prelaunch` về `/` | route-guard | `lib/supabase/proxy.ts:84-87`, `lib/event/prelaunch-access.ts` (`decidePrelaunchAccess`) |
+| PERM010_PrelaunchSiteLock | Trước `SITE_LAUNCH_AT` khóa mọi đường dẫn ngoài danh sách miễn về `/prelaunch`; từ mốc `/prelaunch` về `/` | route-guard | `lib/supabase/proxy.ts:84-87`, `lib/event/prelaunch-access.ts` (`decidePrelaunchAccess`) |
 
 ---
 
@@ -350,7 +350,7 @@ Callback không yêu cầu phiên có sẵn (đây là bước tạo phiên, và
 
 ### Description
 
-Chỉ dựa vào đồng hồ máy chủ và `EVENT_START_AT` (qua `readEventStartFromEnv`); không đọc `user`, nên khách hay người đã đăng nhập, admin hay không đều bị đối xử như nhau. Khóa chỉ bật khi mốc hợp lệ và `now < start` (`now == start` tính là đã mở). Biến thiếu hoặc sai nghĩa là "đã mở": không khóa, để một cấu hình hỏng không khóa cả site. Miễn khóa: đúng `/prelaunch`, đúng `/login`, đường dẫn bắt đầu bằng `/auth/` hoặc `/_next/`. `/prelaunch/x` và đường dẫn không tồn tại vẫn bị khóa. Ảnh tĩnh nằm ngoài matcher của `proxy.ts`. Đường dẫn `/auth/*` đã được `updateSession` cho qua từ đầu (PERM003) nên không bao giờ tới nhánh này.
+Chỉ dựa vào đồng hồ máy chủ và `SITE_LAUNCH_AT` (qua `readSiteLaunchFromEnv`); không đọc `user`, nên khách hay người đã đăng nhập, admin hay không đều bị đối xử như nhau. Khóa chỉ bật khi mốc hợp lệ và `now < start` (`now == start` tính là đã mở). Biến thiếu hoặc sai nghĩa là "đã mở": không khóa, để một cấu hình hỏng không khóa cả site. Miễn khóa: đúng `/prelaunch`, đúng `/login`, đường dẫn bắt đầu bằng `/auth/` hoặc `/_next/`. `/prelaunch/x` và đường dẫn không tồn tại vẫn bị khóa. Ảnh tĩnh nằm ngoài matcher của `proxy.ts`. Đường dẫn `/auth/*` đã được `updateSession` cho qua từ đầu (PERM003) nên không bao giờ tới nhánh này.
 
 ### Related Routes
 

@@ -55,7 +55,7 @@ Ghi chú:
 
 | Path | Component | Route Name |
 |------|-----------|------------|
-| /prelaunch | `PrelaunchPage` (Server Component, route cấp cao ngoài `(main)`, bọc `PrelaunchContent` trong `Suspense`; trang đếm ngược F005 / SCR005, công khai cho mọi vai trò; proxy chuyển về `/` từ `EVENT_START_AT` hoặc khi biến thiếu/sai; trước mốc mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` bị 307 về đây) | — |
+| /prelaunch | `PrelaunchPage` (Server Component, route cấp cao ngoài `(main)`, bọc `PrelaunchContent` trong `Suspense`; trang đếm ngược F005 / SCR005, công khai cho mọi vai trò; proxy chuyển về `/` từ `SITE_LAUNCH_AT` hoặc khi biến thiếu/sai; trước mốc mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` bị 307 về đây) | — |
 
 ### File: app/login/page.tsx
 

@@ -6,10 +6,11 @@ Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
 **Thêm**
 
-- `/prelaunch` (`app/prelaunch/`, route cấp cao ngoài `(main)`, công khai): nền tối, tiêu đề và ba khối Days, Hours, Minutes đếm tới `EVENT_START_AT`, dùng chung bộ đếm với trang chủ. Từ điển vi/en có thêm khoá `prelaunch.title`, `prelaunch.metaTitle`; ảnh nền `public/images/prelaunch/prelaunch-bg.png`.
-- Khóa site trong `lib/supabase/proxy.ts` qua hàm thuần `decidePrelaunchAccess` (`lib/event/prelaunch-access.ts`): trước `EVENT_START_AT`, mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` và `/prelaunch` bị 307 về `/prelaunch`, với mọi vai trò. Từ mốc, `/prelaunch` bị 307 về `/`. Mốc thiếu hoặc sai nghĩa là đã mở (không khóa).
+- `/prelaunch` (`app/prelaunch/`, route cấp cao ngoài `(main)`, công khai): nền tối, tiêu đề và ba khối Days, Hours, Minutes đếm tới `SITE_LAUNCH_AT`, dùng chung bộ đếm (không dùng chung mốc) với trang chủ. Từ điển vi/en có thêm khoá `prelaunch.title`, `prelaunch.metaTitle`; ảnh nền `public/images/prelaunch/prelaunch-bg.png`.
+- Khóa site trong `lib/supabase/proxy.ts` qua hàm thuần `decidePrelaunchAccess` (`lib/event/prelaunch-access.ts`): trước `SITE_LAUNCH_AT`, mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` và `/prelaunch` bị 307 về `/prelaunch`, với mọi vai trò. Từ mốc, `/prelaunch` bị 307 về `/`. Mốc thiếu hoặc sai nghĩa là đã mở (không khóa).
 - Chuyển trang phía máy khách (`useNavigateHomeAtEventStart`): chờ `remainingMs` do máy chủ gửi (không so đồng hồ trình duyệt với mốc), kẹp tối thiểu 1 giây kể cả khi `remainingMs <= 0`; tab ẩn lúc qua mốc thì `reload` khi hiện lại.
-- 5 spec E2E `e2e/prelaunch-*.spec.ts` và `e2e/support/prelaunch-locators-and-clock.ts`; nhóm `@prelaunch` chỉ chạy khi đặt `E2E_EVENT_START_AT` ở tương lai.
+- 5 spec E2E `e2e/prelaunch-*.spec.ts` và `e2e/support/prelaunch-locators-and-clock.ts`; nhóm `@prelaunch` chỉ chạy khi đặt `E2E_SITE_LAUNCH_AT` ở tương lai.
+- Cập nhật 2026-10-14, tách mốc ra mắt khỏi mốc sự kiện: biến chỉ phía máy chủ `SITE_LAUNCH_AT` (ISO-8601 kèm offset hoặc `Z`, parse bằng `parseEventStart`, đọc bằng `readSiteLaunchFromEnv()` trong `lib/event/event-start-config.ts`) điều khiển khóa site (`lib/supabase/proxy.ts`) và đếm ngược cùng chuyển trang của `/prelaunch`; `EVENT_START_AT` chỉ còn điều khiển đếm ngược, ngày sự kiện và "Coming soon" của trang chủ. `SITE_LAUNCH_AT` thiếu hoặc sai thì không khóa và `/prelaunch` chuyển về `/`. E2E: `E2E_SITE_LAUNCH_AT` bật nhóm `@prelaunch` và `@launch-env-invalid`; `@event-env-invalid` chỉ còn cho trang chủ. Quyết định ở `plans/261013-1638-countdown-prelaunch-page/clarifications.md`, mục "Session 2026-10-14".
 
 **Thay đổi**
 

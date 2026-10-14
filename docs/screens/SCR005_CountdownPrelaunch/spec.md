@@ -18,7 +18,7 @@ lang: vi
 
 **Purpose:** Trước ngày sự kiện, cho người truy cập biết sự kiện bắt đầu sau bao nhiêu ngày, giờ, phút; tới mốc thì tự đưa họ vào ứng dụng.
 **Actors:** Người truy cập (khách hoặc người đã đăng nhập; trang công khai)
-**Entry Conditions:** Chưa tới mốc `EVENT_START_AT`. Người truy cập tới đây khi mở thẳng `/prelaunch` hoặc khi mở bất kỳ đường dẫn nào khác ngoài `/login` và `/auth/*` (hệ thống tự chuyển tới). Sau mốc, hoặc khi mốc thiếu hay sai, trang này không hiện mà chuyển về `/`.
+**Entry Conditions:** Chưa tới mốc `SITE_LAUNCH_AT`. Người truy cập tới đây khi mở thẳng `/prelaunch` hoặc khi mở bất kỳ đường dẫn nào khác ngoài `/login` và `/auth/*` (hệ thống tự chuyển tới). Sau mốc, hoặc khi mốc thiếu hay sai, trang này không hiện mà chuyển về `/`.
 **Exit Conditions:** Tới mốc, trang tự chuyển tới `/`. Trước mốc, người dùng chỉ rời trang bằng cách gõ địa chỉ khác (ví dụ `/login`).
 
 ## 2. Screen Layout

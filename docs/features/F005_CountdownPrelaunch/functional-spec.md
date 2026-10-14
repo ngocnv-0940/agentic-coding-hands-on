@@ -11,7 +11,7 @@ lang: vi
 ## 1. Overview
 
 **Problem:** Trước ngày sự kiện, ứng dụng chưa nên mở cho người dùng vào xem trang chủ hay các trang bên trong, nhưng hiện chưa có chỗ nào báo "bao giờ thì mở". Người vào link nhận trang chủ hoặc trang Login như thể sự kiện đã bắt đầu.
-**Solution:** Một trang công khai `/prelaunch` đếm ngược tới `EVENT_START_AT` (ngày, giờ, phút) trên nền ảnh toàn màn hình. Trước mốc, proxy chuyển mọi đường dẫn khác về trang này, trừ `/login` và `/auth/*` để người dùng vẫn đăng nhập được. Tới mốc, trang tự đưa người xem về `/`; mở `/prelaunch` sau mốc cũng về `/`.
+**Solution:** Một trang công khai `/prelaunch` đếm ngược tới `SITE_LAUNCH_AT` (ngày, giờ, phút) trên nền ảnh toàn màn hình. Trước mốc, proxy chuyển mọi đường dẫn khác về trang này, trừ `/login` và `/auth/*` để người dùng vẫn đăng nhập được. Tới mốc, trang tự đưa người xem về `/`; mở `/prelaunch` sau mốc cũng về `/`.
 **Scope:** Trang `/prelaunch` (ngoài nhóm route `(main)`, không có header, footer); lớp khóa trước mốc trong proxy; tự chuyển về `/` khi tới mốc; chuỗi vi/en cho tiêu đề và nhãn; cập nhật tài liệu quyền truy cập và kiến trúc.
 **Non-Scope:** API lấy mốc thời gian (CSV ghi TODO, không làm: dùng lại biến môi trường sẵn có), hiển thị giây, bộ chọn ngôn ngữ trên trang này, đổi đích sau đăng nhập, trang chủ và đếm ngược của trang chủ (F003_Homepage, giữ nguyên), danh sách trắng theo người dùng hay IP, tính năng "xem trước" cho nội bộ.
 
@@ -21,7 +21,7 @@ lang: vi
 |-------|--------------|---------------|
 | Người truy cập | Khách chưa đăng nhập hoặc người dùng đã đăng nhập; trang này công khai và khóa áp như nhau cho cả hai | Biết sự kiện bắt đầu sau bao lâu và vào được ứng dụng khi tới mốc |
 
-Feature này liên quan tới [F001_Auth](../../../../docs/features/F001_Auth/functional-spec.md) (guard của proxy, `/login`, `/auth/*`), F002_Localization (từ điển vi/en) và [F003_Homepage](../../../../docs/features/F003_Homepage/functional-spec.md) (dùng chung `EVENT_START_AT`, cách tính đếm ngược và ô số).
+Feature này liên quan tới [F001_Auth](../../../../docs/features/F001_Auth/functional-spec.md) (guard của proxy, `/login`, `/auth/*`), F002_Localization (từ điển vi/en) và [F003_Homepage](../../../../docs/features/F003_Homepage/functional-spec.md) (dùng chung cách tính đếm ngược và ô số; `EVENT_START_AT` của F003 không còn liên quan tới khóa).
 
 ## 2. Functional Capabilities
 
@@ -38,8 +38,8 @@ Feature này liên quan tới [F001_Auth](../../../../docs/features/F001_Auth/fu
 | D001 | Trước mốc, trang nào bị khóa | **Đã chốt:** mọi trang trừ `/login`, `/auth/*`, `/prelaunch` và tài nguyên tĩnh; đường dẫn lạ cũng bị đưa về `/prelaunch` (clarifications.md, 2026-10-13) | Người dùng vẫn đăng nhập được trước mốc | no |
 | D002 | `/prelaunch` có cần đăng nhập không | **Đã chốt:** không, công khai cho khách và người đã đăng nhập (clarifications.md, 2026-10-13) | Khách phải thấy được trang để biết khi nào mở | no |
 | D003 | Khi đếm ngược về 0 lúc trang đang mở | **Đã chốt:** tự chuyển tới `/` (proxy sau đó đưa khách sang `/login`); mở `/prelaunch` sau mốc cũng về `/` (clarifications.md, 2026-10-13) | Không để người dùng kẹt ở trang đã hết ý nghĩa | no |
-| D004 | `EVENT_START_AT` thiếu hoặc sai | **Đã chốt:** không khóa, coi như đã tới mốc; `/prelaunch` về `/` (clarifications.md, 2026-10-13) | Khớp quy tắc trang chủ "sai thì đếm ngược 00"; cấu hình hỏng không được khóa cả site | no |
-| D005 | Mốc thời gian lấy từ đâu | **Đã chốt:** dùng lại biến `EVENT_START_AT` và `lib/event/event-start-config.ts`; không làm API (CSV ghi TODO) | Một nguồn duy nhất với đếm ngược trang chủ; YAGNI | no |
+| D004 | `SITE_LAUNCH_AT` thiếu hoặc sai | **Đã chốt:** không khóa, coi như đã tới mốc; `/prelaunch` về `/` (clarifications.md, 2026-10-13) | Khớp quy tắc trang chủ "sai thì đếm ngược 00"; cấu hình hỏng không được khóa cả site | no |
+| D005 | Mốc thời gian lấy từ đâu | **Đã chốt:** biến riêng `SITE_LAUNCH_AT` đọc bằng `readSiteLaunchFromEnv()` trong `lib/event/event-start-config.ts` (dùng chung `parseEventStart` với `EVENT_START_AT`); không làm API (CSV ghi TODO). Cập nhật 2026-10-14: tách khỏi `EVENT_START_AT` (clarifications.md, "Session 2026-10-14") | Mốc ra mắt site khác mốc sự kiện; `EVENT_START_AT` chỉ còn phục vụ trang chủ | no |
 | D006 | Vị trí route và cơ chế khóa | **Đã chốt:** `/prelaunch` là route cấp cao nằm ngoài `(main)`; khóa là redirect 307 thật trong `lib/supabase/proxy.ts`, sau bước làm mới phiên, kèm cookie vừa làm mới | Figma không có header, footer; cookie làm mới và bỏ qua `/auth/*` giữ nguyên | no |
 | D007 | Hiển thị và ô số | **Đã chốt:** chỉ Days, Hours, Minutes (Figma không có giây); dùng lại `getCountdown` và `useCountdown`; ngày từ 100 trở lên giữ 3 chữ số như trang chủ; giá trị Figma thắng khi lệch ô số của trang chủ (ô lớn hơn) | Tránh viết lại logic đã có | no |
 | D008 | Nền và ngôn ngữ | **Đã chốt:** ảnh nền node Figma `2268:35129` (cover, no-repeat, lớp phủ tối), tải từ MoMorph/Figma, không tự vẽ; ngôn ngữ theo cookie như cả app, không có nút đổi ngôn ngữ | Figma không có bộ chọn ngôn ngữ | no |
@@ -49,7 +49,7 @@ Feature này liên quan tới [F001_Auth](../../../../docs/features/F001_Auth/fu
 
 ### Foundation (0xx)
 
-- **FR-001** Mốc ra mắt lấy từ biến `EVENT_START_AT` (qua `lib/event/event-start-config.ts`); đây là nguồn duy nhất cho cả lớp khóa lẫn đếm ngược, chung với trang chủ.
+- **FR-001** Mốc ra mắt lấy từ biến `SITE_LAUNCH_AT` (qua `readSiteLaunchFromEnv()` trong `lib/event/event-start-config.ts`); đây là nguồn duy nhất cho cả lớp khóa lẫn đếm ngược của `/prelaunch`. `EVENT_START_AT` chỉ còn điều khiển trang chủ.
 - **FR-002** Tiêu đề và nhãn lấy từ từ điển vi/en hiện có: "Sự kiện sẽ bắt đầu sau" (vi), "Event starts in" (en); nhãn DAYS, HOURS, MINUTES in hoa, màu trắng; hai bản vi/en khớp khoá.
 
 ### Navigation (1xx)
@@ -57,7 +57,7 @@ Feature này liên quan tới [F001_Auth](../../../../docs/features/F001_Auth/fu
 - **FR-101** `/prelaunch` là trang công khai: khách và người đã đăng nhập đều xem được khi chưa tới mốc, không bị chuyển về `/login`.
 - **FR-102** Trước mốc, mọi yêu cầu tới đường dẫn khác ngoài `/login`, `/auth/*`, `/prelaunch` và tài nguyên tĩnh (ảnh, `_next`, favicon) bị chuyển 307 tới `/prelaunch`, kể cả đường dẫn không tồn tại và đường dẫn con của trang được bảo vệ.
 - **FR-103** Trước mốc, `/login` và `/auth/*` dùng được như bình thường (đăng nhập bằng Google, đăng xuất); guard hiện có của `/login` vẫn chạy.
-- **FR-104** Từ mốc trở đi, hoặc khi `EVENT_START_AT` thiếu hay sai, mở `/prelaunch` bị chuyển 307 về `/`.
+- **FR-104** Từ mốc trở đi, hoặc khi `SITE_LAUNCH_AT` thiếu hay sai, mở `/prelaunch` bị chuyển 307 về `/`.
 - **FR-105** Mọi redirect khóa mang theo cookie phiên vừa làm mới và các header cache của Supabase, như các redirect guard khác.
 - **FR-106** Từ mốc trở đi, lớp khóa không làm gì: các guard hiện có (khách vào trang được bảo vệ về `/login`, người đã đăng nhập vào `/login` về `/`, chặn `/admin` với người không phải admin) chạy y như trước.
 
@@ -78,13 +78,13 @@ Feature này liên quan tới [F001_Auth](../../../../docs/features/F001_Auth/fu
 
 ### Security (6xx)
 
-- **FR-601** Quyết định khóa dựa trên đồng hồ máy chủ và `EVENT_START_AT` ở phía máy chủ; đổi giờ trên máy người dùng không mở được khóa và không làm trang bị khóa sớm.
+- **FR-601** Quyết định khóa dựa trên đồng hồ máy chủ và `SITE_LAUNCH_AT` ở phía máy chủ; đổi giờ trên máy người dùng không mở được khóa và không làm trang bị khóa sớm.
 - **FR-602** `/prelaunch` không đọc phiên của người dùng và không hiện dữ liệu riêng của ai; chỉ hiển thị mốc đếm ngược.
 
 ## 5. Business Rules
 
-- Khóa chỉ bật khi `EVENT_START_AT` hợp lệ và giờ hiện tại sớm hơn mốc; thiếu hoặc sai thì không khóa, như đã tới mốc (BR-001)
-- Một mốc duy nhất cho khóa, đếm ngược trang này và trang chủ; không có biến hay API thứ hai (BR-002)
+- Khóa chỉ bật khi `SITE_LAUNCH_AT` hợp lệ và giờ hiện tại sớm hơn mốc; thiếu hoặc sai thì không khóa, như đã tới mốc (BR-001)
+- Một mốc duy nhất (`SITE_LAUNCH_AT`) cho khóa và đếm ngược của trang này; không có API, và `EVENT_START_AT` không tham gia khóa (BR-002)
 - Phần được miễn khóa chỉ gồm `/login`, `/auth/*`, `/prelaunch` và tài nguyên tĩnh do matcher của proxy loại ra; không thêm ngoại lệ nào khác (BR-003)
 - Mọi redirect của khóa giữ cookie phiên vừa làm mới (BR-004)
 - Đúng lúc giờ hiện tại bằng mốc thì coi là đã tới mốc: không khóa, giống quy tắc "diff <= 0 → 00 00 00" của đếm ngược (BR-005)
@@ -163,7 +163,7 @@ journey
 
 **Acceptance Criteria:**
 - [ ] Trang đang mở khi đếm ngược về 0 thì tự chuyển tới `/`; khách sang `/login`, người đã đăng nhập vào trang chủ
-- [ ] Mở `/prelaunch` sau mốc, hoặc khi `EVENT_START_AT` thiếu hay sai, thì về `/`
+- [ ] Mở `/prelaunch` sau mốc, hoặc khi `SITE_LAUNCH_AT` thiếu hay sai, thì về `/`
 - [ ] Sau mốc, các guard cũ chạy như trước (khách vào trang bảo vệ về `/login`)
 
 ## 8. Scenarios
@@ -198,14 +198,14 @@ journey
 
 ### US004 — Error: cấu hình sai hoặc đồng hồ máy lệch
 
-**Given** `EVENT_START_AT` thiếu hoặc sai, **When** mở `/prelaunch`, **Then** về `/`. **Given** đồng hồ máy người dùng nhanh hơn máy chủ, **When** trang đang mở, **Then** không chuyển trang sớm theo đồng hồ máy; chỉ chuyển khi thời gian còn lại do máy chủ gửi đã hết.
+**Given** `SITE_LAUNCH_AT` thiếu hoặc sai, **When** mở `/prelaunch`, **Then** về `/`. **Given** đồng hồ máy người dùng nhanh hơn máy chủ, **When** trang đang mở, **Then** không chuyển trang sớm theo đồng hồ máy; chỉ chuyển khi thời gian còn lại do máy chủ gửi đã hết.
 
 ## 9. Edge Cases
 
 | Scenario | What Happens | User-Facing Message |
 |----------|--------------|----------------------|
 | Mở đường dẫn không tồn tại trước mốc | Chuyển 307 tới `/prelaunch` | "None — chuyển trang" |
-| `EVENT_START_AT` thiếu hoặc sai | Không khóa; `/prelaunch` về `/`; trang chủ chạy theo quy tắc cũ | "None — silent handling" |
+| `SITE_LAUNCH_AT` thiếu hoặc sai | Không khóa; `/prelaunch` về `/`; trang chủ chạy theo quy tắc cũ | "None — silent handling" |
 | Đúng lúc bằng mốc | Coi là đã tới mốc, không khóa (BR-005) | "None — silent handling" |
 | Còn dưới 1 phút | Ba khối hiện 00 00 00 nhưng trang chưa chuyển cho tới mốc thật (DEC-003) | "None" |
 | Tab ngủ rồi mở lại sau mốc | Hẹn giờ chạy muộn, trang chuyển tới `/` ngay khi tỉnh | "None — chuyển trang" |
@@ -237,7 +237,7 @@ journey
 |----|------|--------------|--------|--------|
 | RISK-01 | risk | Đồng hồ máy người dùng lệch so với máy chủ: số hiển thị lệch, và nếu chuyển trang theo đồng hồ máy thì có thể tạo vòng chuyển hướng giữa `/` và `/prelaunch` | Giải bằng DEC-004 (hẹn giờ theo thời gian còn lại do máy chủ gửi); cần kiểm thử có đồng hồ trình duyệt giả | design-level, đã giảm bằng DEC-004 |
 | RISK-02 | risk | Khóa bằng proxy nên mọi đường dẫn ngoài matcher (ví dụ phông, `.json`) cũng bị khóa trước mốc | Hiện app không phục vụ tài nguyên loại này ngoài `_next`; thêm loại mới phải xét lại matcher | [NEEDS_DOMAIN_CONFIRMATION] |
-| RISK-03 | risk | Các bộ test E2E hiện có chạy với `EVENT_START_AT` ở quá khứ nên không bị khóa; test cho trang này cần một máy chủ riêng với mốc tương lai | Dùng cơ chế `E2E_EVENT_START_AT` sẵn có của Playwright | design-level |
+| RISK-03 | risk | Các bộ test E2E hiện có chạy không đặt `SITE_LAUNCH_AT` nên không bị khóa; test cho trang này cần một máy chủ riêng với mốc tương lai | Dùng `E2E_SITE_LAUNCH_AT` trong `playwright.config.ts` | design-level |
 
 ## 12. Dependencies
 
@@ -245,9 +245,9 @@ journey
 |------------|------|-----------------------------|----------|
 | F001_Auth | feature | Proxy làm mới phiên, guard `/login` và `/auth/*` mà khóa phải đứng cùng | FR-103, FR-105, FR-106 |
 | F002_Localization | feature | Từ điển vi/en và cookie ngôn ngữ | FR-002, FR-205 |
-| F003_Homepage | feature | `EVENT_START_AT`, `getCountdown`, `useCountdown`, ô số; đích `/` sau mốc | FR-001, FR-203, FR-402 |
+| F003_Homepage | feature | `getCountdown`, `useCountdown`, ô số; đích `/` sau mốc | FR-001, FR-203, FR-402 |
 | Thiết kế MoMorph/Figma "Countdown - Prelaunch page" (node `2268:35127`) | external-service | Bố cục, ảnh nền (node `2268:35129`), chữ, kích thước ô số | FR-201, FR-204 |
 
 ## 13. Configuration
 
-- `EVENT_START_AT` (có sẵn, chỉ phía máy chủ): thời điểm ISO-8601 bắt buộc kèm offset hoặc `Z`. Giờ nay nó còn quyết định khóa site: trước mốc thì khóa, thiếu hoặc sai thì không khóa.
+- `SITE_LAUNCH_AT` (mới, chỉ phía máy chủ): thời điểm ISO-8601 bắt buộc kèm offset hoặc `Z`, cùng bộ parse với `EVENT_START_AT`. Quyết định khóa site và đích đếm ngược của `/prelaunch`: trước mốc thì khóa, thiếu hoặc sai thì không khóa. `EVENT_START_AT` chỉ còn phục vụ trang chủ.

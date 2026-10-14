@@ -9,7 +9,7 @@ lang: vi
 
 **Project**: agentic-coding-hands-on
 **Generated**: 2026-10-13
-**Analysis Scope**: Thêm lớp khóa trước ngày ra mắt: trước `EVENT_START_AT`, mọi đường dẫn trừ `/login`, `/auth/*`, `/prelaunch` và tài nguyên tĩnh bị proxy chuyển tới trang đếm ngược công khai `/prelaunch`. Cơ sở là bản hiện hành của tài liệu này, `proxy.ts`, `lib/supabase/proxy.ts`, `lib/event/event-start-config.ts` và `plans/261013-1638-countdown-prelaunch-page/clarifications.md`.
+**Analysis Scope**: Thêm lớp khóa trước ngày ra mắt: trước `SITE_LAUNCH_AT`, mọi đường dẫn trừ `/login`, `/auth/*`, `/prelaunch` và tài nguyên tĩnh bị proxy chuyển tới trang đếm ngược công khai `/prelaunch`. Cơ sở là bản hiện hành của tài liệu này, `proxy.ts`, `lib/supabase/proxy.ts`, `lib/event/event-start-config.ts` và `plans/261013-1638-countdown-prelaunch-page/clarifications.md`.
 
 > **Curated, plain-language view.** This document is for PM, BA, and client audiences who
 > need to understand access without reading raw codes. The raw PERM### matrix lives at
@@ -29,7 +29,7 @@ lang: vi
 
 ## Curated View
 
-- **Trước ngày ra mắt (trước `EVENT_START_AT`)**: ai cũng như nhau, khách hay đã đăng nhập, admin hay không. Mở bất kỳ đường dẫn nào (kể cả đường dẫn không tồn tại) đều bị chuyển tới `/prelaunch`, trừ `/login`, `/auth/*` và tài nguyên tĩnh. Trang `/prelaunch` công khai, chỉ có đồng hồ đếm ngược. Các mô tả bên dưới về trang chủ, trang giữ chỗ và `/admin` chỉ có hiệu lực **từ mốc trở đi**, hoặc khi `EVENT_START_AT` thiếu hay sai (khi đó không khóa).
+- **Trước ngày ra mắt (trước `SITE_LAUNCH_AT`)**: ai cũng như nhau, khách hay đã đăng nhập, admin hay không. Mở bất kỳ đường dẫn nào (kể cả đường dẫn không tồn tại) đều bị chuyển tới `/prelaunch`, trừ `/login`, `/auth/*` và tài nguyên tĩnh. Trang `/prelaunch` công khai, chỉ có đồng hồ đếm ngược. Các mô tả bên dưới về trang chủ, trang giữ chỗ và `/admin` chỉ có hiệu lực **từ mốc trở đi**, hoặc khi `SITE_LAUNCH_AT` thiếu hay sai (khi đó không khóa).
 - **anonymous** xem được trang đăng nhập `/login`, đổi ngôn ngữ VN/EN và bấm "LOGIN With Google" (cả trước mốc). Từ mốc, mở `/` hay bất kỳ trang được bảo vệ nào (liệt kê ở Access Boundaries) đều bị chuyển về `/login`. Bấm đăng xuất không có tác dụng, vì chưa có phiên.
 - **authenticated** vào được trang chủ `/`, `/todo`, `/awards-information` (trang Hệ thống giải) và các trang giữ chỗ (`/sun-kudos`, `/standards`, `/profile`). Mở thẳng `/admin` mà không phải admin thì bị chuyển về `/`. Đăng nhập xong thì về `/` (trước mốc, `/` lại chuyển tiếp tới `/prelaunch`). Mở `/login` thì bị chuyển sang `/`. Đăng xuất từ menu tài khoản trên trang chủ.
 - **admin** thấy y như `authenticated`, thêm mục "Admin Dashboard" trong menu tài khoản, dẫn tới `/admin`, và là người duy nhất vào được trang đó (hiện chỉ là trang giữ chỗ, chưa có dữ liệu).
@@ -42,9 +42,9 @@ lang: vi
 
 Ranh giới chính vẫn là **đã đăng nhập hay chưa**, và danh tính được xác minh với máy chủ Supabase Auth ở mỗi yêu cầu (không tin cookie phiên đứng một mình). Cổng kiểm được đặt ở nhiều lớp:
 
-- **Lớp 0, khóa trước ngày ra mắt (trong proxy, cùng `lib/supabase/proxy.ts`)**: chạy sau bước làm mới phiên và trước các guard của lớp 1, không phụ thuộc người dùng là ai. Quyết định dựa trên đồng hồ máy chủ và `EVENT_START_AT` (biến chỉ phía máy chủ), nên đổi giờ trên máy người dùng không mở được khóa.
+- **Lớp 0, khóa trước ngày ra mắt (trong proxy, cùng `lib/supabase/proxy.ts`)**: chạy sau bước làm mới phiên và trước các guard của lớp 1, không phụ thuộc người dùng là ai. Quyết định dựa trên đồng hồ máy chủ và `SITE_LAUNCH_AT` (biến chỉ phía máy chủ), nên đổi giờ trên máy người dùng không mở được khóa.
   - **Trước mốc** (mốc hợp lệ và giờ hiện tại sớm hơn mốc): mọi đường dẫn, trừ `/login`, `/auth/*`, `/prelaunch` và tài nguyên tĩnh nằm ngoài matcher của proxy, bị chuyển 307 tới `/prelaunch`, kể cả đường dẫn không tồn tại và đường dẫn con của trang được bảo vệ. Redirect mang theo cookie phiên vừa làm mới. `/login` vẫn qua lớp 0 và chịu guard cũ của nó (người đã đăng nhập vào `/login` về `/`, rồi `/` lại tới `/prelaunch`). `/prelaunch` công khai, không đọc phiên.
-  - **Từ mốc, hoặc `EVENT_START_AT` thiếu hay sai**: không khóa. Chỉ riêng `/prelaunch` bị chuyển 307 về `/`; mọi đường dẫn khác đi tiếp vào lớp 1 như trước. Đúng lúc bằng mốc cũng tính là đã tới mốc. Mốc sai không bao giờ khóa cả site (từ chối khi nghi ngờ áp dụng cho quyền truy cập vào nội dung, còn ở đây một cấu hình hỏng không được chặn mọi người).
+  - **Từ mốc, hoặc `SITE_LAUNCH_AT` thiếu hay sai**: không khóa. Chỉ riêng `/prelaunch` bị chuyển 307 về `/`; mọi đường dẫn khác đi tiếp vào lớp 1 như trước. Đúng lúc bằng mốc cũng tính là đã tới mốc. Mốc sai không bao giờ khóa cả site (từ chối khi nghi ngờ áp dụng cho quyền truy cập vào nội dung, còn ở đây một cấu hình hỏng không được chặn mọi người).
   - **Máy chủ Auth không trả lời**: khóa vẫn áp dụng như thường, vì quyết định không dùng phiên.
   - **Trang `/prelaunch` tự chuyển về `/` khi tới mốc** theo thời gian còn lại do máy chủ gửi; khách sau đó được lớp 1 đưa sang `/login`.
 - **Lớp 1, proxy (`proxy.ts`)**: chạy trước mọi trang (từ mốc trở đi, hoặc cho `/login` ở mọi thời điểm; trước mốc, các đường dẫn bị khóa đã bị lớp 0 chặn). Danh sách đường dẫn được bảo vệ gồm: `/`, `/todo`, `/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin` và đường dẫn con của chúng. Riêng `/` chỉ khớp đúng `/` (không được coi mọi đường dẫn là con của `/`, vì như vậy `/login` cũng thành được bảo vệ và gây vòng chuyển hướng). Khách vào các đường dẫn này bị chuyển về `/login`; người đã đăng nhập vào `/login` bị chuyển sang `/` (trước đây là `/todo`). Khi chuyển hướng, proxy giữ lại cookie phiên vừa làm mới. Nếu máy chủ Auth không trả lời hoặc không xác minh được phiên, proxy xử lý như chưa đăng nhập (từ chối khi nghi ngờ, không mở cửa khi lỗi) — giữ nguyên như hiện nay, vẫn dùng `getUser()` chứ không dùng `getSession()`.
@@ -62,7 +62,7 @@ Ranh giới chính vẫn là **đã đăng nhập hay chưa**, và danh tính đ
 - **Địa chỉ quay về**: địa chỉ callback dựng từ origin hiện tại của trình duyệt. Khi chạy local nên dùng một host duy nhất (ví dụ `localhost`) từ lúc bắt đầu đăng nhập tới lúc quay về, để cookie xác minh đăng nhập khớp.
 - **Chỉ đăng xuất thiết bị hiện tại**: đăng xuất không thu hồi phiên ở thiết bị khác.
 - **Đổi vai trò admin có hiệu lực chậm**: `app_metadata.role` nằm trong phiên của người dùng; đổi giá trị ở Supabase chỉ phản ánh sau khi phiên được làm mới hoặc đăng nhập lại. Độ trễ này đã được chấp nhận (không thu hồi quyền tức thì).
-- **Điều kiện theo thời gian duy nhất là `EVENT_START_AT`**: trước mốc áp lớp 0 (khóa), từ mốc không áp. Mốc do máy chủ đọc, không do người dùng gửi. Không có điều kiện theo địa chỉ IP, feature flag hay môi trường (production/dev) nào khác làm đổi quyền truy cập, và không có danh sách trắng cho người dùng nội bộ vào sớm. Chi tiết từng cổng kiểm nằm ở [permissions-matrix.md](../generated/permissions-matrix.md).
+- **Điều kiện theo thời gian duy nhất là `SITE_LAUNCH_AT`**: trước mốc áp lớp 0 (khóa), từ mốc không áp. Mốc do máy chủ đọc, không do người dùng gửi. Không có điều kiện theo địa chỉ IP, feature flag hay môi trường (production/dev) nào khác làm đổi quyền truy cập, và không có danh sách trắng cho người dùng nội bộ vào sớm. Chi tiết từng cổng kiểm nằm ở [permissions-matrix.md](../generated/permissions-matrix.md).
 
 ## Open Gaps
 
