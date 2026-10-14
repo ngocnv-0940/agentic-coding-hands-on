@@ -1,5 +1,6 @@
 import { homeEn } from './dictionary-home-en'
 import { awardsEn } from './dictionary-awards-en'
+import { kudosEn } from './dictionary-kudos-en'
 import type { Dictionary } from './dictionary-vi'
 
 export const en: Dictionary = {
@@ -23,4 +24,5 @@ export const en: Dictionary = {
   'prelaunch.metaTitle': 'SAA 2025',
   ...homeEn,
   ...awardsEn,
+  ...kudosEn,
 }
