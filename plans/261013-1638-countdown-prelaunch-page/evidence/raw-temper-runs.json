@@ -98,5 +98,50 @@
     "command": "node_modules/.bin/eslint .",
     "exitCode": 0,
     "summary": "lint clean (evidence/review-fix-eslint-output.txt)"
+  },
+  {
+    "command": "node_modules/.bin/tsc --noEmit",
+    "exitCode": 0,
+    "summary": "clean"
+  },
+  {
+    "command": "node_modules/.bin/eslint .",
+    "exitCode": 0,
+    "summary": "clean"
+  },
+  {
+    "command": "E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+    "exitCode": 0,
+    "summary": "35 passed (dev), incl. new SITE_LAUNCH_AT independence test"
+  },
+  {
+    "command": "E2E_PROD=1 E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+    "exitCode": 0,
+    "summary": "35 passed (prod)"
+  },
+  {
+    "command": "bun run test:e2e",
+    "exitCode": 0,
+    "summary": "116 passed (default, SITE_LAUNCH_AT unset)"
+  },
+  {
+    "command": "E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid",
+    "exitCode": 0,
+    "summary": "2 passed"
+  },
+  {
+    "command": "E2E_SITE_LAUNCH_AT=2025-12-26T18:30:00 bun run test:e2e --grep @launch-env-invalid",
+    "exitCode": 0,
+    "summary": "2 passed (offset-less)"
+  },
+  {
+    "command": "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+    "exitCode": 0,
+    "summary": "2 passed (homepage invalid env)"
+  },
+  {
+    "command": "bun run test:e2e",
+    "exitCode": 0,
+    "summary": "full default suite after pinning SITE_LAUNCH_AT to empty in playwright.config.ts: 116 passed, 6.8 min (evidence/split-launch-pin-full-default-output.txt)"
   }
 ]

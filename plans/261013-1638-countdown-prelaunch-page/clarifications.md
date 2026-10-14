@@ -37,3 +37,7 @@ Sources: `momorph/countdown-prelaunch-specs.csv` (5 items), `momorph/countdown-p
 ## Session 2026-10-13 (phase 5 visual, auto-picked Recommended per user)
 
 - Q: 1440 visual vs Figma: title ≈+5%, tiles/labels ≈+6%, block ≈8 px low (background/overlay match). Accept or apply a bounded 0.95 scale fix? → A (auto-picked): Accept as a minor deviation (test project, under 6%, no layout or legibility impact). 768/375 pass. Evidence: `evidence/visual/`.
+
+## Session 2026-10-14 (split launch time from event time)
+
+- Q: MoMorph never says the prelaunch countdown and the homepage countdown share one datetime (homepage: env ISO-8601 "sự kiện bắt đầu diễn ra"; prelaunch: "target datetime lấy từ API", "khi về 0 mở khóa điều hướng"). Sharing `EVENT_START_AT` made the homepage countdown always read 00 (the homepage is only reachable after the lock lifts). Split? → A (user): Split. New server-only env `SITE_LAUNCH_AT` (same strict ISO-8601 + offset rules) drives the proxy lock and the `/prelaunch` countdown/redirect; `EVENT_START_AT` drives only the homepage countdown, date and "Coming soon". Missing/invalid `SITE_LAUNCH_AT` → no lock, `/prelaunch` → `/` (same fail-open rule as before). Supersedes "Reuse `EVENT_START_AT`" in Derived decisions. Still no API (YAGNI).

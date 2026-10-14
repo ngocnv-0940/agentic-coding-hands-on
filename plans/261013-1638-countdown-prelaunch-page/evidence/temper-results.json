@@ -125,6 +125,69 @@
       "status": "pass",
       "summary": "lint clean (evidence/review-fix-eslint-output.txt)",
       "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node_modules/.bin/tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "clean",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "node_modules/.bin/eslint .",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "clean",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "35 passed (dev), incl. new SITE_LAUNCH_AT independence test",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_PROD=1 E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "35 passed (prod)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "116 passed (default, SITE_LAUNCH_AT unset)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "2 passed",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_SITE_LAUNCH_AT=2025-12-26T18:30:00 bun run test:e2e --grep @launch-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "2 passed (offset-less)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "2 passed (homepage invalid env)",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "full default suite after pinning SITE_LAUNCH_AT to empty in playwright.config.ts: 116 passed, 6.8 min (evidence/split-launch-pin-full-default-output.txt)",
+      "ts": "1970-01-01T00:00:00.000Z"
     }
   ]
 }
