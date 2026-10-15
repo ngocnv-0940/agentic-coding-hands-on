@@ -10,5 +10,6 @@
 - [2026-10-13-awards-information-f004-takumi-session.md](2026-10-13-awards-information-f004-takumi-session.md) — 2026 10 13 awards information f004 takumi session
 - [2026-10-13-countdown-prelaunch-f005-session-lessons.md](2026-10-13-countdown-prelaunch-f005-session-lessons.md) — 2026 10 13 countdown prelaunch f005 session lessons
 - [2026-10-14-kudos-live-board-f006-session-lessons.md](2026-10-14-kudos-live-board-f006-session-lessons.md) — 2026 10 14 kudos live board f006 session lessons
+- [2026-10-15-write-kudo-f007-session-lessons.md](2026-10-15-write-kudo-f007-session-lessons.md) — 2026 10 15 write kudo f007 session lessons
 
 <!-- end-generated -->
