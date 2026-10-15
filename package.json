@@ -9,6 +9,7 @@
     "supabase:start": "sh scripts/start-local-supabase.sh",
     "supabase:stop": "supabase stop",
     "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
     "test:e2e": "playwright test"
   },
   "dependencies": {

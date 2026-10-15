@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-typecheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
+      - run: bun run typecheck
+
+  # Mocked Supabase (e2e/support/start-mock-supabase.ts); E2E_PROD builds the app, so this also covers `next build`.
+  # Each env-specific tag group needs its own app server, hence one matrix entry per group (see playwright.config.ts).
+  e2e:
+    name: e2e (${{ matrix.group }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: default
+          - group: prelaunch
+            grep: "@prelaunch"
+            site_launch_at: "2099-01-01T00:00:00+07:00"
+          - group: launch-env-invalid
+            grep: "@launch-env-invalid"
+            site_launch_at: not-a-date
+          - group: event-env-invalid
+            grep: "@event-env-invalid"
+            event_start_at: not-a-date
+    env:
+      E2E_PROD: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium
+      - name: Run Playwright
+        env:
+          GREP: ${{ matrix.grep }}
+          SITE_LAUNCH_AT_VALUE: ${{ matrix.site_launch_at }}
+          EVENT_START_AT_VALUE: ${{ matrix.event_start_at }}
+        # Export the E2E_* overrides only when set: playwright.config.ts treats a defined (even empty) value as custom.
+        run: |
+          if [ -n "$SITE_LAUNCH_AT_VALUE" ]; then export E2E_SITE_LAUNCH_AT="$SITE_LAUNCH_AT_VALUE"; fi
+          if [ -n "$EVENT_START_AT_VALUE" ]; then export E2E_EVENT_START_AT="$EVENT_START_AT_VALUE"; fi
+          bun run test:e2e ${GREP:+--grep "$GREP"}
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces-${{ matrix.group }}
+          path: test-results/
+          retention-days: 7
+
+  # pgTAP suites under supabase/tests run against a local stack built from supabase/migrations + seed.sql.
+  db:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # config.toml enables Google auth via env(); the tests never hit Google, so placeholders are enough.
+      SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID: ci-placeholder
+      SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET: ci-placeholder
+    steps:
+      - uses: actions/checkout@v5
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.120.0
+      # Keep db, auth (auth.users) and storage (storage.buckets/objects); the rest is unused by the tests.
+      - run: supabase start -x realtime,imgproxy,mailpit,postgres-meta,studio,edge-runtime,logflare,vector,supavisor
+      - run: supabase test db
