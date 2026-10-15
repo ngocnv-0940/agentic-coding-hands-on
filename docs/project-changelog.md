@@ -2,6 +2,23 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-15 — Tài khoản Google tự có hồ sơ sunner ở lần đăng nhập đầu (F006 BR-012, F007)
+
+**Thêm**
+
+- Migration `supabase/migrations/20261015035950_auto_provision_sunner.sql`: trigger `kudos_private.provision_sunner()` trên `auth.users` (`SECURITY DEFINER`, chạy cùng giao dịch với việc tạo tài khoản) tạo một hàng `public.sunners` cho mỗi tài khoản Google, tên và avatar lấy từ hồ sơ Google theo ALG-007 (avatar chỉ nhận `https`, ≤2048 ký tự). Tài khoản đã có hàng thì giữ nguyên, không ghi đè.
+- Chỉ tài khoản Google được tạo (hàm `is_google_account`); đăng ký email/mật khẩu không có hồ sơ, nên khoá anon một mình không dựng được sunner. Trigger chạy cả khi `raw_app_meta_data` đổi, vì GoTrue nối Google vào tài khoản cùng email bằng UPDATE chứ không INSERT.
+- Tạo bù một lần cho tài khoản Google đã có trước migration; các hàng seed (`user_id` null) không bị động tới. Ba hàm mới đều bị thu `EXECUTE` của `anon` và `authenticated`.
+- pgTAP `supabase/tests/database/auto-provision-sunner.test.sql`; `supabase/seed.sql` sửa ghi chú đầu file.
+
+**Thay đổi**
+
+- Đăng nhập Google là thả tim và viết Kudo được, không cần gán `user_id` thủ công nữa (chỉ cần gán khi muốn đóng vai một sunner trong seed). Không đổi mã ứng dụng.
+
+**Lưu ý**
+
+- Kiểm chứng: pgTAP 316/316, `db reset` và `db lint` sạch, E2E 252/252, tsc và lint đạt, kiểm tra độc lập 9.5 SEALED. Chưa chạy đăng nhập Google thật từ đầu đến cuối. Mọi tài khoản Google đều tìm được làm người nhận (người dùng đã chấp nhận). Chưa commit. Việc còn mở ở `plans/261015-1700-auto-provision-sunner/reports/delivery-tracker-261015-sunner-provisioning-status.md`.
+
 ## 2026-10-15 — Modal Viết Kudo trên /sun-kudos (F007_WriteKudo)
 
 **Thêm**

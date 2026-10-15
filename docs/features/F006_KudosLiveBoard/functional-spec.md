@@ -19,7 +19,7 @@ lang: vi
 
 | Actor | Description | Primary goal |
 |-------|--------------|---------------|
-| Sunner | Nhân viên đã đăng nhập; có thể là người gửi hoặc người nhận kudo; "người dùng hiện tại" là hàng `sunners` có `user_id` trùng tài khoản | Xem các lời cảm ơn nổi bật và mới nhất, tìm theo hashtag, phòng ban, thả tim, chia sẻ liên kết và xem số liệu của mình |
+| Sunner | Bất kỳ tài khoản Google đã đăng nhập; hồ sơ Sunner được tạo tự động ở lần đăng nhập đầu, không lọc theo tên miền; có thể là người gửi hoặc người nhận kudo; "người dùng hiện tại" là hàng `sunners` có `user_id` trùng tài khoản | Xem các lời cảm ơn nổi bật và mới nhất, tìm theo hashtag, phòng ban, thả tim, chia sẻ liên kết và xem số liệu của mình |
 
 Feature này liên quan tới [F001_Auth](../F001_Auth/functional-spec.md) (guard đăng nhập, phiên), F002_Localization (từ điển vi/en), F003_Homepage (header, footer, liên kết "Sun* Kudos"), F005_CountdownPrelaunch (khóa trước ngày ra mắt áp trước trang này).
 
@@ -32,7 +32,7 @@ Feature này liên quan tới [F001_Auth](../F001_Auth/functional-spec.md) (guar
 | CAP-03 | Duyệt tất cả Kudos | Cuộn danh sách ALL KUDOS mới nhất trước, tự nạp thêm khi tới đáy | US004 | FR-301, FR-302 | BR-008, BR-009, DEC-004 | TBD (draft) |
 | CAP-04 | Thả tim và chia sẻ Kudos | Thả tim hoặc bỏ tim một kudo của người khác; sao chép liên kết kudo | US005, US006 | FR-401, FR-402, FR-403, FR-404, FR-405, FR-406, FR-407, FR-603 | BR-002, BR-003, BR-004, BR-005, BR-006, DEC-003, SM-001 | TBD (draft) |
 | CAP-05 | Khám phá Spotlight board | Xem tổng số kudo, tên người nhận trên bảng tối, rê chuột xem thời gian, kéo và phóng to, tìm một tên | US007 | FR-303, FR-304, FR-305, FR-306, FR-307, FR-308, FR-309 | BR-010, BR-011, DEC-005, SM-002 | TBD (draft) |
-| CAP-06 | Xem số liệu cá nhân và người nhận quà mới nhất | Xem kudos nhận, gửi, tim nhận, Secret Box đã mở và chưa mở; xem 10 người nhận quà mới nhất | US008 | FR-310, FR-311, FR-312, FR-313 | BR-006, DEC-006 | TBD (draft) |
+| CAP-06 | Xem số liệu cá nhân và người nhận quà mới nhất | Xem kudos nhận, gửi, tim nhận, Secret Box đã mở và chưa mở; xem 10 người nhận quà mới nhất | US008 | FR-310, FR-311, FR-312, FR-313, FR-605 | BR-006, BR-012, DEC-006 | TBD (draft) |
 | CAP-07 | Vào các chức năng thuộc màn khác | Bấm thanh ghi nhận, tìm profile, Mở Secret Box thì thấy thông báo "Coming soon"; bấm kudo thì tới trang giữ chỗ | US009 | FR-103, FR-106 | — | TBD (draft) |
 
 ## 3. Open Decisions
@@ -51,7 +51,7 @@ Feature này liên quan tới [F001_Auth](../F001_Auth/functional-spec.md) (guar
 | D010 | Pill "Tìm kiếm profile Sunner" cạnh thanh ghi nhận | **Đã chốt:** dựng theo Figma, mở cùng modal "Coming soon" như thanh ghi nhận | Figma có, spec không; tìm profile là màn khác | no |
 | D011 | Dòng tiêu đề kudo "IDOL GIỚI TRẺ" và biểu tượng bút ở thẻ All Kudos | Đề xuất: một cột `title` hiển thị trên `kudos`, biểu tượng bút trang trí không tương tác | Figma có; spec MoMorph gọi nó là hashtag bấm được; nguồn dữ liệu chưa rõ | no |
 | D012 | Click ảnh đính kèm | Đề xuất: mở ảnh gốc ở tab mới | Spec chỉ ghi "mở ảnh lớn" | no |
-| D013 | Người đăng nhập chưa có hàng `sunners` | Đề xuất: số liệu sidebar là 0; thả tim báo lỗi (RPC `sunner_not_found`), không tự tạo hàng | Nhỏ hơn phương án tự tạo | no |
+| D013 | Người đăng nhập chưa có hàng `sunners` | **Đã chốt (đổi, 2026-10-15):** mọi tài khoản Google tự được tạo hồ sơ Sunner ở lần đăng nhập đầu, không lọc tên miền; tài khoản Google cũ chưa có hồ sơ được tạo bù một lần; tài khoản đăng ký bằng email và mật khẩu không được tạo (chỉ tài khoản Google); không nối với hàng seed theo tên (bảng không có email, khớp tên không an toàn). Đường "chưa có hồ sơ" (số liệu 0, tim và thanh ghi nhận vô hiệu, RPC `sunner_not_found`) giữ làm chốt chặn cho hồ sơ bị gỡ liên kết hoặc xóa, và cho tài khoản không phải Google. Thay quyết định cũ "không tự tạo hàng" | Đăng nhập Google mà không gửi hay tim được là lỗi trải nghiệm; tạo ở đúng một chỗ (lúc tài khoản ra đời) thì mọi người đọc đều thấy hồ sơ ngay | no |
 | D014 | Giá trị lạ của `hashtag`, `department` trong URL | Đề xuất: bỏ qua, coi như không lọc | Không làm hỏng trang vì link cũ | no |
 | D015 | Cách khớp tên khi tìm trong Spotlight | Đề xuất: không phân biệt hoa thường và bỏ dấu tiếng Việt | Người dùng thường gõ không dấu | no |
 | D016 | Chuỗi mới: toast lỗi (tim, clipboard, tải thêm) và bản EN của mọi nhãn | Đề xuất: người dựng thêm chuỗi vi/en ngắn, chờ xác nhận | Figma chỉ có bản VI và chữ "Link copied — ready to share!" | no |
@@ -100,7 +100,7 @@ Feature này liên quan tới [F001_Auth](../F001_Auth/functional-spec.md) (guar
 - **FR-308** Spotlight có ba trạng thái: đang tải (khung chờ), không có dữ liệu ("Chưa có dữ liệu"), và tương tác được.
 - **FR-309** Dòng hoạt động chạy ở góc trái dưới Spotlight liệt kê 5 kudo mới nhất; chỉ để xem.
 - **FR-310** Sidebar hiện cho người dùng hiện tại: số kudo nhận, số kudo đã gửi, số tim nhận, số Secret Box đã mở, số Secret Box chưa mở; nút "Mở Secret Box" vô hiệu khi số chưa mở bằng 0, ngược lại mở modal (FR-103).
-- **FR-311** Người đăng nhập chưa có hồ sơ Sunner thì cả năm số hiển thị 0.
+- **FR-311** Người đăng nhập chưa có hồ sơ Sunner (chỉ còn khi hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) thì cả năm số hiển thị 0.
 - **FR-312** Hộp "10 SUNNER NHẬN QUÀ MỚI NHẤT" liệt kê 10 hộp đã mở gần nhất (avatar, tên, mô tả quà); chưa có thì hiện "Chưa có dữ liệu".
 - **FR-313** Sidebar dính (sticky) cạnh feed và có thanh cuộn riêng khi dài hơn khung nhìn.
 - **FR-314** Dưới 1024px sidebar xếp chồng với feed, carousel chỉ một thẻ, không có thanh cuộn ngang ở 375px.
@@ -119,8 +119,9 @@ Feature này liên quan tới [F001_Auth](../F001_Auth/functional-spec.md) (guar
 
 - **FR-601** Luật thả tim (một tim mỗi người, người gửi không tim, ngày đặc biệt, thu hồi) được thi hành ở cơ sở dữ liệu; client không ghi trực tiếp lượt tim.
 - **FR-602** Người đã đăng nhập chỉ đọc được dữ liệu của màn này; không ghi trực tiếp vào bảng nào từ trình duyệt.
-- **FR-603** Người đăng nhập không có hồ sơ Sunner gọi thả tim thì bị từ chối, hệ thống không tạo gì thêm.
+- **FR-603** Người đăng nhập không có hồ sơ Sunner gọi thả tim thì bị từ chối; lệnh thả tim không bao giờ tự tạo hồ sơ (hồ sơ chỉ được tạo lúc tài khoản Google ra đời, FR-605).
 - **FR-604** Nội dung do người dùng nhập (tên, lời nhắn, hashtag) luôn hiển thị như văn bản thuần, không diễn giải thành HTML.
+- **FR-605** Khi một tài khoản Google được tạo (đăng nhập lần đầu, hoặc Google được liên kết vào tài khoản đã có), hệ thống tạo cho tài khoản đó đúng một hồ sơ Sunner, không phụ thuộc tên miền email; tài khoản Google đã có từ trước mà chưa có hồ sơ được tạo bù một lần khi triển khai. Tài khoản không phải Google không được tạo hồ sơ.
 
 ## 5. Business Rules
 
@@ -140,8 +141,9 @@ Feature này liên quan tới [F001_Auth](../F001_Auth/functional-spec.md) (guar
 - Nút tim: vô hiệu cho người gửi, xám khi chưa tim, đỏ khi đã tim, tạm vô hiệu khi chờ, lỗi thì trả về trạng thái trước (DEC-003)
 - Highlight hoặc All Kudos không có kudo thì hiện "Hiện tại chưa có Kudos nào." (DEC-004)
 - Spotlight: đang tải hiện khung chờ, không có dữ liệu hiện "Chưa có dữ liệu", có dữ liệu thì tương tác được (DEC-005)
-- Sidebar: không có hồ sơ Sunner thì số liệu là 0; nút "Mở Secret Box" vô hiệu khi chưa mở bằng 0; danh sách nhận quà rỗng hiện "Chưa có dữ liệu" (DEC-006)
+- Sidebar: không có hồ sơ Sunner (chỉ còn khi hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) thì số liệu là 0; nút "Mở Secret Box" vô hiệu khi chưa mở bằng 0; danh sách nhận quà rỗng hiện "Chưa có dữ liệu" (DEC-006)
 - Huy hiệu danh hiệu chỉ hiện khi người đó có danh hiệu; số sao dưới 10 kudo thì không hiện sao (DEC-007)
+- Mỗi tài khoản Google có đúng một hồ sơ Sunner, tạo tự động lúc tài khoản ra đời; tên lấy từ tài khoản Google (tên đầy đủ, nếu thiếu thì tên hiển thị, nếu thiếu thì phần trước "@" của email, cuối cùng là "Sunner", tối đa 100 ký tự); ảnh đại diện chỉ nhận địa chỉ https (tối đa 2048 ký tự), còn lại để trống; không có phòng ban và danh hiệu. Tạo lặp cho cùng một tài khoản không sinh thêm hàng và không ghi đè tên, ảnh đã có (BR-012)
 - Trạng thái tim của một kudo với người dùng hiện tại: chưa tim, đã tim, đang chờ, vô hiệu (SM-001)
 - Chế độ bảng Spotlight: đứng yên hoặc kéo và phóng to (SM-002)
 
@@ -268,7 +270,8 @@ journey
 **Business value:** Động lực tham gia và nhìn thấy phần thưởng.
 
 **Acceptance Criteria:**
-- [ ] Năm số khớp dữ liệu của người đang đăng nhập; chưa có hồ sơ Sunner thì toàn 0
+- [ ] Năm số khớp dữ liệu của người đang đăng nhập; chưa có hồ sơ Sunner (hiếm) thì toàn 0
+- [ ] Tài khoản Google mới đăng nhập lần đầu thả tim và gửi kudo được ngay, không cần thao tác nào khác (FR-605)
 - [ ] "Mở Secret Box" vô hiệu khi chưa mở bằng 0
 - [ ] Danh sách nhận quà có tối đa 10 dòng mới nhất; rỗng thì "Chưa có dữ liệu"
 
@@ -345,9 +348,13 @@ journey
 
 **Given** Sunner có 25 kudo nhận và 3 Secret Box chưa mở, **When** nhìn sidebar, **Then** các số khớp và nút "Mở Secret Box" bấm được.
 
-### US008 — Error: không có hồ sơ Sunner
+### US008 — Error: không có hồ sơ Sunner *(đổi lời)*
 
-**Given** người đăng nhập không có hàng `sunners`, **When** mở trang, **Then** năm số bằng 0 và nút "Mở Secret Box" vô hiệu.
+**Given** người đăng nhập không có hàng `sunners` (hồ sơ bị gỡ liên kết hoặc xóa; tài khoản Google mới luôn có hồ sơ), **When** mở trang, **Then** năm số bằng 0 và nút "Mở Secret Box" vô hiệu.
+
+### US008 — Happy Path: tài khoản Google mới
+
+**Given** một tài khoản Google chưa từng đăng nhập, **When** đăng nhập lần đầu rồi mở `/sun-kudos`, **Then** năm số bằng 0 vì chưa có kudo, nhưng thả tim và thanh ghi nhận dùng được ngay.
 
 ### US009 — Happy Path
 
@@ -369,7 +376,10 @@ journey
 | Bấm tim hai lần rất nhanh | Nút vô hiệu giữa hai lần; chỉ một yêu cầu tại một thời điểm | "None" |
 | Hai thiết bị của một người cùng tim một kudo | Chỉ một lượt tim tồn tại; lần còn lại được đồng bộ lại | "None — silent handling" |
 | Thả tim ngày thường, bỏ tim sau khi ngày đặc biệt bắt đầu | Thu hồi 1 tim (số đã lưu), không phải 2 | "None" |
-| Người đăng nhập chưa có hồ sơ Sunner bấm tim | Từ chối, trạng thái về như trước | Toast lỗi ngắn (chuỗi chờ xác nhận, D016) |
+| Người đăng nhập chưa có hồ sơ Sunner bấm tim (chỉ khi hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) | Từ chối, trạng thái về như trước | Toast lỗi ngắn (chuỗi chờ xác nhận, D016) |
+| Tài khoản Google thiếu tên hoặc ảnh | Tên rơi về phần trước "@" của email rồi "Sunner"; ảnh để trống | "None" |
+| Tài khoản Google mới có tên giống hàng seed | Vẫn là hồ sơ riêng, không nối với hàng seed; hàng seed giữ nguyên không có tài khoản | "None" |
+| Tài khoản đăng ký bằng email và mật khẩu | Không được tạo hồ sơ; như người không có hồ sơ (số liệu 0, tim và thanh ghi nhận vô hiệu) | "None" |
 | Có kudo mới chèn đầu khi đang cuộn | Danh sách không trùng, không sót; kudo mới thấy khi tải lại | "None" |
 | Lỗi mạng khi nạp thêm | Dừng ở dòng "đang tải" rồi cho thử lại ở lần cuộn kế | Thông báo ngắn (chuỗi chờ xác nhận, D016) |
 | Hơn 100 người nhận khác nhau | Spotlight chỉ vẽ 100 người có kudo mới nhất; tổng vẫn là tổng thật | "None" |
@@ -392,7 +402,7 @@ journey
 - **FR-303** → Tiêu đề Spotlight bằng tổng kudo thật và không đổi khi lọc
 - **FR-307** → Ô tìm kiếm rỗng không báo lỗi, tối đa 100 ký tự
 - **FR-310** → Nút "Mở Secret Box" vô hiệu khi chưa mở bằng 0
-- **FR-311** → Không có hồ sơ Sunner thì toàn 0
+- **FR-311** → Chỉ khi hồ sơ không còn mới thấy năm số 0 và nút Secret Box vô hiệu
 - **FR-402** → Người gửi thấy nút tim vô hiệu
 - **FR-403** → Một người chỉ một tim cho một kudo
 - **FR-404** → Ngày đặc biệt +2, ngày thường +1, bỏ tim thu hồi đúng số đã cộng
@@ -400,6 +410,7 @@ journey
 - **FR-406** → Link đúng dạng, toast hiện rồi tự ẩn sau khoảng 3 giây
 - **FR-601** → Client không ghi trực tiếp lượt tim; luật chạy ở cơ sở dữ liệu
 - **FR-604** → Lời nhắn chứa ký tự HTML hiển thị như chữ
+- **FR-605** → Tài khoản Google mới đăng nhập xong là thả tim và gửi kudo được, không cần thao tác nào khác; tài khoản email và mật khẩu thì không có hồ sơ
 
 ## 11. Risks & Known Issues
 
@@ -414,11 +425,11 @@ journey
 
 | Dependency | Type | Why this feature needs it | Evidence |
 |------------|------|-----------------------------|----------|
-| F001_Auth | feature | Phiên người dùng, guard đăng nhập của proxy và layout `(main)`; `auth.uid()` cho RPC | FR-101, FR-601, FR-603 |
+| F001_Auth | feature | Phiên người dùng, guard đăng nhập của proxy và layout `(main)`; `auth.uid()` cho RPC; bảng `auth.users` (đăng nhập Google) là nguồn tạo hồ sơ Sunner | FR-101, FR-601, FR-603, FR-605 |
 | F002_Localization | feature | Từ điển vi/en và cookie ngôn ngữ | FR-002 |
 | F003_Homepage | feature | Header, footer, liên kết "Sun* Kudos", kiểu dropdown và font | FR-102, FR-205 |
 | F005_CountdownPrelaunch | feature | Trước ngày ra mắt proxy khóa mọi đường dẫn, kể cả trang này | FR-101 |
-| Supabase Postgres (migration, seed, RPC, RLS) | external-service | Lưu và truy vấn kudo, tim, người dùng, Secret Box | FR-001, FR-601, FR-602 |
+| Supabase Postgres (migration, seed, RPC, RLS) | external-service | Lưu và truy vấn kudo, tim, người dùng, Secret Box | FR-001, FR-601, FR-602, FR-605 |
 | Thiết kế MoMorph/Figma "Sun* Kudos - Live board" (screen `MaZUn5xHXZ`, node `2940:13431`) | external-service | Bố cục, hình, chữ, kích thước, tài liệu hành vi | FR-102, FR-204 |
 | Màn gửi Kudo, chi tiết Kudo, hồ sơ, Secret Box (màn MoMorph khác) | feature | Đích thật của các lối vào hiện là "Coming soon" | FR-103, FR-104, FR-105 |
 

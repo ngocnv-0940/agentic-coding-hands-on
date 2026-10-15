@@ -19,7 +19,7 @@ lang: vi
 
 | Actor | Description | Primary goal |
 |-------|--------------|---------------|
-| Sunner gửi Kudos | Nhân viên đã đăng nhập và có hồ sơ Sunner | Gửi lời cảm ơn, ghi nhận tới một đồng nghiệp, công khai hoặc ẩn danh |
+| Sunner gửi Kudos | Nhân viên đã đăng nhập bằng Google; hồ sơ Sunner được tạo tự động ở lần đăng nhập đầu (F006, FR-605) | Gửi lời cảm ơn, ghi nhận tới một đồng nghiệp, công khai hoặc ẩn danh |
 | Sunner xem Kudos | Nhân viên khác đã đăng nhập, gồm người nhận | Đọc Kudo mới trên Live board mà không biết được người gửi thật của Kudo ẩn danh |
 
 Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional-spec.md) (thanh ghi nhận, danh sách All Kudos, dữ liệu Kudo) và dựa vào F001_Auth (phiên đăng nhập) và F002_Localization (từ điển vi/en).
@@ -68,7 +68,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 
 - **FR-101** Thanh ghi nhận trên `/sun-kudos` mở modal Viết Kudo; ô tìm profile và Secret Box vẫn mở "Coming soon".
 - **FR-102** Chỉ người đã đăng nhập mở được modal; khách bị đưa về `/login` như các trang khác của Live board.
-- **FR-103** Người đã đăng nhập nhưng chưa có hồ sơ Sunner thấy thanh ghi nhận ở trạng thái vô hiệu.
+- **FR-103** Người đã đăng nhập mà vì lý do hiếm (hồ sơ Sunner bị gỡ liên kết hoặc xóa) không có hồ sơ thì thấy thanh ghi nhận ở trạng thái vô hiệu. Đây là chốt chặn dự phòng: tài khoản Google luôn có hồ sơ ngay từ lần đăng nhập đầu (F006, FR-605), nên thanh ghi nhận dùng được ngay. Tài khoản đăng ký bằng email và mật khẩu không được tạo hồ sơ, nên vẫn thấy nút vô hiệu.
 - **FR-104** Khi modal đóng, tiêu điểm quay về thanh ghi nhận đã mở nó.
 - **FR-105** "Tiêu chuẩn cộng đồng" cạnh thanh công cụ mở trang `/standards` trong tab mới.
 
@@ -110,7 +110,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 
 ### Security (6xx)
 
-- **FR-601** Chỉ người đã đăng nhập và có hồ sơ Sunner mới gửi được; người gửi luôn lấy từ phiên, không từ dữ liệu trình duyệt gửi lên.
+- **FR-601** Chỉ người đã đăng nhập và có hồ sơ Sunner mới gửi được; người gửi luôn lấy từ phiên, không từ dữ liệu trình duyệt gửi lên. Việc gửi không bao giờ tự tạo hồ sơ.
 - **FR-602** Không ai gửi Kudo cho chính mình.
 - **FR-603** Máy chủ kiểm lại mọi luật nhập liệu (người nhận, danh hiệu, nội dung, hashtag, ảnh, tên ẩn danh, liên kết) vì giao diện không phải chốt chặn.
 - **FR-604** Không đường đọc nào, kể cả Live board, truy vấn bảng trực tiếp và địa chỉ ảnh, được cho người khác biết người gửi thật của Kudo ẩn danh.
@@ -135,7 +135,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 - Bật ẩn danh thì hiện ô "Tên ẩn danh"; tắt thì ẩn ô và xóa giá trị (DEC-005)
 - Hủy và Esc đóng modal và bỏ dữ liệu; click nền mờ không làm gì (DEC-006)
 - Đang gửi thì khóa mọi ô nhập, Hủy và hiện vòng tải ở nút Gửi (DEC-007)
-- Người dùng không có hồ sơ Sunner thì thanh ghi nhận vô hiệu, cùng luật với nút tim (DEC-008)
+- Người dùng không có hồ sơ Sunner (chỉ còn khi hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) thì thanh ghi nhận vô hiệu, cùng luật với nút tim (DEC-008)
 - Tìm người nhận không ra ai thì hiện "Không tìm thấy kết quả" (DEC-009)
 - Modal đi qua ba trạng thái: đóng, đang soạn, đang gửi; gửi thành công thì về đóng, thất bại thì về đang soạn (SM-001)
 
@@ -166,7 +166,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 - [ ] Đã đăng nhập, bấm thanh ghi nhận thì modal hiện đủ tiêu đề và các trường theo thứ tự (ID-0, ID-2, ID-3)
 - [ ] Khách chưa đăng nhập không tới được modal, bị đưa về trang đăng nhập (ID-1)
 - [ ] Ô Người nhận và ô soạn thảo hiện đúng chữ gợi ý, ô ẩn danh mặc định bỏ chọn (ID-4, ID-5, ID-6)
-- [ ] Người chưa có hồ sơ Sunner thấy thanh ghi nhận vô hiệu
+- [ ] Người không có hồ sơ Sunner (hiếm; tài khoản Google mới luôn có hồ sơ) thấy thanh ghi nhận vô hiệu
 
 ### US002 — Chọn người nhận bằng tìm kiếm
 
@@ -303,9 +303,9 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 
 **Given** Sunner đã đăng nhập, đang ở `/sun-kudos`, **When** bấm thanh ghi nhận, **Then** modal Viết Kudo hiện đủ tiêu đề và các trường theo thứ tự (ID-0, ID-3).
 
-### US001 — Error: chưa đăng nhập hoặc chưa có hồ sơ
+### US001 — Error: chưa đăng nhập hoặc chưa có hồ sơ *(đổi lời)*
 
-**Given** khách chưa đăng nhập, **When** mở `/sun-kudos`, **Then** bị đưa về trang đăng nhập (ID-1); **Given** người đã đăng nhập nhưng chưa có hồ sơ Sunner, **When** nhìn thanh ghi nhận, **Then** nút vô hiệu và không mở được modal.
+**Given** khách chưa đăng nhập, **When** mở `/sun-kudos`, **Then** bị đưa về trang đăng nhập (ID-1); **Given** người đã đăng nhập nhưng hồ sơ Sunner bị gỡ liên kết hoặc xóa (tài khoản Google mới không rơi vào trường hợp này), **When** nhìn thanh ghi nhận, **Then** nút vô hiệu và không mở được modal.
 
 ### US002 — Happy Path
 
@@ -408,7 +408,8 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 | Mất mạng hoặc máy chủ từ chối khi gửi | Modal giữ nguyên dữ liệu; ảnh đã tải của lần đó bị dọn | "Không gửi được Kudos. Vui lòng thử lại." |
 | Một ảnh tải lên lỗi giữa chừng | Dừng gửi, các ảnh đã tải bị dọn, modal giữ nguyên | "Không gửi được Kudos. Vui lòng thử lại." |
 | Người nhận bị xóa khỏi hệ thống giữa lúc soạn | Máy chủ từ chối; modal giữ nguyên dữ liệu | "Không gửi được Kudos. Vui lòng thử lại." |
-| Người dùng không có hồ sơ Sunner | Thanh ghi nhận vô hiệu; máy chủ vẫn từ chối nếu bị gọi trực tiếp | None — nút vô hiệu |
+| Người dùng không có hồ sơ Sunner (chỉ khi hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) | Thanh ghi nhận vô hiệu; máy chủ vẫn từ chối nếu bị gọi trực tiếp | None — nút vô hiệu |
+| Người dùng Google mới vừa đăng nhập lần đầu | Thanh ghi nhận bấm được ngay; mở được modal và gửi được | None |
 | Bật ẩn danh, gõ tên rồi tắt | Ô tên ẩn đi và giá trị bị xóa; bật lại thì ô trống | None — silent handling |
 | Xóa ảnh khi đang đủ 5 ảnh | Nút "+ Image" hiện lại | None — silent handling |
 | Nhắc "@" người không tồn tại hoặc gõ "@" rồi xóa | Không chèn mention; chữ đang gõ giữ nguyên | "Không tìm thấy kết quả" |
@@ -419,7 +420,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 ## 10. Edge Behaviours to Verify
 
 - **FR-101** → Bấm thanh ghi nhận mở modal Viết Kudo; hai pill còn lại vẫn mở "Coming soon"
-- **FR-103** → Tài khoản không có hồ sơ Sunner thấy thanh ghi nhận vô hiệu
+- **FR-103** → Chỉ tài khoản không có hồ sơ Sunner (hiếm) mới thấy thanh ghi nhận vô hiệu; tài khoản Google mới thì không
 - **FR-201** → Thứ tự trường trong modal đúng thiết kế
 - **FR-203** → Gõ "  Nguyễn  " ra gợi ý như "Nguyễn"; không có chính người gửi trong danh sách
 - **FR-204** → Gõ "@ # $" không gây lỗi, ra danh sách trống kèm "Không tìm thấy kết quả"

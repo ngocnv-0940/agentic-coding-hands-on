@@ -83,11 +83,11 @@ flowchart LR
 **Who** · Sunner đã đăng nhập đang ở `/sun-kudos` *(gate A0 — § 4.4)*
 **FE** · `ActionPillsContainer` giữ pill đang mở làm cờ mở modal (`composeOpener`): pill ghi nhận `data-testid="kudos-compose-pill"` mở modal Viết Kudo, pill tìm hồ sơ `kudos-profile-search-pill` vẫn gọi `openModal` của `KudoFeedbackProvider` (Coming soon). Form nằm trong chunk riêng nạp lười (`dynamic`, `ssr: false`) nên JS đầu của board không mang Tiptap; chunk lỗi thì toast lỗi chung rồi đóng. Modal là lớp `fixed` phủ màn hình, không dùng portal; trường xếp theo thứ tự tiêu đề, Người nhận, Danh hiệu, thanh công cụ + ô soạn thảo, gợi ý "@", Hashtag, Image, ô ẩn danh, Hủy và Gửi (FR-201); chữ gợi ý và ô ẩn danh bỏ chọn mặc định (FR-202). Ô Danh hiệu có nhãn, dấu `*` đỏ, placeholder "Dành tặng một danh hiệu cho đồng đội" và hai dòng ví dụ (FR-206). Focus bị bẫy trong modal, focus đầu vào ô Người nhận (FR-225). Danh sách hashtag và `hasSunner` do `readComposeAccess()` đọc từ `getFilterOptions()` và `getSidebar()` (cùng lần đọc mà các khối khác của trang dùng, vì hai hàm có `cache`), không thêm RPC mới; đọc lỗi thì pill vô hiệu và không có hashtag.
 **Request** · không có; props từ server: danh sách hashtag, `hasSunner` (từ `kudos_sidebar`), chuỗi i18n
-**Rule** · Chỉ người xem có hàng `sunners` mới mở được modal, cùng luật với nút tim của F006:
+**Rule** · Chỉ người xem có hàng `sunners` mới mở được modal, cùng luật với nút tim của F006. Hàng này do trigger `auth.users` của F006 tạo cho tài khoản Google ở lần đăng nhập đầu (F006: tự tạo hồ sơ Sunner; `supabase/migrations/20261015035950_auto_provision_sunner.sql:61-63`), nên nhánh vô hiệu chỉ còn là chốt chặn dự phòng:
 
 | DEC | subtype | Condition | What the user sees | Source |
 |---|---|---|---|---|
-| **DEC-008** | render | `hasSunner = false` | Pill ghi nhận vô hiệu (`disabled`), không mở modal; RPC `create_kudo` vẫn là chốt chặn phía máy chủ | `app/(main)/sun-kudos/_components/kudos-banner.tsx:75` |
+| **DEC-008** | render | `hasSunner = false` (hiếm: hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) | Pill ghi nhận vô hiệu (`disabled`), không mở modal; RPC `create_kudo` vẫn là chốt chặn phía máy chủ | `app/(main)/sun-kudos/_components/kudos-banner.tsx:75` |
 | **DEC-008** | render | `hasSunner = true` | Pill bấm được, mở modal | `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:45` |
 
 **Result** · không ghi DB. Modal chuyển từ trạng thái đóng sang đang soạn (SM-001, § 4.3).
@@ -418,7 +418,7 @@ sequenceDiagram
 
 | Action | Scenario | Behavior |
 |---|---|---|
-| A1 | Người xem không có hàng `sunners` | Pill vô hiệu; `create_kudo` vẫn báo `sunner_not_found` nếu bị gọi trực tiếp |
+| A1 | Người xem không có hàng `sunners` (chỉ khi bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) | Pill vô hiệu; `create_kudo` vẫn báo `sunner_not_found` nếu bị gọi trực tiếp |
 | A2 | Esc khi đang gửi | Bỏ qua (`submitting` chặn `onEscape`); modal đóng theo kết quả gửi |
 | A2 · A13 | Hủy hoặc Esc ngay sau khi ảnh đã tải xong nhưng trước khi gửi xong | Không xảy ra: Hủy và Esc bị khóa từ lúc bấm Gửi |
 | A3 | Kết quả của chuỗi gõ cũ về sau kết quả của chuỗi mới | Bỏ qua theo số thứ tự yêu cầu |
@@ -732,7 +732,8 @@ Chính sách test `e2e-red-first`: hành vi UI (mở, đóng, validate, dropdown
 **Acceptance Scenarios:**
 
 1. **Given** người dùng có hàng `sunners`, **When** bấm `kudos-compose-pill`, **Then** modal hiện, focus ở ô Người nhận, pill không còn mở Coming soon.
-2. **Given** người dùng không có hàng `sunners`, **When** mở trang, **Then** pill `disabled`.
+2. **Given** hồ sơ Sunner của người dùng bị gỡ liên kết hoặc xóa, **When** mở trang, **Then** pill `disabled`.
+3. **Given** tài khoản Google vừa đăng nhập lần đầu, **When** mở trang, **Then** pill bấm được và `create_kudo` không báo `sunner_not_found` (phần RPC kiểm bằng pgTAP: `supabase/tests/database/auto-provision-sunner.test.sql:189-195`).
 
 #### US002 *(A3, A4)*
 
