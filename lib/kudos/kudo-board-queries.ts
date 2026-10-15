@@ -9,6 +9,7 @@ import type {
   SidebarData,
   SpotlightData,
 } from './kudo-board-types'
+import { withResolvedImages } from './resolve-kudo-image-url'
 
 // Server-only by construction: `createClient` reads request cookies through `next/headers` and throws outside a
 // request. (The `server-only` marker package is not installed and tsc cannot resolve it, so it is not imported.)
@@ -38,9 +39,10 @@ async function callRpc(operation: string, args?: Record<string, unknown>): Promi
   return data
 }
 
-function expectArray(operation: string, data: unknown): KudoCard[] {
+/** Card rows with `images[].url` resolved to loadable URLs (the single place stored image paths are interpreted). */
+function expectCards(operation: string, data: unknown): KudoCard[] {
   if (!Array.isArray(data)) throw new KudosDataError(operation, { cause: 'expected a JSON array' })
-  return data as KudoCard[]
+  return (data as KudoCard[]).map(withResolvedImages)
 }
 
 function expectObject<T>(operation: string, data: unknown): T {
@@ -59,7 +61,7 @@ const filterArgs = (filters: KudoFilters) => ({ p_hashtag: filters.hashtag, p_de
 
 /** ALG-001: top 5 kudos by likes (ties: newest first) after the filters. */
 export async function getHighlight(filters: KudoFilters): Promise<KudoCard[]> {
-  return expectArray('kudos_highlight', await callRpc('kudos_highlight', filterArgs(filters)))
+  return expectCards('kudos_highlight', await callRpc('kudos_highlight', filterArgs(filters)))
 }
 
 /**
@@ -67,7 +69,7 @@ export async function getHighlight(filters: KudoFilters): Promise<KudoCard[]> {
  * exists without a count; `nextCursor` is the last shown item's (createdAt, id), copied unchanged from the row.
  */
 export async function getFeedPage(filters: KudoFilters, cursor: FeedCursor | null): Promise<FeedPage> {
-  const rows = expectArray(
+  const rows = expectCards(
     'kudos_feed_page',
     await callRpc('kudos_feed_page', {
       ...filterArgs(filters),
@@ -87,7 +89,7 @@ export async function getSpotlight(): Promise<SpotlightData> {
   return expectObject<SpotlightData>('kudos_spotlight', await callRpc('kudos_spotlight'))
 }
 
-/** Stats and latest gifts for the signed-in user; all zeros when they have no sunners row. */
-export async function getSidebar(): Promise<SidebarData> {
+/** Stats and latest gifts for the signed-in user; all zeros when they have no sunners row. Cached per request: the page (compose pill) and the sidebar block both read it. */
+export const getSidebar = cache(async (): Promise<SidebarData> => {
   return expectObject<SidebarData>('kudos_sidebar', await callRpc('kudos_sidebar'))
-}
+})

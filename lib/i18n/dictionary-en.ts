@@ -1,6 +1,7 @@
 import { homeEn } from './dictionary-home-en'
 import { awardsEn } from './dictionary-awards-en'
 import { kudosEn } from './dictionary-kudos-en'
+import { writeKudoEn } from './dictionary-write-kudo-en'
 import type { Dictionary } from './dictionary-vi'
 
 export const en: Dictionary = {
@@ -25,4 +26,5 @@ export const en: Dictionary = {
   ...homeEn,
   ...awardsEn,
   ...kudosEn,
+  ...writeKudoEn,
 }

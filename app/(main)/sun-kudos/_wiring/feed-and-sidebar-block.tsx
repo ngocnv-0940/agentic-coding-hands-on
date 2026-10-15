@@ -39,7 +39,8 @@ export async function FeedAndSidebarBlock({ searchParams, dict }: { searchParams
       title={dict['kudos.feed.title']}
       feed={
         <FeedContainer
-          key={filtersKey(filters)}
+          // A refresh after sending brings a new first kudo: remount so the feed state (seeded once) shows it.
+          key={`${filtersKey(filters)}|${page.items[0]?.id ?? ''}`}
           initialPage={page}
           filters={filters}
           cardTexts={buildKudoCardTexts(dict)}

@@ -12,6 +12,8 @@ export type KudosBannerProps = {
   composeLabel: string
   /** Label of the profile search pill. */
   profileSearchLabel: string
+  /** The viewer has no sunner row: the compose pill is disabled (write-kudo FR-103). */
+  composeDisabled?: boolean
   onCompose: () => void
   onProfileSearch: () => void
   /** Lets the wiring return focus to the compose pill when the modal closes. */
@@ -20,7 +22,7 @@ export type KudosBannerProps = {
 }
 
 // mm:2940:13449/13450 — stroke #998C5F, fill rgba(255,234,158,.10); a navy base + blur keeps both legible over the key visual
-const PILL = `border border-saa-gold-border bg-[linear-gradient(rgba(255,234,158,0.1),rgba(255,234,158,0.1)),linear-gradient(rgba(0,16,26,0.6),rgba(0,16,26,0.6))] font-[family-name:var(--font-montserrat)] font-bold text-white backdrop-blur-sm flex h-[72px] min-w-0 cursor-pointer items-center gap-4 rounded-[68px] px-4 text-left text-base leading-6 tracking-[0.15px] transition-colors duration-200 hover:bg-[rgba(255,234,158,0.2)] ${FOCUS_RING}`
+const PILL = `border border-saa-gold-border bg-[linear-gradient(rgba(255,234,158,0.1),rgba(255,234,158,0.1)),linear-gradient(rgba(0,16,26,0.6),rgba(0,16,26,0.6))] font-[family-name:var(--font-montserrat)] font-bold text-white backdrop-blur-sm flex h-[72px] min-w-0 cursor-pointer items-center gap-4 rounded-[68px] px-4 text-left text-base leading-6 tracking-[0.15px] transition-colors duration-200 enabled:hover:bg-[rgba(255,234,158,0.2)] ${FOCUS_RING}`
 
 /** Key visual, title, logo and the two pills of the Kudos board. The header comes from the (main) layout. */
 export function KudosBanner({
@@ -28,6 +30,7 @@ export function KudosBanner({
   logoLabel,
   composeLabel,
   profileSearchLabel,
+  composeDisabled,
   onCompose,
   onProfileSearch,
   composeRef,
@@ -69,8 +72,9 @@ export function KudosBanner({
             ref={composeRef}
             type="button"
             data-testid="kudos-compose-pill"
+            disabled={composeDisabled}
             onClick={onCompose}
-            className={`${PILL} md:flex-[738_1_738px]`}
+            className={`${PILL} md:flex-[738_1_738px] disabled:cursor-not-allowed disabled:opacity-50`}
           >
             <IconPen className="shrink-0" />
             <span className="truncate">{composeLabel}</span>

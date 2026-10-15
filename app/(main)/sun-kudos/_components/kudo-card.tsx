@@ -35,6 +35,7 @@ const TEXT = 'font-[family-name:var(--font-montserrat)] text-base leading-6 font
 /** One kudo (Highlight or ALL KUDOS). Pure view: the text is rendered as text (FR-604), links go to `/sun-kudos/<id>` and `/profile`. */
 export function KudoCard({ kudo, variant, labels, likeSlot, copyLinkSlot, onHashtagClick, active }: KudoCardProps) {
   const isHighlight = variant === 'highlight'
+  const isAnonymous = Boolean(kudo.isAnonymous) || kudo.sender === null
   const detailHref = `/sun-kudos/${kudo.id}`
   const hashtags = kudo.hashtags.slice(0, MAX_HASHTAGS)
   return (
@@ -47,7 +48,12 @@ export function KudoCard({ kudo, variant, labels, likeSlot, copyLinkSlot, onHash
     >
       {/* mm:I2940:13464;335:9442 */}
       <div className="flex items-start justify-between gap-2 md:gap-6">
-        <KudoPerson person={kudo.sender} role="sender" labels={labels} />
+        <KudoPerson
+          person={isAnonymous ? null : kudo.sender}
+          role="sender"
+          labels={labels}
+          anonymousName={kudo.anonymousName?.trim() || labels.anonymousSender}
+        />
         {/* mm:I2940:13464;335:9444 */}
         <div className="flex h-[123px] shrink-0 items-start py-4 text-saa-navy">
           <IconSend aria-hidden="true" />

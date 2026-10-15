@@ -6,9 +6,11 @@ import { getLocale } from '@/lib/i18n/get-locale'
 import { filtersKey, type RawSearchParams } from '@/lib/kudos/kudo-filters'
 import { ActionPillsContainer } from './_wiring/action-pills-container'
 import { buildLikeErrorMessages } from './_wiring/build-kudos-labels'
+import { buildWriteKudoLabels } from './_wiring/build-write-kudo-labels'
 import { FeedAndSidebarBlock } from './_wiring/feed-and-sidebar-block'
 import { HighlightBlock } from './_wiring/highlight-block'
 import { KudosBoardProviders } from './_wiring/kudos-board-providers'
+import { readComposeAccess } from './_wiring/read-compose-access'
 import { resolveBoardFilters } from './_wiring/resolve-board-filters'
 import { SpotlightBlock } from './_wiring/spotlight-block'
 
@@ -32,7 +34,7 @@ export default function SunKudosPage({ searchParams }: PageProps) {
 async function KudosBoard({ searchParams }: PageProps) {
   await connection()
   const dict = getDictionary(await getLocale())
-  const { filters } = await resolveBoardFilters(searchParams)
+  const [{ filters }, compose] = await Promise.all([resolveBoardFilters(searchParams), readComposeAccess()])
 
   return (
     <div data-testid="kudos-board" className="flex flex-col">
@@ -47,6 +49,9 @@ async function KudosBoard({ searchParams }: PageProps) {
           logoLabel={dict['kudos.banner.logoLabel']}
           composeLabel={dict['kudos.compose.placeholder']}
           profileSearchLabel={dict['kudos.profileSearch.label']}
+          hasSunner={compose.hasSunner}
+          hashtags={compose.hashtags}
+          writeKudoLabels={buildWriteKudoLabels(dict)}
         />
         <HighlightBlock searchParams={searchParams} dict={dict} />
         <SpotlightBlock dict={dict} />

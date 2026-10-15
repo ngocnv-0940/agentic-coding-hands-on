@@ -7,8 +7,30 @@ import type { KudoCardLabels, PersonView } from './kudos-view-types'
 
 const PROFILE_HREF = '/profile'
 
+type KudoPersonProps = {
+  /** `null` renders the anonymous sender: alias text only, no avatar image, no profile link, no badge. */
+  person: PersonView | null
+  role: 'sender' | 'receiver'
+  labels: KudoCardLabels
+  /** Display name of the anonymous sender (alias, or the default label when the alias is empty). */
+  anonymousName?: string
+}
+
 /** Sender or receiver block of a kudo card (mm:256:4830): avatar, name, department, hero badge and stars. */
-export function KudoPerson({ person, role, labels }: { person: PersonView; role: 'sender' | 'receiver'; labels: KudoCardLabels }) {
+export function KudoPerson({ person, role, labels, anonymousName }: KudoPersonProps) {
+  if (!person) {
+    return (
+      <div data-testid="kudo-person" data-role={role} data-anonymous="true" className="flex w-full min-w-0 max-w-[235px] flex-col items-center justify-center gap-[13px]">
+        {/* neutral silhouette in the avatar slot keeps the card symmetrical; it is not an image of the sender */}
+        <span aria-hidden="true" className="block size-16 shrink-0 overflow-hidden rounded-full border-[1.87px] border-white bg-[#eee]">
+          <IconUserCircle className="size-full p-2 text-[#999]" />
+        </span>
+        <p className="m-0 w-full truncate text-center font-[family-name:var(--font-montserrat)] text-base leading-6 font-bold tracking-[0.15px] text-saa-navy">
+          {anonymousName}
+        </p>
+      </div>
+    )
+  }
   const starTitle = person.stars > 0 ? labels.starTitles[person.stars - 1] : undefined
   return (
     // mm:I2940:13464;335:9443
