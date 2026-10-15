@@ -1,0 +1,40 @@
+{
+  "task": "Implement MoMorph screen 'Viết Kudo' (ihQ26W78P2) as a modal on /sun-kudos opened by the compose pill: recipient search, Danh hiệu, rich-text content with link dialog and @mentions, hashtag multi-select (1-5), up to 5 images to Supabase Storage, anonymous alias, validation and submit through a create_kudo RPC, new kudo appearing on the live board",
+  "mode": "auto",
+  "acceptanceCriteria": [
+    "Compose pill on /sun-kudos opens the 'Viết Kudo' modal (title, fields in Figma order, Hủy + Gửi footer); viewer without a sunners row sees the pill disabled; guests are sent to /login",
+    "Người nhận: placeholder 'Tìm kiếm'; trimmed, case- and diacritic-insensitive search of sunners (max 10, excludes self, literal special chars, empty result message); selecting fills the field and closes the list",
+    "Danh hiệu required 1-100 chars with Figma placeholder and helper text; saved as kudos.title",
+    "Editor: bold, italic, strike, numbered list, link (Add link dialog: Text 1-100, http/https URL 5-2048), quote; '@' shows sunner suggestions and inserts a mention; placeholder per Figma; 'Tiêu chuẩn cộng đồng' opens /standards in a new tab; content required, max 2000 plain chars",
+    "Hashtag: '+ Hashtag' opens a multi-select of DB hashtags, chips removable, min 1, at 5 unselected rows are disabled and 'Tối đa 5 hashtag' shows",
+    "Image: jpeg/png/webp up to 5 MB, max 5 thumbnails with remove; '+ Image' hidden at 5 and shown again after a removal; other types show 'Định dạng file không hợp lệ' and are not added",
+    "Anonymous checkbox default unchecked; checked shows the optional alias field (max 50), unchecked hides and clears it; board shows the alias for anonymous kudos and no API reveals the real sender to other users",
+    "Gửi is aria-disabled while a required field is incomplete; clicking it then shows every field error ('Không được để trống') without submitting; errors also show on blur and clear when valid",
+    "Valid submit shows loading, inserts kudo + hashtags + images atomically via create_kudo (server re-validates every rule), closes the modal, toasts success and the new kudo is first in All Kudos; failure keeps the modal and data and shows an error toast",
+    "Hủy and Esc close and discard; backdrop click does nothing; focus trapped and returned to the compose pill",
+    "VI/EN copy parity; modal fits 1440 per Figma and has no horizontal scroll at 768 and 375; existing e2e suites and pgTAP stay green"
+  ],
+  "touchpoints": [
+    "app/(main)/sun-kudos/** (compose pill wiring, new write-kudo modal components/behaviour/wiring)",
+    "lib/kudos/** (create kudo action, recipient/hashtag search, validation)",
+    "lib/i18n/dictionary-kudos-{vi,en}.ts",
+    "supabase/migrations/*.sql (kudos columns, create_kudo RPC, storage bucket + policies, anonymous masking), supabase/seed.sql, supabase/config.toml, supabase/tests/database/*.test.sql",
+    "e2e/support/mock-supabase-server.ts and e2e/support/mock-kudos-*.ts",
+    "e2e/kudos-*.spec.ts, e2e/write-kudo-*.spec.ts",
+    "package.json (editor dependency)"
+  ],
+  "blastRadius": [
+    "F006 board RPCs and cards (sender display for anonymous kudos, new kudo in feed/highlight/spotlight/sidebar counts)",
+    "existing F006 e2e case: compose pill opened the Coming soon modal",
+    "e2e mock Supabase server shared by every spec",
+    "RLS and grants on public.kudos and storage.objects",
+    "dictionary merge in lib/i18n"
+  ],
+  "contracts": [
+    "create_kudo RPC: caller must be a sunner; recipient exists and is not the caller; title 1-100; content 1-2000 plain chars; 1-5 existing hashtags; 0-5 image paths in the caller's storage folder; anonymous alias <= 50; atomic insert",
+    "Existing F006 RPC JSON contract (kudos_highlight, kudos_feed_page, kudos_spotlight, kudos_sidebar, toggle_kudo_like) stays field-compatible; anonymous kudos expose the alias, never the sender identity",
+    "No client INSERT/UPDATE/DELETE grants on public tables; storage insert only into <auth.uid()>/",
+    "mock-supabase /auth/v1 routes unchanged",
+    "node .claude/skills/_shared/lib/evidence-gate.cjs --evidence-dir <abs> --stage hard"
+  ]
+}

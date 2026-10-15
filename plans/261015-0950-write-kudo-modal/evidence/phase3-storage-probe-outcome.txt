@@ -1,0 +1,16 @@
+Phase 3 storage probe outcome (2026-10-15, local stack, Supabase CLI 2.120.0, Postgres 17)
+Raw output: phase3-storage-probe.txt (exit=0, 0 failures). Probe = real HTTP calls through Kong with GoTrue user JWTs.
+
+1. owner_id at INSERT check time: SET. Storage stamps owner_id (and owner) = auth.uid() on the row before the
+   INSERT policy runs: an upload of <uuid>.png passed the policy that requires owner_id = auth.uid()::text.
+   -> Decision: keep the owner_id predicate in "kudo images: insert own neutral name". Planned fallback
+      (drop the predicate) NOT taken; clarifications.md needs no amendment.
+   Note: storage.can_insert_object() (SQL helper) inserts only `owner`, but the Storage API upload path did
+   not depend on it here.
+2. Does upload need SELECT on own objects? NO. With "kudo images: select own" dropped, upload still -> 200.
+   Does remove need it? YES. Without it, remove of an own unreferenced object -> 200 [] and the object stays.
+   -> Decision: keep the own-only SELECT policy (required for the best-effort cleanup after a failed submit).
+      The policy was restored after the probe and the DB was reset to the migrations afterwards.
+3. HTTP status shapes seen (for phase 4 error mapping): RLS rejection = HTTP 400 with body statusCode "403"
+   (AccessDenied); bad MIME = HTTP 400 / statusCode "415"; > 5 MiB = HTTP 400 / statusCode "413".
+   The phase-1 mock answers RLS rejections with HTTP 403 (body statusCode "403"); both are non-2xx errors.

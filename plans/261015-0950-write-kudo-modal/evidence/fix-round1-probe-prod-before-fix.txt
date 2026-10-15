@@ -1,0 +1,14 @@
+$ playwright test "e2e/zz-debug-probe.spec.ts" "--workers=1"
+[WebServer] $ next build
+[WebServer] $ next start -p "3100"
+
+Running 4 tests using 1 worker
+
+{"focused":"write-kudo-recipient-input","before":{"x":430,"y":660,"width":122.0625,"height":48},"after":{"x":430,"y":688,"width":122.0625,"height":48},"shiftY":28,"underOldCenter":"DIV testid=write-kudo-modal"}
+  ✓  1 [chromium] › e2e/zz-debug-probe.spec.ts:5:5 › probe A: box of + Hashtag before/after recipient blur, and what is under the old click point (2.1s)
+  ✓  2 [chromium] › e2e/zz-debug-probe.spec.ts:17:5 › probe B: JS click right after modal visible opens the panel (handler attached) (1.5s)
+  ✓  3 [chromium] › e2e/zz-debug-probe.spec.ts:23:5 › probe C: first real click works once the error row is already shown (1.7s)
+["mousedown:write-kudo-hashtag-add@680","mouseup:write-kudo-modal@680","click:write-kudo-modal@680"] panel= 0
+  ✓  4 [chromium] › e2e/zz-debug-probe.spec.ts:31:5 › probe D: real click, record mousedown/mouseup/click targets (2.0s)
+
+  4 passed (2.6m)

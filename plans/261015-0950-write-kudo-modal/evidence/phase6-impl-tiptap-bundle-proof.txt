@@ -1,0 +1,24 @@
+# phase 6 impl: Tiptap not in /sun-kudos first-load JS
+## chunks containing prosemirror/tiptap strings
+static/chunks/204m-oywmz6kn.js
+static/chunks/2v-1wv2yvb0x9.css
+## /sun-kudos entryJSFiles (page_client-reference-manifest)
+static/chunks/1tq6ppe__m8m-.js static/chunks/080cl5_cw3i9l.js static/chunks/1vr_q8_5i46uu.js static/chunks/1e-cg40wxki0h.js
+## rootMainFiles
+static/chunks/0om590q-tq0l9.js
+static/chunks/1xvlv203vhw43.js
+static/chunks/1lueolbfd72z6.js
+static/chunks/2-aubugw8unjj.js
+static/chunks/13ebhwe8d-mme.js
+static/chunks/turbopack-3-ry682tkyiqk.js
+## chunks that reference the Tiptap chunk (lazy loader)
+static/chunks/1vr_q8_5i46uu.js
+server/app/(main)/sun-kudos/page/react-loadable-manifest.json
+## sizes (bytes)
+14090 static/chunks/1tq6ppe__m8m-.js
+33421 static/chunks/080cl5_cw3i9l.js
+8802 static/chunks/1vr_q8_5i46uu.js
+40346 static/chunks/1e-cg40wxki0h.js
+467338 static/chunks/204m-oywmz6kn.js
+## result
+Tiptap chunk 204m-oywmz6kn.js is in none of the sets above except as a lazy reference: PASS (chunk intersect = empty)

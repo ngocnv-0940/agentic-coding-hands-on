@@ -1,0 +1,13 @@
+$ playwright test "e2e/zz-debug-probe.spec.ts" "e2e/write-kudo-hashtags-images-anonymous.spec.ts" "--workers=1" -g "probe (A|D)|ID-34"
+[WebServer] $ next build
+[WebServer] $ next start -p "3100"
+
+Running 3 tests using 1 worker
+
+  ✓  1 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip (1.7s)
+{"focused":"write-kudo-recipient-input","before":{"x":430,"y":660,"width":122.0625,"height":48},"after":{"x":430,"y":660,"width":122.0625,"height":48},"shiftY":0,"underOldCenter":"SPAN testid=write-kudo-hashtag-add"}
+  ✓  2 [chromium] › e2e/zz-debug-probe.spec.ts:5:5 › probe A: box of + Hashtag before/after recipient blur, and what is under the old click point (1.5s)
+["mousedown:write-kudo-hashtag-add@680","mouseup:write-kudo-hashtag-add@680","click:write-kudo-hashtag-add@680"] panel= 1
+  ✓  3 [chromium] › e2e/zz-debug-probe.spec.ts:31:5 › probe D: real click, record mousedown/mouseup/click targets (1.6s)
+
+  3 passed (2.4m)

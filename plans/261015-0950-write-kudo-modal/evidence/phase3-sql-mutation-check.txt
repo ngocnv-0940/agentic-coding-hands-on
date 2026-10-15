@@ -1,0 +1,56 @@
+# Mutation check: kudo_cards un-masked (sender always returned) + INSERT policy without the owner_id predicate
+Connecting to local database...
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql ................ ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql ............. ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql .. ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql ......... ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql ... 
+# Failed test 29: "uploading as another owner is rejected"
+#       caught: no exception
+#       wanted: 42501
+# Failed test 30: "uploading without an owner is rejected"
+#       caught: 23505: duplicate key value violates unique constraint "objects_bucket_id_name_version_key"
+#       wanted: 42501
+# Failed test 32: "the other user sees only their own object"
+#         have: {f8000000-0000-4000-8000-000000000004.png,f8000000-0000-4000-8000-000000000009.png}
+#         want: {f8000000-0000-4000-8000-000000000004.png}
+# Failed test 37: "only the unused own upload is gone"
+#         have: 6
+#         want: 5
+# Looks like you failed 4 tests of 39
+Failed 4/39 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql ....... 
+# Failed test 20: "anonymous card: sender is null"
+#         have: {"id": "b9000000-0000-4000-8000-000000000001", "name": "PgTap Hidden Sender", "avatarUrl": "/pgtap/hidden.png", "heroTitle": null, "department": null, "receivedCount": 0}
+#         want: null
+# Failed test 24: "anonymous card without alias: sender is null"
+#         have: {"id": "b9000000-0000-4000-8000-000000000001", "name": "PgTap Hidden Sender", "avatarUrl": "/pgtap/hidden.png", "heroTitle": null, "department": null, "receivedCount": 0}
+#         want: null
+# Failed test 26: "no anonymous card (6 across feed, highlight, sender feed) carries the sender id, name or avatar"
+#         have: {6,6}
+#         want: {6,0}
+# Failed test 29: "kudos_highlight masks anonymous senders too"
+#         have: [{"id": "b9000000-0000-4000-8000-000000000001", "name": "PgTap Hidden Sender", "avatarUrl": "/pgtap/hidden.png", "heroTitle": null, "department": null, "receivedCount": 0}, {"id": "b9000000-0000-4000-8000-000000000001", "name": "PgTap Hidden Sender", "avatarUrl": "/pgtap/hidden.png", "heroTitle": null, "department": null, "receivedCount": 0}]
+#         want: [null, null]
+# Failed test 30: "the sender also sees the alias, not themselves"
+#         have: {"id": "b9000000-0000-4000-8000-000000000001", "name": "PgTap Hidden Sender", "avatarUrl": "/pgtap/hidden.png", "heroTitle": null, "department": null, "receivedCount": 0}
+#         want: null
+# Looks like you failed 5 tests of 35
+Failed 5/35 subtests 
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql (Wstat: 0 Tests: 39 Failed: 4)
+  Failed tests:  29-30, 32, 37
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql     (Wstat: 0 Tests: 35 Failed: 5)
+  Failed tests:  20, 24, 26, 29-30
+Files=6, Tests=263,  1 wallclock secs ( 0.05 usr  0.01 sys +  0.05 cusr  0.04 csys =  0.15 CPU)
+Result: FAIL
+error running container: exit 1
+exit=1

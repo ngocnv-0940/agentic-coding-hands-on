@@ -1,0 +1,212 @@
+{
+  "375": {
+    "modalWidth": 343,
+    "modalHeight": 868,
+    "modalX": 16,
+    "overflowPx": 0,
+    "rows": [
+      {
+        "field": "recipient",
+        "top": 124,
+        "height": 120,
+        "width": 303,
+        "controlTop": 176,
+        "controlLeft": 25
+      },
+      {
+        "field": "title",
+        "top": 268,
+        "height": 196,
+        "width": 303,
+        "controlTop": 320,
+        "controlLeft": 25
+      },
+      {
+        "field": "content",
+        "top": 488,
+        "height": 332,
+        "width": 303,
+        "controlTop": 488,
+        "controlLeft": 0
+      },
+      {
+        "field": "hashtags",
+        "top": 844,
+        "height": 84,
+        "width": 303,
+        "controlTop": 880,
+        "controlLeft": 0
+      },
+      {
+        "field": "images",
+        "top": 952,
+        "height": 84,
+        "width": 303,
+        "controlTop": 1012,
+        "controlLeft": -1
+      },
+      {
+        "field": "anonymous",
+        "top": 1060,
+        "height": 56,
+        "width": 303,
+        "controlTop": 1076,
+        "controlLeft": 0
+      }
+    ],
+    "footer": {
+      "cancelH": 60,
+      "submitH": 60,
+      "cancelW": 303,
+      "submitW": 303,
+      "submitTop": 1140,
+      "cancelTop": 1212
+    }
+  },
+  "768": {
+    "modalWidth": 736,
+    "modalHeight": 868,
+    "modalX": 16,
+    "overflowPx": 0,
+    "rows": [
+      {
+        "field": "recipient",
+        "top": 168,
+        "height": 84,
+        "width": 656,
+        "controlTop": 184,
+        "controlLeft": 187
+      },
+      {
+        "field": "title",
+        "top": 284,
+        "height": 112,
+        "width": 656,
+        "controlTop": 300,
+        "controlLeft": 172
+      },
+      {
+        "field": "content",
+        "top": 428,
+        "height": 268,
+        "width": 656,
+        "controlTop": 428,
+        "controlLeft": 0
+      },
+      {
+        "field": "hashtags",
+        "top": 728,
+        "height": 48,
+        "width": 656,
+        "controlTop": 728,
+        "controlLeft": 126
+      },
+      {
+        "field": "images",
+        "top": 808,
+        "height": 48,
+        "width": 656,
+        "controlTop": 832,
+        "controlLeft": 89
+      },
+      {
+        "field": "anonymous",
+        "top": 888,
+        "height": 28,
+        "width": 656,
+        "controlTop": 890,
+        "controlLeft": 0
+      }
+    ],
+    "footer": {
+      "cancelH": 60,
+      "submitH": 60,
+      "cancelW": 147,
+      "submitW": 485,
+      "submitTop": 948,
+      "cancelTop": 948
+    }
+  },
+  "1440": {
+    "modalWidth": 752,
+    "modalHeight": 868,
+    "modalX": 344,
+    "overflowPx": 0,
+    "rows": [
+      {
+        "field": "recipient",
+        "top": 128,
+        "height": 84,
+        "width": 672,
+        "controlTop": 144,
+        "controlLeft": 187
+      },
+      {
+        "field": "title",
+        "top": 244,
+        "height": 112,
+        "width": 672,
+        "controlTop": 260,
+        "controlLeft": 172
+      },
+      {
+        "field": "content",
+        "top": 388,
+        "height": 268,
+        "width": 672,
+        "controlTop": 388,
+        "controlLeft": 0
+      },
+      {
+        "field": "hashtags",
+        "top": 688,
+        "height": 48,
+        "width": 672,
+        "controlTop": 688,
+        "controlLeft": 126
+      },
+      {
+        "field": "images",
+        "top": 768,
+        "height": 48,
+        "width": 672,
+        "controlTop": 792,
+        "controlLeft": 89
+      },
+      {
+        "field": "anonymous",
+        "top": 848,
+        "height": 28,
+        "width": 672,
+        "controlTop": 850,
+        "controlLeft": 0
+      }
+    ],
+    "footer": {
+      "cancelH": 60,
+      "submitH": 60,
+      "cancelW": 147,
+      "submitW": 501,
+      "submitTop": 908,
+      "cancelTop": 908
+    }
+  },
+  "errorState1440": [
+    {
+      "text": "Không được để trống",
+      "field": "recipient"
+    },
+    {
+      "text": "Không được để trống",
+      "field": "title"
+    },
+    {
+      "text": "Không được để trống",
+      "field": "content"
+    },
+    {
+      "text": "Không được để trống",
+      "field": "hashtags"
+    }
+  ]
+}

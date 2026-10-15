@@ -1,0 +1,325 @@
+$ playwright test "e2e/write-kudo-"
+
+Running 76 tests using 4 workers
+
+  ✓   2 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:45:7 › Viết Kudo editor and link dialog › TC ID-29: Strike puts a line through the selected text (15.5s)
+  ✓   3 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:36:7 › Viết Kudo editor and link dialog › TC ID-28: Italic makes the selected text italic (15.5s)
+  ✓   1 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:27:7 › Viết Kudo editor and link dialog › TC ID-27 / FR-401: Bold makes the selected text bold and reports aria-pressed (15.6s)
+  ✓   4 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:54:7 › Viết Kudo editor and link dialog › FR-404: a second Bold click removes the mark and clears aria-pressed (15.7s)
+  ✓   7 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:91:7 › Viết Kudo editor and link dialog › TC ID-32: Quote formats the selected text as a blockquote (10.9s)
+  ✓   5 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:65:7 › Viết Kudo editor and link dialog › TC ID-30: the numbered list turns two lines into two ordered items (11.5s)
+  ✓   6 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:77:7 › Viết Kudo editor and link dialog › TC ID-31: the link dialog inserts a link that opens in a new tab (11.9s)
+  ✓   8 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:100:7 › Viết Kudo editor and link dialog › FR-503: an empty link Text shows an error and inserts nothing (12.0s)
+  ✓  12 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:143:7 › Viết Kudo editor and link dialog › FR-605: pasted <h1> and <script> reduce to plain text and the script does not run (10.9s)
+  ✓  11 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:134:7 › Viết Kudo editor and link dialog › FR-505: Escape closes the link dialog and leaves the modal open (11.9s)
+  ✓   9 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:112:7 › Viết Kudo editor and link dialog › FR-504: a javascript: URL shows an error and inserts nothing (12.8s)
+  ✓  10 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:123:7 › Viết Kudo editor and link dialog › FR-504: an ftp:// URL shows an error and inserts nothing (12.4s)
+  ✓  14 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:26:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-15: one picked hashtag appears as a chip (12.5s)
+  ✓  15 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:34:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-16: five picked hashtags make five chips and "+ Hashtag" stays visible (13.6s)
+  ✓  17 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:52:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip (4.9s)
+  ✓  18 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:61:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-35: three picked hashtags make three separate chips (5.1s)
+  ✓  19 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:68:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-36: removing one chip keeps the others (5.4s)
+  ✓  20 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-18 / ID-21: a valid image/jpeg is added as a thumbnail (4.7s)
+  ✓  21 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22: a valid image/png is added as a thumbnail (4.2s)
+  ✓  22 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22 (webp): a valid image/webp is added as a thumbnail (4.6s)
+  ✓  23 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:87:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-19 / ID-20 / ID-54: five images hide "+ Image" and a sixth pick is ignored (5.7s)
+  ✘  13 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:19:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row (31.5s)
+  ✘  16 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:42:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-17 / ID-53: at five selected, the other options are disabled, the limit shows, a sixth is refused (31.9s)
+  ✓  24 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:97:7 › Viết Kudo hashtags, images and anonymous toggle › FR-704: seven files picked at once keep five thumbnails (6.4s)
+  ✓  25 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-23: a application/pdf file shows the invalid-format error, is not added and is not uploaded (8.3s)
+  ✓  26 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-24: a video/mp4 file shows the invalid-format error, is not added and is not uploaded (9.1s)
+  ✓  27 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:116:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-37: "+ Image" opens the file picker and the picked file becomes a thumbnail (9.4s)
+  ✓  28 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-55: a text/plain file shows the invalid-format error, is not added and is not uploaded (10.5s)
+  ✓  29 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:123:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-38: five picks through "+ Image" hide the button after the fifth (11.2s)
+  ✓  30 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:131:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-39: removing the second of three thumbnails leaves two (9.0s)
+  ✓  31 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:139:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-40: removing one of five thumbnails shows "+ Image" again (9.2s)
+  ✓  32 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:148:7 › Viết Kudo hashtags, images and anonymous toggle › FR-706: a file over 5 MB shows "Ảnh vượt quá 5 MB" and is not added (10.2s)
+  ✓  33 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:156:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-41 / ID-42: the anonymous checkbox checks on click and unchecks on the second click (7.4s)
+  ✓  37 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:34:7 › Viết Kudo modal: access and layout › TC ID-1 / FR-106: a guest on /sun-kudos is sent to /login before the modal can open (2.5s)
+  ✓  34 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:165:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-43 / ID-44: checking shows the alias field (max 50) and unchecking hides it (9.4s)
+  ✓  35 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:175:7 › Viết Kudo hashtags, images and anonymous toggle › DEC-005: unchecking clears the alias text (9.3s)
+  ✓  36 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:26:7 › Viết Kudo modal: access and layout › TC ID-0 / FR-101: the compose pill opens the Viết Kudo modal with its title (8.1s)
+  ✓  40 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:58:7 › Viết Kudo modal: access and layout › TC ID-5 / FR-206: the editor placeholder reads the Figma sentence (9.2s)
+  ✓  38 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:41:7 › Viết Kudo modal: access and layout › TC ID-2 / ID-3 / FR-201: the modal shows six rows in order, the title on top, and Hủy + Gửi in the footer (9.5s)
+  ✓  39 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:50:7 › Viết Kudo modal: access and layout › TC ID-4 / FR-202: the recipient field shows the "Tìm kiếm" placeholder and is a closed combobox (9.6s)
+  ✓  41 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:64:7 › Viết Kudo modal: access and layout › TC ID-6: the anonymous checkbox is unchecked on open (9.0s)
+  ✓  43 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:81:7 › Viết Kudo modal: access and layout › FR-103: an identity without a sunner row sees the compose pill disabled (7.0s)
+  ✓  44 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:87:7 › Viết Kudo modal: access and layout › FR-104: Hủy returns focus to the compose pill (8.9s)
+  ✓  42 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:70:7 › Viết Kudo modal: access and layout › TC ID-45: Hủy closes the modal with data entered, and a reopened modal is empty (9.6s)
+  ✓  45 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:94:7 › Viết Kudo modal: access and layout › FR-105: "Tiêu chuẩn cộng đồng" opens /standards in a new tab (11.0s)
+  ✓  46 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:103:7 › Viết Kudo modal: access and layout › FR-202 / FR-206 / FR-209: the title, its helper text and the action labels read the Figma copy (8.9s)
+  ✓  47 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:114:7 › Viết Kudo modal: access and layout › FR-224: Escape closes the modal and a backdrop click leaves it open (8.8s)
+  ✓  48 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:123:7 › Viết Kudo modal: access and layout › FR-225: Tab cycles focus inside the modal (11.2s)
+  ✓  49 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:133:7 › Viết Kudo modal: access and layout › FR-226: with the EN locale the modal shows no raw writeKudo. keys (9.3s)
+  ✓  50 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 768 px the modal has no horizontal scroll (8.3s)
+  ✓  51 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 375 px the modal has no horizontal scroll (8.5s)
+  ✓  52 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:155:7 › Viết Kudo modal: access and layout › FR-227: at 1440 px the modal is the 752 px Figma width (8.2s)
+  ✓  53 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:26:7 › Viết Kudo recipient search and mention › TC ID-8: typing "Nguyễn" lists at most 10 matching sunners, and one can be selected (11.2s)
+  ✓  54 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:36:7 › Viết Kudo recipient search and mention › TC ID-9: "@ # $" is matched literally and reports "Không tìm thấy kết quả" (11.2s)
+  ✓  55 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:43:7 › Viết Kudo recipient search and mention › TC ID-10: "  Nguyễn  " is trimmed and returns the same suggestions as "Nguyễn" (12.3s)
+  ✓  56 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:53:7 › Viết Kudo recipient search and mention › TC ID-25: the suggestion list appears while typing "An" and holds Nguyễn Văn An (10.9s)
+  ✓  57 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:61:7 › Viết Kudo recipient search and mention › TC ID-26: picking "Nguyễn Văn An" fills the field with the name and closes the list (11.2s)
+  ✓  58 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:70:7 › Viết Kudo recipient search and mention › TC ID-12 / ID-33: "@Nguyen" in the editor shows selectable colleague suggestions (11.2s)
+  ✓  60 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:90:7 › Viết Kudo recipient search and mention › FR-306: the signed-in viewer is never suggested (9.3s)
+  ✓  59 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:80:7 › Viết Kudo recipient search and mention › TC ID-13: "Cảm ơn @Nguyen" then NguyenVanA mentions the name in the text (10.7s)
+  ✓  61 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:97:7 › Viết Kudo recipient search and mention › FR-307: "duc" finds Trần Minh Đức (10.9s)
+  ✓  62 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:104:7 › Viết Kudo recipient search and mention › FR-308: the clear button removes the selected recipient and restores the search (10.6s)
+  ✓  64 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:34:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-48: with every required field empty, Gửi is aria-disabled (8.0s)
+  ✓  63 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:117:7 › Viết Kudo recipient search and mention › FR-309: Escape closes the recipient list and leaves the modal open (8.9s)
+  ✓  65 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:40:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-49: with recipient, title, content and one hashtag, Gửi is enabled (4.6s)
+  ✘  66 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:47:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-7 / ID-50: clicking Gửi without a recipient marks the recipient row and does not submit (30.3s)
+  -  67 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:60:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-11 / ID-51: clicking Gửi without content shows the required message at the editor
+  -  68 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:71:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-52: clicking Gửi without a hashtag shows the required message at the Hashtag row
+  -  69 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:80:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-56 / US003: all required fields empty and Gửi clicked shows every error and creates nothing
+  -  70 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:91:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › blur and clear: an empty title errors on blur and the error clears once it is filled
+  -  71 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:101:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-46: a valid submit with two tags and two images shows the spinner, then closes with the toast and the new kudo first
+  -  72 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:123:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-47: a valid submit with one tag and no image closes the modal and shows the kudo first
+  -  73 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:135:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-604: an anonymous kudo shows the alias in the sender block with no avatar or profile link
+  -  74 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:154:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-802: an anonymous kudo with an empty alias shows "Người gửi ẩn danh"
+  -  75 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:167:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-903: a failed submit keeps the modal and data, shows the error toast, and removes the uploaded image
+  -  76 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:184:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-45: an image picked and then Hủy is never uploaded or stored
+
+
+  1) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:19:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Browser logs:
+
+    <launching> /home/nguyenvanngocb/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-zJNkpT --remote-debugging-pipe --no-startup-window
+    <launched> pid=2676039
+    [pid=2676039][err] [1015/113713.112629:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+    [pid=2676039][err] [1015/113715.388238:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113715.656355:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113717.271502:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113717.747983:INFO:CONSOLE:720] "[Fast Refresh] done in 495ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113717.845215:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113717.924177:INFO:CONSOLE:720] "[Fast Refresh] done in 181ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113721.193116:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113721.325667:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113724.063948:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113724.302539:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113724.335872:INFO:CONSOLE:720] "%c%s%c Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Prerender  ", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113730.370239:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113730.648657:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113733.023482:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113733.331249:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113735.566333:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113735.668360:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113740.020721:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113740.323445:INFO:CONSOLE:720] "[Fast Refresh] done in 416ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113740.710446:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113741.905472:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113742.211751:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113744.514372:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113744.702002:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113747.524167:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113747.865178:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113754.811542:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113755.133690:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113755.449873:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113755.450136:INFO:CONSOLE:720] "[Fast Refresh] done in 134ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113756.323328:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113756.363746:INFO:CONSOLE:720] "[Fast Refresh] done in 141ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113758.629659:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113758.961446:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113801.565221:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113801.752804:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113805.268696:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113805.628908:INFO:CONSOLE:720] "[Fast Refresh] done in 462ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113806.346884:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113806.388585:INFO:CONSOLE:720] "[Fast Refresh] done in 142ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113810.225944:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113810.297714:INFO:CONSOLE:720] "[Fast Refresh] done in 172ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113811.475267:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113811.516793:INFO:CONSOLE:720] "[Fast Refresh] done in 142ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113820.849406:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039][err] [1015/113820.867303:INFO:CONSOLE:720] "[Fast Refresh] done in 118ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676039] <gracefully close start>
+    Call log:
+      - waiting for getByTestId('write-kudo-submit')
+        - locator resolved to <button type="button" aria-busy="false" aria-disabled="true" data-testid="write-kudo-submit" class="flex h-[60px] min-w-0 flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg bg-saa-gold p-4 text-[22px] leading-7 font-bold text-saa-navy transition-[box-shadow,opacity] duration-200 hover:shadow-[0_0_12px_#998c5f] aria-busy:cursor-progress aria-disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-saa-navy">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+          - waiting 100ms
+        36 × waiting for element to be visible, enabled and stable
+           - element is not enabled
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      19 |   test('TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row', async ({ page }) => {
+      20 |     await openWriteKudoModal(page)
+    > 21 |     await w.submitButton(page).click()
+         |                                ^
+      22 |     await expect(w.fieldError(w.field(page, 'hashtags'))).toHaveText('Không được để trống')
+      23 |   })
+      24 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:21:32
+
+    Error Context: test-results/write-kudo-hashtags-images-90827-để-trống-on-the-Hashtag-row-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-90827-để-trống-on-the-Hashtag-row-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-90827-để-trống-on-the-Hashtag-row-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:42:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-17 / ID-53: at five selected, the other options are disabled, the limit shows, a sixth is refused 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Browser logs:
+
+    <launching> /home/nguyenvanngocb/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-88dbFj --remote-debugging-pipe --no-startup-window
+    <launched> pid=2676023
+    [pid=2676023][err] [1015/113713.081254:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+    [pid=2676023][err] [1015/113715.338852:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113715.570681:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113717.269374:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113717.653342:INFO:CONSOLE:720] "[Fast Refresh] done in 465ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113717.851153:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113717.914887:INFO:CONSOLE:720] "[Fast Refresh] done in 164ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113721.550993:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113721.857442:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113724.173227:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113724.375168:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113724.791838:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113724.844080:INFO:CONSOLE:720] "[Fast Refresh] done in 270ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113730.362121:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113730.631239:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113733.032790:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113733.412987:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113735.462989:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113735.625492:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113739.977595:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113741.451251:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113741.743981:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113743.986211:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113744.217559:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113747.227057:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113747.563180:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113752.527047:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113754.791095:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113755.035255:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113755.375560:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113755.425024:INFO:CONSOLE:720] "[Fast Refresh] done in 170ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113756.323504:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113756.360706:INFO:CONSOLE:720] "[Fast Refresh] done in 138ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113758.448457:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113758.870982:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113801.462822:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113801.619193:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113805.291030:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113805.635833:INFO:CONSOLE:720] "[Fast Refresh] done in 469ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113806.346735:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113806.388363:INFO:CONSOLE:720] "[Fast Refresh] done in 142ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113810.225961:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113810.297824:INFO:CONSOLE:720] "[Fast Refresh] done in 172ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113811.475264:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113811.516927:INFO:CONSOLE:720] "[Fast Refresh] done in 142ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113820.849608:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023][err] [1015/113820.867248:INFO:CONSOLE:720] "[Fast Refresh] done in 118ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2676023] <gracefully close start>
+    Call log:
+      - waiting for locator('[data-testid="write-kudo-hashtag-option"][data-slug="teamwork"]')
+        - locator resolved to <div role="option" tabindex="-1" data-slug="teamwork" aria-disabled="true" aria-selected="false" data-testid="write-kudo-hashtag-option" class="flex h-10 shrink-0 cursor-pointer items-center justify-between gap-2 rounded-sm px-4 text-base leading-6 font-bold tracking-[0.15px] text-white outline-none transition-colors duration-150 hover:bg-[rgba(255,234,158,0.1)] focus-visible:bg-[rgba(255,234,158,0.2)] aria-disabled:cursor-not-allowed aria-disabled:opacity-40 aria-disabled:hover:bg-transparent aria…>…</div>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+          - waiting 100ms
+        35 × waiting for element to be visible, enabled and stable
+           - element is not enabled
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      45 |     await expect(w.hashtagLimit(page)).toHaveText(LIMIT_TEXT)
+      46 |     await expect(w.hashtagOption(page, 'teamwork')).toHaveAttribute('aria-disabled', 'true')
+    > 47 |     await w.hashtagOption(page, 'teamwork').click()
+         |                                             ^
+      48 |     await expect(w.hashtagChips(page)).toHaveCount(5)
+      49 |   })
+      50 |
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:47:45
+
+    Error Context: test-results/write-kudo-hashtags-images-2f855-it-shows-a-sixth-is-refused-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-2f855-it-shows-a-sixth-is-refused-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-2f855-it-shows-a-sixth-is-refused-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:47:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-7 / ID-50: clicking Gửi without a recipient marks the recipient row and does not submit 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByTestId('write-kudo-submit')
+        - locator resolved to <button type="button" aria-busy="false" aria-disabled="true" data-testid="write-kudo-submit" class="flex h-[60px] min-w-0 flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg bg-saa-gold p-4 text-[22px] leading-7 font-bold text-saa-navy transition-[box-shadow,opacity] duration-200 hover:shadow-[0_0_12px_#998c5f] aria-busy:cursor-progress aria-disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-saa-navy">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+          - waiting 100ms
+        52 × waiting for element to be visible, enabled and stable
+           - element is not enabled
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      20 | /** Clicks Gửi (aria-disabled still clicks) and asserts the modal stayed open with no success toast. */
+      21 | async function clickSubmitAndExpectNoSend(page: Page) {
+    > 22 |   await w.submitButton(page).click()
+         |                              ^
+      23 |   await expect(w.modal(page)).toBeVisible()
+      24 |   await expect(k.toast(page)).toBeHidden()
+      25 | }
+        at clickSubmitAndExpectNoSend (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-submit-and-anonymous.spec.ts:22:30)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-submit-and-anonymous.spec.ts:53:11
+
+    Error Context: test-results/write-kudo-submit-and-anon-248ff-ent-row-and-does-not-submit-chromium/error-context.md
+
+    Error Context: test-results/write-kudo-submit-and-anon-248ff-ent-row-and-does-not-submit-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-submit-and-anon-248ff-ent-row-and-does-not-submit-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-submit-and-anon-248ff-ent-row-and-does-not-submit-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:19:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:42:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-17 / ID-53: at five selected, the other options are disabled, the limit shows, a sixth is refused 
+    [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:47:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-7 / ID-50: clicking Gửi without a recipient marks the recipient row and does not submit 
+  10 did not run
+  63 passed (3.4m)
+error: script "test:e2e" exited with code 1

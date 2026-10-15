@@ -1,0 +1,6 @@
+PASS nodes are exactly the whitelist 
+PASS marks are exactly the whitelist 
+PASS mention serializes as "@Full Name" 
+plain text: "Cảm ơn @Nguyễn Văn An nhé\n\n\nmột"
+PASS starter kit present 
+exit=0

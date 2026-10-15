@@ -1,0 +1,293 @@
+$ playwright test "e2e/write-kudo-"
+
+Running 76 tests using 4 workers
+
+  ✓   3 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:27:7 › Viết Kudo editor and link dialog › TC ID-27 / FR-401: Bold makes the selected text bold and reports aria-pressed (10.4s)
+  ✓   1 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:54:7 › Viết Kudo editor and link dialog › FR-404: a second Bold click removes the mark and clears aria-pressed (10.6s)
+  ✓   4 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:36:7 › Viết Kudo editor and link dialog › TC ID-28: Italic makes the selected text italic (10.6s)
+  ✓   2 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:45:7 › Viết Kudo editor and link dialog › TC ID-29: Strike puts a line through the selected text (10.7s)
+  ✓   5 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:65:7 › Viết Kudo editor and link dialog › TC ID-30: the numbered list turns two lines into two ordered items (10.5s)
+  ✓   7 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:91:7 › Viết Kudo editor and link dialog › TC ID-32: Quote formats the selected text as a blockquote (10.5s)
+  ✓   8 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:100:7 › Viết Kudo editor and link dialog › FR-503: an empty link Text shows an error and inserts nothing (10.7s)
+  ✓   6 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:77:7 › Viết Kudo editor and link dialog › TC ID-31: the link dialog inserts a link that opens in a new tab (11.1s)
+  ✓  12 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:143:7 › Viết Kudo editor and link dialog › FR-605: pasted <h1> and <script> reduce to plain text and the script does not run (9.3s)
+  ✓  11 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:134:7 › Viết Kudo editor and link dialog › FR-505: Escape closes the link dialog and leaves the modal open (10.1s)
+  ✓   9 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:112:7 › Viết Kudo editor and link dialog › FR-504: a javascript: URL shows an error and inserts nothing (10.8s)
+  ✓  10 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:123:7 › Viết Kudo editor and link dialog › FR-504: an ftp:// URL shows an error and inserts nothing (11.1s)
+  ✓  13 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:19:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row (7.8s)
+  ✓  14 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:27:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-15: one picked hashtag appears as a chip (10.0s)
+  ✓  15 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:35:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-16: five picked hashtags make five chips and "+ Hashtag" stays visible (11.4s)
+  ✓  16 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:43:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-17 / ID-53: at five selected, the other options are disabled, the limit shows, a sixth is refused (11.3s)
+  ✓  17 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip (7.6s)
+  ✓  18 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:62:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-35: three picked hashtags make three separate chips (10.1s)
+  ✓  20 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-18 / ID-21: a valid image/jpeg is added as a thumbnail (9.7s)
+  ✓  19 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:69:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-36: removing one chip keeps the others (10.9s)
+  ✓  21 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22: a valid image/png is added as a thumbnail (9.5s)
+  ✓  22 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22 (webp): a valid image/webp is added as a thumbnail (9.6s)
+  ✓  23 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:88:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-19 / ID-20 / ID-54: five images hide "+ Image" and a sixth pick is ignored (8.6s)
+  ✓  24 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:98:7 › Viết Kudo hashtags, images and anonymous toggle › FR-704: seven files picked at once keep five thumbnails (9.6s)
+  ✓  25 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:106:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-23: a application/pdf file shows the invalid-format error, is not added and is not uploaded (10.6s)
+  ✓  26 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:106:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-24: a video/mp4 file shows the invalid-format error, is not added and is not uploaded (9.6s)
+  ✓  27 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:106:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-55: a text/plain file shows the invalid-format error, is not added and is not uploaded (9.2s)
+  ✓  28 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:117:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-37: "+ Image" opens the file picker and the picked file becomes a thumbnail (9.1s)
+  ✓  29 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:124:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-38: five picks through "+ Image" hide the button after the fifth (10.0s)
+  ✓  30 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:132:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-39: removing the second of three thumbnails leaves two (9.5s)
+  ✓  31 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:140:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-40: removing one of five thumbnails shows "+ Image" again (9.9s)
+  ✓  32 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:149:7 › Viết Kudo hashtags, images and anonymous toggle › FR-706: a file over 5 MB shows "Ảnh vượt quá 5 MB" and is not added (11.3s)
+  ✓  33 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:157:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-41 / ID-42: the anonymous checkbox checks on click and unchecks on the second click (8.6s)
+  ✓  37 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:34:7 › Viết Kudo modal: access and layout › TC ID-1 / FR-106: a guest on /sun-kudos is sent to /login before the modal can open (2.5s)
+  ✓  34 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:166:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-43 / ID-44: checking shows the alias field (max 50) and unchecking hides it (8.7s)
+  ✓  35 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:176:7 › Viết Kudo hashtags, images and anonymous toggle › DEC-005: unchecking clears the alias text (8.6s)
+  ✓  36 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:26:7 › Viết Kudo modal: access and layout › TC ID-0 / FR-101: the compose pill opens the Viết Kudo modal with its title (9.6s)
+  ✓  38 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:41:7 › Viết Kudo modal: access and layout › TC ID-2 / ID-3 / FR-201: the modal shows six rows in order, the title on top, and Hủy + Gửi in the footer (8.5s)
+  ✓  40 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:58:7 › Viết Kudo modal: access and layout › TC ID-5 / FR-206: the editor placeholder reads the Figma sentence (8.4s)
+  ✓  39 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:50:7 › Viết Kudo modal: access and layout › TC ID-4 / FR-202: the recipient field shows the "Tìm kiếm" placeholder and is a closed combobox (8.8s)
+  ✓  41 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:64:7 › Viết Kudo modal: access and layout › TC ID-6: the anonymous checkbox is unchecked on open (8.9s)
+  ✓  43 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:81:7 › Viết Kudo modal: access and layout › FR-103: an identity without a sunner row sees the compose pill disabled (8.0s)
+  ✓  42 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:70:7 › Viết Kudo modal: access and layout › TC ID-45: Hủy closes the modal with data entered, and a reopened modal is empty (10.0s)
+  ✓  44 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:87:7 › Viết Kudo modal: access and layout › FR-104: Hủy returns focus to the compose pill (9.9s)
+  ✓  45 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:94:7 › Viết Kudo modal: access and layout › FR-105: "Tiêu chuẩn cộng đồng" opens /standards in a new tab (11.0s)
+  ✓  46 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:103:7 › Viết Kudo modal: access and layout › FR-202 / FR-206 / FR-209: the title, its helper text and the action labels read the Figma copy (10.0s)
+  ✓  47 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:114:7 › Viết Kudo modal: access and layout › FR-224: Escape closes the modal and a backdrop click leaves it open (10.0s)
+  ✓  48 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:123:7 › Viết Kudo modal: access and layout › FR-225: Tab cycles focus inside the modal (12.3s)
+  ✓  49 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:133:7 › Viết Kudo modal: access and layout › FR-226: with the EN locale the modal shows no raw writeKudo. keys (8.4s)
+  ✓  50 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 768 px the modal has no horizontal scroll (9.0s)
+  ✓  51 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 375 px the modal has no horizontal scroll (9.3s)
+  ✓  52 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:155:7 › Viết Kudo modal: access and layout › FR-227: at 1440 px the modal is the 752 px Figma width (8.9s)
+  ✓  53 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:26:7 › Viết Kudo recipient search and mention › TC ID-8: typing "Nguyễn" lists at most 10 matching sunners, and one can be selected (8.9s)
+  ✓  54 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:36:7 › Viết Kudo recipient search and mention › TC ID-9: "@ # $" is matched literally and reports "Không tìm thấy kết quả" (10.4s)
+  ✓  55 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:43:7 › Viết Kudo recipient search and mention › TC ID-10: "  Nguyễn  " is trimmed and returns the same suggestions as "Nguyễn" (10.9s)
+  ✓  56 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:53:7 › Viết Kudo recipient search and mention › TC ID-25: the suggestion list appears while typing "An" and holds Nguyễn Văn An (9.8s)
+  ✓  57 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:61:7 › Viết Kudo recipient search and mention › TC ID-26: picking "Nguyễn Văn An" fills the field with the name and closes the list (10.3s)
+  ✓  58 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:70:7 › Viết Kudo recipient search and mention › TC ID-12 / ID-33: "@Nguyen" in the editor shows selectable colleague suggestions (10.5s)
+  ✓  59 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:80:7 › Viết Kudo recipient search and mention › TC ID-13: "Cảm ơn @Nguyen" then NguyenVanA mentions the name in the text (11.5s)
+  ✓  60 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:90:7 › Viết Kudo recipient search and mention › FR-306: the signed-in viewer is never suggested (9.9s)
+  ✓  61 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:97:7 › Viết Kudo recipient search and mention › FR-307: "duc" finds Trần Minh Đức (9.8s)
+  ✓  63 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:117:7 › Viết Kudo recipient search and mention › FR-309: Escape closes the recipient list and leaves the modal open (7.8s)
+  ✓  62 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:104:7 › Viết Kudo recipient search and mention › FR-308: the clear button removes the selected recipient and restores the search (10.1s)
+  ✓  64 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:38:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-48: with every required field empty, Gửi is aria-disabled (7.1s)
+  ✓  65 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:44:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-49: with recipient, title, content and one hashtag, Gửi is enabled (4.4s)
+  ✓  66 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:51:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-7 / ID-50: clicking Gửi without a recipient marks the recipient row and does not submit (3.3s)
+  ✓  67 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:64:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-11 / ID-51: clicking Gửi without content shows the required message at the editor (3.7s)
+  ✓  68 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:75:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-52: clicking Gửi without a hashtag shows the required message at the Hashtag row (4.3s)
+  ✓  69 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:84:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-56 / US003: all required fields empty and Gửi clicked shows every error and creates nothing (2.9s)
+  ✓  70 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:95:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › blur and clear: an empty title errors on blur and the error clears once it is filled (3.0s)
+  ✘  71 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:105:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-46: a valid submit with two tags and two images shows the spinner, then closes with the toast and the new kudo first (31.2s)
+  -  72 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:127:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-47: a valid submit with one tag and no image closes the modal and shows the kudo first
+  -  73 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:139:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-604: an anonymous kudo shows the alias in the sender block with no avatar or profile link
+  -  74 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:158:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-802: an anonymous kudo with an empty alias shows "Người gửi ẩn danh"
+  -  75 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:171:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-903: a failed submit keeps the modal and data, shows the error toast, and removes the uploaded image
+  -  76 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:188:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-45: an image picked and then Hủy is never uploaded or stored
+
+
+  1) [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:105:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-46: a valid submit with two tags and two images shows the spinner, then closes with the toast and the new kudo first 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Browser logs:
+
+    [pid=2707098][err] [1015/114950.418945:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/114952.826230:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/114953.015682:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/114955.333618:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/114955.466898:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/114956.136525:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/114956.810958:INFO:CONSOLE:720] "[Fast Refresh] done in 793ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115000.584998:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115000.902309:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115002.241285:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115002.442623:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115005.164026:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115005.333240:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115009.975219:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115010.438972:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115011.405892:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115011.541863:INFO:CONSOLE:720] "[Fast Refresh] done in 234ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115012.592907:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115012.727180:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115013.243343:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115013.351706:INFO:CONSOLE:720] "[Fast Refresh] done in 209ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115015.311436:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115015.400371:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115020.453688:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115020.841682:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115021.105137:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115021.149821:INFO:CONSOLE:720] "[Fast Refresh] done in 160ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115023.056103:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115023.444895:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115023.894302:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115023.949673:INFO:CONSOLE:720] "[Fast Refresh] done in 156ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115025.293107:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115025.477691:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115029.639643:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115030.005341:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115032.176401:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115032.322368:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115034.598449:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115035.090442:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115039.422662:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115039.899108:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115041.391699:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115041.536555:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115041.773400:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115041.777264:INFO:CONSOLE:720] "[Fast Refresh] done in 172ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115043.411724:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115043.568979:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115048.471016:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115048.853037:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115050.953878:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115051.118608:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115051.388285:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115051.441608:INFO:CONSOLE:720] "[Fast Refresh] done in 163ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115052.913474:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115053.140180:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115053.554251:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115053.614009:INFO:CONSOLE:720] "[Fast Refresh] done in 169ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115057.174189:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115057.641081:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115100.194415:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115100.609332:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115102.178748:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115102.710844:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115107.549094:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115108.183791:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115110.735010:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115110.889198:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115111.298378:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115111.400644:INFO:CONSOLE:720] "[Fast Refresh] done in 202ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115112.766712:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115112.925327:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115113.485184:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115113.823997:INFO:CONSOLE:720] "[Fast Refresh] done in 448ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115119.449200:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115120.036065:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115121.756103:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115121.923497:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115122.530172:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115122.680915:INFO:CONSOLE:720] "[Fast Refresh] done in 251ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115122.960511:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115122.991071:INFO:CONSOLE:720] "[Fast Refresh] done in 131ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115124.140632:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115124.270779:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115128.903373:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115129.298140:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115130.807379:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115131.068938:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115133.040070:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115133.181643:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115138.087627:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115138.312105:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115139.029235:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115139.532662:INFO:CONSOLE:720] "[Fast Refresh] done in 611ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115140.805888:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115141.068885:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115142.577111:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115142.909348:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115145.297864:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115145.383871:INFO:CONSOLE:720] "[Fast Refresh] done in 187ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115148.433276:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115148.802970:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115149.121423:INFO:CONSOLE:720] "[Fast Refresh] rebuilding", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115149.130152:INFO:CONSOLE:720] "[Fast Refresh] done in 151ms", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115150.566834:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115150.695457:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115151.689402:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115151.917793:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115154.246482:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115154.418179:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115155.069850:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115155.147585:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115155.657868:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115155.759715:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115158.590373:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115158.773591:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115159.386567:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115159.452244:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115159.918089:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115200.009405:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115201.907929:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115202.112992:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115202.647240:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115202.709846:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115203.232187:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115203.305678:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115205.612382:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115205.790782:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115206.490384:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115206.552602:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115207.053803:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115207.136068:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115209.884254:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115210.044462:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115210.592177:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115210.668255:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115211.189184:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115211.242973:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115212.789603:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115212.950039:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115213.495767:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115213.573700:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115214.073733:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115214.165682:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115215.809693:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115215.967687:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115216.533677:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115216.605431:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115217.158895:INFO:CONSOLE:720] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098][err] [1015/115217.245190:INFO:CONSOLE:720] "[HMR] connected", source: http://localhost:3100/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js (720)
+    [pid=2707098] <gracefully close start>
+    Call log:
+      - waiting for getByTestId('write-kudo-submit')
+        - locator resolved to <button type="button" aria-busy="false" aria-disabled="false" data-testid="write-kudo-submit" class="flex h-[60px] min-w-0 flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg bg-saa-gold p-4 text-[22px] leading-7 font-bold text-saa-navy transition-[box-shadow,opacity] duration-200 hover:shadow-[0_0_12px_#998c5f] aria-busy:cursor-progress aria-disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-saa-navy">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" role="option" aria-selected="false" aria-disabled="false" data-slug="quality-first" data-testid="write-kudo-hashtag-option" class="flex h-10 shrink-0 cursor-pointer items-center justify-between gap-2 rounded-sm px-4 text-base leading-6 font-bold tracking-[0.15px] text-white outline-none transition-colors duration-150 hover:bg-[rgba(255,234,158,0.1)] focus-visible:bg-[rgba(255,234,158,0.2)] aria-disabled:cursor-not-allowed aria-disabled:opacity-40 aria-disabled:hover:bg-transparent…>…</div> from <div data-field="hashtags" data-testid="write-kudo-field" class="group flex flex-col gap-2">…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" role="option" aria-selected="false" aria-disabled="false" data-slug="quality-first" data-testid="write-kudo-hashtag-option" class="flex h-10 shrink-0 cursor-pointer items-center justify-between gap-2 rounded-sm px-4 text-base leading-6 font-bold tracking-[0.15px] text-white outline-none transition-colors duration-150 hover:bg-[rgba(255,234,158,0.1)] focus-visible:bg-[rgba(255,234,158,0.2)] aria-disabled:cursor-not-allowed aria-disabled:opacity-40 aria-disabled:hover:bg-transparent…>…</div> from <div data-field="hashtags" data-testid="write-kudo-field" class="group flex flex-col gap-2">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        51 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div tabindex="0" role="option" aria-selected="false" aria-disabled="false" data-slug="quality-first" data-testid="write-kudo-hashtag-option" class="flex h-10 shrink-0 cursor-pointer items-center justify-between gap-2 rounded-sm px-4 text-base leading-6 font-bold tracking-[0.15px] text-white outline-none transition-colors duration-150 hover:bg-[rgba(255,234,158,0.1)] focus-visible:bg-[rgba(255,234,158,0.2)] aria-disabled:cursor-not-allowed aria-disabled:opacity-40 aria-disabled:hover:bg-transparent…>…</div> from <div data-field="hashtags" data-testid="write-kudo-field" class="group flex flex-col gap-2">…</div> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      110 |     await pickHashtags(page, ['dedicated'])
+      111 |     await setImages(page, [jpgFile('ok-1.jpg'), pngFile('ok-2.png')])
+    > 112 |     await w.submitButton(page).click()
+          |                                ^
+      113 |     await expect(w.submitSpinner(page)).toBeVisible()
+      114 |     await expect(w.cancelButton(page)).toBeDisabled()
+      115 |     await expect(w.titleInput(page)).toBeDisabled()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-submit-and-anonymous.spec.ts:112:32
+
+    Error Context: test-results/write-kudo-submit-and-anon-0ee0c-oast-and-the-new-kudo-first-chromium/error-context.md
+
+    Error Context: test-results/write-kudo-submit-and-anon-0ee0c-oast-and-the-new-kudo-first-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-submit-and-anon-0ee0c-oast-and-the-new-kudo-first-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-submit-and-anon-0ee0c-oast-and-the-new-kudo-first-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:105:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-46: a valid submit with two tags and two images shows the spinner, then closes with the toast and the new kudo first 
+  5 did not run
+  70 passed (3.5m)
+error: script "test:e2e" exited with code 1

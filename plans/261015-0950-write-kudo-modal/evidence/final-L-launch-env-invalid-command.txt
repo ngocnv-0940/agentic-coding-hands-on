@@ -1,0 +1,1 @@
+E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid

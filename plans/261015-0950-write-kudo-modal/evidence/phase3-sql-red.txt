@@ -1,0 +1,59 @@
+Connecting to local database...
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql ................ ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql ............. 
+# Failed test 40: "KudoCard keys"
+#         have: {canLike,content,createdAt,hashtags,id,images,likeCount,likedByViewer,receiver,sender,title}
+#         want: {anonymousName,canLike,content,createdAt,hashtags,id,images,isAnonymous,likeCount,likedByViewer,receiver,sender,title}
+# Looks like you failed 1 test of 72
+Failed 1/72 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:44: ERROR:  function public.search_sunners(unknown) does not exist
+LINE 14:   ('search_nguyen', public.search_sunners('Nguyễn')),
+                             ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql .. 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 25/25 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql:30: ERROR:  insert or update on table "objects" violates foreign key constraint "objects_bucketId_fkey"
+DETAIL:  Key (bucket_id)=(kudo-images) is not present in table "buckets".
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql ......... 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 64/64 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql:34: ERROR:  function "public.search_sunners(text)" does not exist
+LINE 1: ..., p.proconfig)::text from pg_proc p where p.oid = 'public.se...
+                                                             ^
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql ... 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 39/39 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql:21: ERROR:  column "is_anonymous" of relation "kudos" does not exist
+LINE 1: ...ublic.kudos (id, sender_id, receiver_id, content, is_anonymo...
+                                                             ^
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql ....... 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 35/35 subtests 
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql           (Wstat: 0 Tests: 72 Failed: 1)
+  Failed test:  40
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql (Wstat: 768 (exited 3) Tests: 0 Failed: 0)
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 25 tests but ran 0.
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql       (Wstat: 768 (exited 3) Tests: 0 Failed: 0)
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 64 tests but ran 0.
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql (Wstat: 768 (exited 3) Tests: 0 Failed: 0)
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 39 tests but ran 0.
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql     (Wstat: 768 (exited 3) Tests: 0 Failed: 0)
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 35 tests but ran 0.
+Files=6, Tests=100,  0 wallclock secs ( 0.04 usr  0.02 sys +  0.05 cusr  0.02 csys =  0.13 CPU)
+Result: FAIL
+error running container: exit 1
+exit=1
