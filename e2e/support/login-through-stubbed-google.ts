@@ -6,6 +6,7 @@ import {
   STUB_CODE_KUDOS_LIKER,
   STUB_CODE_KUDOS_OUTSIDER,
   STUB_CODE_KUDOS_SENDER,
+  STUB_CODE_KUDOS_WRITER,
   STUB_CODE_USERMETA_ADMIN,
 } from './mock-supabase-server'
 
@@ -13,7 +14,7 @@ export const LOGIN_BUTTON = /login with google/i
 const APP_ORIGIN = 'http://localhost:3100'
 
 /** user: no admin claim; admin: app_metadata.role; usermeta-admin: user_metadata.role only (must not grant admin). */
-export type StubIdentity = 'user' | 'admin' | 'usermeta-admin' | 'kudos-sender' | 'kudos-liker' | 'kudos-outsider' | 'kudos-empty'
+export type StubIdentity = 'user' | 'admin' | 'usermeta-admin' | 'kudos-sender' | 'kudos-liker' | 'kudos-outsider' | 'kudos-empty' | 'kudos-writer'
 const CODE_FOR_IDENTITY: Record<StubIdentity, string> = {
   user: STUB_CODE,
   admin: STUB_CODE_ADMIN,
@@ -22,6 +23,7 @@ const CODE_FOR_IDENTITY: Record<StubIdentity, string> = {
   'kudos-liker': STUB_CODE_KUDOS_LIKER,
   'kudos-outsider': STUB_CODE_KUDOS_OUTSIDER,
   'kudos-empty': STUB_CODE_KUDOS_EMPTY,
+  'kudos-writer': STUB_CODE_KUDOS_WRITER,
 }
 
 export interface GoogleAuthorizeStub {

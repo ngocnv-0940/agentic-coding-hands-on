@@ -12,7 +12,8 @@ const KUDO_GROUP = '0000000002'
 /** Deterministic v4-shaped UUID (version nibble 4, RFC variant 8) so zod-style uuid checks pass. */
 const uid = (group: string, n: number) => `00000000-0000-4000-8000-${group}${String(n).padStart(2, '0')}`
 
-/** Sunner row ids. `viewer` is the e2e-user identity; `outsider` has no row (see mock state). */
+/** Sunner row ids. `viewer` is the e2e-user identity; `outsider` has no row (see mock state).
+ * Sunners from `writer` on are write-kudo fixtures: `Nguyễn …` names give >10 search matches (cap test). */
 export const SUNNER = {
   viewer: uid(SUNNER_GROUP, 1),
   sender: uid(SUNNER_GROUP, 2),
@@ -24,6 +25,18 @@ export const SUNNER = {
   duc: uid(SUNNER_GROUP, 8),
   chuc: uid(SUNNER_GROUP, 9),
   tam: uid(SUNNER_GROUP, 10),
+  /** Write-kudo identity (kudos-writer): own dataset copy, only the serial submit spec sends kudos. */
+  writer: uid(SUNNER_GROUP, 11),
+  an: uid(SUNNER_GROUP, 12),
+  nguyenVanA: uid(SUNNER_GROUP, 13),
+  binh: uid(SUNNER_GROUP, 14),
+  cuong: uid(SUNNER_GROUP, 15),
+  dung: uid(SUNNER_GROUP, 16),
+  hang: uid(SUNNER_GROUP, 17),
+  hieu: uid(SUNNER_GROUP, 18),
+  huong: uid(SUNNER_GROUP, 19),
+  khoa: uid(SUNNER_GROUP, 20),
+  lan: uid(SUNNER_GROUP, 21),
 } as const
 
 /** Kudo ids: `kudoId(n)` for n in 1..25; index n is also the creation order (25 = newest). */
@@ -41,6 +54,17 @@ export const NAME = {
   duc: 'Trần Minh Đức',
   chuc: 'Nguyễn Bá Chúc',
   tam: 'Lê Thị Tâm',
+  writer: 'Vũ Hải Đăng',
+  an: 'Nguyễn Văn An',
+  nguyenVanA: 'NguyenVanA',
+  binh: 'Nguyễn Thị Bình',
+  cuong: 'Nguyễn Quốc Cường',
+  dung: 'Nguyễn Đức Dũng',
+  hang: 'Nguyễn Thanh Hằng',
+  hieu: 'Nguyễn Minh Hiếu',
+  huong: 'Nguyễn Thu Hương',
+  khoa: 'Nguyễn Anh Khoa',
+  lan: 'Nguyễn Ngọc Lan',
 } as const
 
 export const HASHTAG_SLUG = {

@@ -7,9 +7,23 @@ import { likeCountOf } from './mock-kudos-board-queries'
 import { kudosControl, likeRows, type MockDataset } from './mock-kudos-state'
 import type { MockSunner } from './mock-kudos-fixture-people'
 
+/** Error codes the mock raises as PostgREST P0001 messages (like rules and create_kudo rules). */
+export type KudosRpcCode =
+  | 'sunner_not_found'
+  | 'kudo_not_found'
+  | 'self_like'
+  | 'receiver_not_found'
+  | 'self_kudo'
+  | 'title_invalid'
+  | 'content_invalid'
+  | 'content_doc_invalid'
+  | 'hashtags_invalid'
+  | 'images_invalid'
+  | 'anonymous_name_invalid'
+
 /** Raised with the PostgREST-style P0001 message the app maps to a toast. */
 export class KudosRpcError extends Error {
-  constructor(readonly code: 'sunner_not_found' | 'kudo_not_found' | 'self_like') {
+  constructor(readonly code: KudosRpcCode) {
     super(code)
   }
 }

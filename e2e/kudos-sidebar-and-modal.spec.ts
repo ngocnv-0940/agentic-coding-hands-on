@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { openKudosBoard } from './support/kudos-board-session'
 import * as k from './support/kudos-locators'
+import * as write from './support/write-kudo-locators'
 import { EXPECT, NAME } from './support/kudos-fixture-ids'
 
 // Screen: /sun-kudos sidebar statistics, gift list and the Coming soon modal.
@@ -51,13 +52,13 @@ test.describe('Sun* Kudos sidebar and Coming soon modal', () => {
     await expect(k.openBoxButton(page)).toBeDisabled()
   })
 
-  // TC FUNCTION 19 / FR-103: the compose pill opens the Coming soon modal; its close button returns focus
-  test('TC FUNCTION 19 / FR-103: the compose pill opens the Coming soon modal, and close returns focus to the pill', async ({ page }) => {
+  // TC FUNCTION 19 / FR-101 / FR-104 (write-kudo): the compose pill opens the Viết Kudo modal; Hủy returns focus to the pill
+  test('TC FUNCTION 19 / FR-101: the compose pill opens the Viết Kudo modal, and Hủy returns focus to the pill', async ({ page }) => {
     await openKudosBoard(page)
     await k.composePill(page).click()
-    await expect(k.comingSoonModal(page)).toBeVisible()
-    await k.comingSoonModalClose(page).click()
-    await expect(k.comingSoonModal(page)).toBeHidden()
+    await expect(write.modal(page)).toBeVisible()
+    await write.cancelButton(page).click()
+    await expect(write.modal(page)).toBeHidden()
     await expect(k.composePill(page)).toBeFocused()
   })
 
