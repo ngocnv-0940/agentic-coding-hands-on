@@ -52,3 +52,21 @@ Hai bug đầu cùng một gốc: tôi tin dev là đại diện cho prod. Stric
 - Điều tra vì sao FR-404/405 chậm ở `context.close`, rồi hạ timeout 90s. Chủ: tester, issue riêng.
 - Thêm bước secret-scan sau `git add` cuối vào quy trình git-manager. Chủ: owner kit, trước F008.
 - Một cảnh báo hydration chưa tìm ra nguồn trong lần smoke thật đầu tiên (`real-stack-smoke.md`). Chủ: UI owner.
+
+## Việc nối tiếp cùng ngày: tự tạo sunner cho mọi tài khoản Google
+
+Commit `6cf39e0..d4e8068` trên `feat/write-kudo`, PR #10, plan `plans/261015-1700-auto-provision-sunner/`.
+
+**Lỗ hổng.** F006 chọn "không tự tạo sunner" (YAGNI). Hệ quả: đăng nhập Google thật chỉ đọc được, không viết được kudo, trong khi người dùng mặc định rằng đăng nhập Google là viết được. Cả bộ test xanh vì chỉ dùng danh tính seed sẵn. Quyết định YAGNI về cấp phát danh tính âm thầm làm sản phẩm vô dụng với người dùng thật. Phải test đúng đường đăng nhập thật, không chỉ danh tính seed.
+
+**Review M1.** Trigger gắn trên mọi insert của `auth.users` cũng tạo sunner cho người đăng ký email/password (`config.toml` đang bật email signup). Tôi gate ngay trong DB theo `raw_app_meta_data` (provider/providers = google), không dựa vào config, để vẫn đúng dù cấu hình auth trên hosted đổi.
+
+**Cái bẫy Postgres.** Mệnh đề `WHEN` của trigger được kiểm quyền bằng role đang insert (`supabase_auth_admin`), mà role này không với tới `kudos_private`. Đặt gate ở `WHEN` thì có nguy cơ mọi lượt đăng ký đều lỗi. Gate phải nằm trong hàm `SECURITY DEFINER`.
+
+**Review vòng 2.** GoTrue gắn Google vào tài khoản cùng email có sẵn bằng UPDATE `raw_app_meta_data` (LinkAccount), và ghi lại cột này ở mỗi lần đăng nhập Google. Trigger insert-only bỏ sót case này. Nay là `after insert or update of raw_app_meta_data`, idempotent nhờ `on conflict`. Đổi lại: sunner Google đã bị xóa sẽ được tạo lại ở lần đăng nhập kế tiếp.
+
+**Test.** Các dòng dọn fixture trong pgTAP cũ, vốn nằm trong plan, thành code chết khi gate xuất hiện nên đã bỏ. Mutation check cho ba biến thể (bỏ gate, insert-only, bỏ column list) đều bị test bắt.
+
+**Lesson cho tay thợ.** Khi nghi hook/trigger của hệ ngoài, đọc xem hệ đó ghi bảng bằng INSERT hay UPDATE, và role nào chạy trigger, trước khi viết điều kiện.
+
+**Chưa kiểm chứng.** Chưa chạy được Google OAuth thật end-to-end ở local. Chủ: người dùng, kiểm tra ngay ở lần đăng nhập thật đầu tiên; nếu sunner không xuất hiện, xem lại dạng `raw_app_meta_data` GoTrue ghi.
