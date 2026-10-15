@@ -15,9 +15,12 @@ export type WriteKudoModalLabels = {
 export type WriteKudoModalViewProps = {
   open: boolean
   labels: WriteKudoModalLabels
-  /** Optional and unused by the wiring: a backdrop click must not close the modal (FR-224). */
+  /** A click on the mask (press and release both on it) closes and discards like Hủy; leave undefined while a send is under way. */
   onBackdropClick?: () => void
   dialogRef: Ref<HTMLDivElement>
+  /** Pinned under the scrolling field area (Hủy / Gửi). */
+  footer: ReactNode
+  /** The field rows: the only region that scrolls. */
   children: ReactNode
 }
 

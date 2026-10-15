@@ -53,5 +53,8 @@ export const homeVi = {
   'home.footer.standards': 'Tiêu chuẩn chung',
   'home.footer.copyright': 'Bản quyền thuộc về Sun* © 2025',
   'home.widget.label': 'Hành động nhanh',
+  'home.widget.rules': 'Thể lệ',
+  'home.widget.writeKudo': 'Viết KUDOS',
+  'home.widget.close': 'Đóng',
   'comingSoon.title': 'Coming soon',
 } as const

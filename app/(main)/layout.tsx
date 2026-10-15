@@ -6,7 +6,7 @@ import { getCurrentUser } from '@/lib/auth/get-current-user'
 import { getDictionary } from '@/lib/i18n/get-dictionary'
 import { getLocale } from '@/lib/i18n/get-locale'
 import { homeFontClassName } from './_components/home-fonts'
-import { WidgetButton } from './_components/widget-button'
+import { FabContainer } from './_wiring/fab-container'
 import { SiteFooterContainer } from './_wiring/site-footer-container'
 import { SiteHeaderContainer } from './_wiring/site-header-container'
 
@@ -70,7 +70,17 @@ async function MainShell({ children }: { children: ReactNode }) {
         ]}
         copyright={dict['home.footer.copyright']}
       />
-      <WidgetButton label={dict['home.widget.label']} />
+      <FabContainer
+        label={dict['home.widget.label']}
+        menuLabels={{
+          menu: dict['home.widget.label'],
+          rules: dict['home.widget.rules'],
+          writeKudo: dict['home.widget.writeKudo'],
+          close: dict['home.widget.close'],
+        }}
+        comingSoonTitle={dict['comingSoon.title']}
+        comingSoonCloseLabel={dict['kudos.modal.close']}
+      />
     </>
   )
 }

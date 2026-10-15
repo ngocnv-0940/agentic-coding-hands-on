@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { TITLE_MAX } from '@/lib/kudos/kudo-write-rules'
 import type { Hashtag } from '@/lib/kudos/kudo-board-types'
+import { useBodyScrollLock } from '../_behavior/use-body-scroll-lock'
 import { useAddLinkDialog } from '../_behavior/use-add-link-dialog'
 import { useHashtagPicker } from '../_behavior/use-hashtag-picker'
 import { useImageAttachments } from '../_behavior/use-image-attachments'
@@ -69,6 +70,7 @@ export function WriteKudoFormContainer({ opener, onClose, labels, hashtags }: Wr
   useEffect(() => {
     tiptap?.setEditable(!submitting, false)
   }, [tiptap, submitting])
+  useBodyScrollLock(true)
   useModalFocusTrap({
     open: true,
     dialogRef,
@@ -82,7 +84,13 @@ export function WriteKudoFormContainer({ opener, onClose, labels, hashtags }: Wr
   const message = (error: FieldError) => (error === 'required' ? labels.required : error === 'tooLong' ? labels.tooLong : null)
 
   return (
-    <WriteKudoModalView open labels={labels.modal} dialogRef={dialogRef}>
+    <WriteKudoModalView
+      open
+      labels={labels.modal}
+      dialogRef={dialogRef}
+      onBackdropClick={submitting ? undefined : onClose}
+      footer={<WriteKudoFooterView submitting={submitting} incomplete={form.incomplete} onCancel={onClose} onSubmit={send.submit} labels={labels.footer} />}
+    >
       <WriteKudoFieldRow field="recipient" label={labels.recipient.label} required error={message(form.fieldErrors.recipient)}>
         <RecipientPickerView
           query={recipient.query}
@@ -170,7 +178,6 @@ export function WriteKudoFormContainer({ opener, onClose, labels, hashtags }: Wr
           disabled={submitting}
         />
       </WriteKudoFieldRow>
-      <WriteKudoFooterView submitting={submitting} incomplete={form.incomplete} onCancel={onClose} onSubmit={send.submit} labels={labels.footer} />
     </WriteKudoModalView>
   )
 }
