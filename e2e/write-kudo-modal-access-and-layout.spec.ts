@@ -111,10 +111,12 @@ test.describe('Viết Kudo modal: access and layout', () => {
     await expect(w.imageAdd(page)).toContainText('Image')
   })
 
-  // FR-224: Esc closes the modal; a click on the backdrop does nothing (no accidental data loss)
-  test('FR-224: Escape closes the modal and a backdrop click leaves it open', async ({ page }) => {
+  // FR-224 (changed 2026-10-15, user request): a click on the mask closes the modal like Hủy; Esc still closes it too
+  test('FR-224: a backdrop click closes the modal, and Escape closes it as well', async ({ page }) => {
     await openWriteKudoModal(page)
     await w.backdrop(page).click({ position: { x: 4, y: 4 } })
+    await expect(w.modal(page)).toBeHidden()
+    await composePill(page).click()
     await expect(w.modal(page)).toBeVisible()
     await page.keyboard.press('Escape')
     await expect(w.modal(page)).toBeHidden()
