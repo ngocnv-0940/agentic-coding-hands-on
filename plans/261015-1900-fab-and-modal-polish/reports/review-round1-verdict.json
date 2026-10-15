@@ -1,0 +1,93 @@
+{
+  "score": 8.3,
+  "criticalCount": 0,
+  "decision": "REWORK",
+  "acceptanceCovered": [
+    "Clicking the FAB opens the quick-action group of frame Sv7DFwBw1h (Thể lệ, Viết KUDOS, red ×); ×, Esc and an outside click close it and focus returns to the FAB — proof: e2e/write-kudo-fab-quick-actions.spec.ts:19-47 green in green-targeted.txt; use-fab-menu.ts:39-55 restores focus on × and Esc, outside press closes; visual/fab-open-1440.png",
+    "Thể lệ opens the existing Coming soon modal — proof: fab-container.tsx:35-39,55 renders ComingSoonModalView; spec :79-83 green; closeRules refocuses FAB",
+    "A click on the mask closes the modal and discards the draft, except while submitting or when the press started inside the card — proof: write-kudo-modal-view.tsx:25-33 pointerdown+click on mask; write-kudo-form-container.tsx:91 passes undefined while submitting; e2e/write-kudo-backdrop-and-scroll.spec.ts:23-42 green",
+    "Only the field area scrolls with overscroll contained; the heading and the Hủy/Gửi footer stay visible; the page behind does not scroll while the modal is open — proof: write-kudo-modal-view.tsx:43-59 shrink-0 heading/footer + overflow-y-auto overscroll-y-contain area; use-body-scroll-lock.ts; backdrop-and-scroll spec :44-75 green at 1440x700 and 375x667",
+    "Existing write-kudo, kudos and homepage e2e suites stay green; tsc and lint clean — proof: green-write-kudo.txt 92/92, green-kudos.txt 60/60, green-homepage.txt 48/48, green-tsc.txt and green-lint.txt exit 0; only FR-224 test inverted per user request"
+  ],
+  "regressionChecked": [
+    "compose pill focus return unchanged (opener ?? composeRef)",
+    "Back/forward after FAB hop: no reopen (probe B)",
+    "header nav back to /sun-kudos: no reopen (probe C)",
+    "Activity hide unregisters compose handler",
+    "i18n VI/EN parity enforced by homeEn type",
+    "file sizes < 200 lines"
+  ],
+  "contractStatus": "OK",
+  "refuted": [
+    "Viết KUDOS opens the Write Kudo modal on /sun-kudos and, from other main pages, via /sun-kudos?compose=1 which opens the modal once and removes the param; a viewer without a sunner gets no modal — refuted in part: after a successful send router.refresh() puts ?compose=1 back in the URL and a reload reopens the modal (probe A); the no-sunner e2e can pass before the modal chunk could load"
+  ],
+  "unproven": [],
+  "reachableRegressions": [
+    "FAB hop -> send kudo -> URL becomes /sun-kudos?compose=1 -> reload reopens modal (app/(main)/sun-kudos/_wiring/action-pills-container.tsx:54)"
+  ],
+  "findings": [
+    {
+      "severity": "High",
+      "category": "correctness",
+      "location": "app/(main)/sun-kudos/_wiring/action-pills-container.tsx:49-54",
+      "summary": "history.replaceState(window.history.state, ...) carries __NA so Next skips syncing its router URL; router.refresh() after a send puts ?compose=1 back and a reload reopens the modal. Fix: replaceState(null, '', url) plus a send+reload regression e2e",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Medium",
+      "category": "test-strength",
+      "location": "e2e/write-kudo-fab-quick-actions.spec.ts:85-91",
+      "summary": "toHaveCount(0) passes before the ssr:false form chunk loads, so the test cannot catch a sunner-gating bug; force:true unexplained",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "a11y",
+      "location": "app/(main)/_components/widget-button.tsx:22-23",
+      "summary": "aria-haspopup=true (menu) but popup is role=group; no aria-controls; aria-expanded never heard while the button is hidden",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "correctness",
+      "location": "app/(main)/_wiring/fab-container.tsx:30-33",
+      "summary": "rulesOpen survives a pathname change; returning to the same path shows Coming soon again",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "react-contract",
+      "location": "app/(main)/sun-kudos/_wiring/action-pills-container.tsx:41-44",
+      "summary": "useEffectEvent function called from a non-effect bridge callback (works, against React's documented contract)",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "architecture",
+      "location": "app/(main)/_components/fab-menu-view.tsx:3",
+      "summary": "shared shell component imports IconClose/ComingSoonModalView from the sun-kudos feature folder",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "correctness",
+      "location": "app/(main)/_behavior/compose-bridge.ts:22-26",
+      "summary": "pendingOpener can go stale if the navigation is abandoned; harmless (same persistent FAB)",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "ux",
+      "location": "app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:25-33",
+      "summary": "press starting on the mask and released inside the card closes (click lands on the common ancestor); conventional",
+      "disposition": "Reject"
+    },
+    {
+      "severity": "Low",
+      "category": "compat",
+      "location": "app/(main)/sun-kudos/_behavior/use-body-scroll-lock.ts:17",
+      "summary": "iOS Safari before 16 ignores overflow:hidden on html for touch; contained scroll area limits the effect",
+      "disposition": "Defer"
+    }
+  ]
+}

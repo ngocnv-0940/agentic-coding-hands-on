@@ -1,0 +1,45 @@
+$ playwright test "e2e/write-kudo-fab-compose-param-after-send.spec.ts"
+[WebServer] $ next dev -p "3100"
+
+Running 1 test using 1 worker
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] [browser] Image with src "http://localhost:3100/images/homepage/icon-kudos-mark.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✘  1 [chromium] › e2e/write-kudo-fab-compose-param-after-send.spec.ts:18:7 › FAB hop then send (serial, kudos-writer) › after a send from a FAB hop the URL has no compose and a reload keeps the modal closed (9.6s)
+
+
+  1) [chromium] › e2e/write-kudo-fab-compose-param-after-send.spec.ts:18:7 › FAB hop then send (serial, kudos-writer) › after a send from a FAB hop the URL has no compose and a reload keeps the modal closed 
+
+    Error: URL query after send and refresh
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "compose"
+    Received string:        "?compose=1"
+
+      32 |     await page.waitForLoadState('networkidle')
+      33 |     await page.waitForTimeout(1500)
+    > 34 |     expect(new URL(page.url()).search, 'URL query after send and refresh').not.toContain('compose')
+         |                                                                                ^
+      35 |     await expect(w.modal(page), 'modal stays closed after refresh').toBeHidden()
+      36 |     await page.reload()
+      37 |     await expect(k.kudosBoard(page), 'board after reload').toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-compose-param-after-send.spec.ts:34:80
+
+    Error Context: test-results/write-kudo-fab-compose-par-cc03c-load-keeps-the-modal-closed-chromium/error-context.md
+
+    Error Context: test-results/write-kudo-fab-compose-par-cc03c-load-keeps-the-modal-closed-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-compose-par-cc03c-load-keeps-the-modal-closed-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-compose-par-cc03c-load-keeps-the-modal-closed-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/write-kudo-fab-compose-param-after-send.spec.ts:18:7 › FAB hop then send (serial, kudos-writer) › after a send from a FAB hop the URL has no compose and a reload keeps the modal closed 
+error: script "test:e2e" exited with code 1

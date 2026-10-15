@@ -1,0 +1,613 @@
+$ playwright test "e2e/write-kudo-fab-quick-actions.spec.ts" "e2e/write-kudo-backdrop-and-scroll.spec.ts" "e2e/write-kudo-modal-access-and-layout.spec.ts" -g "FAB quick actions|backdrop close and scroll|FR-224"
+[WebServer] $ next dev -p "3100"
+
+Running 17 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   1 [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:33:7 › Viết Kudo modal: backdrop close and scroll › a press that starts inside the card and releases on the mask keeps the modal open (4.6s)
+  ✘   4 [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:59:9 › Viết Kudo modal: backdrop close and scroll › at 1440x700 the heading and the Hủy/Gửi footer stay visible after scrolling the fields to the bottom (9.6s)
+  ✘   2 [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:44:7 › Viết Kudo modal: backdrop close and scroll › the page behind does not scroll while the modal is open (9.6s)
+  ✘   3 [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:23:7 › Viết Kudo modal: backdrop close and scroll › a click on the mask closes the modal and the reopened draft is empty (9.7s)
+  ✘   5 [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:59:9 › Viết Kudo modal: backdrop close and scroll › at 375x667 the heading and the Hủy/Gửi footer stay visible after scrolling the fields to the bottom (7.0s)
+  ✘   7 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:19:7 › FAB quick actions › clicking the FAB opens the group with Thể lệ, Viết KUDOS and the close button (8.4s)
+  ✘   8 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:29:7 › FAB quick actions › the red × closes the group and focus returns to the FAB (8.3s)
+  ✘   6 [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:70:7 › Viết Kudo modal: backdrop close and scroll › the scroll area keeps scrolling inside itself (overscroll-behavior-y: contain) (9.2s)
+  ✘   9 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:36:7 › FAB quick actions › Escape closes the group and focus returns to the FAB (8.0s)
+  ✘  10 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:43:7 › FAB quick actions › a click outside the group closes it (7.6s)
+  ✘  11 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:49:7 › FAB quick actions › on /sun-kudos Viết KUDOS opens the Write Kudo modal (7.9s)
+[WebServer] Route /awards-information is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✘  12 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:56:7 › FAB quick actions › Hủy on a modal opened from the FAB returns focus to the FAB (7.8s)
+  ✘  13 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:65:9 › FAB quick actions › from / Viết KUDOS goes to /sun-kudos, opens the modal once and drops ?compose (7.6s)
+  ✘  14 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:65:9 › FAB quick actions › from /awards-information Viết KUDOS goes to /sun-kudos, opens the modal once and drops ?compose (6.7s)
+  ✘  15 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:79:7 › FAB quick actions › Thể lệ opens the Coming soon modal (7.2s)
+  ✘  16 [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:85:7 › FAB quick actions › a viewer without a sunner does not get the modal from Viết KUDOS (7.2s)
+  ✘  17 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:115:7 › Viết Kudo modal: access and layout › FR-224: a backdrop click closes the modal, and Escape closes it as well (7.7s)
+
+
+  1) [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:23:7 › Viết Kudo modal: backdrop close and scroll › a click on the mask closes the modal and the reopened draft is empty 
+
+    Error: expect(locator).toBeHidden() failed
+
+    Locator:  getByTestId('write-kudo-modal')
+    Expected: hidden
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeHidden" getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+        14 × locator resolved to <div role="dialog" tabindex="-1" aria-modal="true" data-testid="write-kudo-modal" aria-labelledby="write-kudo-heading" class="flex max-h-full w-full max-w-[752px] flex-col gap-6 overflow-y-auto rounded-3xl bg-[#fff8e1] p-5 font-[family-name:var(--font-montserrat)] text-saa-navy outline-none sm:gap-8 sm:p-10">…</div>
+           - unexpected value "visible"
+
+
+      25 |     await w.titleInput(page).fill('Bản nháp chưa gửi')
+      26 |     await w.backdrop(page).click({ position: MASK_CORNER })
+    > 27 |     await expect(w.modal(page)).toBeHidden()
+         |                                 ^
+      28 |     await composePill(page).click()
+      29 |     await expect(w.modal(page)).toBeVisible()
+      30 |     await expect(w.titleInput(page)).toHaveValue('')
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-backdrop-and-scroll.spec.ts:27:33
+
+    Error Context: test-results/write-kudo-backdrop-and-sc-69217-the-reopened-draft-is-empty-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-backdrop-and-sc-69217-the-reopened-draft-is-empty-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-backdrop-and-sc-69217-the-reopened-draft-is-empty-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:44:7 › Viết Kudo modal: backdrop close and scroll › the page behind does not scroll while the modal is open 
+
+    Error: modal scroll area
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-scroll-area')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - modal scroll area getByTestId('write-kudo-scroll-area') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-scroll-area')
+
+
+      45 |     await page.setViewportSize({ width: 1440, height: 700 })
+      46 |     await openWriteKudoModal(page)
+    > 47 |     await expect(writeKudoScrollArea(page), 'modal scroll area').toBeVisible()
+         |                                                                  ^
+      48 |     const overflow = await page.evaluate(() => [document.documentElement, document.body].map((el) => getComputedStyle(el).overflow))
+      49 |     expect(overflow, 'html or body overflow hidden').toContain('hidden')
+      50 |     await writeKudoScrollArea(page).evaluate((el) => el.scrollTo(0, el.scrollHeight))
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-backdrop-and-scroll.spec.ts:47:66
+
+    Error Context: test-results/write-kudo-backdrop-and-sc-8e4db-oll-while-the-modal-is-open-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-backdrop-and-sc-8e4db-oll-while-the-modal-is-open-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-backdrop-and-sc-8e4db-oll-while-the-modal-is-open-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:59:9 › Viết Kudo modal: backdrop close and scroll › at 1440x700 the heading and the Hủy/Gửi footer stay visible after scrolling the fields to the bottom 
+
+    Error: modal scroll area
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-scroll-area')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - modal scroll area getByTestId('write-kudo-scroll-area') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-scroll-area')
+
+
+      60 |       await page.setViewportSize({ width, height })
+      61 |       await openWriteKudoModal(page)
+    > 62 |       await expect(writeKudoScrollArea(page), 'modal scroll area').toBeVisible()
+         |                                                                    ^
+      63 |       await writeKudoScrollArea(page).evaluate((el) => el.scrollTo(0, el.scrollHeight))
+      64 |       await expectInViewportAndInsideCard(page, 'heading', w.heading(page))
+      65 |       await expectInViewportAndInsideCard(page, 'Hủy', w.cancelButton(page))
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-backdrop-and-scroll.spec.ts:62:68
+
+    Error Context: test-results/write-kudo-backdrop-and-sc-f3e20-ng-the-fields-to-the-bottom-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-backdrop-and-sc-f3e20-ng-the-fields-to-the-bottom-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-backdrop-and-sc-f3e20-ng-the-fields-to-the-bottom-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:59:9 › Viết Kudo modal: backdrop close and scroll › at 375x667 the heading and the Hủy/Gửi footer stay visible after scrolling the fields to the bottom 
+
+    Error: modal scroll area
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-scroll-area')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - modal scroll area getByTestId('write-kudo-scroll-area') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-scroll-area')
+
+
+      60 |       await page.setViewportSize({ width, height })
+      61 |       await openWriteKudoModal(page)
+    > 62 |       await expect(writeKudoScrollArea(page), 'modal scroll area').toBeVisible()
+         |                                                                    ^
+      63 |       await writeKudoScrollArea(page).evaluate((el) => el.scrollTo(0, el.scrollHeight))
+      64 |       await expectInViewportAndInsideCard(page, 'heading', w.heading(page))
+      65 |       await expectInViewportAndInsideCard(page, 'Hủy', w.cancelButton(page))
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-backdrop-and-scroll.spec.ts:62:68
+
+    Error Context: test-results/write-kudo-backdrop-and-sc-08971-ng-the-fields-to-the-bottom-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-backdrop-and-sc-08971-ng-the-fields-to-the-bottom-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-backdrop-and-sc-08971-ng-the-fields-to-the-bottom-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:70:7 › Viết Kudo modal: backdrop close and scroll › the scroll area keeps scrolling inside itself (overscroll-behavior-y: contain) 
+
+    Error: modal scroll area
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-scroll-area')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - modal scroll area getByTestId('write-kudo-scroll-area') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-scroll-area')
+
+
+      70 |   test('the scroll area keeps scrolling inside itself (overscroll-behavior-y: contain)', async ({ page }) => {
+      71 |     await openWriteKudoModal(page)
+    > 72 |     await expect(writeKudoScrollArea(page), 'modal scroll area').toBeVisible()
+         |                                                                  ^
+      73 |     await expect(writeKudoScrollArea(page)).toHaveCSS('overscroll-behavior-y', 'contain')
+      74 |     await expect(writeKudoScrollArea(page)).toHaveCSS('overflow-y', 'auto')
+      75 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-backdrop-and-scroll.spec.ts:72:66
+
+    Error Context: test-results/write-kudo-backdrop-and-sc-cd705-rscroll-behavior-y-contain--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-backdrop-and-sc-cd705-rscroll-behavior-y-contain--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-backdrop-and-sc-cd705-rscroll-behavior-y-contain--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:19:7 › FAB quick actions › clicking the FAB opens the group with Thể lệ, Viết KUDOS and the close button 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      21 |     await expect(f.fabMenu(page)).toBeHidden()
+      22 |     await f.fab(page).click()
+    > 23 |     await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                             ^
+      24 |     await expect(f.fabRules(page)).toContainText('Thể lệ')
+      25 |     await expect(f.fabWriteKudo(page)).toContainText('Viết KUDOS')
+      26 |     await expect(f.fabClose(page)).toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:23:61
+
+    Error Context: test-results/write-kudo-fab-quick-actio-36d55--KUDOS-and-the-close-button-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-36d55--KUDOS-and-the-close-button-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-36d55--KUDOS-and-the-close-button-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:29:7 › FAB quick actions › the red × closes the group and focus returns to the FAB 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      13 |   await expect(f.fab(page), 'FAB on the page').toBeVisible()
+      14 |   await f.fab(page).click()
+    > 15 |   await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                           ^
+      16 | }
+      17 |
+      18 | test.describe('FAB quick actions', () => {
+        at openFabMenu (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:15:59)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:30:5
+
+    Error Context: test-results/write-kudo-fab-quick-actio-0ef96-nd-focus-returns-to-the-FAB-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-0ef96-nd-focus-returns-to-the-FAB-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-0ef96-nd-focus-returns-to-the-FAB-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:36:7 › FAB quick actions › Escape closes the group and focus returns to the FAB 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      13 |   await expect(f.fab(page), 'FAB on the page').toBeVisible()
+      14 |   await f.fab(page).click()
+    > 15 |   await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                           ^
+      16 | }
+      17 |
+      18 | test.describe('FAB quick actions', () => {
+        at openFabMenu (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:15:59)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:37:5
+
+    Error Context: test-results/write-kudo-fab-quick-actio-47d1e-nd-focus-returns-to-the-FAB-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-47d1e-nd-focus-returns-to-the-FAB-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-47d1e-nd-focus-returns-to-the-FAB-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:43:7 › FAB quick actions › a click outside the group closes it 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      13 |   await expect(f.fab(page), 'FAB on the page').toBeVisible()
+      14 |   await f.fab(page).click()
+    > 15 |   await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                           ^
+      16 | }
+      17 |
+      18 | test.describe('FAB quick actions', () => {
+        at openFabMenu (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:15:59)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:44:5
+
+    Error Context: test-results/write-kudo-fab-quick-actio-fac37-outside-the-group-closes-it-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-fac37-outside-the-group-closes-it-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-fac37-outside-the-group-closes-it-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:49:7 › FAB quick actions › on /sun-kudos Viết KUDOS opens the Write Kudo modal 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      13 |   await expect(f.fab(page), 'FAB on the page').toBeVisible()
+      14 |   await f.fab(page).click()
+    > 15 |   await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                           ^
+      16 | }
+      17 |
+      18 | test.describe('FAB quick actions', () => {
+        at openFabMenu (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:15:59)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:50:5
+
+    Error Context: test-results/write-kudo-fab-quick-actio-a3e6c--opens-the-Write-Kudo-modal-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-a3e6c--opens-the-Write-Kudo-modal-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-a3e6c--opens-the-Write-Kudo-modal-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:56:7 › FAB quick actions › Hủy on a modal opened from the FAB returns focus to the FAB 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      13 |   await expect(f.fab(page), 'FAB on the page').toBeVisible()
+      14 |   await f.fab(page).click()
+    > 15 |   await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                           ^
+      16 | }
+      17 |
+      18 | test.describe('FAB quick actions', () => {
+        at openFabMenu (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:15:59)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:57:5
+
+    Error Context: test-results/write-kudo-fab-quick-actio-43553-AB-returns-focus-to-the-FAB-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-43553-AB-returns-focus-to-the-FAB-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-43553-AB-returns-focus-to-the-FAB-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:65:9 › FAB quick actions › from / Viết KUDOS goes to /sun-kudos, opens the modal once and drops ?compose 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      68 |       await expect(f.fab(page), 'FAB on the page').toBeVisible()
+      69 |       await f.fab(page).click()
+    > 70 |       await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                               ^
+      71 |       await f.fabWriteKudo(page).click()
+      72 |       await expect(page).toHaveURL(/\/sun-kudos/)
+      73 |       await expect(w.modal(page)).toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:70:63
+
+    Error Context: test-results/write-kudo-fab-quick-actio-ac88b-odal-once-and-drops-compose-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-ac88b-odal-once-and-drops-compose-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-ac88b-odal-once-and-drops-compose-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:65:9 › FAB quick actions › from /awards-information Viết KUDOS goes to /sun-kudos, opens the modal once and drops ?compose 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      68 |       await expect(f.fab(page), 'FAB on the page').toBeVisible()
+      69 |       await f.fab(page).click()
+    > 70 |       await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                               ^
+      71 |       await f.fabWriteKudo(page).click()
+      72 |       await expect(page).toHaveURL(/\/sun-kudos/)
+      73 |       await expect(w.modal(page)).toBeVisible()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:70:63
+
+    Error Context: test-results/write-kudo-fab-quick-actio-90cfe-odal-once-and-drops-compose-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-90cfe-odal-once-and-drops-compose-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-90cfe-odal-once-and-drops-compose-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:79:7 › FAB quick actions › Thể lệ opens the Coming soon modal 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      13 |   await expect(f.fab(page), 'FAB on the page').toBeVisible()
+      14 |   await f.fab(page).click()
+    > 15 |   await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                           ^
+      16 | }
+      17 |
+      18 | test.describe('FAB quick actions', () => {
+        at openFabMenu (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:15:59)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:80:5
+
+    Error Context: test-results/write-kudo-fab-quick-actio-b8c3a-opens-the-Coming-soon-modal-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-b8c3a-opens-the-Coming-soon-modal-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-b8c3a-opens-the-Coming-soon-modal-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:85:7 › FAB quick actions › a viewer without a sunner does not get the modal from Viết KUDOS 
+
+    Error: FAB quick-action group
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('fab-menu')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - FAB quick-action group getByTestId('fab-menu') with timeout 5000ms
+      - waiting for getByTestId('fab-menu')
+
+
+      86 |     await openKudosBoard(page, 'kudos-outsider')
+      87 |     await f.fab(page).click()
+    > 88 |     await expect(f.fabMenu(page), 'FAB quick-action group').toBeVisible()
+         |                                                             ^
+      89 |     await f.fabWriteKudo(page).click({ force: true })
+      90 |     await expect(w.modal(page)).toHaveCount(0)
+      91 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-fab-quick-actions.spec.ts:88:61
+
+    Error Context: test-results/write-kudo-fab-quick-actio-9d3e4-t-the-modal-from-Viết-KUDOS-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-fab-quick-actio-9d3e4-t-the-modal-from-Viết-KUDOS-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-fab-quick-actio-9d3e4-t-the-modal-from-Viết-KUDOS-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:115:7 › Viết Kudo modal: access and layout › FR-224: a backdrop click closes the modal, and Escape closes it as well 
+
+    Error: expect(locator).toBeHidden() failed
+
+    Locator:  getByTestId('write-kudo-modal')
+    Expected: hidden
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeHidden" getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+        14 × locator resolved to <div role="dialog" tabindex="-1" aria-modal="true" data-testid="write-kudo-modal" aria-labelledby="write-kudo-heading" class="flex max-h-full w-full max-w-[752px] flex-col gap-6 overflow-y-auto rounded-3xl bg-[#fff8e1] p-5 font-[family-name:var(--font-montserrat)] text-saa-navy outline-none sm:gap-8 sm:p-10">…</div>
+           - unexpected value "visible"
+
+
+      116 |     await openWriteKudoModal(page)
+      117 |     await w.backdrop(page).click({ position: { x: 4, y: 4 } })
+    > 118 |     await expect(w.modal(page)).toBeHidden()
+          |                                 ^
+      119 |     await composePill(page).click()
+      120 |     await expect(w.modal(page)).toBeVisible()
+      121 |     await page.keyboard.press('Escape')
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:118:33
+
+    Error Context: test-results/write-kudo-modal-access-an-8f476-nd-Escape-closes-it-as-well-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-8f476-nd-Escape-closes-it-as-well-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-8f476-nd-Escape-closes-it-as-well-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16 failed
+    [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:23:7 › Viết Kudo modal: backdrop close and scroll › a click on the mask closes the modal and the reopened draft is empty 
+    [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:44:7 › Viết Kudo modal: backdrop close and scroll › the page behind does not scroll while the modal is open 
+    [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:59:9 › Viết Kudo modal: backdrop close and scroll › at 1440x700 the heading and the Hủy/Gửi footer stay visible after scrolling the fields to the bottom 
+    [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:59:9 › Viết Kudo modal: backdrop close and scroll › at 375x667 the heading and the Hủy/Gửi footer stay visible after scrolling the fields to the bottom 
+    [chromium] › e2e/write-kudo-backdrop-and-scroll.spec.ts:70:7 › Viết Kudo modal: backdrop close and scroll › the scroll area keeps scrolling inside itself (overscroll-behavior-y: contain) 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:19:7 › FAB quick actions › clicking the FAB opens the group with Thể lệ, Viết KUDOS and the close button 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:29:7 › FAB quick actions › the red × closes the group and focus returns to the FAB 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:36:7 › FAB quick actions › Escape closes the group and focus returns to the FAB 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:43:7 › FAB quick actions › a click outside the group closes it 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:49:7 › FAB quick actions › on /sun-kudos Viết KUDOS opens the Write Kudo modal 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:56:7 › FAB quick actions › Hủy on a modal opened from the FAB returns focus to the FAB 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:65:9 › FAB quick actions › from / Viết KUDOS goes to /sun-kudos, opens the modal once and drops ?compose 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:65:9 › FAB quick actions › from /awards-information Viết KUDOS goes to /sun-kudos, opens the modal once and drops ?compose 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:79:7 › FAB quick actions › Thể lệ opens the Coming soon modal 
+    [chromium] › e2e/write-kudo-fab-quick-actions.spec.ts:85:7 › FAB quick actions › a viewer without a sunner does not get the modal from Viết KUDOS 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:115:7 › Viết Kudo modal: access and layout › FR-224: a backdrop click closes the modal, and Escape closes it as well 
+  1 passed (2.9m)
+error: script "test:e2e" exited with code 1

@@ -1,0 +1,14 @@
+$ playwright test "e2e/tmp-hard.spec.ts" "--repeat-each=3"
+[WebServer] $ next dev -p "3100"
+
+Running 3 tests using 3 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  3 [chromium] › e2e/tmp-hard.spec.ts:4:5 › hard load compose (10.1s)
+  ✓  1 [chromium] › e2e/tmp-hard.spec.ts:4:5 › hard load compose (10.1s)
+  ✓  2 [chromium] › e2e/tmp-hard.spec.ts:4:5 › hard load compose (10.3s)
+
+  3 passed (2.5m)
+exit code: 0

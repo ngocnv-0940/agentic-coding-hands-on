@@ -1,0 +1,96 @@
+{
+ "command": "bun run test:e2e e2e/write-kudo-fab-quick-actions.spec.ts e2e/write-kudo-backdrop-and-scroll.spec.ts e2e/write-kudo-modal-access-and-layout.spec.ts -g \"FAB quick actions|backdrop close and scroll|FR-224\"",
+ "exitCode": 1,
+ "counts": {
+  "failed": 16,
+  "passed": 1
+ },
+ "valid": true,
+ "tests": [
+  {
+   "name": "fab: clicking the FAB opens the group",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: red x closes the group, focus to FAB",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: Escape closes the group",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: outside click closes the group",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: on /sun-kudos Viết KUDOS opens the modal",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: Hủy returns focus to FAB",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: from / Viết KUDOS -> /sun-kudos?compose=1 -> modal once, param dropped",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: from /awards-information same flow",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: Thể lệ opens Coming soon modal",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "fab: viewer without sunner gets no modal",
+   "status": "failed",
+   "reason": "click on widget-button does not render [data-testid=fab-menu] (element not found); widget-button itself was visible"
+  },
+  {
+   "name": "backdrop click closes and discards the draft",
+   "status": "failed",
+   "reason": "modal still visible after a click on write-kudo-backdrop (toBeHidden failed): backdrop click currently does nothing"
+  },
+  {
+   "name": "FR-224 (updated): backdrop click closes, Esc closes",
+   "status": "failed",
+   "reason": "modal still visible after a click on write-kudo-backdrop (toBeHidden failed): backdrop click currently does nothing"
+  },
+  {
+   "name": "scroll: page behind does not scroll",
+   "status": "failed",
+   "reason": "[data-testid=write-kudo-scroll-area] not found in the open modal"
+  },
+  {
+   "name": "scroll: heading + footer visible at 1440x700",
+   "status": "failed",
+   "reason": "[data-testid=write-kudo-scroll-area] not found in the open modal"
+  },
+  {
+   "name": "scroll: heading + footer visible at 375x667",
+   "status": "failed",
+   "reason": "[data-testid=write-kudo-scroll-area] not found in the open modal"
+  },
+  {
+   "name": "scroll: overscroll-behavior-y contain",
+   "status": "failed",
+   "reason": "[data-testid=write-kudo-scroll-area] not found in the open modal"
+  },
+  {
+   "name": "press starts in card, releases on mask keeps modal open",
+   "status": "passed",
+   "reason": "guard test: holds before the change (backdrop does nothing) and must stay green after it; not RED evidence"
+  }
+ ]
+}
