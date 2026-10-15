@@ -105,7 +105,7 @@ Read-only: `proxy.ts`, `lib/supabase/*`, `app/(main)/layout.tsx`, `app/(main)/_b
 7. **L4 `secret_boxes` readable + L7 image href scheme (deferred).** Owner: implementer. Done before real prize data or user-supplied image URLs: RLS tightened, `http(s)` scheme check, with proof.
 8. **NF2 page-level filter await (deferred).** Owner: implementer. Done: measured on dev, or accepted as-is.
 9. **L9 no down migration (deferred).** Owner: implementer. Done: down script for the 3 migrations, or rationale recorded before first deploy.
-10. **Spotlight network-line artwork** not exportable from MoMorph, flat navy used. Owner: user. Done: flat navy accepted or artwork supplied.
+10. ~~**Spotlight network-line artwork**~~ — resolved 2026-10-15: artwork pulled via Figma MCP (`public/images/kudos/spotlight-{roots,network}.webp`).
 11. **Pager font sizes** measured from PNG, not Figma tokens. Owner: momorph-ui-implementer. Done: checked against Figma inspector or accepted.
 12. **EN copy and error toasts** are implementer-authored. Owner: user. Done: strings in `lib/i18n/dictionary-kudos-en.ts` confirmed.
 13. **"Tìm kiếm profile Sunner" pill** opens coming-soon modal, no spec behaviour. Owner: user. Done: accepted or behaviour named.

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { IconExpand } from './kudos-icons'
@@ -34,8 +35,17 @@ export function SpotlightBoardView({
     <section data-testid="kudos-spotlight" aria-labelledby="kudos-spotlight-title" className="w-full pt-16 pb-10 md:pt-[136px] md:pb-[35px]">
       <div className={`${KUDOS_CONTAINER} flex flex-col gap-10 md:gap-[63px]`}>
         <KudosSectionHeader headingId="kudos-spotlight-title" eyebrow={eyebrow} title={title} />
-        {/* mm:2940:14174 — flat navy canvas; the artwork layers (14178/14181) are not exported by MoMorph */}
+        {/* mm:2940:14174 */}
         <div className="relative h-[460px] w-full overflow-hidden rounded-[47px] border border-saa-gold-border bg-[#00101a] md:h-[548px]">
+          {/* mm:2940:14173 — root artwork under a 70% black wash */}
+          <div aria-hidden="true" className="pointer-events-none absolute top-[-1px] left-[-65px] h-[583px] w-[1819px]">
+            <Image src="/images/kudos/spotlight-roots.webp" alt="" fill sizes="1819px" className="object-cover" />
+            <div className="absolute inset-0 bg-black/70" />
+          </div>
+          {/* mm:2940:14181 — network lines, screen-blended at 30% */}
+          <div aria-hidden="true" className="pointer-events-none absolute top-[-36px] left-[-36px] h-[618px] w-[1100px]">
+            <Image src="/images/kudos/spotlight-network.webp" alt="" fill sizes="1100px" className="object-cover opacity-30 mix-blend-screen" />
+          </div>
           <div
             data-testid="spotlight-canvas"
             {...canvasHandlers}
