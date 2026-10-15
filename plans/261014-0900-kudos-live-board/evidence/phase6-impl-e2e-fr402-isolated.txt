@@ -1,0 +1,11 @@
+[WebServer] $ next dev -p "3100"
+
+Running 1 test using 1 worker
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  1 [chromium] › e2e/kudos-like-and-hearts.spec.ts:106:7 › Sun* Kudos likes and hearts (serial, shared mock state) › FR-402: an identity without a sunner row sees a disabled heart on any kudo (2.9s)
+
+  1 passed (6.3s)
+exit 0

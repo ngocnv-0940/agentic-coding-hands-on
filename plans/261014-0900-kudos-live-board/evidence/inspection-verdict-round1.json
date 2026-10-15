@@ -1,0 +1,30 @@
+{ "score": 9, "criticalCount": 0, "decision": "SEALED",
+  "acceptanceCovered": [
+    "/sun-kudos guarded: proxy PROTECTED_ROOTS + (main) layout getCurrentUser; anon has no RLS read and no RPC execute",
+    "Highlight top 5 by like rows, ties newest then id desc, filters AND (pgTAP + mock parity)",
+    "Filters sanitized server-side against DB options, URL-driven, keyed remount resets carousel/feed",
+    "All Kudos newest first, 10 per page via limit+1 keyset, load-more server action re-validates input",
+    "Like toggle: one per sunner per kudo (PK), self_like rejected in DB, special day stores 2, unlike revokes stored value",
+    "Copy link writes origin/sun-kudos/<encoded id>, success toast only after resolve",
+    "Spotlight total/receivers/recent from RPC, search capped at 100 chars, pan/zoom",
+    "Sidebar stats and 10 latest opened gifts from RPC, zeros without sunner row",
+    "User content rendered as text only (no innerHTML)"
+  ],
+  "regressionChecked": [
+    "proxy lock/auth guard covers server action POSTs",
+    "homepage-access spec list edit (only /sun-kudos removed, [id] placeholder kept)",
+    "mock-supabase-server additive identities and /rest/v1 routing",
+    "dictionary vi/en spreads",
+    "grants/RLS on all 9 tables and 6 RPCs"
+  ],
+  "contractStatus": "OK", "refuted": [], "unproven": [], "reachableRegressions": [],
+  "findings": [
+    { "severity": "Medium", "category": "Performance", "location": "supabase/migrations/20261014095441_kudos_live_board_functions.sql:20-28", "summary": "matching_kudos has SET search_path so it is never inlined; feed/highlight materialise all kudos and cannot use kudos_created_at_id_idx for keyset paging", "disposition": "Accept" },
+    { "severity": "Medium", "category": "Documentation", "location": "docs/system/permissions.md:38", "summary": "Draft placeholders (auto-create sunner, HCM vs UTC 'finalised in plan') contradict final code: no auto-create, Asia/Ho_Chi_Minh", "disposition": "Accept" },
+    { "severity": "Low", "category": "Data integrity", "location": "supabase/migrations/20261014095439_kudos_live_board_tables.sql:27-35", "summary": "ms precision enforced only by column default; explicit microsecond insert would make the cursor skip rows (to_char MS truncates); comment says 'repeat' instead of 'skip'. Unreachable today", "disposition": "Accept" },
+    { "severity": "Low", "category": "Concurrency", "location": "supabase/migrations/20261014095441_kudos_live_board_functions.sql:170-178", "summary": "Two concurrent toggles on an already-liked kudo can both return liked:false (net single unlike); hearts stay consistent", "disposition": "Accept" },
+    { "severity": "Low", "category": "State", "location": "app/(main)/sun-kudos/_behavior/use-kudo-like.ts:29-30", "summary": "Confirmed like entries never invalidated; after filter navigation they override fresher server likeCount", "disposition": "Accept" },
+    { "severity": "Low", "category": "Security", "location": "supabase/migrations/20261014095439_kudos_live_board_tables.sql:104", "summary": "secret_boxes fully readable incl. unopened boxes' prize; accepted in clarifications, tighten before real prize data", "disposition": "Accept" },
+    { "severity": "Low", "category": "Maintainability", "location": "app/(main)/sun-kudos/_components/feed-view.tsx:15", "summary": "Cards re-keyed by position; safe only because feed is append-only", "disposition": "Accept" },
+    { "severity": "Low", "category": "Security", "location": "app/(main)/sun-kudos/_components/kudo-card.tsx:88", "summary": "DB image url used as href without scheme validation; trusted seed only today", "disposition": "Accept" }
+  ] }

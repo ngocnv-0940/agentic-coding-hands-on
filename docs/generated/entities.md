@@ -8,27 +8,45 @@
 
 ## Entity Relationship Diagram
 
-No data — ứng dụng không sở hữu thực thể (entity) hay bảng dữ liệu nào, nên không có sơ đồ quan hệ để vẽ.
+Từ F006 (Kudos live board) repo có schema Postgres đầu tiên, 9 bảng trong `public` (`supabase/migrations/20261014095439_kudos_live_board_tables.sql`). Trước F006 không có thực thể nào của ứng dụng.
+
+```mermaid
+erDiagram
+    departments ||--o{ sunners : "department_id"
+    sunners ||--o{ kudos : "sender_id"
+    sunners ||--o{ kudos : "receiver_id"
+    kudos ||--o{ kudo_hashtags : "kudo_id"
+    hashtags ||--o{ kudo_hashtags : "hashtag_id"
+    kudos ||--o{ kudo_images : "kudo_id"
+    kudos ||--o{ kudo_likes : "kudo_id"
+    sunners ||--o{ kudo_likes : "sunner_id"
+    sunners ||--o{ secret_boxes : "owner_id"
+    special_days {
+        date day PK
+    }
+```
 
 ## Entities
 
-No data — mã nguồn không định nghĩa bảng, model hay schema nào. Không tạo thực thể nào để tránh bịa nội dung. Bằng chứng (kiểm tra ngày 2026-10-08 trên cây làm việc, loại trừ `.claude/`, `plans/`, `docs/`, `node_modules/`, `.next/`):
+Mọi bảng bật RLS: `authenticated` chỉ có `SELECT` (policy `using (true)`); quyền ghi bị thu khỏi `anon` và `authenticated`. Dữ liệu đến từ migration/seed; ghi duy nhất của client là RPC `toggle_kudo_like` (SECURITY DEFINER) lên `kudo_likes`.
 
-| Kiểm tra | Kết quả | Nguồn |
-|----------|---------|-------|
-| Tìm `.from(`, `.rpc(`, `prisma`, `drizzle`, `typeorm`, `sequelize`, `mongoose`, `knex`, `kysely`, `CREATE TABLE`, `sql` trong `app/`, `lib/`, `proxy.ts` (`*.ts`, `*.tsx`) | 0 kết quả | grep toàn bộ cây mã nguồn ứng dụng |
-| Phụ thuộc ORM / driver Postgres trong `package.json` | Không có. Chỉ có `@supabase/ssr` và `@supabase/supabase-js` | `package.json:13-14` |
-| File SQL, `migrations/`, `schema.prisma`, `drizzle.config.*` | Không tồn tại | `find` toàn cây; `supabase/` chỉ chứa `config.toml` |
-| `supabase/seed.sql` | Không tồn tại, dù `[db.seed]` trỏ tới `./seed.sql` | `supabase/config.toml:67-72` |
-| Schema tuỳ biến trong cấu hình Supabase | Không có. `[db.migrations] schema_paths = []`, các giá trị `[db]` là mặc định của CLI | `supabase/config.toml:32`, `supabase/config.toml:61-66` |
-| Tầng truy cập dữ liệu | Không có. `lib/supabase/client.ts` và `lib/supabase/server.ts` chỉ khởi tạo client SDK, không truy vấn bảng nào | `lib/supabase/client.ts:5`, `lib/supabase/server.ts:9` |
-| Lời gọi Supabase trong ứng dụng | Chỉ thuộc nhóm `auth.*`: `signInWithOAuth`, `getUser`, `signOut` | `lib/auth/sign-in-with-google.ts:15`, `lib/supabase/proxy.ts:47`, `app/todo/page.tsx:27`, `app/auth/logout/route.ts:19` |
+| Bảng | Khoá và cột chính | Quan hệ, ràng buộc |
+|------|-------------------|--------------------|
+| `departments` | `id` uuid PK; `code` (unique), `name` | Được `sunners.department_id` tham chiếu |
+| `sunners` | `id` uuid PK; `user_id` (unique, nullable), `full_name`, `avatar_url`, `department_id`, `hero_title` | `user_id` → `auth.users(id)` `on delete set null`; `hero_title` ∈ `new_hero`, `rising_hero`, `super_hero`, `legend_hero` hoặc null. "Người dùng hiện tại" là hàng có `user_id = auth.uid()` |
+| `hashtags` | `id` uuid PK; `slug` (unique), `label` | Gắn vào Kudo qua `kudo_hashtags` |
+| `kudos` | `id` uuid PK; `sender_id`, `receiver_id`, `title`, `content`, `created_at` | `sender_id <> receiver_id`; `content` không rỗng; `created_at` tròn mili giây (con trỏ phân trang đi qua JS `Date`) |
+| `kudo_hashtags` | PK `(kudo_id, hashtag_id)` | Cả hai khoá ngoại `on delete cascade` |
+| `kudo_images` | `id` uuid PK; `kudo_id`, `url`, `position` | unique `(kudo_id, position)`; `on delete cascade` theo Kudo |
+| `kudo_likes` | PK `(kudo_id, sunner_id)`; `hearts_awarded`, `created_at` | `hearts_awarded` ∈ {1, 2}, lưu lúc thích (2 vào ngày đặc biệt); xoá hàng là thu hồi đúng giá trị đó. Số tim của Sunner = tổng `hearts_awarded` trên các lượt thích của Kudo họ gửi |
+| `special_days` | `day` date PK | Ngày lịch `Asia/Ho_Chi_Minh` mà một lượt thích tính 2 tim |
+| `secret_boxes` | `id` uuid PK; `owner_id`, `opened_at`, `prize_description` | `opened_at` null là hộp chưa mở; `owner_id` → `sunners` `on delete cascade` |
 
-Mọi dữ liệu người dùng đều nằm trong dịch vụ Supabase Auth bên ngoài. Ứng dụng chỉ đọc, không lưu, không tạo bảng, không ghi vào schema `public`.
+Chỉ mục: `kudos_created_at_id_idx (created_at desc, id desc)` cho phân trang keyset; `kudos_receiver_id_idx`, `kudos_sender_id_idx`, `kudo_hashtags_hashtag_id_idx`, `kudo_likes_sunner_id_idx`, `secret_boxes_owner_id_idx`, `secret_boxes_opened_at_idx` (một phần, `opened_at is not null`), `sunners_department_id_idx`.
 
 ### External reference (not an application entity)
 
-Chỉ để tham khảo. Mục này không phải thực thể của ứng dụng: không có mã định danh thực thể, không có sơ đồ ER, không có trường phân biệt (discriminator), và các spec tính năng không được tham chiếu tới nó như một model.
+Chỉ để tham khảo (`sunners.user_id` trỏ tới bảng này, nhưng bảng thuộc Supabase Auth, không phải thực thể của ứng dụng). Mục này không phải thực thể của ứng dụng: không có mã định danh thực thể, không có sơ đồ ER, không có trường phân biệt (discriminator), và các spec tính năng không được tham chiếu tới nó như một model.
 
 - **Supabase Auth `User`**: bản ghi người dùng do Supabase Auth sở hữu và quản lý (bảng trong schema `auth` của Supabase, ngoài tầm kiểm soát của mã nguồn này). Ứng dụng chỉ đọc qua `supabase.auth.getUser()`.
 - Hai trường ứng dụng dùng:
@@ -42,9 +60,11 @@ Chỉ để tham khảo. Mục này không phải thực thể của ứng dụn
 
 ## Validation Rules
 
-No data — không có thực thể nào của ứng dụng nên không có ràng buộc dữ liệu cần mô tả. Việc kiểm tra tính hợp lệ của người dùng do Supabase Auth thực hiện phía máy chủ qua `getUser()`.
+- Một lượt thích mỗi Sunner mỗi Kudo (khoá chính `kudo_likes`); người gửi không thích Kudo của mình (RPC báo `self_like`); người dùng không có hàng `sunners` không thích được (`sunner_not_found`).
+- `kudos.content` không rỗng sau `btrim`; `sender_id <> receiver_id`; `created_at` tròn mili giây; `hearts_awarded` ∈ {1, 2}; `hero_title` thuộc 4 giá trị cho phép.
+- Việc kiểm tra tính hợp lệ của người dùng đăng nhập vẫn do Supabase Auth thực hiện qua `getUser()`.
 
 ## Summary
 
-- **Total Entities**: 0
-- **Total Relationships**: 0
+- **Total Entities**: 9 (bảng `public`, F006)
+- **Total Relationships**: 9 khoá ngoại giữa các bảng ứng dụng (mỗi cạnh trong sơ đồ ER trên), cộng `sunners.user_id` → `auth.users`

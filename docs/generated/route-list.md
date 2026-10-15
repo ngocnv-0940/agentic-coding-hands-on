@@ -42,11 +42,22 @@ Ghi chú:
 |------|-----------|------------|
 | /awards-information | `AwardsInformationPage` (Server Component, bọc `AwardsInformationContent` trong `Suspense`; trang Hệ thống giải F004 / SCR004; proxy bảo vệ kể cả đường dẫn con, layout `(main)` kiểm lại phiên) | — |
 
-### File: app/(main)/{sun-kudos,standards,profile,admin}/page.tsx
+### File: app/(main)/sun-kudos/page.tsx
 
 | Path | Component | Route Name |
 |------|-----------|------------|
-| /sun-kudos | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
+| /sun-kudos | `Page` (Server Component, màn Kudos live board F006 / SCR006, thay trang giữ chỗ; đọc `searchParams` `hashtag`, `department` rồi gọi các RPC đọc của Postgres; proxy bảo vệ kể cả đường dẫn con, layout `(main)` kiểm lại phiên) | — |
+
+### File: app/(main)/sun-kudos/[id]/page.tsx
+
+| Path | Component | Route Name |
+|------|-----------|------------|
+| /sun-kudos/[id] | `Page` (`ComingSoonPage`, trang giữ chỗ chi tiết Kudo; mọi `id` đều hiện trang Coming soon, không truy vấn dữ liệu; thẻ Kudo, nút Copy Link và node Spotlight trỏ tới đây) | — |
+
+### File: app/(main)/{standards,profile,admin}/page.tsx
+
+| Path | Component | Route Name |
+|------|-----------|------------|
 | /standards | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
 | /profile | `Page` (`ComingSoonPage`, trang giữ chỗ) | — |
 | /admin | `AdminPage` (trang giữ chỗ; proxy và `AdminGate` chỉ cho `app_metadata.role === 'admin'`, người khác về /) | — |
@@ -74,5 +85,5 @@ Ghi chú:
 | Category | Count |
 |----------|-------|
 | Backend Routes | 2 |
-| Frontend Pages | 9 |
-| Total | 11 |
+| Frontend Pages | 10 |
+| Total | 12 |

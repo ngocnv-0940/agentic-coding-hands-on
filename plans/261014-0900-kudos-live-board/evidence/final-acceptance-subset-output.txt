@@ -1,0 +1,16 @@
+$ playwright test "e2e/kudos-" --grep "FR-303|FR-004|FR-201 / DEC-002|SC-001 / FR-106|TC FUNCTION 38"
+[WebServer] $ next dev -p "3100"
+
+Running 6 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  4 [chromium] › e2e/kudos-board-access-and-layout.spec.ts:43:7 › Sun* Kudos live board: access and layout › SC-001 / FR-106: a guest on /sun-kudos/<id> is redirected to /login (1.3s)
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  3 [chromium] › e2e/kudos-feed-and-cards.spec.ts:64:7 › Sun* Kudos feed and cards › FR-004: a card time reads the exact VN clock of its created_at, not UTC (4.7s)
+  ✓  1 [chromium] › e2e/kudos-highlight-and-filters.spec.ts:36:7 › Sun* Kudos highlight and filters › FR-201 / DEC-002: at 1440px the neighbour slides are faded and the centre slide is fully opaque (4.9s)
+  ✓  5 [chromium] › e2e/kudos-spotlight.spec.ts:33:7 › Sun* Kudos spotlight board › TC FUNCTION 38 / FR-307: drag moves the canvas only while Pan/Zoom is on (6.1s)
+  ✓  2 [chromium] › e2e/kudos-feed-and-cards.spec.ts:43:7 › Sun* Kudos feed and cards › FR-303: the feed clamps content to 5 lines and the highlight to 3, and the text really overflows (8.1s)
+  ✓  6 [chromium] › e2e/kudos-spotlight.spec.ts:76:7 › Sun* Kudos spotlight board › TC FUNCTION 38 / FR-307: a drag that ends on a node does not navigate (3.9s)
+
+  6 passed (4.7m)

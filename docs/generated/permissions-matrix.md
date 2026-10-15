@@ -376,6 +376,19 @@ Chỉ dựa vào đồng hồ máy chủ và `SITE_LAUNCH_AT` (qua `readSiteLaun
 
 ---
 
+## Data-layer access (F006, chưa gán mã PERM)
+
+Lớp Postgres của Kudos live board (`supabase/migrations/20261014095439_…_tables.sql`, `…442_…_grants.sql`). Chưa có mã `PERM###` cho nhóm này; bảng dưới là ghi chú, không tính vào Summary.
+
+| Đối tượng | anonymous | authenticated | Nguồn |
+|-----------|-----------|---------------|-------|
+| 9 bảng `public` (`departments`, `sunners`, `hashtags`, `kudos`, `kudo_hashtags`, `kudo_images`, `kudo_likes`, `special_days`, `secret_boxes`) | Không đọc được (không có policy); không ghi | `SELECT` mọi hàng (policy `authenticated can read <bảng>`, `using (true)`); không INSERT/UPDATE/DELETE/TRUNCATE (đã `revoke`) | `…_tables.sql` |
+| 5 RPC đọc `kudos_filter_options`, `kudos_highlight`, `kudos_feed_page`, `kudos_spotlight`, `kudos_sidebar` (`SECURITY INVOKER`) | `execute` bị thu | `execute`; RLS áp dụng | `…_functions.sql`, `…_grants.sql` |
+| RPC `toggle_kudo_like` (`SECURITY DEFINER`) | `execute` bị thu | `execute`; cần hàng `sunners` có `user_id = auth.uid()` (`sunner_not_found`), không tự thích (`self_like`), Kudo phải tồn tại (`kudo_not_found`) | `…_functions.sql`, `…_grants.sql` |
+| Schema `kudos_private` (hàm trợ giúp) | `PUBLIC` bị thu `usage`; không phơi qua PostgREST | `usage` và `execute` cho `authenticated`, `service_role` | `…_grants.sql` |
+
+---
+
 ## Summary
 
 - **Total Permission Items**: 10

@@ -107,3 +107,21 @@ passed 10/10.
 can still see the pre-click offset (failed 1 of 3 dev repeats, read 679 = pre-click value).
 **How to apply:** when a test needs a smooth scroll "in flight", wait with a bounded `expect.poll` until `scrollY` moved
 by N px or a `scrollend` fired, then assert the in-flight state. Never weaken the precondition assertions themselves.
+
+**Why (kudos RED, 2026-10-14):** the first full non-kudos run failed 78 of 110 with every login landing on
+`/login?error=auth_failed` (30 s waitForURL timeouts) right after a cold `next dev` boot. The identical rerun on the same tree
+passed 110/110, and the auth file, homepage pair and single login test all pass alone. Cause not isolated.
+**How to apply:** when a full run shows login-only timeouts after a cold boot, rerun once before reporting a regression, and
+say so in the evidence. Starting `next dev` by hand with a log file (`nohup bun run dev -p 3100 > log`) lets Playwright reuse it.
+
+**Why:** `test.describe.configure({ mode: 'serial' })` stops the remaining tests once one fails, so a RED run reports them as
+"did not run", not failed. **How to apply:** count them in redCounts.notRun and give the reason, do not call them passing.
+
+**Why:** the kudos mock keeps per-identity datasets (`kudos-empty` gets EMPTY_DATASET); only the serial like spec mutates
+like rows. Shared fixture counts (e.g. highlight order, viewer stats) live in `e2e/support/kudos-fixture-ids.ts` EXPECT.
+**How to apply:** change fixture data and EXPECT together; re-derive the expected order by hand (ALG-001: likes desc, created desc).
+
+**Why (like-state fix, 2026-10-14):** a regression test for a fix on uncommitted app code cannot be shown RED on the pre-fix
+code without editing `app/**`, and the pre-fix version is in neither git nor a file. Highlight shows kudo A only under a filter.
+**How to apply:** when the pre-fix state cannot be reproduced without touching app code, skip the new spec and say so in the
+report; do not add an unproven regression test. The fix was verified by the existing suites (kudos 57/57, full 173/173, build 0).

@@ -36,6 +36,7 @@
 | F003_Homepage | Homepage | ui | TypeScript | Next.js app (root) | P0 |
 | F004_AwardsInformation | Awards Information | ui | TypeScript | Next.js app (root) | P1 |
 | F005_CountdownPrelaunch | Countdown Prelaunch | mixed | TypeScript | Next.js app (root) | P1 |
+| F006_KudosLiveBoard | Kudos Live Board | ui | TypeScript | Next.js app (root) | P1 |
 
 ## Feature Details
 
@@ -204,12 +205,42 @@
 
 ---
 
+### F006_KudosLiveBoard: Kudos Live Board
+
+**Type**: ui
+**Status**: implemented
+**Description**: Trang `/sun-kudos` (nhóm `(main)`, cần đăng nhập) thay trang giữ chỗ bằng Live board Sun* Kudos: Highlight Kudos (5 kudo nhiều tim nhất, carousel), Spotlight board (kéo, phóng to, tìm tên), ALL KUDOS cuộn vô hạn và sidebar số liệu cá nhân. Lọc hashtag và phòng ban qua URL (`?hashtag=<slug>&department=<code>`), thả tim hoặc bỏ tim qua Server Action gọi RPC `SECURITY DEFINER` `toggle_kudo_like` (ngày đặc biệt tính 2 tim), sao chép liên kết kudo; `/sun-kudos/<id>` là trang giữ chỗ. Feature đầu tiên có dữ liệu thật: chín bảng Postgres của Supabase (migration đầu tiên, RLS, seed).
+
+**Workspace**: Next.js app (root)
+**Languages**: TypeScript
+
+**Related Screens**:
+- SCR006_KudosLiveBoard: Sun* Kudos - Live board
+
+**Related User Stories**:
+- TBD (draft) — mã US### toàn cục cấp khi đối chiếu (xem `docs/features/F006_KudosLiveBoard/functional-spec.md`).
+
+**Related APIs/Routes**:
+- (GET) /sun-kudos
+- (GET) /sun-kudos/[id] (trang giữ chỗ)
+
+**Related Data Models**:
+- TBD (draft) — `departments`, `sunners`, `hashtags`, `kudos`, `kudo_hashtags`, `kudo_images`, `kudo_likes`, `special_days`, `secret_boxes`; mã MODEL### cấp khi đối chiếu (xem `docs/features/F006_KudosLiveBoard/technical-spec.md` § 4.2).
+
+**Related Background Logic**:
+- No data
+
+**Related Permissions**:
+- TBD (draft) — RLS các bảng Kudos và RPC `toggle_kudo_like`; xem `docs/system/permissions.md`.
+
+---
+
 ---
 
 ## Summary
 
-- **Total Features**: 5
-- **Total Screens**: 5
+- **Total Features**: 6
+- **Total Screens**: 6
 - **Total User Stories**: 8
 - **Total Routes**: 10 (2 backend ROUTE###: ROUTE001, ROUTE002; 8 trang giao diện: /, /login, /todo, /awards-information, /sun-kudos, /standards, /profile, /admin)
 - **Total Data Models**: 0

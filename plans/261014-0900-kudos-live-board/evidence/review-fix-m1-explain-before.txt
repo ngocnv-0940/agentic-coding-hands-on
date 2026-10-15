@@ -1,0 +1,25 @@
+BEGIN
+INSERT 0 20000
+ANALYZE
+SET
+== BEFORE: feed keyset path through kudos_private.matching_kudos (no filters, with cursor) ==
+PREPARE
+                                         QUERY PLAN                                          
+---------------------------------------------------------------------------------------------
+ Limit (actual rows=11 loops=1)
+   Buffers: shared hit=508
+   ->  Sort (actual rows=11 loops=1)
+         Sort Key: created_at DESC, id DESC
+         Sort Method: top-N heapsort  Memory: 26kB
+         Buffers: shared hit=508
+         ->  Function Scan on matching_kudos k (actual rows=15026 loops=1)
+               Filter: (($3 IS NULL) OR ($4 IS NULL) OR (ROW(created_at, id) < ROW($3, $4)))
+               Rows Removed by Filter: 4999
+               Buffers: shared hit=508
+ Planning:
+   Buffers: shared hit=20
+ Planning Time: 0.426 ms
+ Execution Time: 15.911 ms
+(14 rows)
+
+ROLLBACK

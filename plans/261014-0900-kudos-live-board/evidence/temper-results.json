@@ -1,0 +1,53 @@
+{
+  "commands": [
+    {
+      "command": "bunx tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final code (after NF1 fix): clean; evidence/nf1-fix-tsc.txt",
+      "ts": "2026-10-14T13:08:59.414Z"
+    },
+    {
+      "command": "bun run lint",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final code (after NF1 fix): clean; evidence/nf1-fix-lint.txt",
+      "ts": "2026-10-14T13:08:59.415Z"
+    },
+    {
+      "command": "supabase db reset && supabase test db",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final SQL (no SQL change after review fix round 1): 3 files, 119 pgTAP tests PASS; evidence/review-fix-pgtap-output.txt",
+      "ts": "2026-10-14T13:08:59.415Z"
+    },
+    {
+      "command": "bun run test:e2e e2e/kudos-",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final code: 57 passed; evidence/nf1-fix-e2e-kudos-output.txt",
+      "ts": "2026-10-14T13:08:59.415Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final code full default regression: 173 passed; evidence/nf1-fix-e2e-full-output.txt",
+      "ts": "2026-10-14T13:08:59.415Z"
+    },
+    {
+      "command": "bun run build",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "final code: compiled, /sun-kudos dynamic, /sun-kudos/[id] PPR; evidence/nf1-fix-build-output.txt",
+      "ts": "2026-10-14T13:08:59.415Z"
+    },
+    {
+      "command": "E2E_PROD=1 bun run test:e2e e2e/kudos-",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "prod server before review fixes: 57 passed; evidence/e2e-green-kudos-prod-output.txt (superseded attempt-1 dev exit 1 = phase-1 test defect, kept in raw-temper-runs.json)",
+      "ts": "2026-10-14T13:08:59.415Z"
+    }
+  ]
+}

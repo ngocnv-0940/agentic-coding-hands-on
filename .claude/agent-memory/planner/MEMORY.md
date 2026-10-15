@@ -1,3 +1,4 @@
 - [Next docs access + cacheComponents](project-next-docs-access-and-cache-components.md) — read local Next docs via `cd`; cacheComponents on shapes cookie-reading layouts
 - [plan.md format conventions](project-plan-md-format-conventions.md) — 3-col phases table + owner line; Track A ≤30 lines; refs block per phase
+- [Supabase data + mock RPC calls](project-supabase-data-and-mock-rpc-design-calls.md) — read RPCs, per-identity mock data, pgTAP, action/Activity gotchas
 - [Prelaunch lock design calls](project-prelaunch-lock-design-calls.md) — /_next exemption, setTimeout 2^31 chunking, tagged custom-env E2E runs

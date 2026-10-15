@@ -1,6 +1,6 @@
 # agentic-coding-hands-on
 
-Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có năm màn hình: `/login`, trang chủ SAA 2025 `/` (đích sau đăng nhập; header, đếm ngược tới sự kiện, lưới giải thưởng, footer), trang Hệ thống giải `/awards-information` (menu 6 hạng mục, 6 thẻ giải, liên kết `#<slug>`) `/todo` (hiện email và nút đăng xuất) và trang đếm ngược công khai `/prelaunch`. Các trang `/sun-kudos`, `/standards`, `/profile`, `/admin` hiện chỉ là trang giữ chỗ "Coming soon"; `/admin` chỉ cho người dùng có `app_metadata.role = 'admin'`. Mọi trang trừ `/login` và `/prelaunch` đều cần đăng nhập. Trước `SITE_LAUNCH_AT`, mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` và `/prelaunch` bị chuyển 307 về `/prelaunch` (khóa site, xem bên dưới). Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
+Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có sáu màn hình: `/login`, trang chủ SAA 2025 `/` (đích sau đăng nhập; header, đếm ngược tới sự kiện, lưới giải thưởng, footer), trang Hệ thống giải `/awards-information` (menu 6 hạng mục, 6 thẻ giải, liên kết `#<slug>`) `/todo` (hiện email và nút đăng xuất), trang đếm ngược công khai `/prelaunch` và màn Sun* Kudos live board `/sun-kudos` (Highlight, Spotlight, ALL KUDOS cuộn vô hạn, bộ lọc hashtag/phòng ban, bấm tim; đọc từ Postgres của Supabase). Các trang `/sun-kudos/<id>`, `/standards`, `/profile`, `/admin` hiện chỉ là trang giữ chỗ "Coming soon"; `/admin` chỉ cho người dùng có `app_metadata.role = 'admin'`. Mọi trang trừ `/login` và `/prelaunch` đều cần đăng nhập. Trước `SITE_LAUNCH_AT`, mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` và `/prelaunch` bị chuyển 307 về `/prelaunch` (khóa site, xem bên dưới). Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
 
 ## Yêu cầu
 
@@ -51,6 +51,17 @@ supabase start -x vector,logflare,edge-runtime,imgproxy
 
 Bốn dịch vụ bị loại (`vector`, `logflare`, `edge-runtime`, `imgproxy`) là các container analytics/phụ trợ cần docker socket; đăng nhập không dùng đến chúng.
 
+#### Cơ sở dữ liệu (Kudos live board)
+
+Schema nằm ở `supabase/migrations/` (ba tệp: bảng + RLS, hàm, quyền `execute`), dữ liệu mẫu ở `supabase/seed.sql`. Khi Supabase đang chạy:
+
+```bash
+supabase db reset      # áp migration rồi nạp seed.sql
+supabase test db       # chạy pgTAP trong supabase/tests/database/
+```
+
+Seed để `sunners.user_id` rỗng, nên tài khoản Google của bạn chưa phải Sunner nào: màn Kudos xem được nhưng nút tim vô hiệu. Muốn thử tim thì gắn tay một hàng `sunners` vào user của bạn (xem chú thích đầu `supabase/seed.sql`). Cả hai lệnh cần container runtime (Docker hoặc Podman).
+
 ### 3. Biến môi trường cho ứng dụng
 
 ```bash
@@ -86,7 +97,7 @@ Mở **`http://localhost:3000`**, không dùng `127.0.0.1`: cookie PKCE của Su
 | `bun run lint` | ESLint |
 | `bun run test:e2e` | Playwright E2E |
 
-E2E không cần Supabase thật: `playwright.config.ts` tự khởi động một Supabase giả ở cổng `54399` và ứng dụng ở cổng `3100` (4 worker khi chạy cục bộ, 2 trên CI), với `EVENT_START_AT` cố định `2025-12-26T18:30:00+07:00` và không đặt `SITE_LAUNCH_AT` (nên không khóa). Supabase giả có thêm hai danh tính để thử quyền admin: `app_metadata.role = 'admin'` và một tài khoản chỉ có `admin` trong `user_metadata` (không được cấp quyền). Muốn thử mốc sự kiện khác, đặt `E2E_EVENT_START_AT`; ví dụ `E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid` chạy riêng nhóm kiểm giá trị sai của trang chủ. Mốc khóa đặt bằng `E2E_SITE_LAUNCH_AT`; nhóm `@prelaunch` cần mốc ở tương lai, ví dụ `E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch`, và `E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid` chạy riêng nhóm kiểm giá trị sai của `/prelaunch`. Đặt `E2E_PROD=1` để chạy bằng `build` + `start` thay cho `next dev` (dùng khi một `next dev` khác đang giữ khoá thư mục). `E2E_SMOKE=1` bật các spec gắn tag `@smoke` (chạy với Supabase thật), nhưng hiện chưa có spec nào như vậy — luồng Google thật phải kiểm thủ công.
+E2E không cần Supabase thật: `playwright.config.ts` tự khởi động một Supabase giả ở cổng `54399` (cả Auth lẫn 6 RPC của Kudos, dữ liệu trong bộ nhớ) và ứng dụng ở cổng `3100` (4 worker khi chạy cục bộ, 2 trên CI), với `EVENT_START_AT` cố định `2025-12-26T18:30:00+07:00` và không đặt `SITE_LAUNCH_AT` (nên không khóa). Supabase giả có thêm hai danh tính để thử quyền admin: `app_metadata.role = 'admin'` và một tài khoản chỉ có `admin` trong `user_metadata` (không được cấp quyền). Muốn thử mốc sự kiện khác, đặt `E2E_EVENT_START_AT`; ví dụ `E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid` chạy riêng nhóm kiểm giá trị sai của trang chủ. Mốc khóa đặt bằng `E2E_SITE_LAUNCH_AT`; nhóm `@prelaunch` cần mốc ở tương lai, ví dụ `E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch`, và `E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid` chạy riêng nhóm kiểm giá trị sai của `/prelaunch`. Đặt `E2E_PROD=1` để chạy bằng `build` + `start` thay cho `next dev` (dùng khi một `next dev` khác đang giữ khoá thư mục). `E2E_SMOKE=1` bật các spec gắn tag `@smoke` (chạy với Supabase thật), nhưng hiện chưa có spec nào như vậy — luồng Google thật phải kiểm thủ công.
 
 ## Cấu trúc chính
 
@@ -95,6 +106,8 @@ E2E không cần Supabase thật: `playwright.config.ts` tự khởi động m�
 | `proxy.ts`, `lib/supabase/` | Làm mới phiên và chặn route; client Supabase |
 | `app/login/`, `app/todo/`, `app/prelaunch/` | Màn hình đăng nhập, `/todo` và trang đếm ngược `/prelaunch` (`_components`, `_wiring`, `_behavior`) |
 | `app/(main)/` | Trang chủ `/`, `/awards-information` và các trang giữ chỗ; layout chung có header, footer (kiểm lại phiên); `_components` hiển thị, `_behavior` menu và hook, `_wiring` container |
+| `lib/kudos/`, `app/(main)/sun-kudos/` | Truy vấn RPC và Server Action của Kudos live board (`kudo-board-queries.ts`, `load-more-kudos-action.ts`, `toggle-kudo-like-action.ts`); màn `/sun-kudos` (`_components`, `_behavior`, `_wiring`) |
+| `supabase/migrations/`, `supabase/seed.sql`, `supabase/tests/` | Schema Postgres, dữ liệu mẫu và test pgTAP của Kudos |
 | `lib/event/`, `lib/awards/`, `lib/auth/` | Đọc `EVENT_START_AT` và `SITE_LAUNCH_AT`, đếm ngược và quyết định khóa trước ngày ra mắt (`prelaunch-access.ts`); danh mục 6 giải thưởng và chi tiết giải (`award-categories`, `award-details`); người dùng hiện tại và vai trò admin |
 | `app/auth/callback/`, `app/auth/logout/` | `GET` đổi mã OAuth; `POST` đăng xuất |
 | `lib/i18n/` | Từ điển vi/en và cookie `NEXT_LOCALE` |

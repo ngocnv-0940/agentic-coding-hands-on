@@ -1,0 +1,38 @@
+{
+  "task": "Implement MoMorph screen 'Sun* Kudos - Live board' (MaZUn5xHXZ) at /sun-kudos: KV banner, Highlight Kudos carousel (top 5 by likes), Spotlight board, All Kudos infinite feed, sidebar stats + latest gift recipients, like toggle, hashtag/department filters, copy link — backed by new Supabase tables, RLS and a toggle_kudo_like RPC",
+  "mode": "auto",
+  "acceptanceCriteria": [
+    "/sun-kudos renders the live board for signed-in users; guests are sent to /login",
+    "Highlight shows the top 5 kudos by like count after filters; prev disabled on 1, next disabled on last, pager n/N, neighbours faded and inert; empty -> 'Hiện tại chưa có Kudos nào.'",
+    "Hashtag and department dropdowns list values from the DB, filter Highlight and All Kudos together (AND), reset the carousel to 1, and can be cleared; clicking a card hashtag sets the hashtag filter",
+    "All Kudos lists newest first, 10 per page, loads more on scroll; empty -> 'Hiện tại chưa có Kudos nào.'",
+    "Heart toggles like: gray -> red and +1, red -> gray and -1; one like per user per kudo; disabled on the user's own kudos; special day like credits 2 hearts to the sender, unlike revokes the stored amount",
+    "Copy Link copies <origin>/sun-kudos/<id> and shows 'Link copied — ready to share!'",
+    "Spotlight shows '<total> KUDOS' from the DB, receiver name nodes with hover tooltip and click to kudo detail, pan/zoom toggle, search input max 100 chars; loading and empty states",
+    "Sidebar shows the current user's kudos received/sent, hearts received, secret boxes opened/unopened; 'Mở Secret Box' opens the coming-soon modal; latest 10 gift recipients or 'Chưa có dữ liệu'",
+    "Time 'HH:mm - MM/DD/YYYY', content clamp 3 (highlight) / 5 (feed) lines, hashtags one line max 5, max 5 images, VI/EN copy parity",
+    "Visual matches Figma at 1440; no horizontal scroll at 768 and 375; existing e2e suites stay green"
+  ],
+  "touchpoints": [
+    "app/(main)/sun-kudos/**",
+    "lib/kudos/**",
+    "lib/i18n/dictionary-kudos-{vi,en}.ts, lib/i18n/get-dictionary.ts",
+    "supabase/migrations/*.sql, supabase/seed.sql",
+    "e2e/support/mock-supabase-server.ts",
+    "e2e/kudos-*.spec.ts",
+    "public/images/kudos/**"
+  ],
+  "blastRadius": [
+    "e2e mock Supabase server shared by every spec (auth routes must stay unchanged)",
+    "(main) layout and header nav (Sun* Kudos active state)",
+    "dictionary merge in lib/i18n/get-dictionary.ts",
+    "first DB schema in the repo (supabase db reset / seed)"
+  ],
+  "contracts": [
+    "toggle_kudo_like(kudo_id) RPC: one like per user, no self-like, special day = 2 hearts, unlike revokes stored hearts_awarded",
+    "RLS: authenticated SELECT only on board tables; kudo_likes writes only via the RPC",
+    "URL query ?hashtag=&department= is the filter state",
+    "mock-supabase /auth/v1 routes unchanged",
+    "node .claude/skills/_shared/lib/evidence-gate.cjs --evidence-dir <abs> --stage hard"
+  ]
+}

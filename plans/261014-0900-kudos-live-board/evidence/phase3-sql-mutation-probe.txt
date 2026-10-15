@@ -1,0 +1,71 @@
+# mutation probe: anon granted EXECUTE on toggle_kudo_like + special day forced to 1 heart; expect FAIL
+Connecting to local database...
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql ................ 
+# Failed test 3: "anon cannot execute toggle_kudo_like"
+#         have: true
+#         want: false
+# Failed test 28: "anon cannot call toggle_kudo_like"
+#       caught: P0001: sunner_not_found
+#       wanted: 42501
+# Looks like you failed 2 tests of 28
+Failed 2/28 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql ............. 
+# Failed test 8: "anon cannot execute any Kudos function"
+#         have: 1
+#         want: 0
+# Looks like you failed 1 test of 70
+Failed 1/70 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql .. ok
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql              (Wstat: 0 Tests: 28 Failed: 2)
+  Failed tests:  3, 28
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql           (Wstat: 0 Tests: 70 Failed: 1)
+  Failed test:  8
+Files=3, Tests=117,  0 wallclock secs ( 0.02 usr  0.00 sys +  0.01 cusr  0.01 csys =  0.04 CPU)
+Result: FAIL
+error running container: exit 1
+exit=1
+
+# mutation probe 2: + special day ignored (hearts_awarded always 1); expect more FAIL
+Connecting to local database...
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql ................ 
+# Failed test 3: "anon cannot execute toggle_kudo_like"
+#         have: true
+#         want: false
+# Failed test 19: "a like on a special day stores 2 hearts"
+#         have: 1
+#         want: 2
+# Failed test 20: "sender hearts = 1 (normal) + 2 (special)"
+#         have: 2
+#         want: 3
+# Failed test 28: "anon cannot call toggle_kudo_like"
+#       caught: P0001: sunner_not_found
+#       wanted: 42501
+# Looks like you failed 4 tests of 28
+Failed 4/28 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql ............. 
+# Failed test 8: "anon cannot execute any Kudos function"
+#         have: 1
+#         want: 0
+# Looks like you failed 1 test of 70
+Failed 1/70 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql .. ok
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql              (Wstat: 0 Tests: 28 Failed: 4)
+  Failed tests:  3, 19-20, 28
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql           (Wstat: 0 Tests: 70 Failed: 1)
+  Failed test:  8
+Files=3, Tests=117,  0 wallclock secs ( 0.02 usr  0.00 sys +  0.01 cusr  0.02 csys =  0.05 CPU)
+Result: FAIL
+error running container: exit 1
+exit=1

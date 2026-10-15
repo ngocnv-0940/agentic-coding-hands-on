@@ -1,5 +1,6 @@
 import { homeVi } from './dictionary-home-vi'
 import { awardsVi } from './dictionary-awards-vi'
+import { kudosVi } from './dictionary-kudos-vi'
 
 export const vi = {
   'meta.title': 'Đăng nhập - SAA 2025',
@@ -22,6 +23,7 @@ export const vi = {
   'prelaunch.metaTitle': 'SAA 2025',
   ...homeVi,
   ...awardsVi,
+  ...kudosVi,
 } as const
 
 /** Key set is derived from `vi`; `en` must provide every key (compile-time parity, F002:BR-002). */

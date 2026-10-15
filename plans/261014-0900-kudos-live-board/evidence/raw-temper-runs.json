@@ -1,0 +1,162 @@
+[
+  {
+    "command": "bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "typecheck clean on final code (evidence/tsc-final-output.txt)"
+  },
+  {
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "eslint clean on final code (evidence/lint-final-output.txt)"
+  },
+  {
+    "command": "bun run build",
+    "exitCode": 0,
+    "summary": "next build clean, no warnings or deprecations in output; /sun-kudos and /sun-kudos/[id] routes built (evidence/build-final-output.txt)"
+  },
+  {
+    "command": "supabase db reset",
+    "exitCode": 0,
+    "summary": "migrations and seed applied on local stack (evidence/db-reset-final-output.txt)"
+  },
+  {
+    "command": "supabase test db",
+    "exitCode": 0,
+    "summary": "pgTAP 3 files, 117 tests, PASS (evidence/pgtap-final-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos-",
+    "exitCode": 1,
+    "summary": "attempt 1, dev: 56 passed, 1 failed; the failure was a phase-1 test defect (spotlight drag started on the search input, so the drag was ignored). Fixed in the test, not in the app (evidence/e2e-green-kudos-dev-attempt1-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "GREEN dev rerun: 57 passed, 0 failed (evidence/e2e-green-kudos-dev-output.txt)"
+  },
+  {
+    "command": "E2E_PROD=1 bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "GREEN prod (build + start): 57 passed, 0 failed (evidence/e2e-green-kudos-prod-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e",
+    "exitCode": 0,
+    "summary": "full default regression: 173 passed, 0 failed, 0 flaky (evidence/e2e-full-default-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e --grep-invert kudos",
+    "exitCode": 0,
+    "summary": "non-kudos default subset rerun: 110 passed, 0 failed; the earlier 78-failure first attempt was a cold dev-server start, the identical rerun passed (evidence/e2e-regression-nonkudos-output.txt)"
+  },
+  {
+    "command": "bun visual-capture.ts (scratch, 1440/768/375)",
+    "exitCode": 0,
+    "summary": "no horizontal scroll at any width (scrollWidth == clientWidth); screenshots in evidence/visual/; mismatches listed in the report"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "nf1 like-state fix: 57 passed, 0 failed, 0 skipped (6.2m), no cold-start flake so no rerun; evidence/nf1-fix-e2e-kudos-output.txt"
+  },
+  {
+    "command": "bun run test:e2e",
+    "exitCode": 0,
+    "summary": "nf1 like-state fix, full default suite: 173 passed, 0 failed, 0 skipped (7.5m), page composition change covered; evidence/nf1-fix-e2e-full-output.txt"
+  },
+  {
+    "command": "bun run build",
+    "exitCode": 0,
+    "summary": "nf1 like-state fix: Compiled successfully, 15 static pages, /sun-kudos dynamic and /sun-kudos/[id] Partial Prerender, no prerender error; evidence/nf1-fix-build-output.txt"
+  },
+  {
+    "command": "E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+    "exitCode": 0,
+    "summary": "P prelaunch gate on final code: 35 passed, 0 failed (evidence/final-prelaunch-P-output.txt)"
+  },
+  {
+    "command": "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+    "exitCode": 0,
+    "summary": "I event-env-invalid gate on final code: 2 passed, 0 failed (evidence/final-event-env-invalid-I-output.txt)"
+  },
+  {
+    "command": "E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid",
+    "exitCode": 0,
+    "summary": "L launch-env-invalid gate on final code: 2 passed, 0 failed (evidence/final-launch-env-invalid-L-output.txt)"
+  },
+  {
+    "command": "E2E_PROD=1 bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "K-prod on final code (build + start): 57 passed, 0 failed (evidence/final-kudos-prod-K-output.txt)"
+  },
+  {
+    "command": "playwright test e2e/kudos- --list",
+    "exitCode": 0,
+    "summary": "Test list on final code: 57 tests in 6 files, titles match tc-mapping prefixes (evidence/final-kudos-list-output.txt)"
+  },
+  {
+    "command": "node scratchpad/capture-visual.cjs (prod build :3300, stub login, 1440/768/375)",
+    "exitCode": 0,
+    "summary": "Visual capture on final code: 3 full-page PNGs + metrics; no horizontal scroll at any width; 0 incomplete images (evidence/final-visual-capture-output.txt, visual/visual-metrics-final.json)"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos- --grep \"FR-303|FR-004|FR-201 / DEC-002|SC-001 / FR-106|TC FUNCTION 38\"",
+    "exitCode": 0,
+    "summary": "Acceptance subset on final code: 6 passed (first attempt exit 1 was a wrong hashtag index in the test, fixed; a concurrent polish run held :3100 once, waited it out) (evidence/final-acceptance-subset-output.txt)"
+  },
+  {
+    "command": "temporary mutation probe e2e/kudos-zz-mutation-probe (deleted after run)",
+    "exitCode": 1,
+    "summary": "Expected failure: clamp removed gives box 384px vs 160px, check fails. Fade probe passed only on a mid-transition single read (not a poll); fade not proven by mutation (evidence/final-acceptance-mutation-probe-output.txt)"
+  },
+  {
+    "command": "bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "typecheck clean after acceptance edits (evidence/final-acceptance-tsc-output.txt)"
+  },
+  {
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "eslint clean after acceptance edits (evidence/final-acceptance-lint-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "K dev on acceptance edits: 60 passed, 0 failed (3 new tests, FR-303 and TC 38 extended) (evidence/final-acceptance-kudos-k-output.txt)"
+  },
+  {
+    "command": "bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "typecheck clean on final tree after polish round 2"
+  },
+  {
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "eslint clean on final tree after polish round 2"
+  },
+  {
+    "command": "bun run build",
+    "exitCode": 0,
+    "summary": "next build clean, no warnings or deprecations (final2-build-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "K dev final tree: 60 passed, 0 failed"
+  },
+  {
+    "command": "E2E_PROD=1 bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "K prod final tree (build + start): 60 passed, 0 failed"
+  },
+  {
+    "command": "bun run test:e2e",
+    "exitCode": 0,
+    "summary": "D full final tree: 176 passed, 0 failed"
+  },
+  {
+    "command": "node capture-visual2.cjs (prod :3300, stub login, 1440/768/375)",
+    "exitCode": 0,
+    "summary": "visual recapture final2: 3 full-page PNGs, no horizontal scroll, 0 incomplete images; 1440 NOT within tolerance (see visual-mismatch-list round 2)"
+  }
+]

@@ -1,0 +1,48 @@
+$ supabase test db   # 2026-10-14T16:54:24+07:00, before any kudos migration exists
+Connecting to local database...
+Trying to pull public.ecr.aws/supabase/pg_prove:3.36...
+Getting image source signatures
+Copying blob sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1
+Copying blob sha256:dcccee43ad5d95c556da9df1c1d859fd9864643786d8c2c323ca9886c51b07b9
+Copying blob sha256:06d62d0de6d72593c198382af609a5c4531aa0d9488f76e07f5887ce88257b93
+Copying blob sha256:a22cb17b3b93445903f8031cff12e6eea415db815670886c67669dae634c3b57
+Copying config sha256:951c67c97a83803f250e88e189cc8caff3d648e6f59aa52a546b690b35cdedcc
+Writing manifest to image destination
+951c67c97a83803f250e88e189cc8caff3d648e6f59aa52a546b690b35cdedcc
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:17: ERROR:  relation "public.sunners" does not exist
+LINE 1: insert into public.sunners (id, user_id, full_name) values
+                    ^
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql ................ 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 28/28 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:14: ERROR:  relation "public.departments" does not exist
+LINE 1: insert into public.departments (id, code, name) values
+                    ^
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql ............. 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 71/71 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:11: ERROR:  relation "public.sunners" does not exist
+LINE 1: update public.sunners set user_id = 'a3000000-0000-4000-8000...
+               ^
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql .. 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 19/19 subtests 
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql              (Wstat: 768 (exited 3) Tests: 0 Failed: 0)
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 28 tests but ran 0.
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql           (Wstat: 768 (exited 3) Tests: 0 Failed: 0)
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 71 tests but ran 0.
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql (Wstat: 768 (exited 3) Tests: 0 Failed: 0)
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 19 tests but ran 0.
+Files=3, Tests=0,  0 wallclock secs ( 0.01 usr  0.01 sys +  0.01 cusr  0.00 csys =  0.03 CPU)
+Result: FAIL
+error running container: exit 1
+exit=1

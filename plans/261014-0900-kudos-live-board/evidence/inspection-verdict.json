@@ -1,0 +1,110 @@
+{
+ "score": 9,
+ "criticalCount": 0,
+ "decision": "SEALED",
+ "acceptanceCovered": [
+  "/sun-kudos renders the live board for signed-in users; guests are sent to /login — proof: e2e/kudos-board-access-and-layout.spec.ts:36 (/sun-kudos guest -> /login) and :43 (/sun-kudos/<id> guest -> /login); K dev 60/60 and K prod 60/60 (final2-kudos-*-output.txt)",
+  "Highlight shows the top 5 kudos by like count after filters; prev disabled on 1, next disabled on last, pager n/N, neighbours faded and inert; empty -> 'Hiện tại chưa có Kudos nào.' — proof: e2e/kudos-highlight-and-filters.spec.ts carousel pager/prev/next disabled specs and :36 neighbour opacity < 1 with centre = 1 at 1440; pgTAP 119/119 for top-5 ordering; K dev/prod 60/60",
+  "Hashtag and department dropdowns list values from the DB, filter Highlight and All Kudos together (AND), reset the carousel to 1, and can be cleared; clicking a card hashtag sets the hashtag filter — proof: e2e/kudos-highlight-and-filters.spec.ts filter specs (TC FUNCTION 29/30, AND across Highlight and feed, clear, card hashtag); pgTAP 119/119; K dev/prod 60/60",
+  "All Kudos lists newest first, 10 per page, loads more on scroll; empty -> 'Hiện tại chưa có Kudos nào.' — proof: e2e/kudos-feed-and-cards.spec.ts FR-301/FR-302 infinite scroll 10 -> 20 -> 25 newest first with no duplicate ids; K dev/prod 60/60",
+  "Heart toggles like: gray -> red and +1, red -> gray and -1; one like per user per kudo; disabled on the user's own kudos; special day like credits 2 hearts to the sender, unlike revokes the stored amount — proof: e2e/kudos-like-and-hearts.spec.ts plus pgTAP toggle_kudo_like cases (PK single like, self_like rejected, special day 2, unlike revokes stored value), pgTAP 119/119 (review-fix-pgtap-output.txt)",
+  "Copy Link copies <origin>/sun-kudos/<id> and shows 'Link copied — ready to share!' — proof: e2e/kudos-feed-and-cards.spec.ts / kudos-sidebar-and-modal.spec.ts copy-link specs (origin/sun-kudos/<id>, toast after resolve); K dev/prod 60/60",
+  "Spotlight shows '<total> KUDOS' from the DB, receiver name nodes with hover tooltip and click to kudo detail, pan/zoom toggle, search input max 100 chars; loading and empty states — proof: e2e/kudos-spotlight.spec.ts total, tooltip, node click to detail, :33 pan/zoom (drag and wheel scale only while Pan/Zoom is on), search 100-char limit. Loading state and the 100-node cap are not E2E-provable (no dedicated loading UI; limit 100 enforced in kudos_spotlight, fixture has 8 receivers): accepted deviation per clarifications.md 'Session 2026-10-14 (visual verdict after polish round 2)'; reasons in evidence/sc-mapping.md",
+  "Sidebar shows the current user's kudos received/sent, hearts received, secret boxes opened/unopened; 'Mở Secret Box' opens the coming-soon modal; latest 10 gift recipients or 'Chưa có dữ liệu' — proof: e2e/kudos-sidebar-and-modal.spec.ts stats, coming-soon modal, latest 10 recipients and empty state; pgTAP RPC cases; K dev/prod 60/60",
+  "Time 'HH:mm - MM/DD/YYYY', content clamp 3 (highlight) / 5 (feed) lines, hashtags one line max 5, max 5 images, VI/EN copy parity — proof: e2e/kudos-feed-and-cards.spec.ts:64 FR-004 exact label '13:10 - 10/10/2026' in Asia/Ho_Chi_Minh (fixture day = month, so MM/DD order is proven by code lib/kudos/kudo-display-format.ts:19, not by the test); :43 FR-303 clamp 3/5 lines asserted by box height 3x/5x line-height +-2px and scrollHeight > clientHeight; FR-304 five hashtags with ellipsis; FR-305 five images; VI/EN key parity compile-time: lib/i18n/dictionary-kudos-en.ts:4 typed { [K in keyof typeof kudosVi]: string } (bunx tsc --noEmit exit 0 on final tree)",
+  "Visual matches Figma at 1440; no horizontal scroll at 768 and 375; existing e2e suites stay green — proof: no horizontal scroll at 1440/768/375 (scrollWidth = clientWidth, visual-mismatch-list.md); existing suites green: D full 176 passed, K dev 60/60, K prod 60/60, tsc/lint/build exit 0 (final2-*). 1440 Figma match is accepted deviation per clarifications.md 'Session 2026-10-14 (visual verdict after polish round 2)': banner +32 px, card +17 px (~3%), filter gap; evidence visual-mismatch-list.md 'After polish round 2' shows layout/legibility intact and under 6%; follow-up owned by UI",
+  "/sun-kudos guarded: proxy PROTECTED_ROOTS + (main) layout getCurrentUser; anon has no RLS read and no RPC execute",
+  "Highlight top 5 by like rows, ties newest then id desc, filters AND (pgTAP + mock parity)",
+  "Filters sanitized server-side against DB options, URL-driven, keyed remount resets carousel/feed",
+  "All Kudos newest first, 10 per page via limit+1 keyset, load-more server action re-validates input",
+  "Like toggle: one per sunner per kudo (PK), self_like rejected in DB, special day stores 2, unlike revokes stored value",
+  "Copy link writes origin/sun-kudos/<encoded id>, success toast only after resolve",
+  "Spotlight total/receivers/recent from RPC, search capped at 100 chars, pan/zoom",
+  "Sidebar stats and 10 latest opened gifts from RPC, zeros without sunner row",
+  "User content rendered as text only (no innerHTML)"
+ ],
+ "regressionChecked": [
+  "proxy lock/auth guard covers server action POSTs",
+  "homepage-access spec list edit (only /sun-kudos removed, [id] placeholder kept)",
+  "mock-supabase-server additive identities and /rest/v1 routing",
+  "dictionary vi/en spreads",
+  "grants/RLS on all 9 tables and 6 RPCs",
+  "like state provider reset-on-filter-change (render-time adjust, no loop) and page-level resolveBoardFilters (cached getFilterOptions)"
+ ],
+ "contractStatus": "OK",
+ "refuted": [],
+ "unproven": [],
+ "reachableRegressions": [],
+ "findings": [
+  {
+   "severity": "Medium",
+   "category": "Performance",
+   "location": "supabase/migrations/20261014095441_kudos_live_board_functions.sql:20-28",
+   "summary": "addressed — matching_kudos has SET search_path so it is never inlined; feed/highlight materialise all kudos and cannot use kudos_created_at_id_idx for keyset paging",
+   "disposition": "Accept"
+  },
+  {
+   "severity": "Medium",
+   "category": "Documentation",
+   "location": "docs/system/permissions.md:38",
+   "summary": "Draft placeholders (auto-create sunner, HCM vs UTC 'finalised in plan') contradict final code: no auto-create, Asia/Ho_Chi_Minh",
+   "disposition": "Defer"
+  },
+  {
+   "severity": "Low",
+   "category": "Data integrity",
+   "location": "supabase/migrations/20261014095439_kudos_live_board_tables.sql:27-35",
+   "summary": "addressed — ms precision enforced only by column default; explicit microsecond insert would make the cursor skip rows (to_char MS truncates); comment says 'repeat' instead of 'skip'. Unreachable today",
+   "disposition": "Accept"
+  },
+  {
+   "severity": "Low",
+   "category": "Concurrency",
+   "location": "supabase/migrations/20261014095441_kudos_live_board_functions.sql:170-178",
+   "summary": "Two concurrent toggles on an already-liked kudo can both return liked:false (net single unlike); hearts stay consistent",
+   "disposition": "Defer"
+  },
+  {
+   "severity": "Low",
+   "category": "State",
+   "location": "app/(main)/sun-kudos/_behavior/use-kudo-like.ts:29-30",
+   "summary": "addressed — Confirmed like entries never invalidated; after filter navigation they override fresher server likeCount (now reset in kudo-like-state-provider.tsx:50-53 when resetKey changes)",
+   "disposition": "Accept"
+  },
+  {
+   "severity": "Low",
+   "category": "Security",
+   "location": "supabase/migrations/20261014095439_kudos_live_board_tables.sql:104",
+   "summary": "secret_boxes fully readable incl. unopened boxes' prize; accepted in clarifications, tighten before real prize data",
+   "disposition": "Defer"
+  },
+  {
+   "severity": "Low",
+   "category": "Maintainability",
+   "location": "app/(main)/sun-kudos/_components/feed-view.tsx:15",
+   "summary": "addressed — Cards re-keyed by position; safe only because feed is append-only",
+   "disposition": "Accept"
+  },
+  {
+   "severity": "Low",
+   "category": "Security",
+   "location": "app/(main)/sun-kudos/_components/kudo-card.tsx:88",
+   "summary": "DB image url used as href without scheme validation; trusted seed only today",
+   "disposition": "Defer"
+  },
+  {
+   "severity": "Low",
+   "category": "State",
+   "location": "app/(main)/sun-kudos/_behavior/use-kudo-like.ts:25",
+   "summary": "addressed — Base-value staleness check let two cards of the same kudo diverge across server snapshots; check removed, one shared entry per kudo read by every card (use-kudo-like.ts:21-35), reset on filter change",
+   "disposition": "Accept"
+  },
+  {
+   "severity": "Low",
+   "category": "Performance",
+   "location": "app/(main)/sun-kudos/page.tsx:35",
+   "summary": "Page-level await of resolveBoardFilters delays the start of filter-independent Spotlight and sidebar fetches by one cached getFilterOptions round trip; no correctness impact",
+   "disposition": "Defer"
+  }
+ ]
+}
