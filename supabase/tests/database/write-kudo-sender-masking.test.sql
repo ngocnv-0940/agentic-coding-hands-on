@@ -52,8 +52,8 @@ select is((select count(*) from pg_attribute a where a.attrelid in ('public.kudo
 select is((select array_agg(p.oid::regprocedure::text order by p.oid::regprocedure::text) from pg_proc p
            where p.prosecdef and (p.pronamespace = 'kudos_private'::regnamespace
              or p.proname in ('kudos_filter_options','kudos_highlight','kudos_feed_page','kudos_spotlight','kudos_sidebar','search_sunners'))),
-  array['kudos_private.kudo_cards(uuid[],uuid)', 'kudos_private.viewer_sunner_id()', 'kudos_sidebar()'],
-  'only kudo_cards, viewer_sunner_id and kudos_sidebar read hidden columns as DEFINER');
+  array['kudos_private.kudo_cards(uuid[],uuid)', 'kudos_private.provision_sunner()', 'kudos_private.viewer_sunner_id()', 'kudos_sidebar()'],
+  'only kudo_cards, viewer_sunner_id and kudos_sidebar read hidden columns as DEFINER; provision_sunner (auth.users trigger, no client EXECUTE) writes user_id');
 select is((select count(*) from pg_proc p where (p.pronamespace = 'kudos_private'::regnamespace
              or p.proname in ('search_sunners', 'create_kudo')) and p.proconfig is distinct from array['search_path=""']),
   0::bigint, 'every Kudos helper and the new RPCs pin search_path to empty');

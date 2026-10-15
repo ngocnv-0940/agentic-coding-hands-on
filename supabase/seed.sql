@@ -2,7 +2,11 @@
 -- Mirrors the E2E mock fixture row for row: e2e/support/kudos-fixture-ids.ts (ids, names) and
 -- e2e/support/mock-kudos-fixture-{people,kudos}.ts (departments, kudos, hashtags, boxes); Figma content.
 -- supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql fails if the two drift apart.
--- sunners.user_id stays null (real Google uids are unknown), the write-kudo writer included. To act as a sunner locally:
+-- sunners.user_id stays null here (real Google uids are unknown), the write-kudo writer included. A Google
+-- account needs no linking to read or write kudos: the auth.users trigger (BR-012) creates its own sunners row
+-- (email/password accounts get none). To act as a seeded persona locally, drop the account's own row first if
+-- it has one (user_id is unique), then link:
+--   delete from public.sunners where user_id = '<auth.users id>';
 --   update public.sunners set user_id = '<auth.users id>' where id = '00000000-0000-4000-8000-000000000101';
 
 insert into public.departments (code, name) values
