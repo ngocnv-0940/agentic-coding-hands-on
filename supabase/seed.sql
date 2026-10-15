@@ -2,7 +2,7 @@
 -- Mirrors the E2E mock fixture row for row: e2e/support/kudos-fixture-ids.ts (ids, names) and
 -- e2e/support/mock-kudos-fixture-{people,kudos}.ts (departments, kudos, hashtags, boxes); Figma content.
 -- supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql fails if the two drift apart.
--- sunners.user_id stays null (real Google uids are unknown). To act as a sunner locally:
+-- sunners.user_id stays null (real Google uids are unknown), the write-kudo writer included. To act as a sunner locally:
 --   update public.sunners set user_id = '<auth.users id>' where id = '00000000-0000-4000-8000-000000000101';
 
 insert into public.departments (code, name) values
@@ -20,7 +20,14 @@ insert into seed_sunner_key (key, id) values
   ('liker', '00000000-0000-4000-8000-000000000103'), ('nhat', '00000000-0000-4000-8000-000000000104'),
   ('xuan', '00000000-0000-4000-8000-000000000105'), ('linh', '00000000-0000-4000-8000-000000000106'),
   ('quy', '00000000-0000-4000-8000-000000000107'), ('duc', '00000000-0000-4000-8000-000000000108'),
-  ('chuc', '00000000-0000-4000-8000-000000000109'), ('tam', '00000000-0000-4000-8000-000000000110');
+  ('chuc', '00000000-0000-4000-8000-000000000109'), ('tam', '00000000-0000-4000-8000-000000000110'),
+  -- write-kudo (F007): the writer and receiver-only rows for the recipient search (no kudos, board counts unchanged)
+  ('writer', '00000000-0000-4000-8000-000000000111'), ('an', '00000000-0000-4000-8000-000000000112'),
+  ('nguyenVanA', '00000000-0000-4000-8000-000000000113'), ('binh', '00000000-0000-4000-8000-000000000114'),
+  ('cuong', '00000000-0000-4000-8000-000000000115'), ('dung', '00000000-0000-4000-8000-000000000116'),
+  ('hang', '00000000-0000-4000-8000-000000000117'), ('hieu', '00000000-0000-4000-8000-000000000118'),
+  ('huong', '00000000-0000-4000-8000-000000000119'), ('khoa', '00000000-0000-4000-8000-000000000120'),
+  ('lan', '00000000-0000-4000-8000-000000000121');
 
 insert into public.sunners (id, full_name, avatar_url, department_id, hero_title)
 select k.id, v.full_name, v.avatar_url, d.id, v.hero_title
@@ -34,7 +41,18 @@ from (values
   ('quy', 'Nguyễn Văn Quy', '/images/kudos/avatars/quy.png', 'DEV', 'rising_hero'),
   ('duc', 'Trần Minh Đức', null, 'DEV', null),
   ('chuc', 'Nguyễn Bá Chúc', '/images/kudos/avatars/chuc.png', 'HR', 'super_hero'),
-  ('tam', 'Lê Thị Tâm', null, 'HR', null)
+  ('tam', 'Lê Thị Tâm', null, 'HR', null),
+  ('writer', 'Vũ Hải Đăng', null, 'DEV', null),
+  ('an', 'Nguyễn Văn An', null, 'DEV', null),
+  ('nguyenVanA', 'NguyenVanA', null, 'HR', null),
+  ('binh', 'Nguyễn Thị Bình', null, 'DEV', null),
+  ('cuong', 'Nguyễn Quốc Cường', null, 'DEV', null),
+  ('dung', 'Nguyễn Đức Dũng', null, 'DEV', null),
+  ('hang', 'Nguyễn Thanh Hằng', null, 'DEV', null),
+  ('hieu', 'Nguyễn Minh Hiếu', null, 'DEV', null),
+  ('huong', 'Nguyễn Thu Hương', null, 'DEV', null),
+  ('khoa', 'Nguyễn Anh Khoa', null, 'DEV', null),
+  ('lan', 'Nguyễn Ngọc Lan', null, 'DEV', null)
 ) as v (key, full_name, avatar_url, department_code, hero_title)
 join seed_sunner_key k on k.key = v.key
 join public.departments d on d.code = v.department_code;

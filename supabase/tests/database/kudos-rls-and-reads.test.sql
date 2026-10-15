@@ -39,7 +39,7 @@ insert into public.kudo_hashtags (kudo_id, hashtag_id)
 insert into public.kudo_hashtags (kudo_id, hashtag_id) values
   ('c2000000-0000-4000-8000-000000000007', 'e2000000-0000-4000-8000-000000000002');
 insert into public.kudo_images (kudo_id, url, position)
-  select 'c2000000-0000-4000-8000-000000000007', '/pgtap/img-' || p || '.jpg', p from generate_series(5, 0, -1) p;
+  select 'c2000000-0000-4000-8000-000000000007', '/images/pgtap/img-' || p || '.jpg', p from generate_series(5, 0, -1) p;
 -- like counts: k3=3, k1=2, k2=2, k4=1 (worth 2 hearts), k5=1 (by the viewer), k6=1, k7=0
 insert into public.kudo_likes (kudo_id, sunner_id, hearts_awarded) values
   ('c2000000-0000-4000-8000-000000000001', 'b2000000-0000-4000-8000-000000000005', 1),
@@ -92,9 +92,10 @@ select is((select count(*) from unnest(array['anon','authenticated']) r,
              unnest(array['INSERT','UPDATE','DELETE','TRUNCATE']) p
            where has_table_privilege(r, 'public.' || t, p)),
   0::bigint, 'anon and authenticated hold no write privilege on any Kudos table');
+-- kudos_sidebar is a narrow SECURITY DEFINER since F007 (it reads the hidden kudos.sender_id; write-kudo-sender-masking)
 select is((select count(*) from pg_proc where pronamespace = 'public'::regnamespace and prosecdef
-           and proname in ('kudos_filter_options','kudos_highlight','kudos_feed_page','kudos_spotlight','kudos_sidebar')),
-  0::bigint, 'the 5 read RPCs are SECURITY INVOKER (RLS applies)');
+           and proname in ('kudos_filter_options','kudos_highlight','kudos_feed_page','kudos_spotlight')),
+  0::bigint, 'the 4 board read RPCs are SECURITY INVOKER (RLS applies)');
 select is((select count(*) from pg_proc where pronamespace = 'public'::regnamespace
            and proname in ('kudos_filter_options','kudos_highlight','kudos_feed_page','kudos_spotlight','kudos_sidebar','toggle_kudo_like')),
   6::bigint, 'the 6 RPCs exist exactly once each');
@@ -117,10 +118,11 @@ select is((select count(*) from pg_proc p, aclexplode(p.proacl) a where a.grante
 -- anon: no rows, no RPCs
 set local role anon;
 set local request.jwt.claims = '{"role":"anon"}';
-select is(array[(select count(*) from public.departments), (select count(*) from public.sunners), (select count(*) from public.hashtags),
-                 (select count(*) from public.kudos), (select count(*) from public.kudo_hashtags), (select count(*) from public.kudo_images),
+-- kudos and sunners grant anon no column at all since F007 (42501, asserted in write-kudo-sender-masking)
+select is(array[(select count(*) from public.departments), (select count(*) from public.hashtags),
+                 (select count(*) from public.kudo_hashtags), (select count(*) from public.kudo_images),
                  (select count(*) from public.kudo_likes), (select count(*) from public.special_days), (select count(*) from public.secret_boxes)],
-  array[0,0,0,0,0,0,0,0,0]::bigint[], 'anon reads 0 rows from every Kudos table');
+  array[0,0,0,0,0,0,0]::bigint[], 'anon reads 0 rows from the other 7 Kudos tables');
 select throws_ok($$select public.kudos_filter_options()$$, '42501', null, 'anon cannot call kudos_filter_options');
 select throws_ok($$select public.kudos_highlight(null, null)$$, '42501', null, 'anon cannot call kudos_highlight');
 select throws_ok($$select public.kudos_feed_page(null, null, null, null, 10)$$, '42501', null, 'anon cannot call kudos_feed_page');
@@ -195,7 +197,7 @@ select is(jsonb_array_length(pg_temp.got('feed_bulk_500')), 50, 'p_limit is clam
 
 -- KudoCard / Person shape and values
 select is(pg_temp.keys(pg_temp.card('feed_all', 5)),
-  array['canLike','content','createdAt','hashtags','id','images','likeCount','likedByViewer','receiver','sender','title'], 'KudoCard keys');
+  array['anonymousName','canLike','content','createdAt','hashtags','id','images','isAnonymous','likeCount','likedByViewer','receiver','sender','title'], 'KudoCard keys');
 select is(pg_temp.keys(pg_temp.card('feed_all', 5) -> 'sender'),
   array['avatarUrl','department','heroTitle','id','name','receivedCount'], 'Person keys');
 select is(pg_temp.keys(pg_temp.card('feed_all', 7) -> 'hashtags' -> 0), array['label','slug'], 'hashtag keys');
@@ -211,7 +213,7 @@ select is(pg_temp.card('feed_all', 3) -> 'likeCount', '3'::jsonb, 'likeCount cou
 select is(pg_temp.card('feed_all', 1) -> 'title', '"PgTap Title"'::jsonb, 'title is returned');
 select is(pg_temp.card('feed_all', 2) -> 'title', 'null'::jsonb, 'a missing title is null');
 select is(pg_temp.card('feed_all', 7) -> 'images',
-  '[{"url":"/pgtap/img-0.jpg"},{"url":"/pgtap/img-1.jpg"},{"url":"/pgtap/img-2.jpg"},{"url":"/pgtap/img-3.jpg"},{"url":"/pgtap/img-4.jpg"}]'::jsonb,
+  '[{"url":"/images/pgtap/img-0.jpg"},{"url":"/images/pgtap/img-1.jpg"},{"url":"/images/pgtap/img-2.jpg"},{"url":"/images/pgtap/img-3.jpg"},{"url":"/images/pgtap/img-4.jpg"}]'::jsonb,
   'images: at most 5, by position');
 select is(pg_temp.card('feed_all', 7) -> 'hashtags',
   '[{"slug":"pgtap-alpha","label":"#PgTapAlpha"},{"slug":"pgtap-board","label":"#PgTapBoard"}]'::jsonb, 'hashtags: all, by label');
