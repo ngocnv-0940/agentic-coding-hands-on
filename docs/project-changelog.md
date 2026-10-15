@@ -2,6 +2,24 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-15 — Modal Viết Kudo trên /sun-kudos (F007_WriteKudo)
+
+**Thêm**
+
+- Nút compose trên `/sun-kudos` mở modal Viết Kudo (thay modal Coming soon); nút bị khoá khi tài khoản chưa có hàng `sunners`. Form: tìm người nhận (không phân biệt dấu, tối đa 10, trừ chính mình), tiêu đề 1-100 ký tự, nội dung dùng trình soạn thảo Tiptap 3.32.0 (tải lười; có `@` mention, liên kết http/https), 1-5 hashtag có sẵn, tối đa 5 ảnh jpeg/png/webp mỗi ảnh ≤5 MB, tuỳ chọn gửi ẩn danh kèm bí danh ≤50 ký tự. Nút Gửi vẫn bấm được khi thiếu dữ liệu và hiện toàn bộ lỗi. Mã ở `app/(main)/sun-kudos/` (`_components`, `_behavior`, `_wiring`), `lib/kudos/`, từ điển `lib/i18n/dictionary-write-kudo-{vi,en}.ts`.
+- Migration `supabase/migrations/…035942..48_write_kudo_*.sql`: cột mới, bucket Storage `kudo-images`, RPC `create_kudo` (`SECURITY DEFINER`, một giao dịch, kiểm tra lại phía máy chủ) và `search_sunners`, quyền.
+- Ảnh tải thẳng từ trình duyệt lên bucket `kudo-images` (tên đối tượng là uuid), `create_kudo` kiểm tra chủ sở hữu; lỗi thì dọn ảnh đã tải. `kudo_images.url` lưu `kudo-images/<tên>`, `lib/kudos/resolve-kudo-image-url.ts` dựng URL công khai.
+- Che người gửi ẩn danh: thu `SELECT` cột `kudos.sender_id` và `sunners.user_id`, `kudo_cards`, `viewer_sunner_id`, `kudos_sidebar` chuyển sang `SECURITY DEFINER`; thẻ ẩn danh trả `sender: null` cùng `anonymousName`. Sau khi gửi, `router.refresh()` và feed đổi key theo id đầu để Kudo mới lên đầu.
+- 5 spec E2E `e2e/write-kudo-*.spec.ts` (76 test); mock Supabase thêm route tìm kiếm, tạo và Storage.
+
+**Thay đổi**
+
+- `e2e/kudos-sidebar-and-modal.spec.ts` (TC 19) kiểm modal Viết Kudo thay vì Coming soon; `playwright.config.ts` chỉ tái dùng server khi `E2E_PROD`.
+
+**Lưu ý**
+
+- Kiểm chứng: E2E write-kudo 76/76 (dev và prod), toàn bộ 252, pgTAP 263, smoke trên stack thật đạt, kiểm tra độc lập 9.5 SEALED. Chưa commit. Bản tiếng Anh của chuỗi mới chờ người dùng xác nhận. Việc còn mở ở `plans/261015-0950-write-kudo-modal/reports/delivery-tracker-261015-write-kudo-status.md`.
+
 ## 2026-10-14 — Sun* Kudos Live board và schema Postgres đầu tiên (F006_KudosLiveBoard, SCR006)
 
 **Thêm**

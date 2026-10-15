@@ -174,3 +174,10 @@ Trang tối thiểu được bảo vệ, nguồn `app/todo/page.tsx:11`. Hiện 
 **Route:** /sun-kudos
 **Description:** Live board Sun* Kudos (thiết kế MoMorph `MaZUn5xHXZ`) cho người đã đăng nhập, thay trang giữ chỗ trong nhóm `(main)`: banner KUDOS và thanh ghi nhận, Highlight Kudos (5 kudo nhiều tim nhất, carousel), Spotlight board (kéo, phóng to, tìm tên), ALL KUDOS cuộn vô hạn và sidebar số liệu cá nhân. Lọc theo hashtag, phòng ban qua URL (`?hashtag=&department=`), thả tim qua RPC `toggle_kudo_like`, sao chép liên kết kudo; `/sun-kudos/<id>` là trang giữ chỗ. Dữ liệu thật từ Postgres của Supabase. Đặc tả đầy đủ ở `docs/screens/SCR006_KudosLiveBoard/spec.md`.
 **States:** loading, empty, error, saving, success
+
+## SCR007_WriteKudo: Viết Kudo
+
+**Feature:** F007 — Write Kudo
+**Route:** /sun-kudos (modal trên Live board, không có route riêng)
+**Description:** Modal "Viết Kudo" (thiết kế MoMorph `ihQ26W78P2`) mở từ thanh ghi nhận trên `SCR006_KudosLiveBoard`, cho Sunner đã đăng nhập: tìm và chọn người nhận, đặt danh hiệu, soạn lời cảm ơn có định dạng (đậm, nghiêng, gạch ngang, danh sách số, trích dẫn, liên kết, nhắc tên `@`), gắn 1 đến 5 hashtag có sẵn, đính tối đa 5 ảnh (Supabase Storage bucket `kudo-images`), tuỳ chọn gửi ẩn danh rồi gửi qua RPC `create_kudo`. Hủy, Esc hoặc gửi thành công thì đóng modal. Đặc tả đầy đủ ở `docs/screens/SCR007_WriteKudo/spec.md`.
+**States:** loading, empty, error, saving, success

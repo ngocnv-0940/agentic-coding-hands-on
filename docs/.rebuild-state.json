@@ -11,16 +11,16 @@
     "system-overview.md": "2cba9f989fe79982cfb48b2e3ace867f23f4f3255aa020dcb3c7ccf436f0d44f",
     "user-stories.md": "37a6710f577b5b1d444f7fa847780ee1a8a7a8b3666e71e80b090e9312d325c4"
   },
-  "fcode_index_sha": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "fcode_index_sha": "9ef3431df09b4c53b82bc2d71c9116b66485ffbc5800aae71eec45be4886bb9d",
   "last_api_contracts_run_sha": "",
-  "last_feature_spec_run_sha": "21351af6515d2d4dea8fdde47339864f736e76f3",
-  "last_flows_run_sha": "",
+  "last_feature_spec_run_sha": "ffd72b036166dc1081af14352b0bbb853baef6de",
+  "last_flows_run_sha": "ffd72b036166dc1081af14352b0bbb853baef6de",
   "last_glossary_run_sha": "",
   "last_rebuild_sha": "b28919db9c3e1bb4def3755d635114f16964bacf",
   "last_test_cases_run_sha": "",
   "mode": "full",
   "primary_lang": "vi",
-  "rebuilt_at": "2026-10-08T06:53:23Z",
+  "rebuilt_at": "2026-10-15T10:42:49Z",
   "schema_version": "22.1.0",
   "screen_spec_shas": {
     "SCR001": "b26fadbb788d293a3ca657eff52cc377565110f361bc867344a0a1064cdaee55",
@@ -28,7 +28,8 @@
     "SCR003": "c37c400559562f3fd593aa92c5f18f09d805d42d07b1f12534f9d844816f9df6",
     "SCR004": "c53ffae83295672b7e91a48e22d0dac735eef6edc9d3dfa3bc9bae7d04270c3d",
     "SCR005": "200ae5bf280d7936df45f9175899811cb028d01a7210b0e1c0f00b3f355e77e1",
-    "SCR006": "1bd5dbaba7bf86ed8cc7f7c7b590dd5ae3561a02c621f3c6b6de5f1fdc96709a"
+    "SCR006": "44809483cc9295ade96dae9cf2855531aab4c14430d2108968c1106ea60b61ac",
+    "SCR007": "cfef10d6bde727e6bc1aa5bf0aa1354cc284a8eb074b3e3c20f6a9406ade2412"
   },
   "translations": {}
 }
