@@ -11,8 +11,8 @@ lang: vi
 ## 1. Overview
 
 **Problem:** Trên `/sun-kudos` Sunner xem được lời cảm ơn của người khác nhưng chưa tự gửi được: thanh "ghi nhận" chỉ mở thông báo "Coming soon", nên Live board không có Kudo mới nào ngoài dữ liệu mẫu.
-**Solution:** Bấm thanh ghi nhận để mở modal "Viết Kudo": chọn người nhận, đặt danh hiệu, soạn lời cảm ơn có định dạng (đậm, nghiêng, gạch ngang, danh sách số, trích dẫn, liên kết, nhắc đồng nghiệp bằng "@"), gắn 1 đến 5 hashtag có sẵn, đính tối đa 5 ảnh, tuỳ chọn gửi ẩn danh rồi gửi. Gửi xong Kudo mới nằm đầu danh sách All Kudos.
-**Scope:** Modal Viết Kudo mở từ thanh ghi nhận; tìm người nhận; danh hiệu; trình soạn thảo định dạng, hộp thoại chèn liên kết, nhắc tên bằng "@"; chọn hashtag; đính ảnh; gửi ẩn danh; kiểm tra dữ liệu, trạng thái nút Gửi, gửi và báo kết quả; Hủy, Esc, tiêu điểm; chuỗi vi/en; bố cục co giãn; cách lưu Kudo, kho ảnh và bảo mật người gửi ẩn danh.
+**Solution:** Bấm thanh ghi nhận (hoặc "Viết KUDOS" ở nút hành động nhanh góc phải dưới) để mở modal "Viết Kudo": chọn người nhận, đặt danh hiệu, soạn lời cảm ơn có định dạng (đậm, nghiêng, gạch ngang, danh sách số, trích dẫn, liên kết, nhắc đồng nghiệp bằng "@"), gắn 1 đến 5 hashtag có sẵn, đính tối đa 5 ảnh, tuỳ chọn gửi ẩn danh rồi gửi. Gửi xong Kudo mới nằm đầu danh sách All Kudos.
+**Scope:** Modal Viết Kudo mở từ thanh ghi nhận hoặc từ nhóm hành động nhanh của nút nổi (FAB); tìm người nhận; danh hiệu; trình soạn thảo định dạng, hộp thoại chèn liên kết, nhắc tên bằng "@"; chọn hashtag; đính ảnh; gửi ẩn danh; kiểm tra dữ liệu, trạng thái nút Gửi, gửi và báo kết quả; Hủy, Esc, click nền mờ, tiêu điểm, khóa cuộn trang; chuỗi vi/en; bố cục co giãn; cách lưu Kudo, kho ảnh và bảo mật người gửi ẩn danh.
 **Non-Scope:** Sửa hoặc xóa Kudo đã gửi; lưu nháp; thông báo cho người được nhắc bằng "@" hay người nhận; tạo hashtag mới; trang chi tiết Kudo; hộp thoại xác nhận khi Hủy; giới hạn tần suất gửi; hai pill còn lại (tìm profile, Secret Box) vẫn là "Coming soon".
 
 **Actors**
@@ -28,7 +28,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 
 | ID | Capability | What the user can do | User Stories | Requirements | Business Rules | Screens |
 |----|------------|------------------------|-----------------|---------------|-------------------|---------|
-| CAP-01 | Mở và đóng modal Viết Kudo | Bấm thanh ghi nhận để mở modal; đóng bằng Hủy hoặc Esc; tiêu điểm được giữ trong modal và trả về thanh ghi nhận | US001, US012 | FR-101, FR-102, FR-103, FR-104, FR-201, FR-202, FR-221, FR-224, FR-225, FR-226, FR-227 | DEC-006, DEC-008 | SCR007_WriteKudo |
+| CAP-01 | Mở và đóng modal Viết Kudo | Bấm thanh ghi nhận, hoặc "Viết KUDOS" ở nút hành động nhanh, để mở modal; đóng bằng Hủy, Esc hoặc click nền mờ; tiêu điểm được giữ trong modal và trả về nút đã mở nó; tiêu đề và chân cố định, chỉ vùng trường cuộn | US001, US012 | FR-101, FR-102, FR-103, FR-104, FR-106, FR-107, FR-201, FR-202, FR-221, FR-224, FR-225, FR-226, FR-227, FR-228 | DEC-006, DEC-008 | SCR007_WriteKudo |
 | CAP-02 | Chọn người nhận | Gõ để tìm Sunner theo tên và chọn một người từ danh sách gợi ý | US002 | FR-203, FR-204, FR-205 | BR-008, DEC-009 | — |
 | CAP-03 | Soạn nội dung Kudo | Đặt danh hiệu, viết lời cảm ơn có định dạng, chèn liên kết, nhắc đồng nghiệp bằng "@" | US003, US004, US005, US006 | FR-105, FR-206, FR-207, FR-208, FR-209, FR-210, FR-211, FR-605 | BR-003, BR-007, BR-009 | — |
 | CAP-04 | Gắn hashtag | Chọn 1 đến 5 hashtag có sẵn, bỏ chọn từng cái | US007 | FR-212, FR-213, FR-214 | BR-004, DEC-003 | — |
@@ -43,7 +43,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 | D001 | Lối vào và route | **Đã chốt:** modal trên `/sun-kudos`, mở từ thanh ghi nhận; không có route mới; hai pill còn lại giữ "Coming soon" (clarifications.md, 2026-10-15) | Thanh ghi nhận đã có sẵn; phạm vi nhỏ nhất | no |
 | D002 | Trường "Danh hiệu" (có trong Figma, không có trong spec MoMorph) | **Đã chốt:** hiển thị, bắt buộc, 1 đến 100 ký tự sau khi bỏ khoảng trắng, lưu làm tiêu đề Kudo | Figma thắng spec; thẻ All Kudos đã có chỗ hiện tiêu đề | no |
 | D003 | Nút Gửi: "vô hiệu" hay "bấm vẫn báo lỗi" (spec và test case mâu thuẫn nhau) | **Đã chốt:** nút luôn bấm được nhưng mang trạng thái vô hiệu (mờ, báo cho trình đọc màn hình) khi thiếu trường bắt buộc; bấm khi thiếu thì hiện mọi lỗi và không gửi | Thoả cả hai nhóm test case; người dùng thấy lỗi thay vì nút "chết" | no |
-| D004 | Click nền mờ ngoài modal | **Đã chốt:** không làm gì; chỉ Hủy và Esc mới đóng | Tránh mất nội dung dài vì lỡ tay | no |
+| D004 | Click nền mờ ngoài modal | **Đã chốt:** không làm gì; chỉ Hủy và Esc mới đóng — **đã thay bằng D016 (2026-10-15)** | Tránh mất nội dung dài vì lỡ tay | no |
 | D005 | Hashtag tự gõ | **Đã chốt:** chỉ chọn hashtag đã có trong dữ liệu; không tạo mới | Giữ bộ lọc hashtag của Live board gọn | no |
 | D006 | Thư viện trình soạn thảo | **Đã chốt hướng:** trình soạn thảo ràng buộc theo lược đồ (gợi ý Tiptap/ProseMirror), thêm một nhóm phụ thuộc cho tính năng này; planner xác nhận phiên bản khớp Next 16 và React 19 | Tự dựng định dạng, danh sách, nhắc tên rủi ro hơn dùng thư viện | no |
 | D007 | Người gửi Kudo ẩn danh có thấy danh tính thật của mình trên thẻ không | Đề xuất: không, mọi người kể cả người gửi chỉ thấy tên ẩn danh | Một cách hiển thị duy nhất, không phát sinh nhánh riêng cho người gửi | no |
@@ -55,6 +55,9 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 | D013 | Chuỗi mới ngoài Figma: bản tiếng Anh của mọi nhãn và các thông báo lỗi ở § 9 (nội dung quá dài, ảnh vượt 5 MB, quá 5 ảnh, gửi thất bại, liên kết sai) | Đề xuất: người dựng viết cả bản vi lẫn en, chờ người dùng xác nhận | Từ điển vi/en phải đủ khóa | no |
 | D014 | Tiêu điểm khi vừa mở modal | Đề xuất: ô Người nhận | Trường đầu tiên và bắt buộc | no |
 | D015 | Giới hạn tần suất gửi Kudo | Đề xuất: không giới hạn trong tính năng này | Ngoài phạm vi; ghi nhận ở § 11 | no |
+| D016 | Click nền mờ ngoài thẻ (thay D004) | **Đã chốt (người dùng, 2026-10-15):** đóng modal và bỏ dữ liệu như Hủy; bỏ qua khi đang gửi và khi lần nhấn bắt đầu trong thẻ rồi nhả ngoài nền mờ (clarifications.md của kế hoạch `261015-1900-fab-and-modal-polish`) | Người dùng muốn chạm ra ngoài là thoát; kéo chuột lỡ tay từ trong thẻ không được mất dữ liệu | no |
+| D017 | Nút hành động nhanh (FAB) mở Viết Kudo | **Đã chốt:** FAB mở nhóm "Thể lệ", "Viết KUDOS", nút × đỏ (MoMorph `Sv7DFwBw1h`, Figma thắng cách nói "bấm là mở modal"); "Viết KUDOS" mở thẳng modal khi đang ở `/sun-kudos`, ở trang khác thì tới `/sun-kudos?compose=1`; "Thể lệ" mở "Coming soon" vì chưa có trang thể lệ | Cùng một cổng gating hồ sơ Sunner với thanh ghi nhận; không thêm route | no |
+| D018 | Cuộn của modal | **Đã chốt:** tiêu đề và chân Hủy/Gửi cố định, chỉ vùng trường cuộn, không truyền cuộn ra trang; trang phía sau bị khóa cuộn | Cuộn cả thẻ bị giật và kéo trang phía sau | no |
 
 ## 4. Requirements
 
@@ -69,8 +72,10 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 - **FR-101** Thanh ghi nhận trên `/sun-kudos` mở modal Viết Kudo; ô tìm profile và Secret Box vẫn mở "Coming soon".
 - **FR-102** Chỉ người đã đăng nhập mở được modal; khách bị đưa về `/login` như các trang khác của Live board.
 - **FR-103** Người đã đăng nhập mà vì lý do hiếm (hồ sơ Sunner bị gỡ liên kết hoặc xóa) không có hồ sơ thì thấy thanh ghi nhận ở trạng thái vô hiệu. Đây là chốt chặn dự phòng: tài khoản Google luôn có hồ sơ ngay từ lần đăng nhập đầu (F006, FR-605), nên thanh ghi nhận dùng được ngay. Tài khoản đăng ký bằng email và mật khẩu không được tạo hồ sơ, nên vẫn thấy nút vô hiệu.
-- **FR-104** Khi modal đóng, tiêu điểm quay về thanh ghi nhận đã mở nó.
+- **FR-104** Khi modal đóng, tiêu điểm quay về nút đã mở nó: thanh ghi nhận hoặc nút hành động nhanh (FAB).
 - **FR-105** "Tiêu chuẩn cộng đồng" cạnh thanh công cụ mở trang `/standards` trong tab mới.
+- **FR-106** Nút hành động nhanh (FAB) ở góc phải dưới của mọi trang chính mở nhóm "Thể lệ", "Viết KUDOS" và nút × đỏ (D017); ×, Esc hoặc bấm ra ngoài nhóm đóng nhóm, tiêu điểm về FAB; "Thể lệ" mở "Coming soon".
+- **FR-107** "Viết KUDOS" ở FAB mở thẳng modal khi đang ở `/sun-kudos`; ở trang khác chuyển tới `/sun-kudos?compose=1`, board mở modal đúng một lần rồi bỏ tham số `compose` (giữ các tham số khác) nên tải lại hay Back không mở lại; người xem không có hồ sơ Sunner thì không có modal (như FR-103).
 
 ### Viết Kudo (2xx)
 
@@ -97,10 +102,11 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 - **FR-221** Hủy đóng modal và bỏ mọi thay đổi, không hỏi lại, không gửi gì.
 - **FR-222** Khi đang gửi, nút Gửi quay vòng tải, mọi ô nhập và nút Hủy bị khóa.
 - **FR-223** Gửi thất bại thì modal giữ nguyên dữ liệu, hiện thông báo lỗi, và ảnh đã tải trong lần gửi đó được xóa cố gắng hết sức.
-- **FR-224** Phím Esc đóng modal như Hủy; click nền mờ không làm gì.
+- **FR-224** Phím Esc và click vào nền mờ ngoài thẻ đều đóng modal như Hủy (bỏ dữ liệu, D016); cả hai bị bỏ qua khi đang gửi, và click nền mờ bị bỏ qua khi lần nhấn bắt đầu trong thẻ rồi nhả ngoài nền mờ.
 - **FR-225** Tiêu điểm bàn phím chỉ quay vòng trong modal khi mở.
 - **FR-226** Mọi chuỗi trong modal có bản tiếng Việt và tiếng Anh theo ngôn ngữ đang chọn.
-- **FR-227** Modal rộng tối đa 752 px, không vượt chiều rộng màn hình trừ 32 px, cuộn bên trong nếu cao hơn màn hình; dưới 640 px nhãn xếp trên ô nhập và không có thanh cuộn ngang ở 375 px.
+- **FR-227** Modal rộng tối đa 752 px, không vượt chiều rộng màn hình trừ 32 px, vùng trường cuộn bên trong nếu cao hơn màn hình (FR-228); dưới 640 px nhãn xếp trên ô nhập và không có thanh cuộn ngang ở 375 px.
+- **FR-228** Tiêu đề ở đầu thẻ và chân Hủy/Gửi ở cuối thẻ luôn thấy; chỉ vùng các trường cuộn, và cuộn tới cuối không kéo trang phía sau; khi modal mở trang phía sau bị khóa cuộn, vị trí cuộn được giữ và bố cục không xê dịch khi thanh cuộn biến mất (D018).
 
 ### Interaction (4xx)
 
@@ -133,7 +139,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 - Đủ 5 hashtag thì các dòng chưa chọn bị vô hiệu kèm "Tối đa 5 hashtag"; gỡ bớt thì mở lại (DEC-003)
 - Dưới 5 ảnh thì thấy nút "+ Image"; đủ 5 ảnh thì ẩn nút (DEC-004)
 - Bật ẩn danh thì hiện ô "Tên ẩn danh"; tắt thì ẩn ô và xóa giá trị (DEC-005)
-- Hủy và Esc đóng modal và bỏ dữ liệu; click nền mờ không làm gì (DEC-006)
+- Hủy, Esc và click nền mờ đều đóng modal và bỏ dữ liệu; click nền mờ bị bỏ qua khi đang gửi (DEC-006)
 - Đang gửi thì khóa mọi ô nhập, Hủy và hiện vòng tải ở nút Gửi (DEC-007)
 - Người dùng không có hồ sơ Sunner (chỉ còn khi hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) thì thanh ghi nhận vô hiệu, cùng luật với nút tim (DEC-008)
 - Tìm người nhận không ra ai thì hiện "Không tìm thấy kết quả" (DEC-009)
@@ -143,11 +149,11 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 
 | Screen Name | SCR### | What User Sees | What User Can Do |
 |-------------|--------|-----------------|-------------------|
-| Viết Kudo (modal trên Live board) | SCR007_WriteKudo | Hộp thoại giữa màn hình, nền mờ phía sau: tiêu đề, Người nhận, Danh hiệu, thanh công cụ và ô soạn thảo, Hashtag, Image, ô ẩn danh, Hủy và Gửi | Chọn người nhận, đặt danh hiệu, soạn lời cảm ơn, chèn liên kết, nhắc tên, chọn hashtag, đính ảnh, bật ẩn danh, Hủy hoặc Gửi |
+| Viết Kudo (modal trên Live board) | SCR007_WriteKudo | Hộp thoại giữa màn hình, nền mờ phía sau; tiêu đề ở đầu và Hủy, Gửi ở cuối cố định, giữa là vùng cuộn: tiêu đề, Người nhận, Danh hiệu, thanh công cụ và ô soạn thảo, Hashtag, Image, ô ẩn danh, Hủy và Gửi | Chọn người nhận, đặt danh hiệu, soạn lời cảm ơn, chèn liên kết, nhắc tên, chọn hashtag, đính ảnh, bật ẩn danh, Hủy, click nền mờ hoặc Gửi |
 
 ### User Journey
 
-1. Sunner đang xem Live board bấm thanh ghi nhận và thấy modal Viết Kudo hiện trên nền mờ.
+1. Sunner đang xem Live board bấm thanh ghi nhận (hoặc "Viết KUDOS" ở nút hành động nhanh) và thấy modal Viết Kudo hiện trên nền mờ.
 2. Sunner gõ tên vào ô Người nhận, chọn một đồng nghiệp trong danh sách gợi ý.
 3. Sunner điền Danh hiệu rồi viết lời cảm ơn, có thể định dạng, chèn liên kết hoặc nhắc thêm đồng nghiệp bằng "@".
 4. Sunner chọn từ 1 đến 5 hashtag, tuỳ chọn thêm ảnh và bật ẩn danh.
@@ -167,6 +173,7 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 - [ ] Khách chưa đăng nhập không tới được modal, bị đưa về trang đăng nhập (ID-1)
 - [ ] Ô Người nhận và ô soạn thảo hiện đúng chữ gợi ý, ô ẩn danh mặc định bỏ chọn (ID-4, ID-5, ID-6)
 - [ ] Người không có hồ sơ Sunner (hiếm; tài khoản Google mới luôn có hồ sơ) thấy thanh ghi nhận vô hiệu
+- [ ] "Viết KUDOS" ở nút hành động nhanh mở cùng modal: thẳng trên `/sun-kudos`, qua `/sun-kudos?compose=1` từ trang khác (FR-106, FR-107)
 
 ### US002 — Chọn người nhận bằng tìm kiếm
 
@@ -294,14 +301,14 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 
 **Acceptance Criteria:**
 - [ ] Đã nhập dữ liệu, bấm Hủy thì modal đóng, không lưu gì (ID-45)
-- [ ] Esc đóng như Hủy; click nền mờ không làm gì
+- [ ] Esc và click nền mờ đóng như Hủy (bỏ dữ liệu); click nền mờ bị bỏ qua khi đang gửi
 - [ ] Đóng xong, tiêu điểm quay về thanh ghi nhận
 
 ## 8. Scenarios
 
 ### US001 — Happy Path
 
-**Given** Sunner đã đăng nhập, đang ở `/sun-kudos`, **When** bấm thanh ghi nhận, **Then** modal Viết Kudo hiện đủ tiêu đề và các trường theo thứ tự (ID-0, ID-3).
+**Given** Sunner đã đăng nhập, đang ở `/sun-kudos`, **When** bấm thanh ghi nhận, **Then** modal Viết Kudo hiện đủ tiêu đề và các trường theo thứ tự (ID-0, ID-3). **Given** Sunner có hồ sơ ở một trang chính bất kỳ, **When** bấm nút hành động nhanh rồi "Viết KUDOS", **Then** modal hiện trên `/sun-kudos` (qua `?compose=1` nếu đang ở trang khác), tham số bị bỏ khỏi địa chỉ và tải lại không mở lại.
 
 ### US001 — Error: chưa đăng nhập hoặc chưa có hồ sơ *(đổi lời)*
 
@@ -391,9 +398,9 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 
 **Given** đã nhập dữ liệu, **When** bấm Hủy, **Then** modal đóng, không có Kudo nào được lưu và tiêu điểm về thanh ghi nhận (ID-45).
 
-### US012 — Error: lỡ tay click nền
+### US012 — Error: lỡ tay click nền *(đổi lời)*
 
-**Given** đã nhập dữ liệu, **When** click vào nền mờ ngoài modal, **Then** modal vẫn mở và dữ liệu còn nguyên.
+**Given** đã nhập dữ liệu, **When** click vào nền mờ ngoài thẻ, **Then** modal đóng và dữ liệu bị bỏ như Hủy; **Given** lần nhấn bắt đầu trong thẻ và nhả trên nền mờ (hoặc đang gửi), **When** nhả chuột, **Then** modal vẫn mở và dữ liệu còn nguyên.
 
 ## 9. Edge Cases
 
@@ -416,11 +423,18 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 | Liên kết nhập không phải http hoặc https | Hộp thoại không cho Lưu | "Liên kết phải bắt đầu bằng http:// hoặc https://" |
 | Màn hình hẹp 375 px | Nhãn xếp trên ô nhập, modal cuộn bên trong, không cuộn ngang | None — bố cục co giãn |
 | Phím Esc khi đang gửi | Bị bỏ qua cho tới khi gửi xong | None — silent handling |
+| Click nền mờ khi đang gửi | Bị bỏ qua cho tới khi gửi xong | None — silent handling |
+| Nhấn trong thẻ, kéo ra nền mờ rồi nhả | Modal vẫn mở, dữ liệu còn nguyên | None — silent handling |
+| Cuộn vùng trường tới cuối trên màn hình thấp | Tiêu đề và Hủy/Gửi vẫn thấy; trang phía sau không cuộn theo | None — bố cục co giãn |
+| "Viết KUDOS" ở FAB khi người xem không có hồ sơ Sunner | Không mở modal (cổng như FR-103) | None — silent handling |
+| "Viết KUDOS" ở FAB từ trang khác `/sun-kudos` | Chuyển tới `/sun-kudos?compose=1`; modal mở một lần, tham số bị bỏ nên tải lại không mở lại | None |
 
 ## 10. Edge Behaviours to Verify
 
 - **FR-101** → Bấm thanh ghi nhận mở modal Viết Kudo; hai pill còn lại vẫn mở "Coming soon"
 - **FR-103** → Chỉ tài khoản không có hồ sơ Sunner (hiếm) mới thấy thanh ghi nhận vô hiệu; tài khoản Google mới thì không
+- **FR-106** → FAB mở nhóm Thể lệ, Viết KUDOS, nút ×; ×, Esc, click ngoài đều đóng nhóm và tiêu điểm về FAB
+- **FR-107** → Viết KUDOS mở modal thẳng trên `/sun-kudos`, qua `?compose=1` ở trang khác (tham số bị bỏ sau khi mở); không hồ sơ thì không mở
 - **FR-201** → Thứ tự trường trong modal đúng thiết kế
 - **FR-203** → Gõ "  Nguyễn  " ra gợi ý như "Nguyễn"; không có chính người gửi trong danh sách
 - **FR-204** → Gõ "@ # $" không gây lỗi, ra danh sách trống kèm "Không tìm thấy kết quả"
@@ -436,7 +450,8 @@ Feature này mở rộng [F006_KudosLiveBoard](../F006_KudosLiveBoard/functional
 - **FR-218** → Bật ẩn danh hiện ô tên; tắt thì ô ẩn và giá trị mất
 - **FR-219** → Nút Gửi mờ khi thiếu trường nhưng bấm vẫn hiện đủ lỗi và không gửi
 - **FR-222** → Đang gửi thì không sửa được ô nào và không bấm được Hủy
-- **FR-224** → Esc đóng modal, click nền mờ không làm gì
+- **FR-224** → Esc và click nền mờ đều đóng modal; kéo từ trong thẻ ra nền mờ rồi nhả thì modal ở lại
+- **FR-228** → Cuộn vùng trường tới cuối: tiêu đề và Hủy/Gửi vẫn thấy, trang phía sau đứng yên
 - **FR-401** → Kudo ẩn danh trên Live board chỉ có tên ẩn danh, không ảnh đại diện
 - **FR-402** → Tim vào Kudo ẩn danh vẫn cộng cho người gửi thật
 - **FR-403** → Gửi xong, Kudo mới nằm đầu All Kudos sau khi nạp lại

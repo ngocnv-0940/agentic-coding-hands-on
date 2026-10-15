@@ -2,6 +2,25 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-16 — Nút hành động nhanh (FAB) mở Viết Kudo, click nền đóng modal, cuộn mượt hơn (F007, F003 FR-211)
+
+**Thêm**
+
+- Bấm nút nổi góc phải dưới (có trên mọi trang chính, lắp ở `app/(main)/layout.tsx`) thì nút ẩn và nhóm hành động nhanh hiện ở cùng chỗ (MoMorph `Sv7DFwBw1h`): "Thể lệ", "Viết KUDOS" và nút × đỏ. ×, Esc và bấm ra ngoài đều đóng nhóm, tiêu điểm về nút nổi. Mã: `app/(main)/_wiring/fab-container.tsx`, `_components/fab-menu-view.tsx`, `_behavior/use-fab-menu.ts`.
+- "Viết KUDOS" mở modal Viết Kudo thẳng khi đang ở `/sun-kudos` (qua cầu `app/(main)/_behavior/compose-bridge.ts`), ở trang khác thì chuyển tới `/sun-kudos?compose=1`; board mở modal đúng một lần rồi bỏ `compose` khỏi địa chỉ bằng `history.replaceState(null, …)` hoãn một nhịp, giữ các tham số khác, nên tải lại hay Back không mở lại. Người xem không có hồ sơ sunner thì không có modal. "Thể lệ" mở modal "Coming soon" có sẵn (chưa có trang thể lệ).
+- Khóa cuộn trang phía sau khi modal mở: `app/(main)/sun-kudos/_behavior/use-body-scroll-lock.ts`.
+- 3 spec E2E: `e2e/write-kudo-fab-quick-actions.spec.ts`, `e2e/write-kudo-backdrop-and-scroll.spec.ts`, `e2e/write-kudo-fab-compose-param-after-send.spec.ts`.
+
+**Thay đổi**
+
+- Click vào nền mờ ngoài thẻ nay đóng modal và bỏ dữ liệu như Hủy, thay quyết định cũ "click nền không làm gì" (F007 FR-224, D004 thay bằng D016). Bỏ qua khi đang gửi, và khi lần nhấn bắt đầu trong thẻ rồi nhả ngoài nền mờ.
+- Cuộn của modal: tiêu đề và chân Hủy/Gửi cố định, chỉ vùng các trường cuộn (`overscroll-behavior-y: contain`) thay vì cuộn cả thẻ.
+- Nút nổi ở trang chủ trước chỉ vẽ, nay có hành vi (F003 FR-211, D012). Docs cập nhật: `docs/features/F007_WriteKudo/` (FR-106, FR-107, FR-228, D016 đến D018), `docs/screens/SCR007_WriteKudo/spec.md`, `docs/features/F003_Homepage/`, `docs/screens/SCR003_Homepage/spec.md`.
+
+**Lưu ý**
+
+- Kiểm chứng (theo `plans/261015-1900-fab-and-modal-polish/evidence`): E2E trang chủ 48, board Kudos 60, Viết Kudo 93, spec nhắm đích 17 đều đạt; tsc và eslint thoát 0; kiểm tra độc lập 9.3 SEALED. Chưa commit.
+
 ## 2026-10-15 — Tài khoản Google tự có hồ sơ sunner ở lần đăng nhập đầu (F006 BR-012, F007)
 
 **Thêm**

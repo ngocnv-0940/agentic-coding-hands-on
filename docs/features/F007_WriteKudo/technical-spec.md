@@ -56,8 +56,8 @@ flowchart LR
 
 | # | Action (handler) | Method · Path | Codes | Writes | Detail |
 |---|---|---|---|---|---|
-| **A0** | *cross-cutting — belongs to no single action* | — | FR-001, FR-002, FR-102, FR-226, FR-227, FR-601, FR-604 | — | § 4.4 |
-| **A1** | `ActionPillsContainer#onCompose` | browser · click thanh ghi nhận | FR-101, FR-103, FR-201, FR-202, FR-206, FR-225, DEC-008, US001, US003 | — *(read-only)* | § 3.1 |
+| **A0** | *cross-cutting — belongs to no single action* | — | FR-001, FR-002, FR-102, FR-226, FR-227, FR-228, FR-601, FR-604 | — | § 4.4 |
+| **A1** | `ActionPillsContainer#onCompose` | browser · click thanh ghi nhận, hoặc "Viết KUDOS" ở FAB | FR-101, FR-103, FR-106, FR-107, FR-201, FR-202, FR-206, FR-225, DEC-008, US001, US003 | — *(read-only)* | § 3.1 |
 | **A2** | `WriteKudoFormContainer#onClose` | browser · click Hủy, phím Esc, click nền | FR-104, FR-221, FR-224, DEC-006, US012 | — *(read-only)* | § 3.1 |
 | **A3** | `searchSunnersAction` (server action) → RPC `search_sunners` | `POST` server action · gõ vào ô Người nhận hoặc sau `@` | FR-203, FR-204, BR-008, DEC-009, ALG-001, INT-003, US002, US006 | — *(read-only)* | § 3.2 |
 | **A4** | `useRecipientPicker#onPick` | browser · click dòng gợi ý hoặc nút xóa | FR-205, US002 | — *(read-only)* | § 3.2 |
@@ -78,41 +78,46 @@ flowchart LR
 
 #### A1 · Mở modal Viết Kudo từ thanh ghi nhận
 `browser · click` → `` `ActionPillsContainer#onCompose` ``
-`FR-101` `FR-103` `FR-201` `FR-202` `FR-206` `FR-225` `DEC-008` `US001` `US003` · `SCR007_WriteKudo`
+`FR-101` `FR-103` `FR-106` `FR-107` `FR-201` `FR-202` `FR-206` `FR-225` `DEC-008` `US001` `US003` · `SCR007_WriteKudo`
 
 **Who** · Sunner đã đăng nhập đang ở `/sun-kudos` *(gate A0 — § 4.4)*
 **FE** · `ActionPillsContainer` giữ pill đang mở làm cờ mở modal (`composeOpener`): pill ghi nhận `data-testid="kudos-compose-pill"` mở modal Viết Kudo, pill tìm hồ sơ `kudos-profile-search-pill` vẫn gọi `openModal` của `KudoFeedbackProvider` (Coming soon). Form nằm trong chunk riêng nạp lười (`dynamic`, `ssr: false`) nên JS đầu của board không mang Tiptap; chunk lỗi thì toast lỗi chung rồi đóng. Modal là lớp `fixed` phủ màn hình, không dùng portal; trường xếp theo thứ tự tiêu đề, Người nhận, Danh hiệu, thanh công cụ + ô soạn thảo, gợi ý "@", Hashtag, Image, ô ẩn danh, Hủy và Gửi (FR-201); chữ gợi ý và ô ẩn danh bỏ chọn mặc định (FR-202). Ô Danh hiệu có nhãn, dấu `*` đỏ, placeholder "Dành tặng một danh hiệu cho đồng đội" và hai dòng ví dụ (FR-206). Focus bị bẫy trong modal, focus đầu vào ô Người nhận (FR-225). Danh sách hashtag và `hasSunner` do `readComposeAccess()` đọc từ `getFilterOptions()` và `getSidebar()` (cùng lần đọc mà các khối khác của trang dùng, vì hai hàm có `cache`), không thêm RPC mới; đọc lỗi thì pill vô hiệu và không có hashtag.
+**FE (FAB, FR-106/FR-107)** · `FabContainer` (lắp trong `app/(main)/layout.tsx`, nên có trên mọi trang chính) giữ `WidgetButton`, nhóm hành động `FabMenuView` và modal Coming soon. Bấm FAB thì FAB ẩn và nhóm hiện ở đúng chỗ; tiêu điểm vào nút đầu tiên của nhóm. `useFabMenu` bắt Esc (đóng, trả tiêu điểm về FAB, bỏ qua nếu sự kiện đã `defaultPrevented`) và `pointerdown` ngoài nhóm (đóng, tiêu điểm ở nơi người dùng bấm); nút × đỏ đóng và trả tiêu điểm về FAB. "Thể lệ" mở modal Coming soon (chưa có trang thể lệ, MoMorph `b1Filzi9i6` chưa dựng) và tự đóng khi rời trang; đóng modal thì tiêu điểm về FAB. "Viết KUDOS" gọi `requestCompose(FAB)` của cầu `compose-bridge`: nếu board `/sun-kudos` đang đăng ký (`registerComposeHandler`) thì board mở modal ngay với FAB làm `opener`, và chỉ khi `hasSunner`; nếu không có board nào nghe thì cầu nhớ FAB và `router.push('/sun-kudos?compose=1')`. Board thấy `compose` trên địa chỉ thì hoãn một nhịp (`setTimeout 0`) rồi `armCompose()` và `history.replaceState(null, …)` bỏ tham số `compose`, giữ các tham số khác (null chứ không phải `history.state`, vì Next bỏ qua `replaceState` mang dấu `__NA` của chính nó); khi tham số đã mất, board nào đang mount sẽ `takeArmedCompose()` và mở modal đúng một lần, nên tải lại hay Back không mở lại. Chuỗi: `home.widget.{label,rules,writeKudo,close}` trong `lib/i18n/dictionary-home-vi.ts:55-58` và `lib/i18n/dictionary-home-en.ts:57-60`.
 **Request** · không có; props từ server: danh sách hashtag, `hasSunner` (từ `kudos_sidebar`), chuỗi i18n
 **Rule** · Chỉ người xem có hàng `sunners` mới mở được modal, cùng luật với nút tim của F006. Hàng này do trigger `auth.users` của F006 tạo cho tài khoản Google ở lần đăng nhập đầu (F006: tự tạo hồ sơ Sunner; `supabase/migrations/20261015035950_auto_provision_sunner.sql:61-63`), nên nhánh vô hiệu chỉ còn là chốt chặn dự phòng:
 
 | DEC | subtype | Condition | What the user sees | Source |
 |---|---|---|---|---|
 | **DEC-008** | render | `hasSunner = false` (hiếm: hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) | Pill ghi nhận vô hiệu (`disabled`), không mở modal; RPC `create_kudo` vẫn là chốt chặn phía máy chủ | `app/(main)/sun-kudos/_components/kudos-banner.tsx:75` |
-| **DEC-008** | render | `hasSunner = true` | Pill bấm được, mở modal | `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:45` |
+| **DEC-008** | render | `hasSunner = true` | Pill bấm được, mở modal | `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:41-46` |
+| **DEC-008** | flow | "Viết KUDOS" ở FAB, đang ở `/sun-kudos` và `hasSunner = true` | Modal mở ngay, tiêu điểm trả về FAB khi đóng (FR-107) | `app/(main)/_behavior/compose-bridge.ts:22-30`, `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:41-47` |
+| **DEC-008** | flow | "Viết KUDOS" ở FAB, trang khác `/sun-kudos` | Chuyển tới `/sun-kudos?compose=1`; board mở modal một lần rồi bỏ `compose` khỏi địa chỉ (FR-107) | `app/(main)/_wiring/fab-container.tsx:39-42`, `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:49-69` |
+| **DEC-008** | render | "Viết KUDOS" ở FAB và `hasSunner = false` | Không mở modal, địa chỉ vẫn được dọn `compose` | `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:41-46` |
 
 **Result** · không ghi DB. Modal chuyển từ trạng thái đóng sang đang soạn (SM-001, § 4.3).
-**Source:** `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:25-57`, `app/(main)/sun-kudos/_wiring/read-compose-access.ts:14-20`, `app/(main)/sun-kudos/_wiring/write-kudo-modal-container.tsx:9-34`
+**Source:** `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:29-93`, `app/(main)/sun-kudos/_wiring/read-compose-access.ts:14-20`, `app/(main)/sun-kudos/_wiring/write-kudo-modal-container.tsx:9-34`, `app/(main)/_wiring/fab-container.tsx:26-57`, `app/(main)/_behavior/use-fab-menu.ts:20-58`, `app/(main)/_behavior/compose-bridge.ts:13-57`, `app/(main)/_components/fab-menu-view.tsx:26-62`
 
 <!-- No diagram: below threshold — chỉ client, không ghi bảng nào. -->
 
 ---
 
-#### A2 · Đóng modal bằng Hủy, Esc hoặc click nền
+#### A2 · Đóng modal bằng Hủy, Esc hoặc click nền mờ
 `browser · click Hủy, phím Esc, click nền` → `` `WriteKudoFormContainer#onClose` ``
-`FR-104` `FR-221` `FR-224` `DEC-006` `US012` · `SCR007_WriteKudo`
+`FR-104` `FR-221` `FR-224` `FR-228` `DEC-006` `US012` · `SCR007_WriteKudo`
 
 **Who** · Sunner đang soạn Kudo *(gate A1 — § 3.1)*
-**FE** · Nút Hủy luôn bật trừ khi đang gửi. Esc bắt ở cấp modal (`useModalFocusTrap`); mọi lớp con (hộp thoại liên kết A6, panel hashtag, danh sách người nhận, danh sách mention) tự xử Esc trước qua `useEscapeLayer`, chỉ lớp trên cùng đóng và modal ở lại. Lớp nền mờ không gắn handler đóng (`onBackdropClick` là prop tuỳ chọn mà wiring không truyền). Đóng thì unmount toàn bộ state của form, thu hồi `URL.createObjectURL` của ảnh xem trước, trả focus về pill đã mở modal.
+**FE** · Nút Hủy luôn bật trừ khi đang gửi. Esc bắt ở cấp modal (`useModalFocusTrap`); mọi lớp con (hộp thoại liên kết A6, panel hashtag, danh sách người nhận, danh sách mention) tự xử Esc trước qua `useEscapeLayer`, chỉ lớp trên cùng đóng và modal ở lại. Lớp nền mờ gọi `onBackdropClick` (wiring truyền `onClose`, hoặc `undefined` khi đang gửi) với điều kiện lần nhấn cũng bắt đầu trên nền mờ (`onPointerDown` ghi `pressStartedOnMask`, `onClick` kiểm lại), nên kéo từ trong thẻ ra nền mờ rồi nhả không đóng modal (FR-224, D016). Về bố cục (FR-228): thẻ là cột `flex` cao tối đa bằng khung nhìn; tiêu đề và chân Hủy/Gửi `shrink-0`, chỉ vùng `data-testid="write-kudo-scroll-area"` ở giữa có `overflow-y-auto` và `overscroll-behavior-y: contain`; `useBodyScrollLock(true)` đặt `overflow: hidden` lên `<html>` khi form mount, giữ chỗ thanh cuộn (`scrollbar-gutter: stable`) nếu trang đang có thanh cuộn, và trả lại giá trị cũ khi đóng. Đóng thì unmount toàn bộ state của form, thu hồi `URL.createObjectURL` của ảnh xem trước, trả focus về pill đã mở modal.
 **Rule** · Cách đóng modal và khi nào bị khóa:
 
 | DEC | subtype | Condition | What the user sees | Source |
 |---|---|---|---|---|
 | **DEC-006** | flow | Bấm Hủy, hoặc Esc, khi không đang gửi | Modal đóng, bỏ mọi dữ liệu, không hỏi lại (FR-221, FR-224) | `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:40-42` |
-| **DEC-006** | interaction | Click nền mờ ngoài modal | Không có gì xảy ra; modal và dữ liệu giữ nguyên (FR-224) | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:19-21` |
-| **DEC-006** | interaction | Đang gửi (SM-001 `submitting`) | Hủy bị khóa (`disabled`), Esc bị bỏ qua | `app/(main)/sun-kudos/_components/write-kudo-footer-view.tsx:17` |
+| **DEC-006** | interaction | Click nền mờ ngoài thẻ (nhấn và nhả cùng trên nền mờ), không đang gửi | Modal đóng, bỏ mọi dữ liệu như Hủy (FR-224, D016) | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:26-33`, `app/(main)/sun-kudos/_wiring/write-kudo-form-container.tsx:91` |
+| **DEC-006** | interaction | Nhấn bắt đầu trong thẻ, nhả trên nền mờ | Modal ở lại, dữ liệu giữ nguyên (FR-224) | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:26-33` |
+| **DEC-006** | interaction | Đang gửi (SM-001 `submitting`) | Hủy bị khóa (`disabled`), Esc và click nền mờ bị bỏ qua | `app/(main)/sun-kudos/_components/write-kudo-footer-view.tsx:17` |
 
-**Result** · không ghi DB, không lưu nháp. Ảnh chưa được tải lên (chỉ tải khi gửi, A10) nên không có gì phải dọn. Focus về thanh ghi nhận (FR-104). Modal về trạng thái đóng (SM-001, § 4.3).
-**Source:** `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:36-78`, `app/(main)/sun-kudos/_behavior/use-escape-layer.ts:13-31`, `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:12-45`
+**Result** · không ghi DB, không lưu nháp. Ảnh chưa được tải lên (chỉ tải khi gửi, A10) nên không có gì phải dọn. Focus về nút đã mở modal: thanh ghi nhận hoặc FAB (FR-104). Modal về trạng thái đóng (SM-001, § 4.3).
+**Source:** `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:36-78`, `app/(main)/sun-kudos/_behavior/use-escape-layer.ts:13-31`, `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:18-62`, `app/(main)/sun-kudos/_behavior/use-body-scroll-lock.ts:10-23`
 
 <!-- No diagram: below threshold — chỉ client. -->
 
@@ -420,6 +425,11 @@ sequenceDiagram
 |---|---|---|
 | A1 | Người xem không có hàng `sunners` (chỉ khi bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) | Pill vô hiệu; `create_kudo` vẫn báo `sunner_not_found` nếu bị gọi trực tiếp |
 | A2 | Esc khi đang gửi | Bỏ qua (`submitting` chặn `onEscape`); modal đóng theo kết quả gửi |
+| A2 | Click nền mờ khi đang gửi | Bỏ qua (`onBackdropClick` là `undefined` khi `submitting`) |
+| A2 | Nhấn trong thẻ, kéo ra nền mờ rồi nhả | Modal ở lại: `pressStartedOnMask` là `false` |
+| A2 | Cuộn vùng trường tới cuối | Không truyền cuộn ra trang (`overscroll-behavior-y: contain`); trang phía sau bị khóa cuộn |
+| A1 | "Viết KUDOS" ở FAB khi `hasSunner = false` | Không mở modal; `compose` vẫn bị bỏ khỏi địa chỉ nếu đến từ `?compose=1` |
+| A1 | `?compose=1` cùng tham số khác (ví dụ `?compose=1&q=a`) | Chỉ `compose` bị bỏ, `q=a` giữ nguyên |
 | A2 · A13 | Hủy hoặc Esc ngay sau khi ảnh đã tải xong nhưng trước khi gửi xong | Không xảy ra: Hủy và Esc bị khóa từ lúc bấm Gửi |
 | A3 | Kết quả của chuỗi gõ cũ về sau kết quả của chuỗi mới | Bỏ qua theo số thứ tự yêu cầu |
 | A3 | Gõ `%` hoặc `_` | Khớp nguyên văn như ký tự thường (ALG-001), không phải ký tự đại diện |
@@ -453,7 +463,10 @@ sequenceDiagram
 
 | Component | Responsibility | Used in | File |
 |---|---|---|---|
-| `ActionPillsContainer` | Giữ pill đã mở làm cờ mở modal; pill ghi nhận mở Viết Kudo, pill tìm hồ sơ vẫn mở Coming soon | A1 | `app/(main)/sun-kudos/_wiring/action-pills-container.tsx` |
+| `ActionPillsContainer` | Giữ pill (hoặc FAB) đã mở làm cờ mở modal; pill ghi nhận mở Viết Kudo, pill tìm hồ sơ vẫn mở Coming soon; đăng ký với cầu compose và dọn `?compose=1` | A1 | `app/(main)/sun-kudos/_wiring/action-pills-container.tsx` |
+| `FabContainer`, `FabMenuView`, `WidgetButton`, `useFabMenu` | FAB toàn site: nhóm Thể lệ / Viết KUDOS / ×, Esc và click ngoài đóng nhóm, trả tiêu điểm về FAB | A1 | `app/(main)/_wiring/fab-container.tsx`, `app/(main)/_components/fab-menu-view.tsx`, `app/(main)/_components/widget-button.tsx`, `app/(main)/_behavior/use-fab-menu.ts` |
+| `compose-bridge` | Cầu giữa FAB (layout) và board: `registerComposeHandler`, `requestCompose`, `armCompose`, `takeArmedCompose`, `takePendingOpener` | A1 | `app/(main)/_behavior/compose-bridge.ts` |
+| `useBodyScrollLock` | Khóa cuộn `<html>` khi modal mở, giữ vị trí cuộn và chỗ thanh cuộn | A2 | `app/(main)/sun-kudos/_behavior/use-body-scroll-lock.ts` |
 | `readComposeAccess`, `buildWriteKudoLabels` | Server: `hasSunner`, hashtag, và toàn bộ chuỗi i18n của modal | A1 | `app/(main)/sun-kudos/_wiring/read-compose-access.ts`, `app/(main)/sun-kudos/_wiring/build-write-kudo-labels.ts` |
 | `WriteKudoModalContainer` | Nạp lười form (`dynamic`, `ssr: false`), không render khi đóng | A1, A2 | `app/(main)/sun-kudos/_wiring/write-kudo-modal-container.tsx` |
 | `WriteKudoFormContainer` | Ghép các hook vào view không state, điều phối gửi | A2–A13 | `app/(main)/sun-kudos/_wiring/write-kudo-form-container.tsx` |
@@ -522,13 +535,13 @@ erDiagram
 **kind:** ui
 **Linked FR:** FR-222
 **Used in:** A1, A2, A13
-**Source:** `app/(main)/sun-kudos/_behavior/use-submit-kudo.ts:44-88`, `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:25-57`
+**Source:** `app/(main)/sun-kudos/_behavior/use-submit-kudo.ts:44-88`, `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:29-93`
 
 ```mermaid
 stateDiagram-v2
     [*] --> Closed
-    Closed --> Editing : A1 bấm thanh ghi nhận
-    Editing --> Closed : A2 Hủy hoặc Esc
+    Closed --> Editing : A1 bấm thanh ghi nhận hoặc Viết KUDOS ở FAB
+    Editing --> Closed : A2 Hủy, Esc hoặc click nền mờ
     Editing --> Submitting : A13 bấm Gửi khi form hợp lệ
     Submitting --> Closed : A13 gửi thành công
     Submitting --> Editing : A13 gửi thất bại, giữ dữ liệu
@@ -696,9 +709,9 @@ KUDO_IMAGES_ALLOWED_MIME = image/jpeg, image/png, image/webp
 
 ### 5.1 Technical Verification
 
-Chính sách test `e2e-red-first`: hành vi UI (mở, đóng, validate, dropdown, gửi) viết E2E Playwright đỏ trước; luật dữ liệu, RLS, Storage, che người gửi kiểm bằng pgTAP (`supabase test db`). Máy chủ mock E2E cài lại cùng luật (bản SQL là chuẩn). Case E2E "thanh ghi nhận mở Coming soon" của F006 đổi thành mở modal Viết Kudo. Tệp test: `e2e/write-kudo-modal-access-and-layout.spec.ts`, `write-kudo-recipient-and-mention.spec.ts`, `write-kudo-editor-and-link.spec.ts`, `write-kudo-hashtags-images-anonymous.spec.ts`, `write-kudo-submit-and-anonymous.spec.ts`; pgTAP `supabase/tests/database/write-kudo-create-rules.test.sql`, `write-kudo-search-and-storage.test.sql`, `write-kudo-sender-masking.test.sql`.
+Chính sách test `e2e-red-first`: hành vi UI (mở, đóng, validate, dropdown, gửi) viết E2E Playwright đỏ trước; luật dữ liệu, RLS, Storage, che người gửi kiểm bằng pgTAP (`supabase test db`). Máy chủ mock E2E cài lại cùng luật (bản SQL là chuẩn). Case E2E "thanh ghi nhận mở Coming soon" của F006 đổi thành mở modal Viết Kudo. Tệp test: `e2e/write-kudo-modal-access-and-layout.spec.ts`, `write-kudo-recipient-and-mention.spec.ts`, `write-kudo-editor-and-link.spec.ts`, `write-kudo-hashtags-images-anonymous.spec.ts`, `write-kudo-submit-and-anonymous.spec.ts`, `write-kudo-fab-quick-actions.spec.ts`, `write-kudo-backdrop-and-scroll.spec.ts`, `write-kudo-fab-compose-param-after-send.spec.ts`; pgTAP `supabase/tests/database/write-kudo-create-rules.test.sql`, `write-kudo-search-and-storage.test.sql`, `write-kudo-sender-masking.test.sql`.
 
-- **SC-001** *(A1, A2)* Bấm thanh ghi nhận mở modal đủ trường theo thứ tự; Hủy và Esc đóng, click nền không đóng, focus về pill; pill tìm hồ sơ và nút mở Secret Box ở sidebar vẫn mở Coming soon (covers FR-101, FR-104, FR-201, FR-224, DEC-006)
+- **SC-001** *(A1, A2)* Bấm thanh ghi nhận mở modal đủ trường theo thứ tự; Hủy, Esc và click nền mờ đều đóng (kéo từ trong thẻ ra nền mờ thì không), focus về pill; FAB mở nhóm Thể lệ / Viết KUDOS / ×, "Viết KUDOS" mở modal thẳng trên `/sun-kudos` và qua `?compose=1` ở trang khác (tham số bị bỏ, tải lại sau khi gửi không mở lại), không hồ sơ thì không mở; tiêu đề và Hủy/Gửi còn thấy khi cuộn vùng trường, trang phía sau không cuộn; pill tìm hồ sơ và nút mở Secret Box ở sidebar vẫn mở Coming soon (covers FR-101, FR-104, FR-106, FR-107, FR-201, FR-224, FR-228, DEC-006)
 - **SC-002** *(A3, A4, A7)* Gõ "Nguyễn", "An", "  Nguyễn  ", "@ # $" cho đúng kết quả hoặc "Không tìm thấy kết quả"; tối đa 10 dòng; không có chính người gửi; chọn điền ô và đóng danh sách (covers FR-203, FR-204, FR-205, BR-008)
 - **SC-003** *(A5, A6, A13)* B, I, S, danh sách số, trích dẫn áp được; hộp thoại liên kết nhận https và từ chối `javascript:`; nội dung trống báo lỗi (covers FR-207, FR-208, FR-210, BR-007)
 - **SC-004** *(A8, A9)* Chọn tới 5 hashtag, dòng còn lại vô hiệu và hiện "Tối đa 5 hashtag"; ảnh jpg/png nhận, pdf/mp4/txt bị từ chối, đủ 5 ảnh ẩn "+ Image", xóa thì hiện lại (covers FR-213, FR-215, FR-216, DEC-003, DEC-004)
@@ -734,6 +747,7 @@ Chính sách test `e2e-red-first`: hành vi UI (mở, đóng, validate, dropdown
 1. **Given** người dùng có hàng `sunners`, **When** bấm `kudos-compose-pill`, **Then** modal hiện, focus ở ô Người nhận, pill không còn mở Coming soon.
 2. **Given** hồ sơ Sunner của người dùng bị gỡ liên kết hoặc xóa, **When** mở trang, **Then** pill `disabled`.
 3. **Given** tài khoản Google vừa đăng nhập lần đầu, **When** mở trang, **Then** pill bấm được và `create_kudo` không báo `sunner_not_found` (phần RPC kiểm bằng pgTAP: `supabase/tests/database/auto-provision-sunner.test.sql:189-195`).
+4. **Given** người dùng có hàng `sunners` ở `/` hoặc `/awards-information`, **When** bấm `widget-button` rồi `fab-menu-write-kudo`, **Then** địa chỉ thành `/sun-kudos`, modal hiện một lần và `compose` không còn trên địa chỉ (`e2e/write-kudo-fab-quick-actions.spec.ts`).
 
 #### US002 *(A3, A4)*
 
@@ -832,7 +846,7 @@ Chính sách test `e2e-red-first`: hành vi UI (mở, đóng, validate, dropdown
 **Acceptance Scenarios:**
 
 1. **Given** đã nhập dữ liệu, **When** bấm Hủy, **Then** modal đóng, không ghi gì, focus về pill.
-2. **Given** đã nhập dữ liệu, **When** click nền mờ, **Then** modal ở lại.
+2. **Given** đã nhập dữ liệu, **When** click nền mờ, **Then** modal đóng và không ghi gì (thay "modal ở lại", D016); nhấn trong thẻ rồi nhả ngoài nền mờ thì modal ở lại (`e2e/write-kudo-backdrop-and-scroll.spec.ts`).
 
 ### 5.2 Assumptions
 
@@ -858,6 +872,7 @@ Không còn câu hỏi mở của riêng F007. Các điểm trước đây còn 
 | 6 | `title` null của Kudo cũ | Không thêm `check` ở bảng; chỉ `create_kudo` ép 1 đến 100 ký tự | `supabase/migrations/20261015035946_write_kudo_functions.sql:112-114` |
 | 7 | Hàm DEFINER mới trong `kudos_private` | Cấp lại `EXECUTE` cho `authenticated`, `service_role`; thu của `PUBLIC`, `anon` | `supabase/migrations/20261015035948_write_kudo_grants.sql:4-5` |
 | 8 | Bucket công khai hay riêng (D009) | Công khai, URL không đoán được; `select` trên `storage.objects` chỉ hàng của mình | `supabase/migrations/20261015035942_write_kudo_columns_and_storage.sql:26-27`, `supabase/migrations/20261015035942_write_kudo_columns_and_storage.sql:41-43` |
+| 9 | Click nền mờ ngoài modal (thay D004, 2026-10-15) | Đóng và bỏ dữ liệu như Hủy; bỏ qua khi đang gửi và khi lần nhấn bắt đầu trong thẻ | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:26-33` |
 
 Còn sai khác nhỏ giữa đặc tả và giao diện: khóa i18n `writeKudo.image.tooMany` có trong từ điển nhưng chưa được nối, nên chọn quá 5 ảnh chỉ bỏ phần dư mà không báo (§ 3.8, A9).
 

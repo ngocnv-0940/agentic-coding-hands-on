@@ -16,16 +16,16 @@ lang: vi
 
 ## 1. Overview
 
-**Purpose:** Sunner đã đăng nhập dùng modal này để gửi lời cảm ơn và ghi nhận tới một đồng nghiệp, ngay khi bấm thanh ghi nhận trên Live board.
+**Purpose:** Sunner đã đăng nhập dùng modal này để gửi lời cảm ơn và ghi nhận tới một đồng nghiệp, ngay khi bấm thanh ghi nhận trên Live board hoặc "Viết KUDOS" ở nút hành động nhanh (FAB).
 **Actors:** Sunner gửi Kudos
-**Entry Conditions:** Đã đăng nhập, có hồ sơ Sunner, đang ở `/sun-kudos` và bấm thanh ghi nhận.
-**Exit Conditions:** Modal đóng: gửi thành công, bấm Hủy hoặc nhấn Esc. Dữ liệu chưa gửi bị bỏ.
+**Entry Conditions:** Đã đăng nhập, có hồ sơ Sunner, và bấm thanh ghi nhận trên `/sun-kudos` hoặc "Viết KUDOS" ở FAB (từ trang khác thì đi qua `/sun-kudos?compose=1`).
+**Exit Conditions:** Modal đóng: gửi thành công, bấm Hủy, nhấn Esc hoặc click nền mờ ngoài thẻ. Dữ liệu chưa gửi bị bỏ.
 
 ## 2. Screen Layout
 
 ### Layout Sketch
 
-Hộp thoại nền kem, bo góc, rộng tối đa 752 px, căn giữa trên lớp nền mờ che Live board; cao hơn màn hình thì cuộn bên trong. Từ trên xuống: tiêu đề căn giữa, các hàng nhãn trái và ô nhập phải (Người nhận, Danh hiệu), khối soạn thảo gồm thanh công cụ và ô viết, dòng gợi ý "@ + tên", hàng Hashtag, hàng Image, ô ẩn danh, chân modal có Hủy và Gửi. Dưới 640 px nhãn xếp trên ô nhập. Hộp thoại chèn liên kết, danh sách gợi ý người nhận và panel hashtag nổi lên trên modal.
+Hộp thoại nền kem, bo góc, rộng tối đa 752 px, căn giữa trên lớp nền mờ che Live board; tiêu đề ở đầu và chân Hủy/Gửi ở cuối luôn thấy, cao hơn màn hình thì chỉ vùng các trường ở giữa cuộn. Từ trên xuống: tiêu đề căn giữa, các hàng nhãn trái và ô nhập phải (Người nhận, Danh hiệu), khối soạn thảo gồm thanh công cụ và ô viết, dòng gợi ý "@ + tên", hàng Hashtag, hàng Image, ô ẩn danh, chân modal có Hủy và Gửi. Dưới 640 px nhãn xếp trên ô nhập. Hộp thoại chèn liên kết, danh sách gợi ý người nhận và panel hashtag nổi lên trên modal.
 
 ```
 ┌──────────────────────────────────────────────────┐
@@ -56,7 +56,7 @@ Hộp thoại nền kem, bo góc, rộng tối đa 752 px, căn giữa trên l�
 
 | Region ID | Name | Position | Scrollable | Key Components |
 |-----------|------|----------|------------|----------------|
-| R1 | Tiêu đề modal | static | no | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:34-40` |
+| R1 | Tiêu đề modal (cố định ở đầu thẻ) | static | no | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:46-52` |
 | R2 | Người nhận và Danh hiệu | static | no | `app/(main)/sun-kudos/_components/recipient-picker-view.tsx:12-86`, `app/(main)/sun-kudos/_components/write-kudo-field-row.tsx:51-92` |
 | R3 | Soạn lời cảm ơn | static | no | `app/(main)/sun-kudos/_components/kudo-editor-frame-view.tsx:45-100`, `app/(main)/sun-kudos/_wiring/write-kudo-editor-container.tsx:27-76` |
 | R4 | Hashtag và Image | static | no | `app/(main)/sun-kudos/_components/hashtag-picker-view.tsx:13-96`, `app/(main)/sun-kudos/_components/image-picker-view.tsx:14-77` |
@@ -65,7 +65,8 @@ Hộp thoại nền kem, bo góc, rộng tối đa 752 px, căn giữa trên l�
 | R7 | Danh sách gợi ý người nhận và mention | floating | yes | `app/(main)/sun-kudos/_components/sunner-option-list-view.tsx:19-70` |
 | R8 | Panel chọn hashtag | floating | yes | `app/(main)/sun-kudos/_components/hashtag-picker-view.tsx:13-96` |
 | R9 | Hộp thoại Addlink | floating | no | `app/(main)/sun-kudos/_components/add-link-dialog-view.tsx:53-99` |
-| R0 | Khung modal ngoài cùng và lớp nền mờ | fixed | yes (khi cao hơn màn hình) | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:12-45` |
+| R10 | Vùng cuộn các trường (R2 đến R5) | giữa R1 và R6 | yes (`overscroll-behavior-y: contain`) | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:53-58` |
+| R0 | Khung modal ngoài cùng và lớp nền mờ | fixed | no (trang phía sau bị khóa cuộn; chỉ R10 cuộn) | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:18-62`, `app/(main)/sun-kudos/_behavior/use-body-scroll-lock.ts:10-23` |
 
 ## 3. UI Elements
 
@@ -146,7 +147,8 @@ Hộp thoại nền kem, bo góc, rộng tối đa 752 px, căn giữa trên l�
 
 ### Interaction Notes
 
-- **Click nền mờ ngoài modal không làm gì, tránh mất nội dung** — source: `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:19-21`
+- **Click nền mờ ngoài thẻ đóng modal và bỏ dữ liệu như Hủy (thay "không làm gì" ngày 2026-10-15); bỏ qua khi đang gửi và khi lần nhấn bắt đầu trong thẻ rồi nhả trên nền mờ** — source: `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:26-33`, `app/(main)/sun-kudos/_wiring/write-kudo-form-container.tsx:91`
+- **Chỉ vùng các trường cuộn; tiêu đề và Hủy/Gửi đứng yên, cuộn tới cuối không kéo trang phía sau, trang phía sau bị khóa cuộn khi modal mở** — source: `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:53-58`, `app/(main)/sun-kudos/_behavior/use-body-scroll-lock.ts:10-23`
 - **Esc đóng hộp thoại liên kết trước; khi không có hộp thoại thì đóng modal** — source: `app/(main)/sun-kudos/_behavior/use-escape-layer.ts:13-31`, `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:36-45` [EXPECTED]
 - **Tab quay vòng trong modal, không thoát ra Live board phía sau** — source: `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:44-60` [EXPECTED]
 
@@ -208,14 +210,17 @@ Hộp thoại nền kem, bo góc, rộng tối đa 752 px, căn giữa trên l�
 
 | From | Trigger there | Condition | Source |
 |------|----------------|-----------|--------|
-| SCR006_KudosLiveBoard | Bấm thanh ghi nhận | Đã đăng nhập và có hồ sơ Sunner | `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:25-57` |
+| SCR006_KudosLiveBoard | Bấm thanh ghi nhận | Đã đăng nhập và có hồ sơ Sunner | `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:29-93` |
+| SCR006_KudosLiveBoard | Bấm FAB, rồi "Viết KUDOS" | Đã đăng nhập và có hồ sơ Sunner; mở thẳng qua cầu compose | `app/(main)/_wiring/fab-container.tsx:39-42`, `app/(main)/_behavior/compose-bridge.ts:22-30` |
+| Mọi trang chính khác (FAB của layout; nút mô tả ở SCR003_Homepage) | Bấm FAB, rồi "Viết KUDOS" | Đã đăng nhập và có hồ sơ Sunner; đi qua `/sun-kudos?compose=1`, board mở modal một lần rồi bỏ `compose` khỏi địa chỉ | `app/(main)/_wiring/fab-container.tsx:39-42`, `app/(main)/sun-kudos/_wiring/action-pills-container.tsx:49-69` |
 
 ### Exits
 
 | Action | Element | Condition | Destination | Result | Source |
 |--------|---------|-----------|-------------|--------|--------|
-| Hủy | E22 | Không đang gửi | SCR006_KudosLiveBoard (ở lại màn Live board) | modal đóng, tiêu điểm về thanh ghi nhận | `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:40-42`, `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:72-78` |
+| Hủy | E22 | Không đang gửi | SCR006_KudosLiveBoard (ở lại màn Live board) | modal đóng, tiêu điểm về nút đã mở (thanh ghi nhận hoặc FAB) | `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:40-42`, `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:72-78` |
 | Esc | — | Không đang gửi, không có hộp thoại liên kết mở | SCR006_KudosLiveBoard (ở lại màn Live board) | modal đóng | `app/(main)/sun-kudos/_behavior/use-modal-focus-trap.ts:40-42` |
+| Click nền mờ | R0 | Không đang gửi; nhấn và nhả cùng trên nền mờ | SCR006_KudosLiveBoard (ở lại màn Live board) | modal đóng, bỏ mọi thay đổi, tiêu điểm về nút đã mở | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:26-33` |
 | Gửi thành công | E23 | Dữ liệu hợp lệ | SCR006_KudosLiveBoard (ở lại màn Live board) | toast rồi Live board nạp lại, Kudo mới đứng đầu All Kudos | `app/(main)/sun-kudos/_behavior/use-submit-kudo.ts:63-68` |
 | Tiêu chuẩn cộng đồng | E08 | — | `/standards` (trang giữ chỗ; chưa có mã màn hình) | new tab | `app/(main)/sun-kudos/_components/kudo-editor-frame-view.tsx:73-79` |
 
@@ -224,8 +229,8 @@ Hộp thoại nền kem, bo góc, rộng tối đa 752 px, căn giữa trên l�
 | Aspect | Status | Notes |
 |--------|--------|-------|
 | ARIA roles/labels | [EXPECTED] | Khung modal có role hộp thoại và nhãn là tiêu đề; mỗi ô có nhãn gắn kèm; Gửi mang trạng thái vô hiệu cho trình đọc màn hình khi còn thiếu trường nhưng vẫn bấm được |
-| Keyboard navigation | [EXPECTED] | Mọi điều khiển tới được bằng Tab; Esc đóng modal; mũi tên chọn trong danh sách gợi ý và Enter để chọn |
-| Focus management | [EXPECTED] | Tiêu điểm bị bẫy trong modal; vào modal tiêu điểm ở ô Người nhận; đóng thì quay về thanh ghi nhận; hộp thoại liên kết có bẫy riêng và trả tiêu điểm về nút liên kết |
+| Keyboard navigation | [EXPECTED] | Mọi điều khiển tới được bằng Tab; Esc hoặc click nền mờ đóng modal; mũi tên chọn trong danh sách gợi ý và Enter để chọn |
+| Focus management | [EXPECTED] | Tiêu điểm bị bẫy trong modal; vào modal tiêu điểm ở ô Người nhận; đóng thì quay về nút đã mở nó (thanh ghi nhận hoặc FAB); hộp thoại liên kết có bẫy riêng và trả tiêu điểm về nút liên kết |
 | Screen reader compatibility | [EXPECTED] | Nút định dạng có nhãn chữ; thu nhỏ ảnh và nút "x" có nhãn; danh sách gợi ý thông báo số kết quả |
 | Error announcement | [EXPECTED] | Lỗi từng trường và toast kết quả được đọc tự động; trường lỗi báo trạng thái không hợp lệ |
 
@@ -233,7 +238,7 @@ Hộp thoại nền kem, bo góc, rộng tối đa 752 px, căn giữa trên l�
 
 | Breakpoint | Region / Element | Behavior | Source |
 |------------|-------------------|----------|--------|
-| desktop (1440 px) | R0 | Modal rộng 752 px, căn giữa trên nền mờ | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:31` |
-| tablet, mobile | R0 | Rộng bằng chiều rộng màn hình trừ 32 px, tối đa 752 px; cao tối đa chiều cao màn hình trừ 32 px, cuộn bên trong | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:18`, `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:31` |
+| desktop (1440 px) | R0 | Modal rộng 752 px, căn giữa trên nền mờ | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:43` |
+| tablet, mobile | R0 | Rộng bằng chiều rộng màn hình trừ 32 px, tối đa 752 px; cao tối đa chiều cao màn hình trừ 32 px; tiêu đề và chân cố định, vùng trường (R10) cuộn bên trong | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:25`, `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:43`, `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:53-58` |
 | dưới 640 px | R2, R4 | Nhãn xếp trên ô nhập thay vì nằm cùng hàng | `app/(main)/sun-kudos/_components/write-kudo-field-row.tsx:26` |
-| 375 px | R0 | Không có thanh cuộn ngang | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:31` |
+| 375 px | R0 | Không có thanh cuộn ngang | `app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx:43` |

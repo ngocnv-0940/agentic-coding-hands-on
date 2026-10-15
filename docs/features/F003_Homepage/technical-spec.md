@@ -102,7 +102,7 @@ flowchart LR
 `FR-001` `FR-201` `FR-202` `FR-203` `FR-205` `FR-207` `FR-208` `FR-211` `FR-212` `BR-002` `DEC-005` `US003` `US006` · `SCR003_Homepage`
 
 **Who** · Người dùng đã đăng nhập *(gate A1 và A0 — § 4.4)*
-**FE** · `HomePage` dựng: header cố định có logo, ba mục điều hướng và ba nút chức năng (FR-201: mục "About SAA 2025" được tô nổi trên `/`; FR-202: bấm logo hoặc mục đang chọn thì cuộn lên đầu trang bằng cuộn mượt phía client); hero ROOT FURTHER với `CountdownTimer` (FR-203, xem A8); khối thông tin sự kiện (FR-205); đoạn Root Further (FR-207); lưới giải thưởng (FR-208, xem A9); khối Kudos; nút widget cố định góc phải dưới (FR-211); footer (FR-212). Mục điều hướng đang chọn theo đường dẫn hiện tại (FR-202 áp cả trên trang giữ chỗ). Bố cục và phần tử chi tiết: `SCR003_Homepage/spec.md`.
+**FE** · `HomePage` dựng: header cố định có logo, ba mục điều hướng và ba nút chức năng (FR-201: mục "About SAA 2025" được tô nổi trên `/`; FR-202: bấm logo hoặc mục đang chọn thì cuộn lên đầu trang bằng cuộn mượt phía client); hero ROOT FURTHER với `CountdownTimer` (FR-203, xem A8); khối thông tin sự kiện (FR-205); đoạn Root Further (FR-207); lưới giải thưởng (FR-208, xem A9); khối Kudos; nút widget cố định góc phải dưới, nay mở nhóm hành động nhanh Thể lệ / Viết KUDOS / × (FR-211; `FabContainer` lắp trong layout, hành vi ở `F007_WriteKudo/technical-spec.md` A1); footer (FR-212). Mục điều hướng đang chọn theo đường dẫn hiện tại (FR-202 áp cả trên trang giữ chỗ). Bố cục và phần tử chi tiết: `SCR003_Homepage/spec.md`.
 **Request** · không có tham số; cookie `NEXT_LOCALE` và cookie phiên
 **BE** · Đọc `EVENT_START_AT` (FR-001: nguồn duy nhất của ngày hiển thị và đếm ngược), từ điển theo ngôn ngữ, và vai trò từ người dùng đã xác minh để truyền cho `AccountMenu`. Truyền mốc cho bộ đếm ngược (`CountdownContainer`) dưới dạng chuỗi ISO-8601 (`toISOString()`) hoặc `null`.
 **Rule** · **BR-002 — Mốc sự kiện thiếu hoặc không hợp lệ được coi như đã tới mốc.** Không hợp lệ nghĩa là không phải ISO-8601 kèm offset hoặc `Z`, hoặc là ngày giờ không có thật (ví dụ `2025-02-30`, `24:00`). Ở đây nó khiến dòng ngày sự kiện hiện "—" thay vì ngày sai. *(§ 4.4)*
@@ -112,7 +112,7 @@ flowchart LR
 | **DEC-005** | render | mốc hợp lệ | Dòng ngày hiện `dd/MM/yyyy`, tính theo Asia/Ho_Chi_Minh (cùng kết quả trên server và client), không hiện giờ | `lib/event/event-start-config.ts:23-27,65-67` |
 | **DEC-005** | render | mốc thiếu hoặc không hợp lệ | Dòng ngày hiện "—", bố cục không đổi | `lib/event/event-start-config.ts:41-43,65-67` |
 **Result** · read-only. Người dùng thấy toàn bộ trang theo ngôn ngữ đã chọn: đếm ngược (A8), ngày/địa điểm/Livestream, 6 thẻ giải thưởng, khối Kudos, footer. US003 (xem đếm ngược và thông tin sự kiện) và US006 (điều hướng bằng header, footer) được phục vụ ở đây cùng A7, A8.
-**Source:** `app/(main)/page.tsx:20-36`, `app/(main)/_wiring/read-event-snapshot.ts:15-22`, `app/(main)/_wiring/build-home-screen-props.ts:20-35`, `lib/event/event-start-config.ts:41-67`
+**Source:** `app/(main)/page.tsx:20-36`, `app/(main)/_wiring/read-event-snapshot.ts:15-22`, `app/(main)/_wiring/build-home-screen-props.ts:20-35`, `lib/event/event-start-config.ts:41-67`, `app/(main)/layout.tsx:73-84`, `app/(main)/_wiring/fab-container.tsx:26-57`
 
 ---
 

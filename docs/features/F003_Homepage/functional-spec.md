@@ -13,7 +13,7 @@ lang: vi
 **Problem:** Sau khi đăng nhập, người dùng hiện chỉ thấy trang `/todo` tối thiểu; chưa có trang chủ nào giới thiệu Sun* Annual Awards 2025 (chủ đề ROOT FURTHER), cho biết còn bao lâu tới sự kiện, các hạng mục giải thưởng và phong trào Sun* Kudos.
 **Solution:** Trang chủ `/` dành cho người đã đăng nhập: header cố định (điều hướng, thông báo, ngôn ngữ, tài khoản), hero kèm đồng hồ đếm ngược tới giờ khai mạc, thông tin sự kiện, phần giới thiệu Root Further, lưới 6 hạng mục giải thưởng, khối quảng bá Sun* Kudos, nút widget cố định và footer. Đăng nhập xong người dùng vào thẳng trang này.
 **Scope:** Màn trang chủ cùng vỏ header/footer của nó; menu tài khoản, bảng thông báo (trạng thái trống), nút widget; đồng hồ đếm ngược theo cấu hình; các trang đích còn thiếu làm trang "Coming soon" tối thiểu để không có link chết; việc đổi đích sau đăng nhập từ `/todo` sang `/`.
-**Non-Scope:** Nội dung thật của trang Awards Information (nay do F004_AwardsInformation dựng) và các trang Sun* Kudos, Tiêu chuẩn chung, Profile, Admin Dashboard (chỉ có trang giữ chỗ). Dữ liệu thông báo thật và menu hành động nhanh của nút widget (chưa có đặc tả). Cơ chế đăng nhập/đăng xuất và bộ chọn ngôn ngữ (thuộc F001_Auth và F002_Localization, trang này chỉ dùng lại).
+**Non-Scope:** Nội dung thật của trang Awards Information (nay do F004_AwardsInformation dựng) và các trang Sun* Kudos, Tiêu chuẩn chung, Profile, Admin Dashboard (chỉ có trang giữ chỗ). Dữ liệu thông báo thật. Nhóm hành động nhanh của nút widget do F007_WriteKudo mô tả (FR-106, FR-107); trang Thể lệ thật chưa có. Cơ chế đăng nhập/đăng xuất và bộ chọn ngôn ngữ (thuộc F001_Auth và F002_Localization, trang này chỉ dùng lại).
 
 **Actors**
 
@@ -39,7 +39,7 @@ lang: vi
 | D001 | Ai được vào `/` | **Đã chốt:** phải đăng nhập; khách bị chuyển về `/login`. Test case ID-0 (khách xem được trang chủ) bị thay thế (clarifications.md, 2026-10-08) | Cùng cách bảo vệ `/todo` của F001 | no |
 | D002 | Đích sau đăng nhập | **Đã chốt:** `/` thay cho `/todo` (cả sau bước đổi mã và khi người đã đăng nhập mở `/login`); `/todo` giữ nguyên và vẫn được bảo vệ (clarifications.md, 2026-10-08) | Trang chủ là cửa vào chính của ứng dụng | no |
 | D003 | Các trang đích chưa có (Awards Information, Sun* Kudos, Tiêu chuẩn chung) | **Đã chốt:** làm trang giữ chỗ `/awards-information`, `/sun-kudos`, `/standards` chỉ hiện "Coming soon"; thẻ giải thưởng trỏ `/awards-information#<slug>` (clarifications.md, 2026-10-08) | Không để link chết (TC ID-59); trang thật là việc sau | no |
-| D004 | Phạm vi menu header | **Đã chốt:** menu tài khoản thật (Profile tới `/profile`, Sign out dùng đăng xuất hiện có, Admin Dashboard chỉ cho admin tới `/admin`); bảng thông báo mở ra trạng thái trống, không badge; nút widget chỉ vẽ, chưa có menu (clarifications.md, 2026-10-08) | Chưa có nguồn dữ liệu thông báo, chưa có đặc tả hành động nhanh nên không bịa lựa chọn | no |
+| D004 | Phạm vi menu header | **Đã chốt:** menu tài khoản thật (Profile tới `/profile`, Sign out dùng đăng xuất hiện có, Admin Dashboard chỉ cho admin tới `/admin`); bảng thông báo mở ra trạng thái trống, không badge; nút widget chỉ vẽ, chưa có menu (clarifications.md, 2026-10-08) — **phần nút widget đã thay bằng D012 (2026-10-15)** | Chưa có nguồn dữ liệu thông báo, chưa có đặc tả hành động nhanh nên không bịa lựa chọn | no |
 | D005 | Nguồn nội dung sự kiện khi đặc tả và Figma khác nhau | **Đã chốt:** theo Figma (ngày 26/12/2025, Âu Cơ Art Center, "Tường thuật trực tiếp qua sóng Livestream"); ngày hiển thị và đếm ngược cùng lấy từ `EVENT_START_AT`; giá trị sai hoặc thiếu thì đếm ngược về 00 và ẩn "Coming soon" (clarifications.md, 2026-10-08) | Figma là bản mới hơn | no |
 | D006 | Mô tả ngắn và slug của 6 hạng mục giải thưởng | **Đã chốt:** mô tả lấy nguyên văn từ node Figma của từng thẻ (nội dung điền khi triển khai, không tự bịa); slug: `top-talent`, `top-project`, `top-project-leader`, `best-manager`, `signature-2025-creator`, `mvp` (clarifications.md, 2026-10-08) | Cần đủ nội dung để vẽ lưới; slug phải khớp mục neo của trang Awards Information sau này | no |
 | D007 | Khối thông tin sự kiện hiện gì và theo múi giờ nào | **Đã chốt:** chỉ ngày, định dạng `dd/MM/yyyy`, tính theo múi giờ Asia/Ho_Chi_Minh (giống nhau ở server và client); không hiện giờ (clarifications.md, 2026-10-08) | Người xem ở đâu cũng thấy cùng một ngày | no |
@@ -47,6 +47,7 @@ lang: vi
 | D009 | Người không phải admin gõ thẳng `/admin` | **Đã chốt:** bị chặn phía máy chủ và chuyển về `/` (clarifications.md, 2026-10-08) | Ẩn mục trong menu không phải là kiểm soát truy cập | no |
 | D010 | Trang giữ chỗ có dùng lại header và footer không | **Đã chốt:** có; mục điều hướng đang chọn theo trang hiện tại (clarifications.md, 2026-10-08) | Người dùng quay về được mà không cần nút riêng | no |
 | D011 | Trang giữ chỗ (`/awards-information`, `/sun-kudos`, `/standards`, `/profile`, `/admin`) có yêu cầu đăng nhập không | **Đã chốt:** có; proxy bảo vệ như `/`, khách bị chuyển về `/login` (clarifications.md, 2026-10-08) | Thống nhất với D001 | no |
+| D012 | Hành vi nút widget (thay phần nút widget của D004) | **Đã chốt (2026-10-15):** bấm nút widget mở nhóm hành động nhanh theo thiết kế MoMorph `Sv7DFwBw1h`: "Thể lệ" mở "Coming soon", "Viết KUDOS" mở modal Viết Kudo (thẳng trên `/sun-kudos`, qua `/sun-kudos?compose=1` ở trang khác), nút × đỏ, Esc và click ngoài đóng nhóm; chi tiết ở F007_WriteKudo D017 | Đã có đặc tả hành động nhanh nên không còn lý do để nút chỉ vẽ | no |
 
 ## 4. Requirements
 
@@ -76,7 +77,7 @@ lang: vi
 - **FR-208** Lưới 6 thẻ giải thưởng: 3 cột trên desktop, 2 cột trên tablet và mobile; mô tả tối đa 2 dòng; thẻ nhô nhẹ khi rê chuột.
 - **FR-209** Bấm ảnh, tiêu đề hoặc "Chi tiết" của thẻ thì mở `/awards-information#<slug>` của hạng mục đó.
 - **FR-210** Khối Sun* Kudos có nút "Chi tiết" dẫn tới `/sun-kudos`.
-- **FR-211** Nút widget cố định ở góc phải dưới; chưa có menu hành động nhanh (D004).
+- **FR-211** Nút widget cố định ở góc phải dưới của mọi trang chính; bấm vào mở nhóm hành động nhanh "Thể lệ" (Coming soon), "Viết KUDOS" (mở modal Viết Kudo) và nút × đóng, xem F007_WriteKudo FR-106 và FR-107 (D012).
 - **FR-212** Footer có logo (về đầu trang), liên kết About SAA 2025, Awards Information, Sun* Kudos, Tiêu chuẩn chung (tới `/standards`) và dòng bản quyền.
 
 ### Interaction (4xx)
@@ -203,7 +204,7 @@ journey
 - [ ] Mọi liên kết ở header, footer (kể cả Tiêu chuẩn chung) mở ra một trang, không gặp lỗi 404
 - [ ] Trang giữ chỗ cũng có header và footer, mục điều hướng đang chọn theo trang hiện tại
 - [ ] Khách mở thẳng một trang giữ chỗ thì bị chuyển về Login
-- [ ] Nút widget luôn nằm ở góc phải dưới
+- [ ] Nút widget luôn nằm ở góc phải dưới; bấm vào thì nút ẩn và nhóm hành động nhanh hiện ở cùng chỗ
 
 ### US007 — Mở menu tài khoản và đăng xuất
 
@@ -337,7 +338,7 @@ journey
 - **FR-208** → 6 thẻ; 3 cột desktop, 2 cột tablet/mobile; hover nhô nhẹ
 - **FR-209** → mỗi thẻ mở đúng `#<slug>` (slug theo BR-006), bấm ảnh, tên hay "Chi tiết" đều như nhau
 - **FR-210** → "Chi tiết" của Kudos tới `/sun-kudos`
-- **FR-211** → nút widget luôn ở góc phải dưới khi cuộn
+- **FR-211** → nút widget luôn ở góc phải dưới khi cuộn; bấm mở nhóm Thể lệ, Viết KUDOS, ×
 - **FR-212** → footer có đủ bốn liên kết, logo và bản quyền
 - **FR-401** → bảng thông báo mở trống, chuông không có chấm đỏ
 - **FR-402** → người thường thấy 2 mục, admin thấy 3 mục
@@ -353,7 +354,7 @@ journey
 | ID | Type | Description | Impact | Status |
 |----|------|--------------|--------|--------|
 | RISK-01 | risk | Đổi đích sau đăng nhập sang `/` làm các kiểm thử E2E hiện có của F001_Auth (đang chờ `/todo`) và các yêu cầu về đích sau đăng nhập của F001_Auth không còn đúng | F001_Auth phải được cập nhật cùng lúc, nếu không kiểm thử cũ sẽ đỏ | [EXPECTED] |
-| RISK-02 | risk | Nút widget chỉ vẽ ra, chưa có hành động; người dùng bấm không thấy gì | Có thể bị hiểu là lỗi | [EXPECTED] |
+| RISK-02 | risk | "Thể lệ" trong nhóm hành động nhanh chỉ mở "Coming soon" vì chưa có trang thể lệ | Người dùng bấm thấy thông báo giữ chỗ | [EXPECTED] |
 | RISK-03 | risk | Bản tiếng Anh do nhóm tự soạn, chưa qua duyệt nội dung | Có thể lệch giọng văn với thiết kế gốc | [EXPECTED] |
 | RISK-04 | risk | Slug hạng mục chốt trước khi trang Awards Information thật tồn tại; trang thật phải dùng cùng slug | Link neo hỏng nếu hai bên lệch | [EXPECTED] |
 | RISK-05 | risk | Đổi vai trò admin ở Supabase chỉ có hiệu lực khi phiên được làm mới (đã chấp nhận) | Admin mới có thể chưa thấy mục Admin Dashboard ngay; admin bị gỡ quyền còn thấy tới lần làm mới phiên | [EXPECTED] |
