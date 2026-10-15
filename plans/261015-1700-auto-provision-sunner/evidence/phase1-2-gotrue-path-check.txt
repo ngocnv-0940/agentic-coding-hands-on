@@ -1,0 +1,9 @@
+# GoTrue admin API create user -> trigger under supabase_auth_admin
+created auth user 84cb4c3b-239c-44b6-af92-8db5e75236aa
+               user_id                |  full_name   |                avatar_url                 | department_id | hero_title 
+--------------------------------------+--------------+-------------------------------------------+---------------+------------
+ 84cb4c3b-239c-44b6-af92-8db5e75236aa | GoTrue Check | https://lh3.googleusercontent.com/a/check |               | 
+(1 row)
+
+delete auth user http=200
+DELETE 1

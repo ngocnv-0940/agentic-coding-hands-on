@@ -1,0 +1,51 @@
+# Pre-check: stray rows from an aborted first attempt (users created+deleted, probe never installed)
+ stray_fix1_sunners 
+--------------------
+                  0
+(1 row)
+
+# Temporary probe (dropped at the end): records raw_app_meta_data as seen by an AFTER INSERT trigger
+CREATE TABLE
+CREATE FUNCTION
+CREATE TRIGGER
+
+# 1. Admin API: email user
+admin-created user 412569fd-9cde-49c1-a2c9-18716a5b6a95
+
+# 2. Public /signup with the anon key (review finding M1 path)
+anon /signup user 3cedf851-f6c0-4a6c-9693-548d3a6b1c2d
+
+# Insert-time app metadata (probe) vs stored app metadata
+             email             |              app_meta_at_insert               |                 app_meta_now                  
+-------------------------------+-----------------------------------------------+-----------------------------------------------
+ fix1-admin-email@example.test | {"provider": "email", "providers": ["email"]} | {"provider": "email", "providers": ["email"]}
+ fix1-anon-signup@example.test | {"provider": "email", "providers": ["email"]} | {"provider": "email", "providers": ["email"]}
+(2 rows)
+
+ sunners_rows_for_the_two_users 
+--------------------------------
+                              0
+(1 row)
+
+
+# Cleanup
+delete 412569fd-9cde-49c1-a2c9-18716a5b6a95 http=200
+delete 3cedf851-f6c0-4a6c-9693-548d3a6b1c2d http=200
+DROP TRIGGER
+DROP FUNCTION
+DROP TABLE
+ leftover_fix1_auth_users 
+--------------------------
+                        0
+(1 row)
+
+ leftover_fix1_sunners 
+-----------------------
+                     0
+(1 row)
+
+ leftover_probe_objects 
+------------------------
+                      0
+(1 row)
+

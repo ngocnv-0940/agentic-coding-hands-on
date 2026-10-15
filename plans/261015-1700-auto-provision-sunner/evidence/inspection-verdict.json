@@ -1,0 +1,79 @@
+{
+  "score": 9.5,
+  "criticalCount": 0,
+  "decision": "SEALED",
+  "contractStatus": "OK",
+  "refuted": [],
+  "unproven": [],
+  "reachableRegressions": [],
+  "acceptanceCovered": [
+    "A new auth.users row gets exactly one sunners row with user_id = its id, created by an after-insert trigger — proof: scoped to Google accounts per clarifications.md round-1 decision (user: 'mọi account Google'); migration :47-63 (is_google_account gate :50-52, trigger AFTER INSERT OR UPDATE OF raw_app_meta_data FOR EACH ROW :61-63, insert on conflict (user_id) do nothing :53-56); pgTAP tgtype=21 and tgattr={raw_app_meta_data} (test :14-19), 15 Google fixtures -> 15 rows, exactly one per user, non-Google/odd app metadata -> no row and no error (test :67-90), GoTrue link update (providers [email, google]) -> exactly one row (test :151-154), repeat update on a provisioned user keeps one row with name/avatar unchanged (test :155-160), last_sign_in_at/raw_user_meta_data updates do not fire (test :161-170); supabase/auth external.go LinkAccount/AccountExists call UpdateUserMetaData then UpdateAppMetaDataProviders (UpdateOnly raw_app_meta_data), ToUserModel sets provider before tx.Create; evidence/fix2-red-pgtap-output.txt fails 2,3,42 pre-fix, evidence/fix2-mutation-check.txt kills insert-only and no-column-list mutants, evidence/fix2-pgtap-output.txt 316/316; evidence/fix1-gotrue-path-check.txt email users via admin and anon /signup got 0 rows",
+    "full_name follows ALG-007: full_name, else name, else email local part, else 'Sunner', trimmed and capped at 100 chars; avatar_url is avatar_url else picture only when https and at most 2048 chars, else null — proof: migration :29-45 (trim again after left(...,100)); pgTAP name/avatar cases incl. NBSP/tab trim, 103->100 chars, cut ending in whitespace trimmed (test :109), null meta/email, scalar meta, http/javascript/uppercase dropped, 2048 kept/2049 dropped",
+    "Existing auth users without a sunner are backfilled once by the migration; seeded sunners stay unlinked — proof: migration :65-72 gated by is_google_account; pgTAP runs the same statement twice (2 then 0 inserted), backfilled rows follow ALG-007, non-Google accounts skipped (test :145-146), seeded rows unchanged and user_id-null count preserved",
+    "The trigger function is SECURITY DEFINER with search_path '' and not executable by public, anon or authenticated; sunners.user_id stays hidden from authenticated — proof: pg_proc prosecdef/proconfig asserts for all three functions; has_function_privilege false for anon/authenticated; no PUBLIC aclexplode entry; revoke at migration :74-76; throws_ok 42501 on select user_id and on calling provision_sunner/sunner_profile_from_auth as authenticated; DEFINER allowlist in write-kudo-sender-masking test 8 updated exactly",
+    "A freshly provisioned user can create a kudo and like a kudo through the existing RPCs; the no-sunner backstop paths still work — proof: pgTAP viewer_sunner_id resolves, create_kudo stores sender = provisioned row, toggle_kudo_like returns liked; sunner_not_found cases in kudos-like-rules and write-kudo-create-rules plus feed/sidebar no-sunner in kudos-rls-and-reads still pass",
+    "Existing pgTAP and e2e suites stay green — proof: evidence/fix2-pgtap-output.txt 316/316 in 7 files PASS after fix round 2; evidence/fix2-db-reset.txt exit 0; evidence/fix2-db-lint.txt 'No schema errors found' exit 0; evidence/final-e2e-output.txt 252 passed (e2e runs against the mock Supabase server, no app code changed in the fix rounds)"
+  ],
+  "regressionChecked": [
+    "sign-up into auth.users: no raising input (json shapes, null email, huge strings, unicode), FK/unique/check constraints, no sunners triggers, owner bypasses RLS, no fire-time privilege need for supabase_auth_admin",
+    "F006 like and sidebar: no-sunner backstop assertions intact",
+    "F007 compose pill and create_kudo: provisioned user writes; sunner_not_found backstop intact",
+    "recipient search results: provisioned rows searchable (accepted privacy); email sign-up widens scope (M1)",
+    "avatar render sinks: next/image unoptimized, so no remotePatterns crash; React-escaped; no dangerouslySetInnerHTML",
+    "grants: no later migration re-grants; Supabase default privileges cover the public schema only; pgTAP guards re-grant",
+    "test fixture edits: deletes scoped to the file's own pgtap users; DEFINER allowlist still exact",
+    "fix round 1: is_google_account cannot raise on null/array/scalar/nested app metadata and never returns null; AFTER ROW early return null is ignored by PostgreSQL; GoTrue CreateAccount path sets provider=google before INSERT (supabase/auth ToUserModel); helper revoked from clients; seed.sql comment accurate",
+    "fix round 2: UPDATE OF raw_app_meta_data fires on every repeat Google sign-in (GoTrue AccountExists UpdateAppMetaDataProviders, identical value) — no-op via on conflict do nothing, re-creates a deleted sunner (consistent with 'every Google account gets a sunner'; no app path deletes sunners); concurrent same-user sign-ins serialize on the auth.users row lock and the unique user_id arbiter skips without error; LinkAccount writes raw_user_meta_data before raw_app_meta_data so the Google profile feeds ALG-007; SoftDeleteUser empties app metadata so the gate returns early; raw_app_meta_data not user-writable, manual linking disabled (config.toml:181); per-sign-in cost one function call and one unique-index probe"
+  ],
+  "findings": [
+    {
+      "severity": "Medium",
+      "category": "Security",
+      "location": "supabase/config.toml:222",
+      "summary": "addressed — Email sign-up enabled (confirmations off locally): the auth.users trigger at supabase/migrations/20261015035950_auto_provision_sunner.sql:42-44 now gives any anon-key /signup (non-Google, even unconfirmed) a searchable, write-capable sunner with attacker-chosen name and avatar host. Fix: [auth.email] enable_signup = false (local + hosted) or a provider = 'google' gate in provision_sunner",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Security",
+      "location": "supabase/migrations/20261015035950_auto_provision_sunner.sql:25",
+      "summary": "Avatar accepts any https host; limiting to googleusercontent closes the third-party tracking-pixel path",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "supabase/migrations/20261015035950_auto_provision_sunner.sql:20-24",
+      "summary": "addressed — Cut to 100 chars happens after the trim, so a trailing space or split combining sequence can remain; trim again after left()",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Completeness",
+      "location": "docs/features/F006_KudosLiveBoard/functional-spec.md:54",
+      "summary": "D013 'no auto-create' and related lines in technical-spec.md:704, project-changelog.md:30, permissions-matrix.md:387 are stale until the plan's spec draft is promoted",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "supabase/migrations/20261014095439_kudos_live_board_tables.sql:14",
+      "summary": "Pre-existing on delete set null: a deleted auth user leaves an orphan sunner and re-sign-up creates a second persona",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "supabase/migrations/20261015035950_auto_provision_sunner.sql:59",
+      "summary": "addressed — Trigger is AFTER INSERT only, but GoTrue auto-links a Google sign-in to an existing same-email (email/password or invited) account via UPDATE of raw_app_meta_data (LinkAccount path), so that Google user never gets a sunner while the backfill would provision the same linked account; fix: after insert or update of raw_app_meta_data (function is already gated and idempotent)",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Maintainability",
+      "location": "supabase/migrations/20261015035950_auto_provision_sunner.sql:61",
+      "summary": "Trigger name on_auth_user_created_provision_sunner still says 'created' though it now also fires on UPDATE OF raw_app_meta_data, which GoTrue writes on every Google sign-in (AccountExists UpdateAppMetaDataProviders); header :7-9 implies updates are rare. Rename (e.g. on_auth_user_provision_sunner) while the migration is still uncommitted and note the per-sign-in no-op",
+      "disposition": "Defer"
+    }
+  ]
+}

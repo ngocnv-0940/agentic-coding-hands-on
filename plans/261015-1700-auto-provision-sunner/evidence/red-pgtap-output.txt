@@ -1,0 +1,39 @@
+Connecting to local database...
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql:17: ERROR:  function "kudos_private.provision_sunner()" does not exist
+LINE 1: ..., p.proconfig)::text from pg_proc p where p.oid = 'kudos_pri...
+                                                             ^
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql ........... 
+# Failed test 1: "auth.users carries the provisioning trigger"
+#         have: NULL
+#         want: kudos_private.provision_sunner
+# Failed test 2: "the trigger fires AFTER INSERT FOR EACH ROW (no update/delete event)"
+#         have: NULL
+#         want: 5
+# Failed test 3: "the trigger is enabled"
+#         have: NULL
+#         want: O
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 39/39 subtests 
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql ................ ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql ............. ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql .. ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql ......... ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql ... ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql ....... ok
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql         (Wstat: 768 (exited 3) Tests: 3 Failed: 3)
+  Failed tests:  1-3
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 39 tests but ran 3.
+Files=7, Tests=266,  1 wallclock secs ( 0.09 usr  0.01 sys +  0.08 cusr  0.07 csys =  0.25 CPU)
+Result: FAIL
+error running container: exit 1

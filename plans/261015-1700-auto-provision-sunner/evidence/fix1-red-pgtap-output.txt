@@ -1,0 +1,28 @@
+Connecting to local database...
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql:24: ERROR:  function "kudos_private.is_google_account(jsonb)" does not exist
+LINE 2:            where p.oid = 'kudos_private.is_google_account(js...
+                                 ^
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql .. 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 42/47 subtests 
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql (Wstat: 768 (exited 3) Tests: 5 Failed: 0)
+  Non-zero exit status: 3
+  Parse errors: Bad plan.  You planned 47 tests but ran 5.
+Files=1, Tests=5,  0 wallclock secs ( 0.05 usr  0.02 sys +  0.01 cusr  0.00 csys =  0.08 CPU)
+Result: FAIL
+error running container: exit 1
+
+# Behavioural RED against the ungated migration (rolled back)
+BEGIN
+INSERT 0 2
+ user_suffix | name_len | ends_in_space 
+-------------+----------+---------------
+ e1          |       12 | f
+ e2          |      100 | t
+(2 rows)
+
+ROLLBACK
