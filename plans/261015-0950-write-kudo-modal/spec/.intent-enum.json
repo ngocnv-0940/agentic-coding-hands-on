@@ -1,0 +1,5 @@
+{
+  "mode": "single",
+  "intents": ["(signed-in Sunner, compose and send a kudo to a colleague, kudo stored and shown on the live board)"],
+  "justification": ""
+}

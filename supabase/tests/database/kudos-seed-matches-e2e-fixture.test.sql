@@ -3,7 +3,7 @@
 -- The seed leaves sunners.user_id null; this test links the viewer and sender rows to test users.
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(19);
+select plan(25);
 
 insert into auth.users (id, email) values
   ('a3000000-0000-4000-8000-000000000001', 'pgtap-seed-viewer@example.test'),
@@ -37,7 +37,11 @@ insert into rpc_result values
   ('feed_dedicated', public.kudos_feed_page('dedicated', null, null, null, 50)),
   ('feed_mkt', public.kudos_feed_page(null, 'MKT', null, null, 50)),
   ('spotlight', public.kudos_spotlight()),
-  ('sidebar_viewer', public.kudos_sidebar());
+  ('sidebar_viewer', public.kudos_sidebar()),
+  ('search_nguyen', public.search_sunners('Nguyễn')),
+  ('search_an', public.search_sunners('An')),
+  ('search_duc', public.search_sunners('duc')),
+  ('search_nguyenvana', public.search_sunners('NguyenVanA'));
 set local request.jwt.claims = '{"sub":"a3000000-0000-4000-8000-000000000002","role":"authenticated"}';
 insert into rpc_result values ('sidebar_sender', public.kudos_sidebar());
 reset role;
@@ -65,6 +69,27 @@ select is(pg_temp.got('sidebar_viewer') -> 'stats', '{"received":3,"sent":2,"hea
 select is(pg_temp.got('sidebar_sender') -> 'stats', '{"received":0,"sent":4,"hearts":7,"boxesOpened":0,"boxesUnopened":0}'::jsonb, 'sender stats as the mock computes them');
 select is(jsonb_array_length(pg_temp.got('sidebar_viewer') -> 'latestGifts'), 10, 'EXPECT.giftsShown');
 select is(pg_temp.got('sidebar_viewer') -> 'latestGifts' -> 0 ->> 'prize', 'Voucher 500.000 VND', 'EXPECT.firstGiftPrize');
+
+-- Write-kudo fixture (F007): writer + 10 receiver-only sunners, and what the mock's searchSunners answers
+-- for the viewer (computed by running e2e/support/mock-kudos-sunner-search.ts on the fixture).
+select is((select array_agg(s.full_name || '|' || coalesce(d.code, '-') order by s.id) from public.sunners s left join public.departments d on d.id = s.department_id
+           where s.id between '00000000-0000-4000-8000-000000000111' and '00000000-0000-4000-8000-000000000121'),
+  array['Vũ Hải Đăng|DEV', 'Nguyễn Văn An|DEV', 'NguyenVanA|HR', 'Nguyễn Thị Bình|DEV', 'Nguyễn Quốc Cường|DEV', 'Nguyễn Đức Dũng|DEV',
+        'Nguyễn Thanh Hằng|DEV', 'Nguyễn Minh Hiếu|DEV', 'Nguyễn Thu Hương|DEV', 'Nguyễn Anh Khoa|DEV', 'Nguyễn Ngọc Lan|DEV'],
+  'SUNNER.writer..lan rows (NAME, department)');
+select is(array(select e ->> 'name' from jsonb_array_elements(pg_temp.got('search_nguyen')) with ordinality t(e, o) order by o),
+  array['NguyenVanA', 'Nguyễn Anh Khoa', 'Nguyễn Bá Chúc', 'Nguyễn Hoàng Linh', 'Nguyễn Minh Hiếu', 'Nguyễn Ngọc Lan', 'Nguyễn Quốc Cường',
+        'Nguyễn Thanh Hằng', 'Nguyễn Thu Hương', 'Nguyễn Thị Bình'], 'search "Nguyễn": the mock''s 10 names in the mock''s order');
+select is(array(select e ->> 'name' from jsonb_array_elements(pg_temp.got('search_an')) with ordinality t(e, o) order by o),
+  array['Huỳnh Dương Xuân', 'Huỳnh Dương Xuân Nhật', 'NguyenVanA', 'Nguyễn Anh Khoa', 'Nguyễn Hoàng Linh', 'Nguyễn Ngọc Lan', 'Nguyễn Thanh Hằng',
+        'Nguyễn Văn An', 'Nguyễn Văn Quy', 'Trần Minh Đức'], 'search "An" matches the mock');
+select is(array(select e ->> 'name' from jsonb_array_elements(pg_temp.got('search_duc')) with ordinality t(e, o) order by o),
+  array['Nguyễn Đức Dũng', 'Trần Minh Đức'], 'search "duc" matches the mock');
+select is(pg_temp.got('search_nguyenvana'),
+  '[{"id":"00000000-0000-4000-8000-000000000113","name":"NguyenVanA","avatarUrl":null,"department":"Human Resources"}]'::jsonb,
+  'search option shape matches the mock');
+select is(jsonb_build_array(pg_temp.card('feed_all', 4) -> 'isAnonymous', pg_temp.card('feed_all', 4) -> 'anonymousName', pg_temp.card('feed_all', 4) -> 'sender' ->> 'name'),
+  '[false, null, "E2E User"]'::jsonb, 'seed kudos are named: isAnonymous false, anonymousName null, sender kept');
 
 select * from finish();
 rollback;

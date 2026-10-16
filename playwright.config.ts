@@ -56,8 +56,10 @@ export default defineConfig({
       command: appCommand,
       url: `${APP_URL}/`,
       // A reused server would keep whatever EVENT_START_AT / SITE_LAUNCH_AT it was started with, so a
-      // custom event or launch env always gets a fresh server.
-      reuseExistingServer: !process.env.CI && !customEventEnv && !customLaunchEnv,
+      // custom event or launch env always gets a fresh server. E2E_PROD never reuses either: NEXT_PUBLIC_* are
+      // inlined at build time, and a server on this port built by a plain `bun run build` carries the .env.local
+      // Supabase URL (login then fails with auth_failed). Only this command's build inlines the mock env below.
+      reuseExistingServer: !process.env.CI && !process.env.E2E_PROD && !customEventEnv && !customLaunchEnv,
       timeout: 180_000,
       env: {
         NEXT_PUBLIC_SUPABASE_URL: MOCK_URL,

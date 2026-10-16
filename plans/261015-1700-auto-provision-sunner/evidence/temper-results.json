@@ -1,0 +1,74 @@
+{
+  "commands": [
+    {
+      "command": "git diff --stat origin/feat/write-kudo -- app lib e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "empty diff: no app/lib/e2e changes",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "supabase db reset",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "local DB reset finished, all migrations + seed applied",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "supabase test db",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "7 files, 302 tests, Result: PASS",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "supabase db lint",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "No schema errors found",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bunx tsc --noEmit",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "no type errors",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run lint",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "eslint clean",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "252 passed (12.6m), 0 failed, mock supabase",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "supabase db reset",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "fix round 2: reset applies insert-or-update trigger",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "supabase test db",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "fix round 2 (google gate + update trigger): pgTAP 316/316 in 7 files",
+      "ts": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "command": "supabase db lint",
+      "exitCode": 0,
+      "status": "pass",
+      "summary": "fix round 2: no schema errors",
+      "ts": "1970-01-01T00:00:00.000Z"
+    }
+  ]
+}

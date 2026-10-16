@@ -53,7 +53,10 @@ function cardJson(kudo: MockKudo, ds: MockDataset, viewer: MockSunner | undefine
     likeCount: likeCountOf(kudo),
     likedByViewer,
     canLike: viewer !== undefined && viewer.id !== kudo.senderId,
-    sender: personJson(sunnerById(ds, kudo.senderId)),
+    /** Anonymous kudos never carry the sender (phase-03 masking contract); the alias stands in. */
+    isAnonymous: kudo.isAnonymous,
+    anonymousName: kudo.anonymousName,
+    sender: kudo.isAnonymous ? null : personJson(sunnerById(ds, kudo.senderId)),
     receiver: personJson(sunnerById(ds, kudo.receiverId)),
     hashtags,
     images: kudo.imageUrls.slice(0, 5).map((url) => ({ url })),

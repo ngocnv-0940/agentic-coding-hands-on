@@ -34,6 +34,17 @@ export const DEPARTMENTS: MockDepartment[] = [
 
 const avatar = (key: string) => `/images/kudos/avatars/${key}.png`
 
+/** Receiver-only fixture rows for the recipient search (no kudos, so the F006 board counts do not move). */
+const WRITE_KUDO_RECEIVERS: MockSunner[] = (['an', 'nguyenVanA', 'binh', 'cuong', 'dung', 'hang', 'hieu', 'huong', 'khoa', 'lan'] as const).map((key) => ({
+  id: SUNNER[key],
+  userId: null,
+  name: NAME[key],
+  avatarUrl: null,
+  departmentCode: key === 'nguyenVanA' ? 'HR' : 'DEV',
+  heroTitle: null,
+  receivedCount: 0,
+}))
+
 export const SUNNERS: MockSunner[] = [
   { id: SUNNER.viewer, userId: 'e2e-user', name: NAME.viewer, avatarUrl: avatar('viewer'), departmentCode: 'DEV', heroTitle: 'rising_hero', receivedCount: 3 },
   { id: SUNNER.sender, userId: 'kudos-sender', name: NAME.sender, avatarUrl: avatar('sender'), departmentCode: 'MKT', heroTitle: 'new_hero', receivedCount: 0 },
@@ -45,6 +56,8 @@ export const SUNNERS: MockSunner[] = [
   { id: SUNNER.duc, userId: null, name: NAME.duc, avatarUrl: null, departmentCode: 'DEV', heroTitle: null, receivedCount: 10 },
   { id: SUNNER.chuc, userId: null, name: NAME.chuc, avatarUrl: avatar('chuc'), departmentCode: 'HR', heroTitle: 'super_hero', receivedCount: 0 },
   { id: SUNNER.tam, userId: null, name: NAME.tam, avatarUrl: null, departmentCode: 'HR', heroTitle: null, receivedCount: 0 },
+  { id: SUNNER.writer, userId: 'kudos-writer', name: NAME.writer, avatarUrl: null, departmentCode: 'DEV', heroTitle: null, receivedCount: 0 },
+  ...WRITE_KUDO_RECEIVERS,
 ]
 
 /** Sunner row key -> fixture row, for the kudos table (`sunnerKey`) to resolve people by key. */

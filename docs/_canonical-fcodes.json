@@ -102,6 +102,23 @@
         "bl": [],
         "perms": []
       }
+    },
+    {
+      "fcode": "F007",
+      "name": "Write Kudo",
+      "slug": "F007_WriteKudo",
+      "priority": "P1",
+      "type": "ui",
+      "related": {
+        "screens": [
+          "SCR007_WriteKudo"
+        ],
+        "user_stories": [],
+        "routes": [],
+        "models": [],
+        "bl": [],
+        "perms": []
+      }
     }
   ]
 }

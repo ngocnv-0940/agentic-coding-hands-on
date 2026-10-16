@@ -1,0 +1,1 @@
+E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid

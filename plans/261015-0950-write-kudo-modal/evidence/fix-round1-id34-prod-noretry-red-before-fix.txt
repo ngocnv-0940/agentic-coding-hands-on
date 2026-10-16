@@ -1,0 +1,45 @@
+$ playwright test "e2e/write-kudo-hashtags-images-anonymous.spec.ts" -g "ID-34"
+[WebServer] $ next build
+[WebServer] $ next start -p "3100"
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip (7.1s)
+
+
+  1) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-hashtag-panel')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('write-kudo-hashtag-panel') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-hashtag-panel')
+
+
+      54 |     await openWriteKudoModal(page)
+      55 |     await w.hashtagAdd(page).click()
+    > 56 |     await expect(w.hashtagPanel(page)).toBeVisible()
+         |                                        ^
+      57 |     await w.hashtagOption(page, 'teamwork').click()
+      58 |     await expect(w.hashtagChip(page, 'teamwork')).toBeVisible()
+      59 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:56:40
+
+    Error Context: test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip 
+error: script "test:e2e" exited with code 1

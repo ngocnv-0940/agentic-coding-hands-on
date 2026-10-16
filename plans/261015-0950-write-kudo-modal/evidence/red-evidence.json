@@ -1,0 +1,78 @@
+{
+  "phase": 1,
+  "feature": "write-kudo",
+  "testPolicy": "e2e-red-first",
+  "status": "valid-red",
+  "redTestFiles": [
+    "e2e/write-kudo-modal-access-and-layout.spec.ts",
+    "e2e/write-kudo-recipient-and-mention.spec.ts",
+    "e2e/write-kudo-editor-and-link.spec.ts",
+    "e2e/write-kudo-hashtags-images-anonymous.spec.ts",
+    "e2e/write-kudo-submit-and-anonymous.spec.ts",
+    "e2e/kudos-sidebar-and-modal.spec.ts",
+    "e2e/support/write-kudo-locators.ts",
+    "e2e/support/write-kudo-session.ts",
+    "e2e/support/write-kudo-test-files.ts",
+    "e2e/support/write-kudo-actions.ts",
+    "e2e/support/write-kudo-mock-control.ts",
+    "e2e/support/mock-kudos-sunner-search.ts",
+    "e2e/support/mock-kudos-create-rules.ts",
+    "e2e/support/mock-storage-routes.ts",
+    "e2e/support/mock-kudos-rest-routes.ts",
+    "e2e/support/mock-kudos-state.ts",
+    "e2e/support/mock-kudos-board-queries.ts",
+    "e2e/support/mock-kudos-like-rules.ts",
+    "e2e/support/mock-kudos-fixture-people.ts",
+    "e2e/support/kudos-fixture-ids.ts",
+    "e2e/support/mock-supabase-server.ts",
+    "e2e/support/login-through-stubbed-google.ts"
+  ],
+  "redCommand": "bun run test:e2e e2e/write-kudo-",
+  "redExitCode": 1,
+  "redCounts": {
+    "total": 76,
+    "failed": 63,
+    "passed": 1,
+    "notRun": 12,
+    "passedTest": "TC ID-1 / FR-106: a guest on /sun-kudos is sent to /login before the modal can open (existing guard, expected green)",
+    "notRunReason": "write-kudo-submit-and-anonymous.spec.ts is serial; its first test failed on the modal precondition, so Playwright did not run the remaining 12 tests"
+  },
+  "redFailure": [
+    "62 tests: expect(locator).toBeVisible() failed on 'write-kudo modal open' (element(s) not found) in openWriteKudoModal, after the compose pill click; the pill still opens the Coming soon modal",
+    "1 test: FR-103 expect(composePill).toBeDisabled() failed; the outsider identity's compose pill is not disabled yet (screen behaviour, not infrastructure)",
+    "all 63 failure messages are modal or pill screen assertions; no webServer, compile, browser-install, or mock errors in the run"
+  ],
+  "redEvidenceFiles": [
+    "evidence/e2e-red-write-kudo-output.txt",
+    "evidence/e2e-red-write-kudo-exit.txt"
+  ],
+  "redInfrastructureNote": "Attempt 1 (aborted, not counted): Playwright's webServer readiness probe to 127.0.0.1:54399 hung in SYN-SENT while nothing listened, so the mock never spawned; the run was killed (exit 143). Attempt 2 started the mock and next dev by hand with the same webServer env; Playwright reused them (CI unset). The RED command itself is unchanged.",
+  "regression": {
+    "kudos": {
+      "command": "bun run test:e2e e2e/kudos-",
+      "exitCode": 1,
+      "counts": { "passed": 59, "failed": 1 },
+      "redCases": ["TC FUNCTION 19 / FR-101 compose pill opens the Viết Kudo modal (expected, plan changes this case)"],
+      "evidenceFiles": ["evidence/e2e-regression-kudos-output.txt", "evidence/e2e-regression-kudos-exit.txt"]
+    },
+    "fullExcludingWriteKudo": {
+      "command": "bun run test:e2e --grep-invert \"write-kudo\"",
+      "exitCode": 1,
+      "counts": { "passed": 175, "failed": 1 },
+      "redCases": ["TC FUNCTION 19 / FR-101 (expected, same case)"],
+      "evidenceFiles": ["evidence/e2e-regression-full-nonwritekudo-output.txt", "evidence/e2e-regression-full-nonwritekudo-exit.txt"]
+    }
+  },
+  "tsc": { "command": "bunx tsc --noEmit", "exitCode": 0, "evidenceFile": "evidence/tsc-write-kudo-exit.txt" },
+  "eslint": { "command": "bunx eslint <write-kudo e2e files>", "exitCode": 0, "evidenceFile": "evidence/lint-write-kudo-exit.txt" },
+  "authoredFiles": {
+    "specs": 5,
+    "tcMapping": "evidence/tc-mapping.md (57 of 57 TCs mapped; reinterpretations recorded with reasons)",
+    "selectorContract": "reports/write-kudo-selector-contract.md",
+    "maxLinesPerFile": 198
+  },
+  "notMeasured": [
+    "GREEN run time (phase 6)",
+    "FR-227 stacked rows checked only as recipient input width >= 60% of the modal at 375 px"
+  ]
+}

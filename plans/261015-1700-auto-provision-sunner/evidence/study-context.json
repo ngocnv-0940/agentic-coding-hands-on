@@ -1,0 +1,22 @@
+{
+  "task": "Auto-provision a public.sunners row for every Google account at first sign-in (trigger on auth.users + one-time backfill) so any signed-in user can like and write kudos",
+  "mode": "auto",
+  "acceptanceCriteria": [
+    "A new auth.users row gets exactly one sunners row with user_id = its id, created by an after-insert trigger",
+    "full_name follows ALG-007: full_name, else name, else email local part, else 'Sunner', trimmed and capped at 100 chars; avatar_url is avatar_url else picture only when https and at most 2048 chars, else null",
+    "Existing auth users without a sunner are backfilled once by the migration; seeded sunners stay unlinked",
+    "The trigger function is SECURITY DEFINER with search_path '' and not executable by public, anon or authenticated; sunners.user_id stays hidden from authenticated",
+    "A freshly provisioned user can create a kudo and like a kudo through the existing RPCs; the no-sunner backstop paths still work",
+    "Existing pgTAP and e2e suites stay green"
+  ],
+  "touchpoints": [
+    "supabase/migrations/20261015035950_auto_provision_sunner.sql",
+    "supabase/tests/database/*.test.sql",
+    "supabase/seed.sql"
+  ],
+  "blastRadius": ["sign-up into auth.users", "F006 like and sidebar", "F007 compose pill and create_kudo", "recipient search results"],
+  "contracts": [
+    "No client grants change; kudos_private functions not exposed",
+    "node .claude/skills/_shared/lib/evidence-gate.cjs --evidence-dir <abs> --stage hard"
+  ]
+}

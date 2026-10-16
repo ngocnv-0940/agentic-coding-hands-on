@@ -1,0 +1,67 @@
+[
+  {
+    "command": "bun run test:e2e e2e/write-kudo-fab-quick-actions.spec.ts e2e/write-kudo-backdrop-and-scroll.spec.ts e2e/write-kudo-modal-access-and-layout.spec.ts",
+    "exitCode": 0,
+    "summary": "33 passed (RED set now green)"
+  },
+  {
+    "command": "bun run test:e2e e2e/write-kudo-",
+    "exitCode": 0,
+    "summary": "92 passed"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "60 passed (rerun after one unrelated flake at kudos-board-access-and-layout:27)"
+  },
+  {
+    "command": "bun run test:e2e e2e/homepage-",
+    "exitCode": 0,
+    "summary": "48 passed"
+  },
+  {
+    "command": "bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "typecheck clean"
+  },
+  {
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "lint clean"
+  },
+  {
+    "command": "bun run test:e2e e2e/write-kudo-fab-compose-param-after-send.spec.ts e2e/write-kudo-fab-quick-actions.spec.ts e2e/write-kudo-backdrop-and-scroll.spec.ts",
+    "exitCode": 0,
+    "summary": "fix round 2: 17 passed"
+  },
+  {
+    "command": "bun run test:e2e --repeat-each=12 (FAB from / tests)",
+    "exitCode": 0,
+    "summary": "fix round 2: 24/24"
+  },
+  {
+    "command": "bun run test:e2e e2e/write-kudo-",
+    "exitCode": 0,
+    "summary": "fix round 2: 93 passed"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "fix round 2: 60 passed"
+  },
+  {
+    "command": "bun run test:e2e e2e/homepage-",
+    "exitCode": 0,
+    "summary": "fix round 2: 48 passed"
+  },
+  {
+    "command": "bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "fix round 2: clean"
+  },
+  {
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "fix round 2: clean"
+  }
+]

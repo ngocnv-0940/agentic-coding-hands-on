@@ -385,7 +385,8 @@ Lớp Postgres của Kudos live board (`supabase/migrations/20261014095439_…_t
 | 9 bảng `public` (`departments`, `sunners`, `hashtags`, `kudos`, `kudo_hashtags`, `kudo_images`, `kudo_likes`, `special_days`, `secret_boxes`) | Không đọc được (không có policy); không ghi | `SELECT` mọi hàng (policy `authenticated can read <bảng>`, `using (true)`); không INSERT/UPDATE/DELETE/TRUNCATE (đã `revoke`) | `…_tables.sql` |
 | 5 RPC đọc `kudos_filter_options`, `kudos_highlight`, `kudos_feed_page`, `kudos_spotlight`, `kudos_sidebar` (`SECURITY INVOKER`) | `execute` bị thu | `execute`; RLS áp dụng | `…_functions.sql`, `…_grants.sql` |
 | RPC `toggle_kudo_like` (`SECURITY DEFINER`) | `execute` bị thu | `execute`; cần hàng `sunners` có `user_id = auth.uid()` (`sunner_not_found`), không tự thích (`self_like`), Kudo phải tồn tại (`kudo_not_found`) | `…_functions.sql`, `…_grants.sql` |
-| Schema `kudos_private` (hàm trợ giúp) | `PUBLIC` bị thu `usage`; không phơi qua PostgREST | `usage` và `execute` cho `authenticated`, `service_role` | `…_grants.sql` |
+| Schema `kudos_private` (hàm trợ giúp) | `PUBLIC` bị thu `usage`; không phơi qua PostgREST | `usage` và `execute` cho `authenticated`, `service_role`, trừ ba hàm tự tạo hồ sơ Sunner (dòng dưới) | `…_grants.sql` |
+| Trigger `on_auth_user_created_provision_sunner` trên `auth.users` (`after insert or update of raw_app_meta_data`) và hàm `kudos_private.provision_sunner()` (`SECURITY DEFINER`, `search_path` rỗng), kèm `is_google_account(jsonb)`, `sunner_profile_from_auth(jsonb, text)` | Không gọi được: `execute` bị thu khỏi `PUBLIC`, `anon`, `authenticated` | Không gọi được trực tiếp (`42501`); trigger tự tạo đúng một hàng `sunners` cho tài khoản Google (không lọc tên miền, không tạo cho tài khoản email), `on conflict (user_id) do nothing`; không có policy ghi `sunners` mới | `20261015035950_auto_provision_sunner.sql:47-76` |
 
 ---
 

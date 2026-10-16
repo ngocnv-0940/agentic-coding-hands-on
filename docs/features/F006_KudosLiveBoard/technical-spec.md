@@ -53,7 +53,7 @@ flowchart LR
 
 | # | Action (handler) | Method · Path | Codes | Writes | Detail |
 |---|---|---|---|---|---|
-| **A0** | *cross-cutting — belongs to no single action* | — | FR-001, FR-002, FR-003, FR-601, FR-602, FR-604, BR-001, BR-010 | — | § 4.4 |
+| **A0** | *cross-cutting — belongs to no single action* | — | FR-001, FR-002, FR-003, FR-601, FR-602, FR-604, FR-605, BR-001, BR-010, BR-012, ALG-007, INT-004 | `sunners` *(qua trigger trên `auth.users` và migration backfill)* | § 4.4 |
 | **A1** | `SunKudosPage` (planned) | `GET` `/sun-kudos` | FR-004, FR-101, FR-102, FR-104, FR-105, FR-201, FR-203, FR-204, FR-208, FR-314, FR-301, FR-302, BR-007, BR-008, BR-009, DEC-001, DEC-004, DEC-007, ALG-001, ALG-002, INT-001, US001, US002, US004 | — *(read-only)* | § 3.1 |
 | **A2** | `HighlightCarousel#navigate` (planned) | browser · click mũi tên | FR-202, DEC-002, US002 | — *(read-only)* | § 3.1 |
 | **A3** | `KudosFilterBar#select` (planned) | browser · chọn trong dropdown → đổi URL | FR-205, FR-206, BR-008, US003 | — *(read-only)* | § 3.2 |
@@ -329,13 +329,18 @@ flowchart LR
 | A6 | Bấm tim hai lần liên tiếp rất nhanh | Nút vô hiệu giữa hai lần; chỉ một RPC tại một thời điểm |
 | A6 | Hai thiết bị cùng một người tim cùng kudo cùng lúc | Khóa duy nhất `(kudo_id, sunner_id)` giữ đúng một dòng; lần thua nhận kết quả bỏ tim hoặc lỗi và đồng bộ lại |
 | A6 | Tim lúc 23:59 VN ngày thường, bỏ tim sau nửa đêm vào ngày đặc biệt | Thu hồi 1 (giá trị đã lưu), không phải 2 (BR-005) |
-| A6 | Người dùng không có hàng `sunners` | RPC lỗi `sunner_not_found`, toast lỗi, tim trở về trạng thái trước |
+| A6 | Người dùng không có hàng `sunners` (chỉ còn khi bị gỡ liên kết do `on delete set null` hoặc bị xóa, hoặc tài khoản không phải Google) | RPC lỗi `sunner_not_found`, toast lỗi, tim trở về trạng thái trước |
 | A7 | Trình duyệt chặn clipboard | Toast lỗi, không toast "Link copied" (FR-407) |
 | A8 | Hơn 100 người nhận khác nhau | Chỉ lấy 100 người có kudo mới nhất; tiêu đề vẫn là tổng kudo trong DB |
 | A8 | Một người nhận nhiều kudo | Một node, tooltip và liên kết theo kudo mới nhất |
 | A9 | Kéo vượt ngưỡng nhỏ rồi thả trên một node | Không mở kudo (không tính là click) |
 | A10 | Dán chuỗi dài hơn 100 ký tự | `maxLength` cắt ở 100 |
-| A11 | Người dùng không có hàng `sunners` | Năm số bằng 0, nút "Mở Secret Box" vô hiệu (chưa mở = 0) |
+| A11 | Người dùng không có hàng `sunners` (như trên) | Năm số bằng 0, nút "Mở Secret Box" vô hiệu (chưa mở = 0) |
+| A0 | Hai lần chèn `auth.users` cho cùng `id`, cập nhật `raw_app_meta_data` của tài khoản đã có hồ sơ, hoặc backfill chạy lại | `on conflict (user_id) do nothing`: giữ đúng một hàng, tên và ảnh đã có không bị ghi đè, không lỗi |
+| A0 | Metadata Google thiếu hoặc rỗng (tên, ảnh), `raw_user_meta_data` null hoặc không phải object, email null | ALG-007 rơi về email rồi "Sunner"; ảnh null; insert không thể vi phạm `full_name not null` |
+| A0 | Tài khoản đăng ký bằng email và mật khẩu (`raw_app_meta_data` null, `{}`, không phải object, hoặc provider `email` không có `google`) | Không tạo hàng `sunners`; hàm gate trả `false`, không báo lỗi |
+| A0 | Google được liên kết vào tài khoản email đã có (GoTrue cập nhật `raw_app_meta_data`, không chèn mới) | Trigger `update of raw_app_meta_data` tạo đúng một hàng với tên theo ALG-007 |
+| A0 | Hồ sơ của tài khoản Google bị xóa, rồi `raw_app_meta_data` được cập nhật lại | Tạo lại một hàng; cập nhật cột khác (`last_sign_in_at`, `raw_user_meta_data`) không kích hoạt trigger |
 | A12 | Mở modal bằng bàn phím | Esc đóng, tiêu điểm trả về nút gọi |
 | A13 | `id` không tồn tại | Vẫn là trang "Coming soon" (không 404) |
 
@@ -390,7 +395,7 @@ Tên bảng và cột do planner chốt cuối; không thêm bảng ngoài danh 
 | Entity | Table | Key Columns | Purpose |
 |--------|-------|-------------|---------|
 | Department | `departments` | `id`, `code` (duy nhất, dùng trong URL), `name` | Tùy chọn dropdown "Phòng ban"; phòng ban của người nhận dùng để lọc |
-| Sunner | `sunners` | `id`, `user_id` (nullable, liên kết `auth.users`), `full_name`, `avatar_url`, `department_id`, `hero_title` (DISC-002, nullable) | Hồ sơ người gửi, người nhận, chủ Secret Box; "người dùng hiện tại" là hàng có `user_id = auth.uid()` |
+| Sunner | `sunners` | `id`, `user_id` (nullable, liên kết `auth.users`), `full_name`, `avatar_url`, `department_id`, `hero_title` (DISC-002, nullable) | Hồ sơ người gửi, người nhận, chủ Secret Box; "người dùng hiện tại" là hàng có `user_id = auth.uid()`. Hàng có `user_id` do trigger tạo cho tài khoản Google (BR-012, INT-004); hàng seed giữ `user_id` null |
 | Hashtag | `hashtags` | `id`, `slug` (duy nhất, dùng trong URL), `label` | Tùy chọn dropdown "Hashtag"; nhãn hiển thị trên thẻ |
 | Kudo | `kudos` | `id`, `sender_id`, `receiver_id`, `content`, `created_at` (có thể thêm `title`, xem § 5.3) | Lời cảm ơn; nguồn của Highlight, All Kudos, Spotlight |
 | KudoHashtag | `kudo_hashtags` | `kudo_id`, `hashtag_id` (khóa chính ghép) | Gắn nhiều hashtag cho một kudo |
@@ -420,7 +425,7 @@ Tên bảng và cột do planner chốt cuối; không thêm bảng ngoài danh 
 | `legend_hero` | Huy hiệu "Legend Hero" | Không có | Như trên |
 | null | Không có huy hiệu | Không có | Như trên |
 
-**Source:** TBD (draft) — mã DISC-002 cấp lúc promote. Số sao không nằm ở đây mà suy ra từ số kudos nhận (ALG-002).
+**Source:** TBD (draft) — mã DISC-002 cấp lúc promote. Số sao không nằm ở đây mà suy ra từ số kudos nhận (ALG-002). Hồ sơ tự tạo (BR-012) luôn có `hero_title = null`, không có huy hiệu.
 
 ### 4.3 State Management
 
@@ -482,6 +487,10 @@ Chỉ số slide Highlight, bộ lọc (ở URL), nội dung ô tìm kiếm, dan
 **A0 · FR-001 / FR-002 / FR-003 / FR-601 / FR-602 / FR-604 / BR-001 / BR-010 — dữ liệu thật, chuỗi từ từ điển, định dạng, RLS, chỉ người đăng nhập.**
 FR-001: mọi số liệu đến từ bảng ở Key Entities, seed từ nội dung Figma; không có mảng dữ liệu cứng trong mã chạy thật. FR-002: chuỗi giao diện thêm vào `dictionary-kudos-vi.ts` và `dictionary-kudos-en.ts`, cặp khóa khớp lúc biên dịch; tên, lời nhắn, hashtag không dịch. BR-010 (FR-003): thời gian `HH:mm - MM/DD/YYYY` theo Asia/Ho_Chi_Minh, số tim phân nghìn bằng dấu `.` ("1.000"); cả hai do hàm thuần dùng múi giờ và locale cố định (không lấy từ máy người dùng) để SSR và CSR cho cùng chuỗi, tránh lệch hydration. FR-601, FR-602: bảng bật RLS; vai trò `authenticated` chỉ có `select`; không có chính sách `insert`, `update`, `delete` cho client, riêng `kudo_likes` chỉ đổi qua RPC `SECURITY DEFINER` (có `set search_path` cố định, kiểm `auth.uid()` bên trong). FR-604: nội dung người dùng render như văn bản, không HTML thô. BR-001: chỉ người đã đăng nhập vào `/sun-kudos` và đường dẫn con; guard hiện có (proxy lớp 1 và layout `(main)`) đã bao phủ, không thêm cổng mới. Kế thừa từ F001_Auth, F002_Localization, F005_CountdownPrelaunch (khóa trước ngày ra mắt vẫn áp trước mọi thứ ở đây).
 **Source:** TBD (draft)
+
+**BR-012 — Mỗi tài khoản Google trong `auth.users` có đúng một hàng `sunners`, tạo tự động lúc tài khoản ra đời, không lọc tên miền.** Gắn vào A0 vì không có người bấm: trigger `on_auth_user_created_provision_sunner` (INT-004) chạy `after insert or update of raw_app_meta_data on auth.users`, trong cùng giao dịch với việc tạo tài khoản, nên trước khi người dùng thấy trang thì hàng đã tồn tại. Chỉ tài khoản Google được tạo: `kudos_private.is_google_account` trả `true` khi `raw_app_meta_data->>'provider' = 'google'` hoặc `raw_app_meta_data->'providers'` chứa `google`; tài khoản email và mật khẩu (Supabase vẫn bật đăng ký) không có hồ sơ, nên khóa anon một mình không tạo được Sunner tìm được và gửi được. Nhánh `update of raw_app_meta_data` phủ trường hợp GoTrue liên kết Google vào tài khoản đã có (cập nhật, không chèn) và chạy lại mỗi khi cột này được ghi, lúc đó là no-op nhờ `on conflict (user_id) do nothing`; hồ sơ của tài khoản Google bị xóa sẽ được tạo lại ở lần cập nhật kế. GoTrue có ghi lại `raw_app_meta_data` ở mỗi lần đăng nhập Google hay không chưa được kiểm; đăng nhập Google thật chưa chạy end to end. Backfill của migration áp cùng luật cho tài khoản Google cũ. `user_id` duy nhất cộng `on conflict` làm việc tạo lặp vô hại; hàng seed (`user_id` null) không bao giờ bị khớp hay sửa, và `supabase/seed.sql` giải thích cách nối lại một tài khoản vào hàng seed. Nội dung hàng theo ALG-007; `department_id`, `hero_title` null. Trigger không nuốt lỗi: lỗi thật phải hiện ra thay vì để tài khoản không có hồ sơ trong im lặng.
+**Linked FR:** FR-605, FR-311, FR-603
+**Source:** `supabase/migrations/20261015035950_auto_provision_sunner.sql:21-27`, `supabase/migrations/20261015035950_auto_provision_sunner.sql:47-72`, `supabase/seed.sql:5-10`
 
 ### 4.5 Algorithms & Integrations
 
@@ -582,6 +591,21 @@ onWheel(e): s2 = clamp(s * (e.deltaY < 0 ? 1.1 : 0.9), S_MIN, S_MAX)
 onDrag(dx, dy): tx += dx ; ty += dy ; clampToBounds(tx, ty, s)
 ```
 
+### Tên và ảnh của hồ sơ tự tạo (ALG-007)
+
+**Linked FR:** FR-605
+**Used in:** A0
+**Source:** `supabase/migrations/20261015035950_auto_provision_sunner.sql:29-45`
+**Input:** `raw_user_meta_data` (jsonb) và `email` của dòng `auth.users` · **Output:** `full_name` (không rỗng, ≤ 100 ký tự), `avatar_url` (https hoặc null) · **Complexity:** O(1)
+**Description:** Hàm `kudos_private.sunner_profile_from_auth(jsonb, text)`, thuần SQL, `immutable`, `security invoker`, `search_path` rỗng, dùng chung cho trigger và backfill. Tên rơi theo thứ tự: `full_name`, `name`, phần trước "@" của email, "Sunner"; giá trị rỗng sau khi bỏ khoảng trắng đầu cuối (kể cả NBSP) coi như thiếu; cắt 100 ký tự rồi bỏ khoảng trắng lần nữa vì chỗ cắt có thể rơi vào khoảng trắng. Ảnh lấy `avatar_url`, nếu thiếu thì `picture`; chỉ nhận chuỗi bắt đầu bằng `https://` (chữ thường) và dài tối đa 2048 ký tự, còn lại là null, không rơi sang `picture` khi `avatar_url` đã có nhưng không hợp lệ (chặn `http:`, `javascript:` và dữ liệu lạ vì ảnh được render ở mọi thẻ kudo). Không lỗi với mọi dạng jsonb hay email null.
+**Pseudocode:**
+```text
+name = first non-blank of [trim(meta.full_name), trim(meta.name), trim(split_part(email, '@', 1))]
+full_name = trim(left(name or 'Sunner', 100))
+pic = first non-blank of [trim(meta.avatar_url), trim(meta.picture)]
+avatar_url = pic if pic starts with 'https://' and length(pic) <= 2048 else null
+```
+
 ### Đọc dữ liệu từ Supabase (INT-001)
 
 **Linked FR:** FR-001, FR-201, FR-301, FR-303, FR-310
@@ -606,6 +630,14 @@ onDrag(dx, dy): tx += dx ; ty += dy ; clampToBounds(tx, ty, s)
 **Input:** chuỗi URL · **Output:** hứa hẹn thành công hoặc từ chối · **Complexity:** O(1)
 **Description:** `navigator.clipboard.writeText`; cần ngữ cảnh an toàn (HTTPS hoặc localhost). Không có phương án dự phòng `execCommand` (YAGNI); từ chối thì rơi vào toast lỗi.
 
+### Trigger tạo hồ sơ trên auth.users (INT-004)
+
+**Linked FR:** FR-605
+**Used in:** A0
+**Source:** `supabase/migrations/20261015035950_auto_provision_sunner.sql:47-63`, `supabase/migrations/20261015035950_auto_provision_sunner.sql:65-76`
+**Input:** dòng `auth.users` vừa chèn, hoặc vừa được cập nhật `raw_app_meta_data` · **Output:** nhiều nhất một hàng `sunners` (`user_id = new.id`, ALG-007) · **Complexity:** O(1)
+**Description:** Hàm trigger `kudos_private.provision_sunner()` trong schema `kudos_private` (PostgREST không phơi ra), `SECURITY DEFINER`, `set search_path = ''`, mọi tên viết đủ schema; trigger `on_auth_user_created_provision_sunner` gắn `after insert or update of raw_app_meta_data on auth.users for each row`. Cổng Google là một `return null` sớm trong hàm, không phải mệnh đề `WHEN` của trigger (biểu thức `WHEN` bị kiểm quyền theo vai trò GoTrue). Ghi bằng `insert ... on conflict (user_id) do nothing`, không nuốt lỗi. Ba hàm `is_google_account(jsonb)`, `sunner_profile_from_auth(jsonb, text)`, `provision_sunner()` đều bị `revoke all ... from public, anon, authenticated` (các migration `…442` và `…948` cấp `EXECUTE` mọi hàm `kudos_private` cho `authenticated`; migration này thu lại), trigger vẫn chạy mà không cần `EXECUTE`. Cùng migration chạy một lần `insert ... select` cho tài khoản Google chưa có hàng `sunners`, dùng đúng ALG-007. Không đổi `/auth/callback` và không cần service role ở mã ứng dụng. Mock Supabase của E2E (`e2e/support/mock-supabase-server.ts`) không mô phỏng việc tạo hồ sơ (hành vi nằm ở Postgres, kiểm bằng pgTAP); danh tính E2E không có hàng `sunners` vẫn hợp lệ làm ca chốt chặn. Hoàn tác: bỏ trigger và ba hàm, giữ các hàng đã tạo vì kudo tham chiếu chúng.
+
 ### 4.6 Configuration
 
 Không có biến môi trường mới: kết nối Supabase dùng cấu hình sẵn có (`lib/supabase/config.ts`). Hằng số trong mã (không phải cấu hình người dùng): cỡ trang 10, số Highlight 5, số node Spotlight tối đa 100, mốc sao 10, 20, 50, thời lượng toast khoảng 3 giây, múi giờ `Asia/Ho_Chi_Minh`. Dữ liệu cấu hình sống trong DB: `special_days` (admin đặt ngày; không có giao diện ở feature này).
@@ -623,11 +655,12 @@ Chính sách kiểm thử: `e2e-red-first` (Playwright, `bun run test:e2e`): vi�
 - **SC-003** *(A3, A4)* Chọn hashtag, phòng ban và tổ hợp: URL đổi, Highlight và All Kudos cùng lọc; click hashtag trên thẻ đặt `hashtag`; tải lại giữ lọc; tổ hợp rỗng hiện thông báo rỗng (covers FR-205 đến FR-208, BR-008, DEC-004; TC FUNCTION Hashtag, Phòng ban, Hashtag tag)
 - **SC-004** *(A1)* Thẻ: thời gian `HH:mm - MM/DD/YYYY` giờ VN; nội dung clamp 3 và 5 dòng; hashtag một dòng tối đa 5; thumbnail tối đa 5; số tim "1.000"; huy hiệu và số sao theo số kudos nhận (covers FR-003, FR-004, FR-204, BR-009, BR-010, DEC-007, ALG-002; TC GUI Kudos card)
 - **SC-005** *(A5)* Feed nạp 10 thẻ, cuộn tới đáy nạp thêm 10 không trùng, hết thì dừng; feed rỗng hiện "Hiện tại chưa có Kudos nào." (covers FR-301, FR-302, ALG-004, DEC-004; TC FUNCTION Empty list display)
-- **SC-006** *(A6)* Tim lần một đỏ và +1, lần hai xám và −1; người gửi thấy nút vô hiệu; ngày thường người gửi +1 tim, ngày đặc biệt +2, bỏ tim thu hồi đúng giá trị đã lưu dù ngày đã đổi; hai tim cùng người cùng kudo không tạo hai dòng; người không có hàng `sunners` nhận lỗi (covers FR-401 đến FR-405, FR-601, FR-603, BR-002 đến BR-006, DEC-003, SM-001, ALG-003; TC FUNCTION Like business rule ×3, Button [Heart]). Luật ngày đặc biệt và khóa duy nhất chạy ở cả mock E2E và SQL `@smoke`
+- **SC-006** *(A6)* Tim lần một đỏ và +1, lần hai xám và −1; người gửi thấy nút vô hiệu; ngày thường người gửi +1 tim, ngày đặc biệt +2, bỏ tim thu hồi đúng giá trị đã lưu dù ngày đã đổi; hai tim cùng người cùng kudo không tạo hai dòng; người không có hàng `sunners` (dựng bằng cách xóa hoặc gỡ `user_id` của hàng, không còn là trạng thái của tài khoản Google mới) nhận lỗi (covers FR-401 đến FR-405, FR-601, FR-603, BR-002 đến BR-006, DEC-003, SM-001, ALG-003; TC FUNCTION Like business rule ×3, Button [Heart]). Luật ngày đặc biệt và khóa duy nhất chạy ở cả mock E2E và SQL `@smoke`
 - **SC-007** *(A7)* Click Copy Link: clipboard có `${origin}/sun-kudos/<id>`, toast "Link copied — ready to share!" hiện rồi tự ẩn sau khoảng 3 giây (covers FR-406; TC FUNCTION Button [Copy Link])
 - **SC-008** *(A8, A9, A10)* Tiêu đề "<tổng> KUDOS" đúng tổng trong DB; tối đa 100 node; hover tooltip có tên và thời gian; click node tới `/sun-kudos/<latestKudoId>`; Pan/Zoom đổi chế độ, kéo và lăn có tác dụng khi bật; tìm kiếm làm nổi bật, ô rỗng xóa nổi bật không thông báo, `maxLength` 100; loading và rỗng đúng DEC-005 (covers FR-303 đến FR-309, SM-002, BR-011, DEC-005, ALG-005, ALG-006; TC FUNCTION Spotlight ×3, Maximum 100 characters)
-- **SC-009** *(A11)* Năm số đúng với dữ liệu seed của người dùng hiện tại; không có hàng `sunners` thì toàn 0; nút "Mở Secret Box" vô hiệu khi chưa mở = 0; danh sách nhận quà 10 dòng mới nhất, rỗng thì "Chưa có dữ liệu" (covers FR-310 đến FR-313, BR-006, DEC-006; TC FUNCTION Open box, Sidebar leaderboard)
+- **SC-009** *(A11)* Năm số đúng với dữ liệu seed của người dùng hiện tại; không có hàng `sunners` (hiếm, dựng như SC-006) thì toàn 0; nút "Mở Secret Box" vô hiệu khi chưa mở = 0; danh sách nhận quà 10 dòng mới nhất, rỗng thì "Chưa có dữ liệu" (covers FR-310 đến FR-313, BR-006, DEC-006; TC FUNCTION Open box, Sidebar leaderboard)
 - **SC-010** *(A12, A13)* A.1, pill tìm profile và "Mở Secret Box" cùng mở modal "Coming soon" có nút đóng; `/sun-kudos/<id>` hiện "Coming soon" sau guard; link avatar, tên dẫn `/profile` (covers FR-103, FR-105, FR-106, FR-104; TC ACCESSING 1, 2, FUNCTION View Details, Profile navigation)
+- **SC-012** *(A0)* Chèn `auth.users` có `raw_app_meta_data` Google và metadata đủ: đúng một hàng `sunners` với `user_id`, tên và ảnh đã bỏ khoảng trắng đầu cuối, `department_id` và `hero_title` null; metadata thiếu tên: tên rơi về email rồi "Sunner"; tên dài hơn 100 ký tự bị cắt; ảnh `http:`, `javascript:`, `HTTPS://` hoa, hoặc dài hơn 2048 ký tự thành null; tài khoản email, `raw_app_meta_data` null, rỗng hay không phải object không có hàng và không báo lỗi; Google được liên kết bằng cập nhật `raw_app_meta_data` thì tạo đúng một hàng; cập nhật cột khác không kích hoạt; chèn lại hoặc backfill chạy lại không thêm hàng; backfill tạo bù hàng thiếu của tài khoản Google; hàng seed không đổi; `anon` và `authenticated` không gọi được ba hàm (`42501`) và `PUBLIC` không có `EXECUTE`; tài khoản mới gọi `create_kudo` và `toggle_kudo_like` được, không còn `sunner_not_found`. Kiểm bằng pgTAP `supabase/tests/database/auto-provision-sunner.test.sql:7-203` (53 ca, `supabase test db`); đăng nhập Google thật qua GoTrue chưa chạy end to end (covers FR-605, BR-012, ALG-007, INT-004)
 - **SC-011** *(A1)* Dưới 1024px sidebar xếp chồng, carousel một thẻ, không cuộn ngang ở 375px (covers FR-314). Xem lại các bộ E2E guard và trang `(main)` hiện có vì trang `/sun-kudos` thay đổi và layout dùng chung (covers FR-101)
 
 #### US001 *(A1)*
@@ -672,10 +705,11 @@ Chính sách kiểm thử: `e2e-red-first` (Playwright, `bun run test:e2e`): vi�
 2. **Given** gõ một tên rồi Enter, **When** có node khớp, **Then** node đó nổi bật; ô rỗng rồi Enter thì hết nổi bật.
 
 #### US008 *(A11)*
-**Independent Test:** Mở trang với người dùng có hàng `sunners` và với người không có.
+**Independent Test:** Mở trang với người dùng có hàng `sunners` và với người không có (hiếm: hồ sơ bị gỡ liên kết hoặc xóa).
 **Acceptance Scenarios:**
 1. **Given** người dùng có dữ liệu, **When** mở trang, **Then** năm số khớp seed và danh sách nhận quà có 10 dòng.
 2. **Given** chưa mở hộp nào, **When** nhìn nút, **Then** "Mở Secret Box" vô hiệu nếu chưa mở = 0.
+3. **Given** tài khoản Google vừa đăng nhập lần đầu, **When** mở trang, **Then** năm số bằng 0, thả tim và thanh ghi nhận dùng được ngay (SC-012).
 
 #### US009 *(A12, A13)*
 **Independent Test:** Bấm thanh ghi nhận và mở `/sun-kudos/abc`.
@@ -701,13 +735,15 @@ Chính sách kiểm thử: `e2e-red-first` (Playwright, `bun run test:e2e`): vi�
 5. **Chuỗi lỗi và EN mới** *(A6, A7)*: toast lỗi tim, lỗi clipboard, lỗi tải thêm, chuỗi EN của mọi nhãn mới chưa có trong Figma (chỉ VI), cần người xác nhận.
 6. **Phạm vi zoom và ngưỡng kéo** *(A9)*: đề xuất 0.5 đến 3, ngưỡng click vs kéo vài pixel.
 7. **Múi giờ của "ngày đặc biệt"** *(A6)*: đề xuất ngày theo Asia/Ho_Chi_Minh lúc thả tim.
-8. **Người dùng đăng nhập nhưng chưa có hàng `sunners`** *(A6, A11)*: chọn RPC báo lỗi (nhỏ hơn tự tạo hàng); xem § 5.1 SC-006.
+8. **Người dùng đăng nhập nhưng chưa có hàng `sunners`** *(A6, A11)*: **đã giải quyết (2026-10-15)**: tự tạo hàng cho tài khoản Google bằng trigger `auth.users` (D013, BR-012, INT-004); các đường RPC báo `sunner_not_found` giữ làm chốt chặn cho hồ sơ bị gỡ liên kết hoặc xóa và cho tài khoản không phải Google; xem SC-006, SC-012.
 9. **Next.js và Cache Components** *(A1)*: cách đặt `<Suspense>` và `connection()` cho trang có `searchParams` cần đọc tài liệu đi kèm trước khi dựng.
 10. **Hai pill ở banner** *(A12)*: pill "Tìm kiếm profile Sunner" có trong Figma, không có trong spec; dựng theo Figma, mở modal giống A.1 (clarifications.md).
 
 ### 5.4 Source References
 
-None — mã chưa viết. Điểm chạm đã có để dựng lên: `app/(main)/layout.tsx`, `app/(main)/sun-kudos/page.tsx` (hiện là Coming soon), `app/(main)/_behavior/coming-soon-content.tsx`, `app/(main)/_behavior/use-dropdown-menu.ts`, `app/(main)/_behavior/dropdown-panel-styles.ts`, `lib/supabase/server.ts`, `lib/supabase/client.ts`, `lib/supabase/proxy.ts`, `lib/i18n/*`, `e2e/support/mock-supabase-server.ts`, `supabase/config.toml`. Hành vi: xem `## 7. User Stories` trong functional-spec.md.
+**Source:** `supabase/migrations/20261015035950_auto_provision_sunner.sql:21-76`, `supabase/tests/database/auto-provision-sunner.test.sql:7-203`
+
+Phần tự tạo hồ sơ Sunner (BR-012, ALG-007, INT-004) đã cài (nguồn ở trên). Phần còn lại: mã chưa viết. Điểm chạm đã có để dựng lên: `app/(main)/layout.tsx`, `app/(main)/sun-kudos/page.tsx` (hiện là Coming soon), `app/(main)/_behavior/coming-soon-content.tsx`, `app/(main)/_behavior/use-dropdown-menu.ts`, `app/(main)/_behavior/dropdown-panel-styles.ts`, `lib/supabase/server.ts`, `lib/supabase/client.ts`, `lib/supabase/proxy.ts`, `lib/i18n/*`, `e2e/support/mock-supabase-server.ts`, `supabase/config.toml`. Hành vi: xem `## 7. User Stories` trong functional-spec.md.
 
 #### Data Flow
 

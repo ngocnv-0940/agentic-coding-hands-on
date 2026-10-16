@@ -1,0 +1,54 @@
+MUTANT: trigger reverted to insert-only (after insert on auth.users)
+62c62
+<   after insert or update of raw_app_meta_data on auth.users
+---
+>   after insert on auth.users
+Finished supabase db reset on branch feat/write-kudo.
+Connecting to local database...
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql .. 
+# Failed test 2: "the trigger fires AFTER INSERT OR UPDATE FOR EACH ROW (no DELETE or TRUNCATE)"
+#         have: 5
+#         want: 21
+# Failed test 3: "the UPDATE event is limited to UPDATE OF raw_app_meta_data"
+#         have: NULL
+#         want: {raw_app_meta_data}
+# Failed test 42: "linking Google to an email account provisions exactly one row with the ALG-007 name"
+#         have: NULL
+#         want: {"Email Signup"}
+# Looks like you failed 3 tests of 53
+Failed 3/53 subtests 
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql (Wstat: 0 Tests: 53 Failed: 3)
+  Failed tests:  2-3, 42
+Files=1, Tests=53,  0 wallclock secs ( 0.04 usr  0.02 sys +  0.01 cusr  0.01 csys =  0.08 CPU)
+Result: FAIL
+error running container: exit 1
+RESTORED: migration identical to pre-mutation backup; re-applied by the db reset in fix2-db-reset.txt
+
+MUTANT 2: trigger fires on every UPDATE (column list removed)
+62c62
+<   after insert or update of raw_app_meta_data on auth.users
+---
+>   after insert or update on auth.users
+Finished supabase db reset on branch feat/write-kudo.
+Connecting to local database...
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql .. 
+# Failed test 3: "the UPDATE event is limited to UPDATE OF raw_app_meta_data"
+#         have: NULL
+#         want: {raw_app_meta_data}
+# Failed test 46: "updates of other columns (last_sign_in_at, raw_user_meta_data) do not fire provisioning"
+#         have: 1
+#         want: 0
+# Looks like you failed 2 tests of 53
+Failed 2/53 subtests 
+
+Test Summary Report
+-------------------
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql (Wstat: 0 Tests: 53 Failed: 2)
+  Failed tests:  3, 46
+Files=1, Tests=53,  0 wallclock secs ( 0.04 usr  0.00 sys +  0.02 cusr  0.00 csys =  0.06 CPU)
+Result: FAIL
+error running container: exit 1
+RESTORED 2: migration identical to backup; re-applied below

@@ -31,7 +31,11 @@ export type KudoCardView = {
   likeCount: number
   likedByViewer: boolean
   canLike: boolean
-  sender: PersonView
+  /** `null` for an anonymous kudo: the board never receives the real sender (write-kudo FR-401). */
+  sender: PersonView | null
+  /** Anonymous kudo: the card shows `anonymousName`, or `labels.anonymousSender` when that is empty, with no avatar, link or badge. */
+  isAnonymous?: boolean
+  anonymousName?: string | null
   receiver: PersonView
   hashtags: HashtagView[]
   images: { url: string }[]
@@ -47,6 +51,8 @@ export type KudoCardLabels = {
   heroTitles: Record<HeroTitle, string>
   /** Alt text of an attached image thumbnail. */
   imageAlt: string
+  /** "Người gửi ẩn danh": sender text of an anonymous kudo whose alias is empty. */
+  anonymousSender?: string
 }
 
 export type LikeButtonViewProps = {

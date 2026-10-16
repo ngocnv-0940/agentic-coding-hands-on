@@ -55,5 +55,8 @@ export const homeEn: { [K in keyof typeof homeVi]: string } = {
   'home.footer.standards': 'General standards',
   'home.footer.copyright': 'Copyright © 2025 Sun* All rights reserved',
   'home.widget.label': 'Quick actions',
+  'home.widget.rules': 'Rules',
+  'home.widget.writeKudo': 'Write KUDOS',
+  'home.widget.close': 'Close',
   'comingSoon.title': 'Coming soon',
 }

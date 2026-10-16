@@ -37,6 +37,7 @@
 | F004_AwardsInformation | Awards Information | ui | TypeScript | Next.js app (root) | P1 |
 | F005_CountdownPrelaunch | Countdown Prelaunch | mixed | TypeScript | Next.js app (root) | P1 |
 | F006_KudosLiveBoard | Kudos Live Board | ui | TypeScript | Next.js app (root) | P1 |
+| F007_WriteKudo | Write Kudo | ui | TypeScript | Next.js app (root) | P1 |
 
 ## Feature Details
 
@@ -235,12 +236,41 @@
 
 ---
 
+### F007_WriteKudo: Write Kudo
+
+**Type**: ui
+**Status**: implemented
+**Description**: Modal "Viết Kudo" trên `/sun-kudos` (nhóm `(main)`, cần đăng nhập), mở từ thanh ghi nhận của Live board: chọn người nhận (RPC đọc `search_sunners`), đặt danh hiệu, soạn lời cảm ơn trong trình soạn thảo ràng buộc theo lược đồ (đậm, nghiêng, gạch ngang, danh sách số, trích dẫn, liên kết, nhắc tên `@`), gắn 1 đến 5 hashtag có sẵn, đính tối đa 5 ảnh, tuỳ chọn gửi ẩn danh rồi gửi. Đường ghi Kudo đầu tiên (Server Action gọi RPC `SECURITY DEFINER` `create_kudo`, ghi `kudos`, `kudo_hashtags`, `kudo_images` trong một giao dịch) và lần đầu dùng Supabase Storage (bucket `kudo-images`, ảnh tải thẳng từ trình duyệt). Kudo ẩn danh buộc giấu người gửi trên đường đọc của F006.
+
+**Workspace**: Next.js app (root)
+**Languages**: TypeScript
+
+**Related Screens**:
+- SCR007_WriteKudo: Viết Kudo
+
+**Related User Stories**:
+- TBD (draft) — mã US### toàn cục cấp khi đối chiếu (xem `docs/features/F007_WriteKudo/functional-spec.md`).
+
+**Related APIs/Routes**:
+- (GET) /sun-kudos (modal, không có route riêng)
+
+**Related Data Models**:
+- TBD (draft) — `kudos` (thêm `content_doc`, `is_anonymous`, `anonymous_name`), `kudo_hashtags`, `kudo_images`, `sunners`, `hashtags`; mã MODEL### cấp khi đối chiếu (xem `docs/features/F007_WriteKudo/technical-spec.md` § 4.2).
+
+**Related Background Logic**:
+- No data
+
+**Related Permissions**:
+- TBD (draft) — RPC `create_kudo`, `search_sunners`, policy Storage bucket `kudo-images`, quyền cột `kudos.sender_id` và `sunners.user_id`; xem `docs/system/permissions.md`.
+
+---
+
 ---
 
 ## Summary
 
-- **Total Features**: 6
-- **Total Screens**: 6
+- **Total Features**: 7
+- **Total Screens**: 7
 - **Total User Stories**: 8
 - **Total Routes**: 10 (2 backend ROUTE###: ROUTE001, ROUTE002; 8 trang giao diện: /, /login, /todo, /awards-information, /sun-kudos, /standards, /profile, /admin)
 - **Total Data Models**: 0

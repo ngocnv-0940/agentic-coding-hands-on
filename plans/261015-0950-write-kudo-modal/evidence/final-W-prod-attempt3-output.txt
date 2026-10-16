@@ -1,0 +1,119 @@
+$ playwright test "e2e/write-kudo-"
+
+Running 76 tests using 4 workers
+
+  ✓   4 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:45:7 › Viết Kudo editor and link dialog › TC ID-29: Strike puts a line through the selected text (6.6s)
+  ✓   3 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:27:7 › Viết Kudo editor and link dialog › TC ID-27 / FR-401: Bold makes the selected text bold and reports aria-pressed (6.6s)
+  ✓   1 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:36:7 › Viết Kudo editor and link dialog › TC ID-28: Italic makes the selected text italic (6.8s)
+  ✓   2 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:54:7 › Viết Kudo editor and link dialog › FR-404: a second Bold click removes the mark and clears aria-pressed (6.9s)
+  ✓   5 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:65:7 › Viết Kudo editor and link dialog › TC ID-30: the numbered list turns two lines into two ordered items (4.6s)
+  ✓   7 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:91:7 › Viết Kudo editor and link dialog › TC ID-32: Quote formats the selected text as a blockquote (5.1s)
+  ✓   6 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:77:7 › Viết Kudo editor and link dialog › TC ID-31: the link dialog inserts a link that opens in a new tab (5.7s)
+  ✓   8 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:100:7 › Viết Kudo editor and link dialog › FR-503: an empty link Text shows an error and inserts nothing (5.6s)
+  ✓   9 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:112:7 › Viết Kudo editor and link dialog › FR-504: a javascript: URL shows an error and inserts nothing (5.1s)
+  ✓  10 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:123:7 › Viết Kudo editor and link dialog › FR-504: an ftp:// URL shows an error and inserts nothing (5.3s)
+  ✓  12 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:143:7 › Viết Kudo editor and link dialog › FR-605: pasted <h1> and <script> reduce to plain text and the script does not run (4.8s)
+  ✓  11 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:134:7 › Viết Kudo editor and link dialog › FR-505: Escape closes the link dialog and leaves the modal open (5.3s)
+  ✓  13 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:19:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row (3.7s)
+  ✓  15 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:27:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-15: one picked hashtag appears as a chip (4.6s)
+  ✓  14 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:35:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-16: five picked hashtags make five chips and "+ Hashtag" stays visible (5.1s)
+  ✓  16 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:43:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-17 / ID-53: at five selected, the other options are disabled, the limit shows, a sixth is refused (5.7s)
+  ✓  18 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:62:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-35: three picked hashtags make three separate chips (4.3s)
+  ✓  19 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:69:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-36: removing one chip keeps the others (4.5s)
+  ✓  20 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-18 / ID-21: a valid image/jpeg is added as a thumbnail (3.5s)
+  ✓  21 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22: a valid image/png is added as a thumbnail (3.2s)
+  ✘  17 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip (9.1s)
+  ✓  22 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22 (webp): a valid image/webp is added as a thumbnail (3.5s)
+  ✓  23 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:88:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-19 / ID-20 / ID-54: five images hide "+ Image" and a sixth pick is ignored (3.5s)
+  ✓  24 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:98:7 › Viết Kudo hashtags, images and anonymous toggle › FR-704: seven files picked at once keep five thumbnails (3.5s)
+  ✓  25 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:106:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-24: a video/mp4 file shows the invalid-format error, is not added and is not uploaded (3.8s)
+  ✓  26 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:106:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-55: a text/plain file shows the invalid-format error, is not added and is not uploaded (3.9s)
+  ✓  27 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:106:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-23: a application/pdf file shows the invalid-format error, is not added and is not uploaded (4.8s)
+  ✓  28 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:117:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-37: "+ Image" opens the file picker and the picked file becomes a thumbnail (5.2s)
+  ✓  30 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:132:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-39: removing the second of three thumbnails leaves two (5.5s)
+  ✓  31 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:140:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-40: removing one of five thumbnails shows "+ Image" again (4.3s)
+  ✓  29 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:124:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-38: five picks through "+ Image" hide the button after the fifth (7.6s)
+  ✓  33 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:157:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-41 / ID-42: the anonymous checkbox checks on click and unchecks on the second click (6.6s)
+  ✓  32 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:149:7 › Viết Kudo hashtags, images and anonymous toggle › FR-706: a file over 5 MB shows "Ảnh vượt quá 5 MB" and is not added (9.5s)
+  ✓  37 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:34:7 › Viết Kudo modal: access and layout › TC ID-1 / FR-106: a guest on /sun-kudos is sent to /login before the modal can open (1.9s)
+  ✓  34 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:166:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-43 / ID-44: checking shows the alias field (max 50) and unchecking hides it (8.4s)
+  ✓  35 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:176:7 › Viết Kudo hashtags, images and anonymous toggle › DEC-005: unchecking clears the alias text (8.3s)
+  ✓  36 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:26:7 › Viết Kudo modal: access and layout › TC ID-0 / FR-101: the compose pill opens the Viết Kudo modal with its title (4.9s)
+  ✓  38 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:41:7 › Viết Kudo modal: access and layout › TC ID-2 / ID-3 / FR-201: the modal shows six rows in order, the title on top, and Hủy + Gửi in the footer (5.3s)
+  ✓  40 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:58:7 › Viết Kudo modal: access and layout › TC ID-5 / FR-206: the editor placeholder reads the Figma sentence (5.7s)
+  ✓  39 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:50:7 › Viết Kudo modal: access and layout › TC ID-4 / FR-202: the recipient field shows the "Tìm kiếm" placeholder and is a closed combobox (6.1s)
+  ✓  41 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:64:7 › Viết Kudo modal: access and layout › TC ID-6: the anonymous checkbox is unchecked on open (5.8s)
+  ✓  43 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:81:7 › Viết Kudo modal: access and layout › FR-103: an identity without a sunner row sees the compose pill disabled (3.0s)
+  ✓  42 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:70:7 › Viết Kudo modal: access and layout › TC ID-45: Hủy closes the modal with data entered, and a reopened modal is empty (4.7s)
+  ✓  44 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:87:7 › Viết Kudo modal: access and layout › FR-104: Hủy returns focus to the compose pill (4.4s)
+  ✓  45 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:94:7 › Viết Kudo modal: access and layout › FR-105: "Tiêu chuẩn cộng đồng" opens /standards in a new tab (4.6s)
+  ✓  46 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:104:7 › Viết Kudo modal: access and layout › FR-202 / FR-206 / FR-209: the title, its helper text and the action labels read the Figma copy (4.0s)
+  ✓  47 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:115:7 › Viết Kudo modal: access and layout › FR-224: Escape closes the modal and a backdrop click leaves it open (3.7s)
+  ✓  49 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:134:7 › Viết Kudo modal: access and layout › FR-226: with the EN locale the modal shows no raw writeKudo. keys (3.5s)
+  ✓  48 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:124:7 › Viết Kudo modal: access and layout › FR-225: Tab cycles focus inside the modal (6.1s)
+  ✓  50 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:142:9 › Viết Kudo modal: access and layout › FR-227: at 768 px the modal has no horizontal scroll (3.8s)
+  ✓  51 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:142:9 › Viết Kudo modal: access and layout › FR-227: at 375 px the modal has no horizontal scroll (3.4s)
+  ✓  52 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:156:7 › Viết Kudo modal: access and layout › FR-227: at 1440 px the modal is the 752 px Figma width (3.8s)
+  ✓  54 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:36:7 › Viết Kudo recipient search and mention › TC ID-9: "@ # $" is matched literally and reports "Không tìm thấy kết quả" (4.6s)
+  ✓  53 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:26:7 › Viết Kudo recipient search and mention › TC ID-8: typing "Nguyễn" lists at most 10 matching sunners, and one can be selected (5.1s)
+  ✓  55 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:43:7 › Viết Kudo recipient search and mention › TC ID-10: "  Nguyễn  " is trimmed and returns the same suggestions as "Nguyễn" (5.1s)
+  ✓  56 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:53:7 › Viết Kudo recipient search and mention › TC ID-25: the suggestion list appears while typing "An" and holds Nguyễn Văn An (4.2s)
+  ✓  57 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:61:7 › Viết Kudo recipient search and mention › TC ID-26: picking "Nguyễn Văn An" fills the field with the name and closes the list (5.0s)
+  ✓  58 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:70:7 › Viết Kudo recipient search and mention › TC ID-12 / ID-33: "@Nguyen" in the editor shows selectable colleague suggestions (5.0s)
+  ✓  59 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:80:7 › Viết Kudo recipient search and mention › TC ID-13: "Cảm ơn @Nguyen" then NguyenVanA mentions the name in the text (5.2s)
+  ✓  60 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:90:7 › Viết Kudo recipient search and mention › FR-306: the signed-in viewer is never suggested (4.8s)
+  ✓  61 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:97:7 › Viết Kudo recipient search and mention › FR-307: "duc" finds Trần Minh Đức (4.4s)
+  ✓  63 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:117:7 › Viết Kudo recipient search and mention › FR-309: Escape closes the recipient list and leaves the modal open (4.1s)
+  ✓  62 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:104:7 › Viết Kudo recipient search and mention › FR-308: the clear button removes the selected recipient and restores the search (5.0s)
+  ✓  64 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:38:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-48: with every required field empty, Gửi is aria-disabled (3.4s)
+  ✓  65 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:44:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-49: with recipient, title, content and one hashtag, Gửi is enabled (3.2s)
+  ✓  66 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:51:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-7 / ID-50: clicking Gửi without a recipient marks the recipient row and does not submit (2.4s)
+  ✓  67 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:64:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-11 / ID-51: clicking Gửi without content shows the required message at the editor (2.7s)
+  ✓  68 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:75:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-52: clicking Gửi without a hashtag shows the required message at the Hashtag row (3.4s)
+  ✓  69 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:84:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-56 / US003: all required fields empty and Gửi clicked shows every error and creates nothing (2.1s)
+  ✓  70 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:95:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › blur and clear: an empty title errors on blur and the error clears once it is filled (2.0s)
+  ✓  71 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:105:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-46: a valid submit with two tags and two images shows the spinner, then closes with the toast and the new kudo first (5.6s)
+  ✓  72 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:128:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-47: a valid submit with one tag and no image closes the modal and shows the kudo first (3.6s)
+  ✓  73 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:140:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-604: an anonymous kudo shows the alias in the sender block with no avatar or profile link (4.7s)
+  ✓  74 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:159:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-802: an anonymous kudo with an empty alias shows "Người gửi ẩn danh" (4.2s)
+  ✓  75 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:172:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-903: a failed submit keeps the modal and data, shows the error toast, and removes the uploaded image (4.1s)
+  ✓  76 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:189:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-45: an image picked and then Hủy is never uploaded or stored (3.0s)
+
+
+  1) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-hashtag-panel')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('write-kudo-hashtag-panel') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-hashtag-panel')
+
+
+      54 |     await openWriteKudoModal(page)
+      55 |     await w.hashtagAdd(page).click()
+    > 56 |     await expect(w.hashtagPanel(page)).toBeVisible()
+         |                                        ^
+      57 |     await w.hashtagOption(page, 'teamwork').click()
+      58 |     await expect(w.hashtagChip(page, 'teamwork')).toBeVisible()
+      59 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:56:40
+
+    Error Context: test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip 
+  75 passed (2.1m)
+error: script "test:e2e" exited with code 1

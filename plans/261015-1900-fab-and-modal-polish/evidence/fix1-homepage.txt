@@ -1,0 +1,66 @@
+$ playwright test "e2e/homepage-"
+[WebServer] $ next dev -p "3100"
+
+Running 48 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   3 [chromium] › e2e/homepage-access-and-landing.spec.ts:11:7 › Homepage access and landing › guest on / is redirected to /login and never sees the homepage hero (2.4s)
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   2 [chromium] › e2e/homepage-access-and-landing.spec.ts:27:7 › Homepage access and landing › callback with next=https://evil.example still lands on the homepage / (5.7s)
+[WebServer] Route /todo is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   1 [chromium] › e2e/homepage-access-and-landing.spec.ts:18:7 › Homepage access and landing › guest opening any placeholder or nested route is redirected to /login (8.8s)
+  ✓   4 [chromium] › e2e/homepage-access-and-landing.spec.ts:37:7 › Homepage access and landing › /todo stays reachable for a signed-in user (9.2s)
+  ✓   5 [chromium] › e2e/homepage-access-and-landing.spec.ts:45:7 › Homepage access and landing › a non-admin opening /admin is sent to the homepage / (9.0s)
+[WebServer] Route /admin is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   6 [chromium] › e2e/homepage-access-and-landing.spec.ts:54:7 › Homepage access and landing › an admin opening /admin sees the Coming soon placeholder with header and footer (8.3s)
+[WebServer] Route /standards is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   7 [chromium] › e2e/homepage-access-and-landing.spec.ts:64:7 › Homepage access and landing › a user_metadata admin claim does not open /admin: the user is sent to the homepage (8.0s)
+[WebServer] Route /profile is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /awards-information is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   8 [chromium] › e2e/homepage-access-and-landing.spec.ts:74:7 › Homepage access and landing › signed-in placeholder pages show the shared header, footer and Coming soon (10.1s)
+  ✓  10 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:22:7 › Homepage dropdown menus › bell opens an empty notifications panel with no badge (5.9s)
+  ✓   9 [chromium] › e2e/homepage-access-and-landing.spec.ts:86:7 › Homepage access and landing › the active nav item follows the current placeholder route (9.8s)
+  ✓  11 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:33:7 › Homepage dropdown menus › account menu for a regular user has Profile and Sign out but no Admin Dashboard (5.4s)
+  ✓  12 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:44:7 › Homepage dropdown menus › account menu for an admin adds Admin Dashboard (5.2s)
+  ✓  13 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:54:7 › Homepage dropdown menus › account menu for a user_metadata-only admin claim has no Admin Dashboard (5.2s)
+  ✓  14 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:65:7 › Homepage dropdown menus › Sign out returns to /login and the homepage is guarded afterwards (6.7s)
+  ✓  15 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:76:7 › Homepage dropdown menus › account menu toggles on click and closes on a second click or outside click (5.9s)
+  ✓  16 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:90:7 › Homepage dropdown menus › keyboard opens the account menu with Enter or Space and Escape returns focus to the trigger (3.9s)
+  ✓  17 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:104:7 › Homepage dropdown menus › opening the bell closes the account menu and the reverse (5.4s)
+  ✓  18 [chromium] › e2e/homepage-account-and-dropdown-menus.spec.ts:115:7 › Homepage dropdown menus › opening the account menu closes the language menu (4.7s)
+  ✓  20 [chromium] › e2e/homepage-content-and-links.spec.ts:33:7 › Homepage content and links › the six award cards link to /awards-information with their slug (4.6s)
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓  19 [chromium] › e2e/homepage-content-and-links.spec.ts:24:7 › Homepage content and links › ABOUT AWARDS and ABOUT KUDOS open their pages (8.1s)
+  ✓  22 [chromium] › e2e/homepage-content-and-links.spec.ts:54:7 › Homepage content and links › hovering an award card changes its transform or shadow (5.0s)
+[WebServer] [browser] Image with src "/images/homepage/awards/top-talent.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[WebServer] Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+  ✓  24 [chromium] › e2e/homepage-content-and-links.spec.ts:83:7 › Homepage content and links › every award description is clamped to at most two lines (4.4s)
+  ✓  23 [chromium] › e2e/homepage-content-and-links.spec.ts:69:7 › Homepage content and links › award grid is 3 columns on desktop and 2 on tablet and phone (7.8s)
+  ✓  21 [chromium] › e2e/homepage-content-and-links.spec.ts:42:7 › Homepage content and links › image, title and Chi tiết of a card each open its award section (13.0s)
+  ✓  25 [chromium] › e2e/homepage-content-and-links.spec.ts:97:7 › Homepage content and links › the Sun* Kudos Chi tiết button opens /sun-kudos (6.2s)
+  ✓  27 [chromium] › e2e/homepage-content-and-links.spec.ts:115:7 › Homepage content and links › footer shows the four navigation links and the copyright line (5.2s)
+  ✓  26 [chromium] › e2e/homepage-content-and-links.spec.ts:104:7 › Homepage content and links › the widget button stays fixed in the bottom-right corner after scrolling (5.3s)
+  ✓  28 [chromium] › e2e/homepage-content-and-links.spec.ts:125:7 › Homepage content and links › footer Tiêu chuẩn chung opens the standards placeholder (5.5s)
+  ✓  29 [chromium] › e2e/homepage-content-and-links.spec.ts:132:7 › Homepage content and links › every internal link on the homepage answers below 400 (7.0s)
+  ✓  31 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:45:7 › Homepage countdown and event info › before the start the countdown shows 02 05 09 with labels and Coming soon (6.2s)
+  ✓  30 [chromium] › e2e/homepage-content-and-links.spec.ts:143:7 › Homepage content and links › the homepage has no horizontal scroll at 375px (7.5s)
+  ✓  32 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:57:7 › Homepage countdown and event info › the minutes value drops by one after a minute passes (5.9s)
+  ✓  33 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:66:7 › Homepage countdown and event info › shortly before the start the client shows 00 00 00 with Coming soon, then hides it once the start passes (4.9s)
+  ✓  34 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:78:7 › Homepage countdown and event info › at the event start the countdown reads 00 and Coming soon is hidden (4.8s)
+  ✓  35 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:87:7 › Homepage countdown and event info › after the event start the countdown stays at 00 and Coming soon stays hidden (4.3s)
+  ✓  36 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:95:7 › Homepage countdown and event info › event date, venue and livestream note show the Figma content (4.5s)
+  ✓  37 [chromium] › e2e/homepage-countdown-and-event-info.spec.ts:103:7 › Homepage countdown and event info › the hero shows the ROOT FURTHER title (4.0s)
+  ✓  38 [chromium] › e2e/homepage-header-and-menus.spec.ts:28:7 › Homepage header navigation › header stays fixed at the top after scrolling (4.7s)
+  ✓  39 [chromium] › e2e/homepage-header-and-menus.spec.ts:36:7 › Homepage header navigation › About SAA 2025 is the active nav item on / (4.1s)
+  ✓  40 [chromium] › e2e/homepage-header-and-menus.spec.ts:42:7 › Homepage header navigation › clicking the active About item scrolls the homepage to the top (6.5s)
+  ✓  42 [chromium] › e2e/homepage-header-and-menus.spec.ts:64:7 › Homepage header navigation › footer About link from a placeholder page opens the homepage (5.6s)
+  ✓  41 [chromium] › e2e/homepage-header-and-menus.spec.ts:51:7 › Homepage header navigation › logo click returns to the top of / from the homepage and from a placeholder (8.2s)
+  ✓  43 [chromium] › e2e/homepage-header-and-menus.spec.ts:73:7 › Homepage header navigation › Awards Information and Sun* Kudos nav items navigate to their pages (6.5s)
+  ✓  44 [chromium] › e2e/homepage-header-and-menus.spec.ts:82:7 › Homepage header navigation › hovering a nav item changes its colours (5.1s)
+  ✓  45 [chromium] › e2e/homepage-header-and-menus.spec.ts:91:7 › Homepage header navigation › language selector shows VN by default and the page is lang vi (4.2s)
+  ✓  46 [chromium] › e2e/homepage-header-and-menus.spec.ts:97:7 › Homepage header navigation › language menu opens with exactly the VN and EN options (5.0s)
+  ✓  47 [chromium] › e2e/homepage-header-and-menus.spec.ts:105:7 › Homepage header navigation › choosing EN switches the homepage to English and keeps it after reload (6.4s)
+  ✓  48 [chromium] › e2e/homepage-header-and-menus.spec.ts:117:7 › Homepage header navigation › choosing VN again restores the Vietnamese homepage (4.5s)
+
+  48 passed (3.6m)
+exit code: 0

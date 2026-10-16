@@ -30,6 +30,7 @@ export function buildKudoCardTexts(dict: Dictionary): KudoCardTexts {
         legend_hero: dict['kudos.hero.legend_hero'],
       },
       imageAlt: dict['kudos.card.imageAlt'],
+      anonymousSender: dict['writeKudo.anonymous.default'],
     },
     likeAdd: dict['kudos.like.add'],
     likeRemove: dict['kudos.like.remove'],

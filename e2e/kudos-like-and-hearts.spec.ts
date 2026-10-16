@@ -34,11 +34,11 @@ test.describe.configure({ mode: 'serial' })
 
 test.describe('Sun* Kudos likes and hearts (serial, shared mock state)', () => {
   test.beforeAll(async ({ request }) => {
-    expect((await request.post(`${MOCK}/__e2e/kudos/reset`)).ok(), 'mock reset').toBeTruthy()
+    expect((await request.post(`${MOCK}/__e2e/kudos/reset-likes`)).ok(), 'mock reset').toBeTruthy()
   })
 
   test.afterAll(async ({ request }) => {
-    await request.post(`${MOCK}/__e2e/kudos/reset`)
+    await request.post(`${MOCK}/__e2e/kudos/reset-likes`)
   })
 
   // TC FUNCTION 33 / FR-401 / BR-002: the heart toggles red and +1, and back to gray and -1
@@ -74,6 +74,8 @@ test.describe('Sun* Kudos likes and hearts (serial, shared mock state)', () => {
 
   // FR-404 / DEC-003: a like on a normal day gives the sender +1 heart; unlike gives it back
   test('FR-404 / DEC-003: a like on a normal day adds 1 heart to the sender, and unlike removes it', async ({ browser }) => {
+    // Two browser contexts, each with its own login and dev-mode compile: the 30 s default is too tight under 4 workers.
+    test.setTimeout(90_000)
     const sender = await openAs(browser, 'kudos-sender')
     const liker = await openAs(browser, 'kudos-liker')
     try {
@@ -93,6 +95,8 @@ test.describe('Sun* Kudos likes and hearts (serial, shared mock state)', () => {
 
   // FR-405 / BR-004: on a special day a like gives the sender 2 hearts; unliking after the day ends revokes 2
   test('FR-405 / BR-004: a like on a special day adds 2 hearts, and unliking revokes exactly those 2', async ({ browser, request }) => {
+    // Two browser contexts, each with its own login and dev-mode compile: the 30 s default is too tight under 4 workers.
+    test.setTimeout(90_000)
     const sender = await openAs(browser, 'kudos-sender')
     const liker = await openAs(browser, 'kudos-liker')
     try {

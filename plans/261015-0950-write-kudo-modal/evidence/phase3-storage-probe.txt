@@ -1,0 +1,33 @@
+users: writer=f14ecf8b-05db-4742-8168-2ec8e7f6a5dd other=eeeb7b46-e0ce-49fb-a585-9144a251f091 (linked to sunners 00000000-0000-4000-8000-000000000111, 00000000-0000-4000-8000-000000000113)
+PASS upload own neutral <uuid>.png -> 200 (INSERT policy with owner_id = auth.uid() passes) :: {"status":200,"body":{"Key":"kudo-images/709bf79e-c455-4b8e-9745-741db8f45c35.png","Id":"cf191db0-336f-4bb8-b230-5178fe3395bc"}}
+PASS storage.objects.owner_id (and owner) = uploader auth.uid() :: f14ecf8b-05db-4742-8168-2ec8e7f6a5dd|f14ecf8b-05db-4742-8168-2ec8e7f6a5dd
+PASS upload <uid>/<uuid>.png -> rejected by RLS :: {"status":400,"body":{"statusCode":"403","error":"Unauthorized","message":"new row violates row-level security policy","code":"AccessDenied"}}
+PASS upload non-uuid name -> rejected by RLS :: {"status":400,"body":{"statusCode":"403","error":"Unauthorized","message":"new row violates row-level security policy","code":"AccessDenied"}}
+PASS upload text/plain -> rejected by bucket allowed_mime_types :: {"status":400,"body":{"statusCode":"415","error":"invalid_mime_type","message":"mime type text/plain is not supported","code":"InvalidMimeType"}}
+PASS upload 5 MiB + 1 byte -> rejected by bucket file_size_limit :: {"status":400,"body":{"statusCode":"413","error":"Payload too large","message":"The object exceeded the maximum allowed size","code":"EntityTooLarge"}}
+PASS upload with the anon key (signed out) -> rejected :: {"status":400,"body":{"statusCode":"403","error":"Unauthorized","message":"new row violates row-level security policy","code":"AccessDenied"}}
+PASS public GET /object/public/kudo-images/<name> -> 200, same bytes, no auth :: {"status":200,"bytes":68}
+PASS list as uploader -> sees own object :: {"status":200,"names":["709bf79e-c455-4b8e-9745-741db8f45c35.png"]}
+PASS list as another user -> sees none of the uploader's objects :: {"status":200,"names":[]}
+PASS remove as another user -> nothing removed, object kept :: f14ecf8b-05db-4742-8168-2ec8e7f6a5dd|f14ecf8b-05db-4742-8168-2ec8e7f6a5dd
+PASS rpc create_kudo (anonymous, 1 image) -> 200 {kudoId} :: {"status":200,"body":{"kudoId":"6ae257ee-fadb-41b4-845f-7964d8c0fa0e"}}
+PASS stored image row = kudo-images/<name>, position 1; stored sender = real writer :: db row checked
+PASS rpc create_kudo reusing the same upload -> P0001 images_invalid :: {"status":400}
+PASS remove own object referenced by a kudo -> nothing removed :: f14ecf8b-05db-4742-8168-2ec8e7f6a5dd|f14ecf8b-05db-4742-8168-2ec8e7f6a5dd
+PASS remove own unreferenced object -> removed :: {"status":200,"removed":["1d7f7762-76b2-47cf-99ef-c0c76e2e2939.webp"]}
+PASS kudos_feed_page as another user: new anonymous card has sender null + alias :: {"id":"6ae257ee-fadb-41b4-845f-7964d8c0fa0e","title":"Probe","images":[{"url":"kudo-images/709bf79e-c455-4b8e-9745-741db8f45c35.png"}],"sender":null,"canLike":true,"content":"Probe kudo","hashtags":[{"slug":"teamwork","label":"#Teamwork"}],"receiver":{"id":"00000000-0000-4000-8000-000000000112","name":"Nguyễn Văn An","avatarUrl":null,"heroTitle":null,"department":"Development","receivedCount":1},"createdAt":"2026-10-15T04:03:45.819Z","likeCount":0,"isAnonymous":true,"anonymousName":"Probe Alias","likedByViewer":false}
+PASS PostgREST GET /kudos?select=sender_id -> denied :: {"status":403,"body":{"code":"42501","details":null,"hint":"Grant the required privileges to the current role with: GRANT SELECT ON public.kudos TO authenticated;","message":"permission denied for table kudos"}}
+PASS PostgREST GET /kudos?select=* -> denied :: {"status":403,"body":{"code":"42501","details":null,"hint":"Grant the required privileges to the current role with: GRANT SELECT ON public.kudos TO authenticated;","message":"permission denied for table kudos"}}
+PASS PostgREST GET /kudos?select=id&sender_id=eq.00000000-0000-4000-8000-000000000111 -> denied :: {"status":403,"body":{"code":"42501","details":null,"hint":"Grant the required privileges to the current role with: GRANT SELECT ON public.kudos TO authenticated;","message":"permission denied for table kudos"}}
+PASS PostgREST GET /kudos?select=id&order=sender_id -> denied :: {"status":403,"body":{"code":"42501","details":null,"hint":"Grant the required privileges to the current role with: GRANT SELECT ON public.kudos TO authenticated;","message":"permission denied for table kudos"}}
+PASS PostgREST GET /kudos?select=id,sender:sunners!kudos_sender_id_fkey(full_name) -> denied :: {"status":403,"body":{"code":"42501","details":null,"hint":"Grant the required privileges to the current role with: GRANT SELECT ON public.kudos TO authenticated;","message":"permission denied for table kudos"}}
+PASS PostgREST GET /sunners?select=user_id -> denied :: {"status":403,"body":{"code":"42501","details":null,"hint":"Grant the required privileges to the current role with: GRANT SELECT ON public.sunners TO authenticated;","message":"permission denied for table sunners"}}
+PASS PostgREST GET public kudos columns -> 200 :: {"status":200,"body":[{"id":"6ae257ee-fadb-41b4-845f-7964d8c0fa0e","is_anonymous":true,"anonymous_name":"Probe Alias"}]}
+PASS rpc search_sunners with the anon key -> denied :: {"status":401}
+PASS rpc search_sunners "  Nguyễn  " -> 10 options, no user_id key :: ["Nguyễn Anh Khoa","Nguyễn Bá Chúc","Nguyễn Hoàng Linh","Nguyễn Minh Hiếu","Nguyễn Ngọc Lan","Nguyễn Quốc Cường","Nguyễn Thanh Hằng","Nguyễn Thu Hương","Nguyễn Thị Bình","Nguyễn Văn An"]
+INFO without the SELECT policy: upload -> {"status":200,"body":{"Key":"kudo-images/57db0b6b-9ae3-4ad3-a2d4-ac66dd6efcc7.png","Id":"9548bd11-15cf-4875-b9e2-4ffd0df11cbb"},"row":"f14ecf8b-05db-4742-8168-2ec8e7f6a5dd|f14ecf8b-05db-4742-8168-2ec8e7f6a5dd"}
+INFO without the SELECT policy: remove -> {"status":200,"body":[],"rowAfter":"f14ecf8b-05db-4742-8168-2ec8e7f6a5dd|f14ecf8b-05db-4742-8168-2ec8e7f6a5dd"}
+PASS restored "kudo images: select own" policy :: policy restored
+
+probe failures: 0
+exit=0

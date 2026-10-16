@@ -1,0 +1,20 @@
+Connecting to local database...
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/auto-provision-sunner.test.sql ........... ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql ................ ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql ............. ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-seed-matches-e2e-fixture.test.sql .. ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-create-rules.test.sql ......... ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql:7: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-search-and-storage.test.sql ... ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/write-kudo-sender-masking.test.sql ....... ok
+All tests successful.
+Files=7, Tests=302,  1 wallclock secs ( 0.08 usr  0.03 sys +  0.07 cusr  0.09 csys =  0.27 CPU)
+Result: PASS
+A new version of Supabase CLI is available: v2.121.0 (currently installed v2.120.0)
+We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli

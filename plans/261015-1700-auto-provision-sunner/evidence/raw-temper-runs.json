@@ -1,0 +1,52 @@
+[
+  {
+    "command": "git diff --stat origin/feat/write-kudo -- app lib e2e",
+    "exitCode": 0,
+    "summary": "empty diff: no app/lib/e2e changes"
+  },
+  {
+    "command": "supabase db reset",
+    "exitCode": 0,
+    "summary": "local DB reset finished, all migrations + seed applied"
+  },
+  {
+    "command": "supabase test db",
+    "exitCode": 0,
+    "summary": "7 files, 302 tests, Result: PASS"
+  },
+  {
+    "command": "supabase db lint",
+    "exitCode": 0,
+    "summary": "No schema errors found"
+  },
+  {
+    "command": "bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "no type errors"
+  },
+  {
+    "command": "bun run lint",
+    "exitCode": 0,
+    "summary": "eslint clean"
+  },
+  {
+    "command": "bun run test:e2e",
+    "exitCode": 0,
+    "summary": "252 passed (12.6m), 0 failed, mock supabase"
+  },
+  {
+    "command": "supabase db reset",
+    "exitCode": 0,
+    "summary": "fix round 2: reset applies insert-or-update trigger"
+  },
+  {
+    "command": "supabase test db",
+    "exitCode": 0,
+    "summary": "fix round 2 (google gate + update trigger): pgTAP 316/316 in 7 files"
+  },
+  {
+    "command": "supabase db lint",
+    "exitCode": 0,
+    "summary": "fix round 2: no schema errors"
+  }
+]

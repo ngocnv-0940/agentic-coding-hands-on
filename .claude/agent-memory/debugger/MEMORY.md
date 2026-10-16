@@ -1,0 +1,1 @@
+- [Lost click + E2E_PROD reuse](project-e2e-lost-click-and-prod-reuse.md) — blur-inserted error row steals clicks (dev masks it); prod reuse of stale :3100 server

@@ -28,7 +28,12 @@ export type KudoCard = {
   likedByViewer: boolean
   /** Viewer has a sunners row and is not the sender. */
   canLike: boolean
-  sender: Person
+  /** Anonymous kudo: the alias for everyone, the sender included. */
+  isAnonymous: boolean
+  /** Alias of an anonymous kudo; null when not anonymous or when the sender left it blank. */
+  anonymousName: string | null
+  /** `null` iff `isAnonymous`: the board RPCs never reveal the real sender of an anonymous kudo. */
+  sender: Person | null
   receiver: Person
   hashtags: Hashtag[]
   /** At most 5, ordered by position. */

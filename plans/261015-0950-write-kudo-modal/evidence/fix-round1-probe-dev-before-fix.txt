@@ -1,0 +1,14 @@
+$ playwright test "e2e/zz-debug-probe.spec.ts" "--workers=1" -g "probe (A|D)"
+[WebServer] $ next dev -p "3100"
+
+Running 2 tests using 1 worker
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+{"focused":"write-kudo-recipient-input","before":{"x":430,"y":688,"width":122.0625,"height":48},"after":{"x":430,"y":688,"width":122.0625,"height":48},"shiftY":0,"underOldCenter":"DIV testid=write-kudo-backdrop"}
+  ✓  1 [chromium] › e2e/zz-debug-probe.spec.ts:5:5 › probe A: box of + Hashtag before/after recipient blur, and what is under the old click point (4.1s)
+["mousedown:write-kudo-hashtag-add@680","mouseup:write-kudo-hashtag-add@680","click:write-kudo-hashtag-add@680"] panel= 1
+  ✓  2 [chromium] › e2e/zz-debug-probe.spec.ts:31:5 › probe D: real click, record mousedown/mouseup/click targets (3.0s)
+
+  2 passed (2.4m)

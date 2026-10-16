@@ -1,0 +1,1 @@
+E2E_PROD=1 bun run test:e2e e2e/write-kudo-   (mock down, :3100 free at start)

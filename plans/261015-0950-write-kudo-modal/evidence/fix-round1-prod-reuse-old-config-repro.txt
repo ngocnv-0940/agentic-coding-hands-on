@@ -1,0 +1,41 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip (30.2s)
+
+
+  1) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+      navigated to "http://localhost:3100/login?error=auth_failed"
+    ============================================================
+
+       at support/login-through-stubbed-google.ts:89
+
+      87 |   await expect(button).toBeVisible()
+      88 |   await button.click()
+    > 89 |   await page.waitForURL((url) => !url.pathname.startsWith('/login') && !url.pathname.startsWith('/auth/'))
+         |              ^
+      90 | }
+      91 |
+        at loginThroughStubbedGoogle (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/login-through-stubbed-google.ts:89:14)
+        at openKudosBoard (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/kudos-board-session.ts:10:3)
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:12:3)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:54:5
+
+    Error Context: test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip 

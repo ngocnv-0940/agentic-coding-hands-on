@@ -9,7 +9,8 @@
  */
 import { randomUUID } from 'node:crypto'
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http'
-import { handleKudosRest, KUDOS_EMPTY_USER_ID } from './mock-kudos-rest-routes'
+import { handleKudosRest, KUDOS_EMPTY_USER_ID, KUDOS_WRITER_USER_ID } from './mock-kudos-rest-routes'
+import { handleStorage } from './mock-storage-routes'
 
 export const MOCK_PORT = Number(process.env.E2E_SUPABASE_PORT ?? 54399)
 export const STUB_CODE = 'stub-code'
@@ -21,6 +22,8 @@ export const STUB_CODE_KUDOS_SENDER = 'stub-code-kudos-sender'
 export const STUB_CODE_KUDOS_LIKER = 'stub-code-kudos-liker'
 export const STUB_CODE_KUDOS_OUTSIDER = 'stub-code-kudos-outsider'
 export const STUB_CODE_KUDOS_EMPTY = 'stub-code-kudos-empty'
+/** Write-kudo identity: sunner `Vũ Hải Đăng`, own dataset copy, the only identity that sends kudos. */
+export const STUB_CODE_KUDOS_WRITER = 'stub-code-kudos-writer'
 
 interface MockUser {
   id: string
@@ -71,6 +74,7 @@ const USERS: Record<string, MockUser> = {
   [STUB_CODE_KUDOS_LIKER]: kudosUser('kudos-liker'),
   [STUB_CODE_KUDOS_OUTSIDER]: kudosUser('kudos-outsider'),
   [STUB_CODE_KUDOS_EMPTY]: kudosUser(KUDOS_EMPTY_USER_ID),
+  [STUB_CODE_KUDOS_WRITER]: kudosUser(KUDOS_WRITER_USER_ID),
 }
 
 /** access token -> owner. A user endpoint call resolves the owner, so each session keeps its identity. */
@@ -157,6 +161,9 @@ async function handle(req: IncomingMessage, res: ServerResponse) {
 
   if (pathname.startsWith('/rest/v1/') || pathname.startsWith('/__e2e/kudos/')) {
     return handleKudosRest(req, res, pathname, accessOwners.get(bearerToken(req) ?? ''))
+  }
+  if (pathname.startsWith('/storage/v1/') || pathname.startsWith('/__e2e/storage/')) {
+    return handleStorage(req, res, pathname, accessOwners.get(bearerToken(req) ?? ''))
   }
   console.error(`[e2e-mock-supabase] unhandled ${req.method} ${pathname}`)
   return send(res, 404, { code: 404, msg: `e2e mock has no route for ${req.method} ${pathname}` })

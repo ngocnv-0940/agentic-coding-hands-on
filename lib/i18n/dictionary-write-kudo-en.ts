@@ -1,0 +1,76 @@
+import type { writeKudoVi } from './dictionary-write-kudo-vi'
+
+/** Viết Kudo modal (F007) strings, English. Implementer-authored (Figma is Vietnamese only); wait for user confirmation. */
+export const writeKudoEn: { [K in keyof typeof writeKudoVi]: string } = {
+  'writeKudo.title': 'Send thanks and recognition to your teammates',
+  'writeKudo.required': 'This field is required',
+
+  'writeKudo.recipient.label': 'Recipient',
+  'writeKudo.recipient.placeholder': 'Search',
+  'writeKudo.recipient.empty': 'No results found',
+  'writeKudo.recipient.loading': 'Searching...',
+  'writeKudo.recipient.clear': 'Choose another recipient',
+
+  'writeKudo.titleField.label': 'Title',
+  'writeKudo.titleField.placeholder': 'Give your teammate a title',
+  'writeKudo.titleField.hint': 'For example: The one who motivates me.\nThe title will be shown as the headline of your Kudos.',
+
+  'writeKudo.editor.placeholder': 'Write your thanks and recognition to your teammate here!',
+  'writeKudo.editor.mentionHint': 'You can type “@ + name” to mention other colleagues',
+  'writeKudo.editor.tooLong': 'Content is limited to 2000 characters',
+  'writeKudo.editor.standards': 'Community standards',
+  'writeKudo.tool.bold': 'Bold',
+  'writeKudo.tool.italic': 'Italic',
+  'writeKudo.tool.strike': 'Strikethrough',
+  'writeKudo.tool.orderedList': 'Numbered list',
+  'writeKudo.tool.link': 'Insert link',
+  'writeKudo.tool.quote': 'Quote',
+
+  'writeKudo.link.title': 'Add link',
+  'writeKudo.link.text': 'Text',
+  'writeKudo.link.url': 'Link',
+  'writeKudo.link.cancel': 'Cancel',
+  'writeKudo.link.save': 'Save',
+  'writeKudo.link.textRequired': 'This field is required',
+  'writeKudo.link.textTooLong': 'Text is limited to 100 characters',
+  'writeKudo.link.urlRequired': 'This field is required',
+  'writeKudo.link.urlInvalid': 'The link must start with http:// or https://',
+  'writeKudo.link.urlTooLong': 'The link is limited to 2048 characters',
+
+  'writeKudo.hashtag.label': 'Hashtag',
+  'writeKudo.hashtag.add': 'Hashtag',
+  'writeKudo.hashtag.hint': 'Max 5',
+  'writeKudo.hashtag.limit': 'Max 5 hashtags',
+  'writeKudo.hashtag.remove': 'Remove hashtag',
+
+  'writeKudo.image.label': 'Image',
+  'writeKudo.image.add': 'Image',
+  'writeKudo.image.hint': 'Max 5',
+  'writeKudo.image.remove': 'Remove image',
+  'writeKudo.image.thumbAlt': 'Attached image',
+  'writeKudo.image.invalidType': 'Invalid file format',
+  'writeKudo.image.tooLarge': 'Image exceeds 5 MB',
+  'writeKudo.image.tooMany': 'Max 5 images',
+
+  'writeKudo.anonymous.checkbox': 'Send thanks and recognition anonymously',
+  'writeKudo.anonymous.name': 'Anonymous name',
+  'writeKudo.anonymous.default': 'Anonymous sender',
+
+  'writeKudo.footer.cancel': 'Cancel',
+  'writeKudo.footer.submit': 'Send',
+
+  'writeKudo.toast.success': 'Kudos sent successfully!',
+  'writeKudo.error.upload': 'Could not upload the images. Please try again.',
+  'writeKudo.error.unauthenticated': 'Your session has expired. Please sign in again.',
+  'writeKudo.error.sunner_not_found': 'Your account has no Sunner profile yet, so you cannot send Kudos.',
+  'writeKudo.error.receiver_not_found': 'The recipient no longer exists. Please choose someone else.',
+  'writeKudo.error.self_kudo': 'You cannot send Kudos to yourself.',
+  'writeKudo.error.title_invalid': 'The title is not valid. Please check it.',
+  'writeKudo.error.content_invalid': 'The content is not valid. Please check it.',
+  'writeKudo.error.content_doc_invalid': 'The content is not valid. Please check it.',
+  'writeKudo.error.hashtags_invalid': 'The hashtags are not valid. Please choose again.',
+  'writeKudo.error.images_invalid': 'Could not attach the images. Please pick them again and retry.',
+  'writeKudo.error.anonymous_name_invalid': 'The anonymous name is not valid. Please check it.',
+  'writeKudo.error.invalid_input': 'Some information is not valid. Please check the fields.',
+  'writeKudo.error.unknown': 'Could not send Kudos. Please try again.',
+}

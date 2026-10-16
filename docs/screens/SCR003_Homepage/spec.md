@@ -92,7 +92,7 @@ Các vùng xếp dọc: header cố định ở trên (logo trái, ba mục đi�
 | E20 | Liên kết "Chi tiết" của thẻ | link | — | Hiển thị | Always | Mở trang hạng mục | static | kèm biểu tượng | — | — |
 | E21 | Khối Sun* Kudos (nhãn "Phong trào ghi nhận", tiêu đề, mô tả, ảnh) | display field | — | Hiển thị | Always | — | static | — | — | — |
 | E22 | Nút "Chi tiết" của Kudos | button | — | Hiển thị | Always | Mở trang Sun* Kudos | static | kèm biểu tượng | — | — |
-| E23 | Nút widget (viên thuốc 105x64, nền vàng) | button | — | Hiển thị | Always | Chưa có hành động | static | bút chì, "/", biểu tượng SAA | — | — |
+| E23 | Nút widget (viên thuốc 105x64, nền vàng) | button | — | Hiển thị | Always | Mở nhóm hành động nhanh (Thể lệ, Viết KUDOS, ×); nút ẩn khi nhóm hiện | static | bút chì, "/", biểu tượng SAA | — | — |
 | E24 | Footer: logo và liên kết (About SAA 2025, Awards Information, Sun* Kudos, Tiêu chuẩn chung) | link | — | Hiển thị | Always | Mở trang tương ứng; logo về đầu trang | static | — | — | — |
 | E25 | Dòng bản quyền | display field | — | "Bản quyền thuộc về Sun* © 2025" | Always | — | static | — | — | — |
 
@@ -212,5 +212,5 @@ Các trang giữ chỗ (trừ `/awards-information`, đã có SCR004_AwardsInfor
 | từ 1024px | R1 / E02, E03 | Ba mục điều hướng hiện trong header | `app/(main)/_components/header-nav.tsx:16` |
 | dưới 1024px | R1 / E02, E03 | Header không có mục điều hướng (`hidden lg:flex`); logo, ngôn ngữ, chuông, tài khoản vẫn hiện; footer vẫn đủ liên kết | `app/(main)/_components/header-nav.tsx:16` |
 | mọi kích thước | R1 | Header cố định khi cuộn | `app/(main)/_components/site-header.tsx:18` |
-| mọi kích thước | R7 | Nút widget cố định ở góc phải dưới | `app/(main)/_components/widget-button.tsx:12` |
+| mọi kích thước | R7 | Nút widget cố định ở góc phải dưới | `app/(main)/_components/widget-button.tsx:19-28` |
 | màn nhỏ | R2, R3 | Chữ tự xuống dòng và co lại; các dòng thông tin sự kiện xuống hàng, không tràn | `app/(main)/_components/home-screen.tsx:15,33` |

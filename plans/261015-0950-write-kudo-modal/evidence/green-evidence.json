@@ -1,0 +1,104 @@
+{
+  "phase": 6,
+  "feature": "write-kudo",
+  "testPolicy": "e2e-red-first",
+  "status": "valid-green",
+  "greenCommand": "bun run test:e2e e2e/write-kudo-",
+  "greenExitCode": 0,
+  "greenCounts": {
+    "total": 76,
+    "passed": 76,
+    "failed": 0,
+    "notRun": 0
+  },
+  "greenEvidenceFiles": [
+    "evidence/final-W-dev-output.txt",
+    "evidence/final-W-dev-exit.txt"
+  ],
+  "greenProd": {
+    "command": "E2E_PROD=1 bun run test:e2e e2e/write-kudo-",
+    "exitCode": 0,
+    "counts": {
+      "passed": 76,
+      "failed": 0
+    },
+    "evidenceFiles": [
+      "evidence/final-W-prod-output.txt",
+      "evidence/final-W-prod-exit.txt"
+    ]
+  },
+  "redCommand": "bun run test:e2e e2e/write-kudo-",
+  "redExitCode": 1,
+  "redCounts": {
+    "total": 76,
+    "failed": 63,
+    "passed": 1,
+    "notRun": 12
+  },
+  "sameCommandAsRed": true,
+  "regression": {
+    "kudos": {
+      "command": "bun run test:e2e e2e/kudos-",
+      "exitCode": 0,
+      "counts": {
+        "passed": 60,
+        "failed": 0
+      }
+    },
+    "kudosProd": {
+      "command": "E2E_PROD=1 bun run test:e2e e2e/kudos-",
+      "exitCode": 0,
+      "counts": {
+        "passed": 60,
+        "failed": 0
+      }
+    },
+    "full": {
+      "command": "bun run test:e2e",
+      "exitCode": 0,
+      "counts": {
+        "passed": 252,
+        "failed": 0
+      }
+    },
+    "prelaunch": {
+      "command": "E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+      "exitCode": 0,
+      "counts": {
+        "passed": 35,
+        "failed": 0
+      }
+    },
+    "eventEnvInvalid": {
+      "command": "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+      "exitCode": 0,
+      "counts": {
+        "passed": 2,
+        "failed": 0
+      }
+    },
+    "launchEnvInvalid": {
+      "command": "E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid",
+      "exitCode": 0,
+      "counts": {
+        "passed": 2,
+        "failed": 0
+      }
+    }
+  },
+  "sqlGate": {
+    "command": "supabase db reset && supabase test db",
+    "exitCode": 0,
+    "pgtap": "6 files, 263 tests, PASS"
+  },
+  "realStackSmoke": "evidence/real-stack-smoke.md (PASS)",
+  "visual": "evidence/visual-mismatch-list.md (no material mismatch; judgments qualitative)",
+  "tcMapping": "evidence/tc-mapping.md (57 of 57 PASS dev + prod)",
+  "scMapping": "evidence/sc-mapping.md (SC-001..SC-007 PASS)",
+  "notes": [
+    "Test-side corrections are listed in evidence/tc-mapping.md (phase 6 section); no app, lib or supabase code was edited by the tester.",
+    "Superseded attempts are kept under attempt/run labels (final-W-dev-run1..5, final-D-full-run1..3, final-W-prod-attempt1..3, final-K-dev-run1..4); the unsuffixed final-* files are the GREEN runs.",
+    "E2E_PROD=1 runs reused a prebuilt server on 3100 (the Playwright webServer probe hung on a closed port while the mock was down); the prod build used a temporary gitignored .env.production.local (removed afterwards).",
+    "Known flake, mitigated: FR-404 / FR-405 timed out at 30 s under dev load (K run3); test timeout raised to 90 s for those two tests (see concerns)."
+  ]
+}

@@ -125,3 +125,9 @@ like rows. Shared fixture counts (e.g. highlight order, viewer stats) live in `e
 code without editing `app/**`, and the pre-fix version is in neither git nor a file. Highlight shows kudo A only under a filter.
 **How to apply:** when the pre-fix state cannot be reproduced without touching app code, skip the new spec and say so in the
 report; do not add an unproven regression test. The fix was verified by the existing suites (kudos 57/57, full 173/173, build 0).
+
+**Why (write-kudo RED, 2026-10-15):** with nothing listening on 54399, a loopback connect hung in SYN-SENT (no RST). Playwright's
+webServer readiness probe then never spawned the mock, and the run sat for minutes with no child processes.
+**How to apply:** if `playwright test` shows no webServer child after ~30 s, check `ss -tnp | grep <pid>`; start the mock and
+`next dev -p 3100` by hand with the same webServer env (NEXT_PUBLIC_SUPABASE_URL, EVENT_START_AT, SITE_LAUNCH_AT=) and log files,
+then rerun the exact command (reuseExistingServer applies when CI is unset). Record it in the evidence; do not count the aborted attempt.

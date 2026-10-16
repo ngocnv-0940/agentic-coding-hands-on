@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-10-15T10:40:43Z",
+  "overall_status": "PASS",
+  "plan": "261015-0950-write-kudo-modal",
+  "schema_version": 1,
+  "totals": {
+    "critical": 0,
+    "failed_specs": 0,
+    "passed_specs": 0,
+    "warning": 0
+  },
+  "validators": {
+    "id_contiguity": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    },
+    "process_flow": {
+      "issues": [],
+      "status": "PASS",
+      "summary": {
+        "critical": 0,
+        "warning": 0
+      }
+    }
+  }
+}

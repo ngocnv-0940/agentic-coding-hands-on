@@ -1,4 +1,102 @@
 {
-  "generated_at": "2026-10-14T09:03:45Z",
-  "index": {}
+  "generated_at": "2026-10-15T10:42:49Z",
+  "index": {
+    "app/(main)/_behavior/account-menu.tsx": [
+      "F003"
+    ],
+    "app/(main)/_behavior/award-hash.ts": [
+      "F004"
+    ],
+    "app/(main)/_behavior/notifications-menu.tsx": [
+      "F003"
+    ],
+    "app/(main)/_behavior/use-award-category-spy.ts": [
+      "F004"
+    ],
+    "app/(main)/_behavior/use-award-category-spy.ts:27-38,71-96": [
+      "F004"
+    ],
+    "app/(main)/_behavior/use-award-category-spy.ts:53,64,87,75": [
+      "F004"
+    ],
+    "app/(main)/_components/kudos-promo.tsx": [
+      "F004"
+    ],
+    "app/(main)/_wiring/site-header-container.tsx": [
+      "F003"
+    ],
+    "app/(main)/awards-information/page.tsx": [
+      "F004"
+    ],
+    "app/(main)/page.tsx": [
+      "F003"
+    ],
+    "app/(main)/{awards-information,sun-kudos,standards,profile,admin}/page.tsx": [
+      "F003"
+    ],
+    "app/auth/callback/route.ts": [
+      "F001"
+    ],
+    "app/auth/callback/route.ts:4,40": [
+      "F003"
+    ],
+    "app/auth/logout/route.ts": [
+      "F001"
+    ],
+    "app/login/_components/language-selector.tsx": [
+      "F002"
+    ],
+    "app/login/google-login-container.tsx": [
+      "F001"
+    ],
+    "app/login/language-selector-container.tsx": [
+      "F002"
+    ],
+    "app/login/page.tsx": [
+      "F001"
+    ],
+    "app/todo/page.tsx": [
+      "F001"
+    ],
+    "lib/auth/get-current-user.ts": [
+      "F003"
+    ],
+    "lib/auth/sign-in-with-google.ts": [
+      "F001"
+    ],
+    "lib/awards/award-categories.ts": [
+      "F003"
+    ],
+    "lib/event/event-start-config.ts": [
+      "F003"
+    ],
+    "lib/event/use-countdown.ts": [
+      "F003"
+    ],
+    "lib/i18n/dictionary-awards-vi.ts": [
+      "F004"
+    ],
+    "lib/i18n/dictionary-vi.ts": [
+      "F002"
+    ],
+    "lib/i18n/get-locale.ts": [
+      "F002"
+    ],
+    "lib/i18n/locale-config.ts": [
+      "F002"
+    ],
+    "lib/i18n/set-locale-action.ts": [
+      "F002"
+    ],
+    "lib/supabase/proxy.ts": [
+      "F001"
+    ],
+    "lib/supabase/proxy.ts:7-27,82-87": [
+      "F003"
+    ],
+    "proxy.ts": [
+      "F001",
+      "F002"
+    ]
+  }
 }

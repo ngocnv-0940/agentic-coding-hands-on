@@ -1,0 +1,15 @@
+{
+  "task": "Floating action button opens a quick-action group whose 'Viết KUDOS' opens the Write Kudo modal (also from other pages), a click on the mask closes the modal, and the modal scrolls smoothly with fixed heading and footer and a scroll-locked page",
+  "mode": "auto",
+  "acceptanceCriteria": [
+    "Clicking the FAB opens the quick-action group of frame Sv7DFwBw1h (Thể lệ, Viết KUDOS, red ×); ×, Esc and an outside click close it and focus returns to the FAB",
+    "Viết KUDOS opens the Write Kudo modal on /sun-kudos and, from other main pages, via /sun-kudos?compose=1 which opens the modal once and removes the param; a viewer without a sunner gets no modal",
+    "Thể lệ opens the existing Coming soon modal",
+    "A click on the mask closes the modal and discards the draft, except while submitting or when the press started inside the card",
+    "Only the field area scrolls with overscroll contained; the heading and the Hủy/Gửi footer stay visible; the page behind does not scroll while the modal is open",
+    "Existing write-kudo, kudos and homepage e2e suites stay green; tsc and lint clean"
+  ],
+  "touchpoints": ["app/(main)/_components/widget-button.tsx", "app/(main)/_components/fab-menu-view.tsx", "app/(main)/_behavior/use-fab-menu.ts", "app/(main)/_behavior/compose-bridge.ts", "app/(main)/_wiring/fab-container.tsx", "app/(main)/layout.tsx", "app/(main)/sun-kudos/_components/write-kudo-modal-view.tsx", "app/(main)/sun-kudos/_wiring/write-kudo-form-container.tsx", "app/(main)/sun-kudos/_wiring/action-pills-container.tsx", "app/(main)/sun-kudos/_behavior/use-body-scroll-lock.ts", "lib/i18n/dictionary-home-*.ts", "e2e/write-kudo-*.spec.ts"],
+  "blastRadius": ["every main page (FAB in layout)", "Write Kudo modal close paths", "compose pill focus return"],
+  "contracts": ["node .claude/skills/_shared/lib/evidence-gate.cjs --evidence-dir <abs> --stage hard"]
+}

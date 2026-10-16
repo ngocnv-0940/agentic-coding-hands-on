@@ -10,5 +10,5 @@ const toPersonView = (person: Person): PersonView => ({ ...person, stars: starsF
  * server-rendered first page and the pages a Server Action appends later map identically.
  */
 export function toKudoCardView(card: KudoCard): KudoCardView {
-  return { ...card, sender: toPersonView(card.sender), receiver: toPersonView(card.receiver), timeLabel: formatKudoTime(card.createdAt) }
+  return { ...card, sender: card.sender && toPersonView(card.sender), receiver: toPersonView(card.receiver), timeLabel: formatKudoTime(card.createdAt) }
 }

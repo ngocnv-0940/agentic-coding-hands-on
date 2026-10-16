@@ -1,0 +1,57 @@
+[
+  {
+    "command": "bunx tsc --noEmit",
+    "exitCode": 0,
+    "summary": "typecheck clean on final code (evidence/final-tsc-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e e2e/write-kudo-",
+    "exitCode": 0,
+    "summary": "76 passed, 0 failed (evidence/final-W-dev-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "60 passed, 0 failed (evidence/final-K-dev-output.txt)"
+  },
+  {
+    "command": "E2E_PROD=1 bun run test:e2e e2e/write-kudo-",
+    "exitCode": 0,
+    "summary": "76 passed, 0 failed (evidence/final-W-prod-output.txt)"
+  },
+  {
+    "command": "E2E_PROD=1 bun run test:e2e e2e/kudos-",
+    "exitCode": 0,
+    "summary": "60 passed, 0 failed (evidence/final-K-prod-output.txt)"
+  },
+  {
+    "command": "bun run test:e2e",
+    "exitCode": 0,
+    "summary": "252 passed, 0 failed (evidence/final-D-full-output.txt)"
+  },
+  {
+    "command": "E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch",
+    "exitCode": 0,
+    "summary": "35 passed, 0 failed (evidence/final-P-prelaunch-as-written-output.txt)"
+  },
+  {
+    "command": "E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid",
+    "exitCode": 0,
+    "summary": "2 passed, 0 failed (evidence/final-I-event-env-invalid-output.txt)"
+  },
+  {
+    "command": "E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid",
+    "exitCode": 0,
+    "summary": "2 passed, 0 failed (evidence/final-L-launch-env-invalid-output.txt)"
+  },
+  {
+    "command": "supabase db reset && supabase test db",
+    "exitCode": 0,
+    "summary": "supabase db reset and pgTAP PASS: 6 files, 263 tests (evidence/final-SQL-db-reset-and-pgtap-output.txt)"
+  },
+  {
+    "command": "bun run build",
+    "exitCode": 0,
+    "summary": "next build exit 0 with .env.production.local (temporary) pointing NEXT_PUBLIC_SUPABASE_URL at the mock; bundle verified (evidence/final-prod-build-output.txt)"
+  }
+]

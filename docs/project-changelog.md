@@ -2,6 +2,60 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-16 — Nút hành động nhanh (FAB) mở Viết Kudo, click nền đóng modal, cuộn mượt hơn (F007, F003 FR-211)
+
+**Thêm**
+
+- Bấm nút nổi góc phải dưới (có trên mọi trang chính, lắp ở `app/(main)/layout.tsx`) thì nút ẩn và nhóm hành động nhanh hiện ở cùng chỗ (MoMorph `Sv7DFwBw1h`): "Thể lệ", "Viết KUDOS" và nút × đỏ. ×, Esc và bấm ra ngoài đều đóng nhóm, tiêu điểm về nút nổi. Mã: `app/(main)/_wiring/fab-container.tsx`, `_components/fab-menu-view.tsx`, `_behavior/use-fab-menu.ts`.
+- "Viết KUDOS" mở modal Viết Kudo thẳng khi đang ở `/sun-kudos` (qua cầu `app/(main)/_behavior/compose-bridge.ts`), ở trang khác thì chuyển tới `/sun-kudos?compose=1`; board mở modal đúng một lần rồi bỏ `compose` khỏi địa chỉ bằng `history.replaceState(null, …)` hoãn một nhịp, giữ các tham số khác, nên tải lại hay Back không mở lại. Người xem không có hồ sơ sunner thì không có modal. "Thể lệ" mở modal "Coming soon" có sẵn (chưa có trang thể lệ).
+- Khóa cuộn trang phía sau khi modal mở: `app/(main)/sun-kudos/_behavior/use-body-scroll-lock.ts`.
+- 3 spec E2E: `e2e/write-kudo-fab-quick-actions.spec.ts`, `e2e/write-kudo-backdrop-and-scroll.spec.ts`, `e2e/write-kudo-fab-compose-param-after-send.spec.ts`.
+
+**Thay đổi**
+
+- Click vào nền mờ ngoài thẻ nay đóng modal và bỏ dữ liệu như Hủy, thay quyết định cũ "click nền không làm gì" (F007 FR-224, D004 thay bằng D016). Bỏ qua khi đang gửi, và khi lần nhấn bắt đầu trong thẻ rồi nhả ngoài nền mờ.
+- Cuộn của modal: tiêu đề và chân Hủy/Gửi cố định, chỉ vùng các trường cuộn (`overscroll-behavior-y: contain`) thay vì cuộn cả thẻ.
+- Nút nổi ở trang chủ trước chỉ vẽ, nay có hành vi (F003 FR-211, D012). Docs cập nhật: `docs/features/F007_WriteKudo/` (FR-106, FR-107, FR-228, D016 đến D018), `docs/screens/SCR007_WriteKudo/spec.md`, `docs/features/F003_Homepage/`, `docs/screens/SCR003_Homepage/spec.md`.
+
+**Lưu ý**
+
+- Kiểm chứng (theo `plans/261015-1900-fab-and-modal-polish/evidence`): E2E trang chủ 48, board Kudos 60, Viết Kudo 93, spec nhắm đích 17 đều đạt; tsc và eslint thoát 0; kiểm tra độc lập 9.3 SEALED. Chưa commit.
+
+## 2026-10-15 — Tài khoản Google tự có hồ sơ sunner ở lần đăng nhập đầu (F006 BR-012, F007)
+
+**Thêm**
+
+- Migration `supabase/migrations/20261015035950_auto_provision_sunner.sql`: trigger `kudos_private.provision_sunner()` trên `auth.users` (`SECURITY DEFINER`, chạy cùng giao dịch với việc tạo tài khoản) tạo một hàng `public.sunners` cho mỗi tài khoản Google, tên và avatar lấy từ hồ sơ Google theo ALG-007 (avatar chỉ nhận `https`, ≤2048 ký tự). Tài khoản đã có hàng thì giữ nguyên, không ghi đè.
+- Chỉ tài khoản Google được tạo (hàm `is_google_account`); đăng ký email/mật khẩu không có hồ sơ, nên khoá anon một mình không dựng được sunner. Trigger chạy cả khi `raw_app_meta_data` đổi, vì GoTrue nối Google vào tài khoản cùng email bằng UPDATE chứ không INSERT.
+- Tạo bù một lần cho tài khoản Google đã có trước migration; các hàng seed (`user_id` null) không bị động tới. Ba hàm mới đều bị thu `EXECUTE` của `anon` và `authenticated`.
+- pgTAP `supabase/tests/database/auto-provision-sunner.test.sql`; `supabase/seed.sql` sửa ghi chú đầu file.
+
+**Thay đổi**
+
+- Đăng nhập Google là thả tim và viết Kudo được, không cần gán `user_id` thủ công nữa (chỉ cần gán khi muốn đóng vai một sunner trong seed). Không đổi mã ứng dụng.
+
+**Lưu ý**
+
+- Kiểm chứng: pgTAP 316/316, `db reset` và `db lint` sạch, E2E 252/252, tsc và lint đạt, kiểm tra độc lập 9.5 SEALED. Chưa chạy đăng nhập Google thật từ đầu đến cuối. Mọi tài khoản Google đều tìm được làm người nhận (người dùng đã chấp nhận). Chưa commit. Việc còn mở ở `plans/261015-1700-auto-provision-sunner/reports/delivery-tracker-261015-sunner-provisioning-status.md`.
+
+## 2026-10-15 — Modal Viết Kudo trên /sun-kudos (F007_WriteKudo)
+
+**Thêm**
+
+- Nút compose trên `/sun-kudos` mở modal Viết Kudo (thay modal Coming soon); nút bị khoá khi tài khoản chưa có hàng `sunners`. Form: tìm người nhận (không phân biệt dấu, tối đa 10, trừ chính mình), tiêu đề 1-100 ký tự, nội dung dùng trình soạn thảo Tiptap 3.32.0 (tải lười; có `@` mention, liên kết http/https), 1-5 hashtag có sẵn, tối đa 5 ảnh jpeg/png/webp mỗi ảnh ≤5 MB, tuỳ chọn gửi ẩn danh kèm bí danh ≤50 ký tự. Nút Gửi vẫn bấm được khi thiếu dữ liệu và hiện toàn bộ lỗi. Mã ở `app/(main)/sun-kudos/` (`_components`, `_behavior`, `_wiring`), `lib/kudos/`, từ điển `lib/i18n/dictionary-write-kudo-{vi,en}.ts`.
+- Migration `supabase/migrations/…035942..48_write_kudo_*.sql`: cột mới, bucket Storage `kudo-images`, RPC `create_kudo` (`SECURITY DEFINER`, một giao dịch, kiểm tra lại phía máy chủ) và `search_sunners`, quyền.
+- Ảnh tải thẳng từ trình duyệt lên bucket `kudo-images` (tên đối tượng là uuid), `create_kudo` kiểm tra chủ sở hữu; lỗi thì dọn ảnh đã tải. `kudo_images.url` lưu `kudo-images/<tên>`, `lib/kudos/resolve-kudo-image-url.ts` dựng URL công khai.
+- Che người gửi ẩn danh: thu `SELECT` cột `kudos.sender_id` và `sunners.user_id`, `kudo_cards`, `viewer_sunner_id`, `kudos_sidebar` chuyển sang `SECURITY DEFINER`; thẻ ẩn danh trả `sender: null` cùng `anonymousName`. Sau khi gửi, `router.refresh()` và feed đổi key theo id đầu để Kudo mới lên đầu.
+- 5 spec E2E `e2e/write-kudo-*.spec.ts` (76 test); mock Supabase thêm route tìm kiếm, tạo và Storage.
+
+**Thay đổi**
+
+- `e2e/kudos-sidebar-and-modal.spec.ts` (TC 19) kiểm modal Viết Kudo thay vì Coming soon; `playwright.config.ts` chỉ tái dùng server khi `E2E_PROD`.
+
+**Lưu ý**
+
+- Kiểm chứng: E2E write-kudo 76/76 (dev và prod), toàn bộ 252, pgTAP 263, smoke trên stack thật đạt, kiểm tra độc lập 9.5 SEALED. Chưa commit. Bản tiếng Anh của chuỗi mới chờ người dùng xác nhận. Việc còn mở ở `plans/261015-0950-write-kudo-modal/reports/delivery-tracker-261015-write-kudo-status.md`.
+
 ## 2026-10-14 — Sun* Kudos Live board và schema Postgres đầu tiên (F006_KudosLiveBoard, SCR006)
 
 **Thêm**

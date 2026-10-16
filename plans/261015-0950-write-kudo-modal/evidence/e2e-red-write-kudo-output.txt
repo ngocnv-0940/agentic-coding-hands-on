@@ -1,0 +1,2480 @@
+$ playwright test "e2e/write-kudo-"
+
+Running 76 tests using 4 workers
+
+  ✘   4 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:36:7 › Viết Kudo editor and link dialog › TC ID-28: Italic makes the selected text italic (19.2s)
+  ✘   2 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:27:7 › Viết Kudo editor and link dialog › TC ID-27 / FR-401: Bold makes the selected text bold and reports aria-pressed (19.3s)
+  ✘   3 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:54:7 › Viết Kudo editor and link dialog › FR-404: a second Bold click removes the mark and clears aria-pressed (19.3s)
+  ✘   1 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:45:7 › Viết Kudo editor and link dialog › TC ID-29: Strike puts a line through the selected text (19.4s)
+  ✘   5 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:65:7 › Viết Kudo editor and link dialog › TC ID-30: the numbered list turns two lines into two ordered items (15.7s)
+  ✘   7 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:100:7 › Viết Kudo editor and link dialog › FR-503: an empty link Text shows an error and inserts nothing (15.7s)
+  ✘   6 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:91:7 › Viết Kudo editor and link dialog › TC ID-32: Quote formats the selected text as a blockquote (16.0s)
+  ✘   8 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:77:7 › Viết Kudo editor and link dialog › TC ID-31: the link dialog inserts a link that opens in a new tab (16.0s)
+  ✘   9 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:112:7 › Viết Kudo editor and link dialog › FR-504: a javascript: URL shows an error and inserts nothing (13.5s)
+  ✘  10 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:123:7 › Viết Kudo editor and link dialog › FR-504: an ftp:// URL shows an error and inserts nothing (13.8s)
+  ✘  11 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:134:7 › Viết Kudo editor and link dialog › FR-505: Escape closes the link dialog and leaves the modal open (15.1s)
+  ✘  12 [chromium] › e2e/write-kudo-editor-and-link.spec.ts:143:7 › Viết Kudo editor and link dialog › FR-605: pasted <h1> and <script> reduce to plain text and the script does not run (14.8s)
+  ✘  13 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:19:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row (10.1s)
+  ✘  14 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:26:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-15: one picked hashtag appears as a chip (11.5s)
+  ✘  15 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:34:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-16: five picked hashtags make five chips and "+ Hashtag" stays visible (10.5s)
+  ✘  16 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:42:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-17 / ID-53: at five selected, the other options are disabled, the limit shows, a sixth is refused (10.6s)
+  ✘  17 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:52:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip (8.6s)
+  ✘  18 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:61:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-35: three picked hashtags make three separate chips (9.6s)
+  ✘  19 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:68:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-36: removing one chip keeps the others (10.3s)
+  ✘  20 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-18 / ID-21: a valid image/jpeg is added as a thumbnail (10.2s)
+  ✘  21 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22: a valid image/png is added as a thumbnail (9.0s)
+  ✘  22 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22 (webp): a valid image/webp is added as a thumbnail (8.9s)
+  ✘  23 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:87:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-19 / ID-20 / ID-54: five images hide "+ Image" and a sixth pick is ignored (10.3s)
+  ✘  24 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:97:7 › Viết Kudo hashtags, images and anonymous toggle › FR-704: seven files picked at once keep five thumbnails (10.7s)
+  ✘  25 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-23: a application/pdf file shows the invalid-format error, is not added and is not uploaded (9.3s)
+  ✘  26 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-24: a video/mp4 file shows the invalid-format error, is not added and is not uploaded (8.6s)
+  ✘  27 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-55: a text/plain file shows the invalid-format error, is not added and is not uploaded (8.3s)
+  ✘  28 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:116:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-37: "+ Image" opens the file picker and the picked file becomes a thumbnail (9.4s)
+  ✘  29 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:123:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-38: five picks through "+ Image" hide the button after the fifth (9.3s)
+  ✘  30 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:131:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-39: removing the second of three thumbnails leaves two (9.8s)
+  ✘  31 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:139:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-40: removing one of five thumbnails shows "+ Image" again (9.2s)
+  ✘  32 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:148:7 › Viết Kudo hashtags, images and anonymous toggle › FR-706: a file over 5 MB shows "Ảnh vượt quá 5 MB" and is not added (9.7s)
+  ✘  33 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:156:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-41 / ID-42: the anonymous checkbox checks on click and unchecks on the second click (9.0s)
+  ✓  37 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:34:7 › Viết Kudo modal: access and layout › TC ID-1 / FR-106: a guest on /sun-kudos is sent to /login before the modal can open (1.3s)
+  ✘  34 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:165:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-43 / ID-44: checking shows the alias field (max 50) and unchecking hides it (9.9s)
+  ✘  35 [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:175:7 › Viết Kudo hashtags, images and anonymous toggle › DEC-005: unchecking clears the alias text (9.1s)
+  ✘  36 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:26:7 › Viết Kudo modal: access and layout › TC ID-0 / FR-101: the compose pill opens the Viết Kudo modal with its title (8.7s)
+  ✘  38 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:41:7 › Viết Kudo modal: access and layout › TC ID-2 / ID-3 / FR-201: the modal shows six rows in order, the title on top, and Hủy + Gửi in the footer (9.1s)
+  ✘  39 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:50:7 › Viết Kudo modal: access and layout › TC ID-4 / FR-202: the recipient field shows the "Tìm kiếm" placeholder and is a closed combobox (10.2s)
+  ✘  40 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:58:7 › Viết Kudo modal: access and layout › TC ID-5 / FR-206: the editor placeholder reads the Figma sentence (9.8s)
+  ✘  41 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:64:7 › Viết Kudo modal: access and layout › TC ID-6: the anonymous checkbox is unchecked on open (9.4s)
+  ✘  42 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:70:7 › Viết Kudo modal: access and layout › TC ID-45: Hủy closes the modal with data entered, and a reopened modal is empty (8.5s)
+  ✘  43 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:81:7 › Viết Kudo modal: access and layout › FR-103: an identity without a sunner row sees the compose pill disabled (8.6s)
+  ✘  44 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:87:7 › Viết Kudo modal: access and layout › FR-104: Hủy returns focus to the compose pill (9.2s)
+  ✘  45 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:94:7 › Viết Kudo modal: access and layout › FR-105: "Tiêu chuẩn cộng đồng" opens /standards in a new tab (9.6s)
+  ✘  46 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:103:7 › Viết Kudo modal: access and layout › FR-202 / FR-206 / FR-209: the title, its helper text and the action labels read the Figma copy (9.1s)
+  ✘  47 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:114:7 › Viết Kudo modal: access and layout › FR-224: Escape closes the modal and a backdrop click leaves it open (9.5s)
+  ✘  48 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:123:7 › Viết Kudo modal: access and layout › FR-225: Tab cycles focus inside the modal (9.5s)
+  ✘  49 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:133:7 › Viết Kudo modal: access and layout › FR-226: with the EN locale the modal shows no raw writeKudo. keys (9.7s)
+  ✘  50 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 768 px the modal has no horizontal scroll (8.7s)
+  ✘  51 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 375 px the modal has no horizontal scroll (8.7s)
+  ✘  52 [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:155:7 › Viết Kudo modal: access and layout › FR-227: at 1440 px the modal is the 752 px Figma width (8.5s)
+  ✘  53 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:26:7 › Viết Kudo recipient search and mention › TC ID-8: typing "Nguyễn" lists at most 10 matching sunners, and one can be selected (9.1s)
+  ✘  54 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:36:7 › Viết Kudo recipient search and mention › TC ID-9: "@ # $" is matched literally and reports "Không tìm thấy kết quả" (9.1s)
+  ✘  55 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:43:7 › Viết Kudo recipient search and mention › TC ID-10: "  Nguyễn  " is trimmed and returns the same suggestions as "Nguyễn" (9.3s)
+  ✘  56 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:53:7 › Viết Kudo recipient search and mention › TC ID-25: the suggestion list appears while typing "An" and holds Nguyễn Văn An (8.5s)
+  ✘  57 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:61:7 › Viết Kudo recipient search and mention › TC ID-26: picking "Nguyễn Văn An" fills the field with the name and closes the list (9.1s)
+  ✘  58 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:70:7 › Viết Kudo recipient search and mention › TC ID-12 / ID-33: "@Nguyen" in the editor shows selectable colleague suggestions (9.3s)
+  ✘  59 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:80:7 › Viết Kudo recipient search and mention › TC ID-13: "Cảm ơn @" then NguyenVanA mentions the name in the text (9.8s)
+  ✘  60 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:90:7 › Viết Kudo recipient search and mention › FR-306: the signed-in viewer is never suggested (9.2s)
+  ✘  61 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:97:7 › Viết Kudo recipient search and mention › FR-307: "duc" finds Trần Minh Đức (9.3s)
+  ✘  62 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:104:7 › Viết Kudo recipient search and mention › FR-308: the clear button removes the selected recipient and restores the search (9.0s)
+  ✘  63 [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:117:7 › Viết Kudo recipient search and mention › FR-309: Escape closes the recipient list and leaves the modal open (8.9s)
+  ✘  64 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:34:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-48: with every required field empty, Gửi is aria-disabled (8.7s)
+  -  65 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:40:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-49: with recipient, title, content and one hashtag, Gửi is enabled
+  -  66 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:47:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-7 / ID-50: clicking Gửi without a recipient marks the recipient row and does not submit
+  -  67 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:60:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-11 / ID-51: clicking Gửi without content shows the required message at the editor
+  -  68 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:71:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-52: clicking Gửi without a hashtag shows the required message at the Hashtag row
+  -  69 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:80:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-56 / US003: all required fields empty and Gửi clicked shows every error and creates nothing
+  -  70 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:91:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › blur and clear: an empty title errors on blur and the error clears once it is filled
+  -  71 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:101:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-46: a valid submit with two tags and two images shows the spinner, then closes with the toast and the new kudo first
+  -  72 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:123:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-47: a valid submit with one tag and no image closes the modal and shows the kudo first
+  -  73 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:135:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-604: an anonymous kudo shows the alias in the sender block with no avatar or profile link
+  -  74 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:154:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-802: an anonymous kudo with an empty alias shows "Người gửi ẩn danh"
+  -  75 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:167:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › FR-903: a failed submit keeps the modal and data, shows the error toast, and removes the uploaded image
+  -  76 [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:184:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-45: an image picked and then Hủy is never uploaded or stored
+
+
+  1) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:27:7 › Viết Kudo editor and link dialog › TC ID-27 / FR-401: Bold makes the selected text bold and reports aria-pressed 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:28:5
+
+    Error Context: test-results/write-kudo-editor-and-link-239ce-ld-and-reports-aria-pressed-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-239ce-ld-and-reports-aria-pressed-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-239ce-ld-and-reports-aria-pressed-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:36:7 › Viết Kudo editor and link dialog › TC ID-28: Italic makes the selected text italic 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:37:5
+
+    Error Context: test-results/write-kudo-editor-and-link-5bac6-es-the-selected-text-italic-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-5bac6-es-the-selected-text-italic-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-5bac6-es-the-selected-text-italic-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:45:7 › Viết Kudo editor and link dialog › TC ID-29: Strike puts a line through the selected text 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:46:5
+
+    Error Context: test-results/write-kudo-editor-and-link-3c021-e-through-the-selected-text-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-3c021-e-through-the-selected-text-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-3c021-e-through-the-selected-text-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:54:7 › Viết Kudo editor and link dialog › FR-404: a second Bold click removes the mark and clears aria-pressed 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:55:5
+
+    Error Context: test-results/write-kudo-editor-and-link-b078f-ark-and-clears-aria-pressed-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-b078f-ark-and-clears-aria-pressed-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-b078f-ark-and-clears-aria-pressed-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:65:7 › Viết Kudo editor and link dialog › TC ID-30: the numbered list turns two lines into two ordered items 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:66:5
+
+    Error Context: test-results/write-kudo-editor-and-link-ebb33-ines-into-two-ordered-items-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-ebb33-ines-into-two-ordered-items-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-ebb33-ines-into-two-ordered-items-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:77:7 › Viết Kudo editor and link dialog › TC ID-31: the link dialog inserts a link that opens in a new tab 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:78:5
+
+    Error Context: test-results/write-kudo-editor-and-link-04536-ink-that-opens-in-a-new-tab-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-04536-ink-that-opens-in-a-new-tab-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-04536-ink-that-opens-in-a-new-tab-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:91:7 › Viết Kudo editor and link dialog › TC ID-32: Quote formats the selected text as a blockquote 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:92:5
+
+    Error Context: test-results/write-kudo-editor-and-link-63680-lected-text-as-a-blockquote-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-63680-lected-text-as-a-blockquote-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-63680-lected-text-as-a-blockquote-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:100:7 › Viết Kudo editor and link dialog › FR-503: an empty link Text shows an error and inserts nothing 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:101:5
+
+    Error Context: test-results/write-kudo-editor-and-link-9cdbb-n-error-and-inserts-nothing-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-9cdbb-n-error-and-inserts-nothing-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-9cdbb-n-error-and-inserts-nothing-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:112:7 › Viết Kudo editor and link dialog › FR-504: a javascript: URL shows an error and inserts nothing 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:113:5
+
+    Error Context: test-results/write-kudo-editor-and-link-c7f62-n-error-and-inserts-nothing-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-c7f62-n-error-and-inserts-nothing-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-c7f62-n-error-and-inserts-nothing-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:123:7 › Viết Kudo editor and link dialog › FR-504: an ftp:// URL shows an error and inserts nothing 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:124:5
+
+    Error Context: test-results/write-kudo-editor-and-link-a4ed4-n-error-and-inserts-nothing-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-a4ed4-n-error-and-inserts-nothing-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-a4ed4-n-error-and-inserts-nothing-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:134:7 › Viết Kudo editor and link dialog › FR-505: Escape closes the link dialog and leaves the modal open 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:135:5
+
+    Error Context: test-results/write-kudo-editor-and-link-c9dea-g-and-leaves-the-modal-open-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-c9dea-g-and-leaves-the-modal-open-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-c9dea-g-and-leaves-the-modal-open-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › e2e/write-kudo-editor-and-link.spec.ts:143:7 › Viết Kudo editor and link dialog › FR-605: pasted <h1> and <script> reduce to plain text and the script does not run 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-editor-and-link.spec.ts:144:5
+
+    Error Context: test-results/write-kudo-editor-and-link-92b02-and-the-script-does-not-run-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-editor-and-link-92b02-and-the-script-does-not-run-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-editor-and-link-92b02-and-the-script-does-not-run-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:19:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:20:5
+
+    Error Context: test-results/write-kudo-hashtags-images-90827-để-trống-on-the-Hashtag-row-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-90827-để-trống-on-the-Hashtag-row-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-90827-để-trống-on-the-Hashtag-row-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:26:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-15: one picked hashtag appears as a chip 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:27:5
+
+    Error Context: test-results/write-kudo-hashtags-images-4bbc2-d-hashtag-appears-as-a-chip-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-4bbc2-d-hashtag-appears-as-a-chip-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-4bbc2-d-hashtag-appears-as-a-chip-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:34:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-16: five picked hashtags make five chips and "+ Hashtag" stays visible 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:35:5
+
+    Error Context: test-results/write-kudo-hashtags-images-e84c3-s-and-Hashtag-stays-visible-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-e84c3-s-and-Hashtag-stays-visible-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-e84c3-s-and-Hashtag-stays-visible-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:42:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-17 / ID-53: at five selected, the other options are disabled, the limit shows, a sixth is refused 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:43:5
+
+    Error Context: test-results/write-kudo-hashtags-images-2f855-it-shows-a-sixth-is-refused-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-2f855-it-shows-a-sixth-is-refused-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-2f855-it-shows-a-sixth-is-refused-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:52:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:53:5
+
+    Error Context: test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-6b003-king-Teamwork-adds-its-chip-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:61:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-35: three picked hashtags make three separate chips 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:62:5
+
+    Error Context: test-results/write-kudo-hashtags-images-ad22b-s-make-three-separate-chips-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-ad22b-s-make-three-separate-chips-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-ad22b-s-make-three-separate-chips-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:68:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-36: removing one chip keeps the others 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:69:5
+
+    Error Context: test-results/write-kudo-hashtags-images-5b228-g-one-chip-keeps-the-others-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-5b228-g-one-chip-keeps-the-others-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-5b228-g-one-chip-keeps-the-others-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-18 / ID-21: a valid image/jpeg is added as a thumbnail 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:7
+
+    Error Context: test-results/write-kudo-hashtags-images-50a14-peg-is-added-as-a-thumbnail-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-50a14-peg-is-added-as-a-thumbnail-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-50a14-peg-is-added-as-a-thumbnail-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22: a valid image/png is added as a thumbnail 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:7
+
+    Error Context: test-results/write-kudo-hashtags-images-63401-png-is-added-as-a-thumbnail-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-63401-png-is-added-as-a-thumbnail-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-63401-png-is-added-as-a-thumbnail-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22 (webp): a valid image/webp is added as a thumbnail 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:79:7
+
+    Error Context: test-results/write-kudo-hashtags-images-abace-ebp-is-added-as-a-thumbnail-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-abace-ebp-is-added-as-a-thumbnail-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-abace-ebp-is-added-as-a-thumbnail-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:87:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-19 / ID-20 / ID-54: five images hide "+ Image" and a sixth pick is ignored 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:88:5
+
+    Error Context: test-results/write-kudo-hashtags-images-19db3-and-a-sixth-pick-is-ignored-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-19db3-and-a-sixth-pick-is-ignored-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-19db3-and-a-sixth-pick-is-ignored-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:97:7 › Viết Kudo hashtags, images and anonymous toggle › FR-704: seven files picked at once keep five thumbnails 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:98:5
+
+    Error Context: test-results/write-kudo-hashtags-images-a7a84-t-once-keep-five-thumbnails-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-a7a84-t-once-keep-five-thumbnails-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-a7a84-t-once-keep-five-thumbnails-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-23: a application/pdf file shows the invalid-format error, is not added and is not uploaded 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:107:7
+
+    Error Context: test-results/write-kudo-hashtags-images-0d00a-t-added-and-is-not-uploaded-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-0d00a-t-added-and-is-not-uploaded-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-0d00a-t-added-and-is-not-uploaded-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-24: a video/mp4 file shows the invalid-format error, is not added and is not uploaded 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:107:7
+
+    Error Context: test-results/write-kudo-hashtags-images-0cbd0-t-added-and-is-not-uploaded-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-0cbd0-t-added-and-is-not-uploaded-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-0cbd0-t-added-and-is-not-uploaded-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-55: a text/plain file shows the invalid-format error, is not added and is not uploaded 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:107:7
+
+    Error Context: test-results/write-kudo-hashtags-images-4a08b-t-added-and-is-not-uploaded-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-4a08b-t-added-and-is-not-uploaded-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-4a08b-t-added-and-is-not-uploaded-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  28) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:116:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-37: "+ Image" opens the file picker and the picked file becomes a thumbnail 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:117:5
+
+    Error Context: test-results/write-kudo-hashtags-images-f87f7-ed-file-becomes-a-thumbnail-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-f87f7-ed-file-becomes-a-thumbnail-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-f87f7-ed-file-becomes-a-thumbnail-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  29) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:123:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-38: five picks through "+ Image" hide the button after the fifth 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:124:5
+
+    Error Context: test-results/write-kudo-hashtags-images-494d5--the-button-after-the-fifth-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-494d5--the-button-after-the-fifth-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-494d5--the-button-after-the-fifth-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:131:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-39: removing the second of three thumbnails leaves two 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:132:5
+
+    Error Context: test-results/write-kudo-hashtags-images-7aa9e-three-thumbnails-leaves-two-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-7aa9e-three-thumbnails-leaves-two-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-7aa9e-three-thumbnails-leaves-two-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  31) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:139:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-40: removing one of five thumbnails shows "+ Image" again 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:140:5
+
+    Error Context: test-results/write-kudo-hashtags-images-2d80f-humbnails-shows-Image-again-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-2d80f-humbnails-shows-Image-again-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-2d80f-humbnails-shows-Image-again-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  32) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:148:7 › Viết Kudo hashtags, images and anonymous toggle › FR-706: a file over 5 MB shows "Ảnh vượt quá 5 MB" and is not added 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:149:5
+
+    Error Context: test-results/write-kudo-hashtags-images-6274b-t-quá-5-MB-and-is-not-added-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-6274b-t-quá-5-MB-and-is-not-added-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-6274b-t-quá-5-MB-and-is-not-added-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  33) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:156:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-41 / ID-42: the anonymous checkbox checks on click and unchecks on the second click 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:157:5
+
+    Error Context: test-results/write-kudo-hashtags-images-39d09-nchecks-on-the-second-click-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-39d09-nchecks-on-the-second-click-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-39d09-nchecks-on-the-second-click-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  34) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:165:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-43 / ID-44: checking shows the alias field (max 50) and unchecking hides it 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:166:5
+
+    Error Context: test-results/write-kudo-hashtags-images-b904f--50-and-unchecking-hides-it-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-b904f--50-and-unchecking-hides-it-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-b904f--50-and-unchecking-hides-it-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  35) [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:175:7 › Viết Kudo hashtags, images and anonymous toggle › DEC-005: unchecking clears the alias text 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-hashtags-images-anonymous.spec.ts:176:5
+
+    Error Context: test-results/write-kudo-hashtags-images-916c8-cking-clears-the-alias-text-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-hashtags-images-916c8-cking-clears-the-alias-text-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-hashtags-images-916c8-cking-clears-the-alias-text-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  36) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:26:7 › Viết Kudo modal: access and layout › TC ID-0 / FR-101: the compose pill opens the Viết Kudo modal with its title 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:27:5
+
+    Error Context: test-results/write-kudo-modal-access-an-ab378-t-Kudo-modal-with-its-title-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-ab378-t-Kudo-modal-with-its-title-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-ab378-t-Kudo-modal-with-its-title-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  37) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:41:7 › Viết Kudo modal: access and layout › TC ID-2 / ID-3 / FR-201: the modal shows six rows in order, the title on top, and Hủy + Gửi in the footer 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:42:5
+
+    Error Context: test-results/write-kudo-modal-access-an-63afb-p-and-Hủy-Gửi-in-the-footer-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-63afb-p-and-Hủy-Gửi-in-the-footer-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-63afb-p-and-Hủy-Gửi-in-the-footer-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  38) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:50:7 › Viết Kudo modal: access and layout › TC ID-4 / FR-202: the recipient field shows the "Tìm kiếm" placeholder and is a closed combobox 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:51:5
+
+    Error Context: test-results/write-kudo-modal-access-an-bc0a2-er-and-is-a-closed-combobox-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-bc0a2-er-and-is-a-closed-combobox-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-bc0a2-er-and-is-a-closed-combobox-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  39) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:58:7 › Viết Kudo modal: access and layout › TC ID-5 / FR-206: the editor placeholder reads the Figma sentence 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:59:5
+
+    Error Context: test-results/write-kudo-modal-access-an-c45ee-er-reads-the-Figma-sentence-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-c45ee-er-reads-the-Figma-sentence-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-c45ee-er-reads-the-Figma-sentence-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  40) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:64:7 › Viết Kudo modal: access and layout › TC ID-6: the anonymous checkbox is unchecked on open 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:65:5
+
+    Error Context: test-results/write-kudo-modal-access-an-1b928-eckbox-is-unchecked-on-open-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-1b928-eckbox-is-unchecked-on-open-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-1b928-eckbox-is-unchecked-on-open-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  41) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:70:7 › Viết Kudo modal: access and layout › TC ID-45: Hủy closes the modal with data entered, and a reopened modal is empty 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:71:5
+
+    Error Context: test-results/write-kudo-modal-access-an-f493b-d-a-reopened-modal-is-empty-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-f493b-d-a-reopened-modal-is-empty-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-f493b-d-a-reopened-modal-is-empty-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  42) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:81:7 › Viết Kudo modal: access and layout › FR-103: an identity without a sunner row sees the compose pill disabled 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByTestId('kudos-compose-pill')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByTestId('kudos-compose-pill') with timeout 5000ms
+      - waiting for getByTestId('kudos-compose-pill')
+        14 × locator resolved to <button type="button" data-testid="kudos-compose-pill" class="border border-saa-gold-border bg-[linear-gradient(rgba(255,234,158,0.1),rgba(255,234,158,0.1)),linear-gradient(rgba(0,16,26,0.6),rgba(0,16,26,0.6))] font-[family-name:var(--font-montserrat)] font-bold text-white backdrop-blur-sm flex h-[72px] min-w-0 cursor-pointer items-center gap-4 rounded-[68px] px-4 text-left text-base leading-6 tracking-[0.15px] transition-colors duration-200 hover:bg-[rgba(255,234,158,0.2)] focus-visible:outline-2 foc…>…</button>
+           - unexpected value "enabled"
+
+
+      81 |   test('FR-103: an identity without a sunner row sees the compose pill disabled', async ({ page }) => {
+      82 |     await openKudosBoard(page, 'kudos-outsider')
+    > 83 |     await expect(composePill(page)).toBeDisabled()
+         |                                     ^
+      84 |   })
+      85 |
+      86 |   // FR-104: closing with Hủy returns focus to the compose pill
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:83:37
+
+    Error Context: test-results/write-kudo-modal-access-an-7be9a-s-the-compose-pill-disabled-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-7be9a-s-the-compose-pill-disabled-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-7be9a-s-the-compose-pill-disabled-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  43) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:87:7 › Viết Kudo modal: access and layout › FR-104: Hủy returns focus to the compose pill 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:88:5
+
+    Error Context: test-results/write-kudo-modal-access-an-6d685-s-focus-to-the-compose-pill-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-6d685-s-focus-to-the-compose-pill-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-6d685-s-focus-to-the-compose-pill-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  44) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:94:7 › Viết Kudo modal: access and layout › FR-105: "Tiêu chuẩn cộng đồng" opens /standards in a new tab 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:95:5
+
+    Error Context: test-results/write-kudo-modal-access-an-bf3eb-pens-standards-in-a-new-tab-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-bf3eb-pens-standards-in-a-new-tab-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-bf3eb-pens-standards-in-a-new-tab-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  45) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:103:7 › Viết Kudo modal: access and layout › FR-202 / FR-206 / FR-209: the title, its helper text and the action labels read the Figma copy 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:104:5
+
+    Error Context: test-results/write-kudo-modal-access-an-83603--labels-read-the-Figma-copy-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-83603--labels-read-the-Figma-copy-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-83603--labels-read-the-Figma-copy-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  46) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:114:7 › Viết Kudo modal: access and layout › FR-224: Escape closes the modal and a backdrop click leaves it open 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:115:5
+
+    Error Context: test-results/write-kudo-modal-access-an-f0e14-ckdrop-click-leaves-it-open-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-f0e14-ckdrop-click-leaves-it-open-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-f0e14-ckdrop-click-leaves-it-open-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  47) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:123:7 › Viết Kudo modal: access and layout › FR-225: Tab cycles focus inside the modal 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:124:5
+
+    Error Context: test-results/write-kudo-modal-access-an-61520-cles-focus-inside-the-modal-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-61520-cles-focus-inside-the-modal-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-61520-cles-focus-inside-the-modal-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  48) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:133:7 › Viết Kudo modal: access and layout › FR-226: with the EN locale the modal shows no raw writeKudo. keys 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:135:5
+
+    Error Context: test-results/write-kudo-modal-access-an-474be-shows-no-raw-writeKudo-keys-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-474be-shows-no-raw-writeKudo-keys-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-474be-shows-no-raw-writeKudo-keys-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  49) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 768 px the modal has no horizontal scroll 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:143:7
+
+    Error Context: test-results/write-kudo-modal-access-an-cb724-al-has-no-horizontal-scroll-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-cb724-al-has-no-horizontal-scroll-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-cb724-al-has-no-horizontal-scroll-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  50) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 375 px the modal has no horizontal scroll 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:143:7
+
+    Error Context: test-results/write-kudo-modal-access-an-038a1-al-has-no-horizontal-scroll-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-038a1-al-has-no-horizontal-scroll-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-038a1-al-has-no-horizontal-scroll-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  51) [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:155:7 › Viết Kudo modal: access and layout › FR-227: at 1440 px the modal is the 752 px Figma width 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-modal-access-and-layout.spec.ts:157:5
+
+    Error Context: test-results/write-kudo-modal-access-an-3c9ad-l-is-the-752-px-Figma-width-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-modal-access-an-3c9ad-l-is-the-752-px-Figma-width-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-modal-access-an-3c9ad-l-is-the-752-px-Figma-width-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  52) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:26:7 › Viết Kudo recipient search and mention › TC ID-8: typing "Nguyễn" lists at most 10 matching sunners, and one can be selected 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:27:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-0b8fa-ers-and-one-can-be-selected-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-0b8fa-ers-and-one-can-be-selected-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-0b8fa-ers-and-one-can-be-selected-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  53) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:36:7 › Viết Kudo recipient search and mention › TC ID-9: "@ # $" is matched literally and reports "Không tìm thấy kết quả" 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:37:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-0b47a-rts-Không-tìm-thấy-kết-quả--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-0b47a-rts-Không-tìm-thấy-kết-quả--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-0b47a-rts-Không-tìm-thấy-kết-quả--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  54) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:43:7 › Viết Kudo recipient search and mention › TC ID-10: "  Nguyễn  " is trimmed and returns the same suggestions as "Nguyễn" 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:44:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-5dec7-same-suggestions-as-Nguyễn--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-5dec7-same-suggestions-as-Nguyễn--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-5dec7-same-suggestions-as-Nguyễn--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  55) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:53:7 › Viết Kudo recipient search and mention › TC ID-25: the suggestion list appears while typing "An" and holds Nguyễn Văn An 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:54:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-4905b--An-and-holds-Nguyễn-Văn-An-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-4905b--An-and-holds-Nguyễn-Văn-An-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-4905b--An-and-holds-Nguyễn-Văn-An-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  56) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:61:7 › Viết Kudo recipient search and mention › TC ID-26: picking "Nguyễn Văn An" fills the field with the name and closes the list 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:62:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-64672-he-name-and-closes-the-list-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-64672-he-name-and-closes-the-list-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-64672-he-name-and-closes-the-list-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  57) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:70:7 › Viết Kudo recipient search and mention › TC ID-12 / ID-33: "@Nguyen" in the editor shows selectable colleague suggestions 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:71:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-f8480-table-colleague-suggestions-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-f8480-table-colleague-suggestions-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-f8480-table-colleague-suggestions-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  58) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:80:7 › Viết Kudo recipient search and mention › TC ID-13: "Cảm ơn @" then NguyenVanA mentions the name in the text 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:81:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-48fe1-ntions-the-name-in-the-text-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-48fe1-ntions-the-name-in-the-text-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-48fe1-ntions-the-name-in-the-text-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  59) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:90:7 › Viết Kudo recipient search and mention › FR-306: the signed-in viewer is never suggested 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:91:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-900bc-n-viewer-is-never-suggested-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-900bc-n-viewer-is-never-suggested-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-900bc-n-viewer-is-never-suggested-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  60) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:97:7 › Viết Kudo recipient search and mention › FR-307: "duc" finds Trần Minh Đức 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:98:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-82dfa-307-duc-finds-Trần-Minh-Đức-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-82dfa-307-duc-finds-Trần-Minh-Đức-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-82dfa-307-duc-finds-Trần-Minh-Đức-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  61) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:104:7 › Viết Kudo recipient search and mention › FR-308: the clear button removes the selected recipient and restores the search 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:105:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-bcf51-ent-and-restores-the-search-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-bcf51-ent-and-restores-the-search-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-bcf51-ent-and-restores-the-search-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  62) [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:117:7 › Viết Kudo recipient search and mention › FR-309: Escape closes the recipient list and leaves the modal open 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-recipient-and-mention.spec.ts:118:5
+
+    Error Context: test-results/write-kudo-recipient-and-m-2c3e3-t-and-leaves-the-modal-open-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-recipient-and-m-2c3e3-t-and-leaves-the-modal-open-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-recipient-and-m-2c3e3-t-and-leaves-the-modal-open-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  63) [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:34:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-48: with every required field empty, Gửi is aria-disabled 
+
+    Error: write-kudo modal open
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('write-kudo-modal')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - write-kudo modal open getByTestId('write-kudo-modal') with timeout 5000ms
+      - waiting for getByTestId('write-kudo-modal')
+
+
+       at support/write-kudo-session.ts:15
+
+      13 |   await expect(composePill(page), 'compose pill enabled').toBeEnabled()
+      14 |   await composePill(page).click()
+    > 15 |   await expect(modal(page), 'write-kudo modal open').toBeVisible()
+         |                                                      ^
+      16 | }
+      17 |
+        at openWriteKudoModal (/home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/support/write-kudo-session.ts:15:54)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/write-kudo-submit-and-anonymous.spec.ts:35:5
+
+    Error Context: test-results/write-kudo-submit-and-anon-76db6--empty-Gửi-is-aria-disabled-chromium/error-context.md
+
+    Error Context: test-results/write-kudo-submit-and-anon-76db6--empty-Gửi-is-aria-disabled-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/write-kudo-submit-and-anon-76db6--empty-Gửi-is-aria-disabled-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/write-kudo-submit-and-anon-76db6--empty-Gửi-is-aria-disabled-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  63 failed
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:27:7 › Viết Kudo editor and link dialog › TC ID-27 / FR-401: Bold makes the selected text bold and reports aria-pressed 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:36:7 › Viết Kudo editor and link dialog › TC ID-28: Italic makes the selected text italic 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:45:7 › Viết Kudo editor and link dialog › TC ID-29: Strike puts a line through the selected text 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:54:7 › Viết Kudo editor and link dialog › FR-404: a second Bold click removes the mark and clears aria-pressed 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:65:7 › Viết Kudo editor and link dialog › TC ID-30: the numbered list turns two lines into two ordered items 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:77:7 › Viết Kudo editor and link dialog › TC ID-31: the link dialog inserts a link that opens in a new tab 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:91:7 › Viết Kudo editor and link dialog › TC ID-32: Quote formats the selected text as a blockquote 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:100:7 › Viết Kudo editor and link dialog › FR-503: an empty link Text shows an error and inserts nothing 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:112:7 › Viết Kudo editor and link dialog › FR-504: a javascript: URL shows an error and inserts nothing 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:123:7 › Viết Kudo editor and link dialog › FR-504: an ftp:// URL shows an error and inserts nothing 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:134:7 › Viết Kudo editor and link dialog › FR-505: Escape closes the link dialog and leaves the modal open 
+    [chromium] › e2e/write-kudo-editor-and-link.spec.ts:143:7 › Viết Kudo editor and link dialog › FR-605: pasted <h1> and <script> reduce to plain text and the script does not run 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:19:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-14: with no hashtag, clicking Gửi shows "Không được để trống" on the Hashtag row 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:26:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-15: one picked hashtag appears as a chip 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:34:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-16: five picked hashtags make five chips and "+ Hashtag" stays visible 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:42:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-17 / ID-53: at five selected, the other options are disabled, the limit shows, a sixth is refused 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:52:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-34: "+ Hashtag" opens the list and picking Teamwork adds its chip 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:61:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-35: three picked hashtags make three separate chips 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:68:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-36: removing one chip keeps the others 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-18 / ID-21: a valid image/jpeg is added as a thumbnail 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22: a valid image/png is added as a thumbnail 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:78:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-22 (webp): a valid image/webp is added as a thumbnail 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:87:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-19 / ID-20 / ID-54: five images hide "+ Image" and a sixth pick is ignored 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:97:7 › Viết Kudo hashtags, images and anonymous toggle › FR-704: seven files picked at once keep five thumbnails 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-23: a application/pdf file shows the invalid-format error, is not added and is not uploaded 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-24: a video/mp4 file shows the invalid-format error, is not added and is not uploaded 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:105:9 › Viết Kudo hashtags, images and anonymous toggle › TC ID-55: a text/plain file shows the invalid-format error, is not added and is not uploaded 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:116:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-37: "+ Image" opens the file picker and the picked file becomes a thumbnail 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:123:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-38: five picks through "+ Image" hide the button after the fifth 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:131:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-39: removing the second of three thumbnails leaves two 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:139:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-40: removing one of five thumbnails shows "+ Image" again 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:148:7 › Viết Kudo hashtags, images and anonymous toggle › FR-706: a file over 5 MB shows "Ảnh vượt quá 5 MB" and is not added 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:156:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-41 / ID-42: the anonymous checkbox checks on click and unchecks on the second click 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:165:7 › Viết Kudo hashtags, images and anonymous toggle › TC ID-43 / ID-44: checking shows the alias field (max 50) and unchecking hides it 
+    [chromium] › e2e/write-kudo-hashtags-images-anonymous.spec.ts:175:7 › Viết Kudo hashtags, images and anonymous toggle › DEC-005: unchecking clears the alias text 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:26:7 › Viết Kudo modal: access and layout › TC ID-0 / FR-101: the compose pill opens the Viết Kudo modal with its title 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:41:7 › Viết Kudo modal: access and layout › TC ID-2 / ID-3 / FR-201: the modal shows six rows in order, the title on top, and Hủy + Gửi in the footer 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:50:7 › Viết Kudo modal: access and layout › TC ID-4 / FR-202: the recipient field shows the "Tìm kiếm" placeholder and is a closed combobox 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:58:7 › Viết Kudo modal: access and layout › TC ID-5 / FR-206: the editor placeholder reads the Figma sentence 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:64:7 › Viết Kudo modal: access and layout › TC ID-6: the anonymous checkbox is unchecked on open 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:70:7 › Viết Kudo modal: access and layout › TC ID-45: Hủy closes the modal with data entered, and a reopened modal is empty 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:81:7 › Viết Kudo modal: access and layout › FR-103: an identity without a sunner row sees the compose pill disabled 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:87:7 › Viết Kudo modal: access and layout › FR-104: Hủy returns focus to the compose pill 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:94:7 › Viết Kudo modal: access and layout › FR-105: "Tiêu chuẩn cộng đồng" opens /standards in a new tab 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:103:7 › Viết Kudo modal: access and layout › FR-202 / FR-206 / FR-209: the title, its helper text and the action labels read the Figma copy 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:114:7 › Viết Kudo modal: access and layout › FR-224: Escape closes the modal and a backdrop click leaves it open 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:123:7 › Viết Kudo modal: access and layout › FR-225: Tab cycles focus inside the modal 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:133:7 › Viết Kudo modal: access and layout › FR-226: with the EN locale the modal shows no raw writeKudo. keys 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 768 px the modal has no horizontal scroll 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:141:9 › Viết Kudo modal: access and layout › FR-227: at 375 px the modal has no horizontal scroll 
+    [chromium] › e2e/write-kudo-modal-access-and-layout.spec.ts:155:7 › Viết Kudo modal: access and layout › FR-227: at 1440 px the modal is the 752 px Figma width 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:26:7 › Viết Kudo recipient search and mention › TC ID-8: typing "Nguyễn" lists at most 10 matching sunners, and one can be selected 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:36:7 › Viết Kudo recipient search and mention › TC ID-9: "@ # $" is matched literally and reports "Không tìm thấy kết quả" 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:43:7 › Viết Kudo recipient search and mention › TC ID-10: "  Nguyễn  " is trimmed and returns the same suggestions as "Nguyễn" 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:53:7 › Viết Kudo recipient search and mention › TC ID-25: the suggestion list appears while typing "An" and holds Nguyễn Văn An 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:61:7 › Viết Kudo recipient search and mention › TC ID-26: picking "Nguyễn Văn An" fills the field with the name and closes the list 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:70:7 › Viết Kudo recipient search and mention › TC ID-12 / ID-33: "@Nguyen" in the editor shows selectable colleague suggestions 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:80:7 › Viết Kudo recipient search and mention › TC ID-13: "Cảm ơn @" then NguyenVanA mentions the name in the text 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:90:7 › Viết Kudo recipient search and mention › FR-306: the signed-in viewer is never suggested 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:97:7 › Viết Kudo recipient search and mention › FR-307: "duc" finds Trần Minh Đức 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:104:7 › Viết Kudo recipient search and mention › FR-308: the clear button removes the selected recipient and restores the search 
+    [chromium] › e2e/write-kudo-recipient-and-mention.spec.ts:117:7 › Viết Kudo recipient search and mention › FR-309: Escape closes the recipient list and leaves the modal open 
+    [chromium] › e2e/write-kudo-submit-and-anonymous.spec.ts:34:7 › Viết Kudo submit and anonymous sender (serial, kudos-writer) › TC ID-48: with every required field empty, Gửi is aria-disabled 
+  12 did not run
+  1 passed (3.4m)
+error: script "test:e2e" exited with code 1

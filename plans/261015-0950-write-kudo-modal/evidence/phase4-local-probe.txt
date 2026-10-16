@@ -1,0 +1,9 @@
+# phase 4 probe: real actions/helpers vs local Supabase (bun test; supabase-js session injected in place of next/headers)
+# probe source lives in the session scratchpad, not the repo. Mutation check: TITLE_MAX 100->101 failed 'pure rules' (7 pass 1 fail); reverted.
+bun test v1.4.2 (744846f84)
+
+ 8 pass
+ 0 fail
+ 70 expect() calls
+Ran 8 tests across 1 file. [592.00ms]
+exit=0

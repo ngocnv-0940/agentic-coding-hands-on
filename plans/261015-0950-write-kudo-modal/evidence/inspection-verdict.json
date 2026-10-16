@@ -1,0 +1,81 @@
+{
+  "score": 9.5,
+  "criticalCount": 0,
+  "decision": "SEALED",
+  "acceptanceCovered": [
+    "Compose pill on /sun-kudos opens the 'Viết Kudo' modal (title, fields in Figma order, Hủy + Gửi footer); viewer without a sunners row sees the pill disabled; guests are sent to /login — proof: compose pill opens modal; disabled without sunner row (readComposeAccess/hasSunner); guests via proxy guard",
+    "Người nhận: placeholder 'Tìm kiếm'; trimmed, case- and diacritic-insensitive search of sunners (max 10, excludes self, literal special chars, empty result message); selecting fills the field and closes the list — proof: recipient search trimmed, case/diacritic-insensitive, <=10, excludes self, literal % and _ (search_sunners + pgTAP)",
+    "Danh hiệu required 1-100 chars with Figma placeholder and helper text; saved as kudos.title — proof: title 1-100 enforced client, action and RPC",
+    "Editor: bold, italic, strike, numbered list, link (Add link dialog: Text 1-100, http/https URL 5-2048), quote; '@' shows sunner suggestions and inserts a mention; placeholder per Figma; 'Tiêu chuẩn cộng đồng' opens /standards in a new tab; content required, max 2000 plain chars — proof: editor whitelist + http/https links 5-2048 at client (isAllowedUri) and server (content_doc_is_valid); mention suggestions; content 1-2000",
+    "Hashtag: '+ Hashtag' opens a multi-select of DB hashtags, chips removable, min 1, at 5 unselected rows are disabled and 'Tối đa 5 hashtag' shows — proof: hashtags 1-5 existing slugs, no free-text creation (RPC + pgTAP)",
+    "Image: jpeg/png/webp up to 5 MB, max 5 thumbnails with remove; '+ Image' hidden at 5 and shown again after a removal; other types show 'Định dạng file không hợp lệ' and are not added — proof: images jpeg/png/webp <=5MB, max 5, magic-byte sniff, bucket MIME/size limits, owner-checked in create_kudo",
+    "Anonymous checkbox default unchecked; checked shows the optional alias field (max 50), unchecked hides and clears it; board shows the alias for anonymous kudos and no API reveals the real sender to other users — proof: anonymous alias <=50; sender null on cards for all viewers; column grants deny sender_id/user_id via select/filter/order/embed (pgTAP + real-stack smoke)",
+    "Gửi is aria-disabled while a required field is incomplete; clicking it then shows every field error ('Không được để trống') without submitting; errors also show on blur and clear when valid — proof: aria-disabled Gửi still clickable and reveals all errors (use-write-kudo-form, W specs)",
+    "Valid submit shows loading, inserts kudo + hashtags + images atomically via create_kudo (server re-validates every rule), closes the modal, toasts success and the new kudo is first in All Kudos; failure keeps the modal and data and shows an error toast — proof: atomic create_kudo with server re-validation; failure keeps modal and cleans up uploads; success refresh + feed re-key",
+    "Hủy and Esc close and discard; backdrop click does nothing; focus trapped and returned to the compose pill — proof: Hủy/Esc close and discard, Esc ignored while submitting, focus returns to pill",
+    "VI/EN copy parity; modal fits 1440 per Figma and has no horizontal scroll at 768 and 375; existing e2e suites and pgTAP stay green — proof: tsc 0 and lint 0 re-run; W/K/full/P/I/L/pgTAP green per evidence"
+  ],
+  "regressionChecked": [
+    "every F006 function for hidden-column reads (only viewer_sunner_id, kudo_cards, kudos_sidebar; all switched to DEFINER)",
+    "app/lib direct table reads (none; RPC-only)",
+    "PostgREST exposed schemas (public, graphql_public; kudos_private not exposed)",
+    "Storage public object-info route columns (no owner)",
+    "toggle_kudo_like self_like and canLike on anonymous kudos",
+    "KudoCard.sender nullable across consumers (tsc 0)",
+    "e2e like spec reset-likes equals the old reset",
+    "playwright reuseExistingServer change limited to E2E_PROD"
+  ],
+  "contractStatus": "CHANGED",
+  "refuted": [],
+  "unproven": [],
+  "reachableRegressions": [],
+  "findings": [
+    {
+      "severity": "Medium",
+      "category": "Performance",
+      "location": "supabase/migrations/20261015035946_write_kudo_functions.sql:141",
+      "summary": "kudo_images url reference lookup cannot use the partial unique index (EXPLAIN shows Seq Scan); add `and ki.url like 'kudo-images/%'`",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Medium",
+      "category": "Performance",
+      "location": "supabase/migrations/20261015035942_write_kudo_columns_and_storage.sql:50",
+      "summary": "storage delete policy subquery on kudo_images.url scans the full table; same predicate fix",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "location": "app/(main)/sun-kudos/_behavior/use-submit-kudo.ts:57-58",
+      "summary": "cleanup on a thrown (indeterminate) send can race a still-committing create_kudo; FOR SHARE does not stop a delete with an older snapshot; skip cleanup when the outcome is unknown and fix the comment",
+      "disposition": "Accept"
+    },
+    {
+      "severity": "Low",
+      "category": "Security",
+      "location": "supabase/migrations/20261015035944_write_kudo_sender_masking.sql:26-35",
+      "summary": "DEFINER kudo_cards trusts caller-supplied p_viewer_id (canLike oracle if kudos_private were ever exposed); compute the viewer inside",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Security",
+      "location": "supabase/migrations/20261015035946_write_kudo_functions.sql:37-48",
+      "summary": "content_doc not matched against content; mention label and link attrs free; matters only once a detail screen renders content_doc",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Logic",
+      "summary": "untraced React hydration warning in the real-stack smoke",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Security",
+      "summary": "Storage checks the declared MIME only, byte sniffing is client-side; accepted (separate origin, image/* served)",
+      "disposition": "Reject"
+    }
+  ]
+}
