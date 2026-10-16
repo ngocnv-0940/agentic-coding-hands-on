@@ -28,7 +28,7 @@ Server Action là endpoint POST công khai do Next.js sinh, không có đường
 | RPC | `kudos_highlight(p_hashtag, p_department)` | cùng file | `SECURITY INVOKER`. Top 5 Kudo theo số lượt tim, hoà thì mới nhất (ALG-001), sau khi lọc. |
 | RPC | `kudos_feed_page(p_hashtag, p_department, p_before_created_at, p_before_id, p_limit)` | cùng file | `SECURITY INVOKER`. Một trang All Kudos theo con trỏ keyset `(created_at, id)` (ALG-004), dùng `kudos_created_at_id_idx`. |
 | RPC | `kudos_spotlight()` | cùng file | `SECURITY INVOKER`. Tối đa 100 người nhận khác nhau (Kudo mới nhất của mỗi người), tổng số Kudo và 5 Kudo mới nhất cho dòng hoạt động. |
-| RPC | `kudos_sidebar()` | cùng file | `SECURITY INVOKER`. `{ hasSunner, stats, latestGifts }`: số liệu của người dùng hiện tại (0 nếu không có hàng `sunners`) và 10 hộp quà mở gần nhất. |
+| RPC | `kudos_sidebar()` | `…944_write_kudo_sender_masking.sql`, `…16030000_latest_gifts_distinct_sunners.sql` | `SECURITY DEFINER` (đọc `kudos.sender_id` bị ẩn, chỉ trả dữ liệu đã che). `{ hasSunner, stats, latestGifts }`: số liệu của người dùng hiện tại (0 nếu không có hàng `sunners`) và 10 Sunner mở hộp gần nhất, mỗi người một dòng với hộp mới nhất (FR-312). |
 | RPC | `toggle_kudo_like(p_kudo_id)` | cùng file | `SECURITY DEFINER`, đường ghi duy nhất cho tim (ALG-003). Báo lỗi `P0001` với thông điệp `sunner_not_found`, `kudo_not_found` hoặc `self_like`. Trả `{ liked, likeCount }`. |
 
 Quyền `execute` của 6 RPC: chỉ `authenticated` (migration `…442_kudos_live_board_grants.sql`); `PUBLIC` và `anon` bị thu. Hàm trợ giúp ở schema `kudos_private` không được PostgREST phơi ra.

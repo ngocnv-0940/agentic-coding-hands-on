@@ -2,6 +2,25 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-16 — Unit test, sửa lỗi so với Definition of Done, chỉnh UI theo Figma
+
+**Thêm**
+
+- Tầng unit test bằng `bun test` (không thêm thư viện chạy test, chỉ thêm kiểu `@types/bun`): 13 tệp `*.test.ts` đặt cạnh module trong `lib/` và `app/**/_behavior/`, 133 test. Lệnh `bun run test:unit`; CI có thêm job `unit`.
+- README có mục "Quy trình AI Driven Development": luồng MoMorph → làm rõ → plan → test đỏ → code → xanh → review → PR, bảng tính năng ↔ plan ↔ PR, các tầng test và phần đã tùy biến trên Takumi.
+
+**Sửa**
+
+- (mức trung bình) "10 SUNNER NHẬN QUÀ MỚI NHẤT" liệt kê 10 hộp quà nên một người mở nhiều hộp chiếm nhiều dòng. Nay là 10 Sunner khác nhau, mỗi người một dòng với hộp mới nhất (FR-312). Migration `20261016030000_latest_gifts_distinct_sunners.sql`; test pgTAP `kudos-latest-gifts-distinct-sunners` và E2E FR-312 viết trước, đỏ trên code cũ.
+- (mức trung bình) Modal Viết Kudo báo "Không được để trống" ở ô Người nhận ngay khi vừa mở. Nguyên nhân: effect của `use-modal-focus-trap.ts` chạy lại lúc modal còn mở, phần dọn dẹp trả tiêu điểm về nút mở nên ô người nhận bị blur và bị coi là đã rời. Nay tiêu điểm chỉ trả về sau một nhịp và bị hủy nếu effect chạy lại. Test E2E DEC-002 viết trước, đỏ trên code cũ.
+
+**Thay đổi** (khớp Figma)
+
+- Header: chuông đứng trước bộ chọn ngôn ngữ; nhãn điều hướng và footer là "Award Information".
+- Highlight Kudos: thẻ hai bên giữ màu kem, chỉ mờ dần ở mép ngoài; icon "Số tim bạn nhận được" là ngọn lửa "x2".
+- Đồng hồ đếm ngược (trang chủ và `/prelaunch`) dùng font "Digital Numbers" (OFL, tự lưu ở `public/fonts/digital-numbers/`) thay Orbitron.
+- Modal Viết Kudo: tiêu đề xuống hai dòng như thiết kế; ô Danh hiệu rộng 514px, thẳng cột với thiết kế.
+
 ## 2026-10-16 — Sửa lỗi: Highlight Kudos chỉ hiện 2 thẻ lúc mở trang (F006)
 
 **Sửa** (mức thấp: lệch thiết kế, không mất chức năng)

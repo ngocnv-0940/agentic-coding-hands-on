@@ -1,0 +1,1 @@
+after fix: 42 passed (write-kudo modal, backdrop, fab, kudos sidebar specs)

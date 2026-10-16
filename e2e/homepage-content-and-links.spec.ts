@@ -115,7 +115,7 @@ test.describe('Homepage content and links', () => {
   test('footer shows the four navigation links and the copyright line', async ({ page }) => {
     const links = footer(page)
     await links.scrollIntoViewIfNeeded()
-    for (const name of ['About SAA 2025', 'Awards Information', 'Sun* Kudos', 'Tiêu chuẩn chung']) {
+    for (const name of ['About SAA 2025', 'Award Information', 'Sun* Kudos', 'Tiêu chuẩn chung']) {
       await expect(links.getByRole('link', { name }), name).toBeVisible()
     }
     await expect(links).toContainText(/Bản quyền thuộc v\S* Sun\* © 2025/)

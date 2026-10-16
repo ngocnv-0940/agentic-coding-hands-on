@@ -1,0 +1,3 @@
+  ✓  24 [chromium] › e2e/kudos-sidebar-and-modal.spec.ts:58:7 › Sun* Kudos sidebar and Coming soon modal › TC FUNCTION 19 / FR-101: the compose pill opens the Viết Kudo modal, and Hủy returns focus to the pill (4.3s)
+
+  26 passed (4.9m)

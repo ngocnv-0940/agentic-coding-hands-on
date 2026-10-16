@@ -2,7 +2,7 @@
 export const homeVi = {
   'home.meta.title': 'Trang chủ - SAA 2025',
   'home.nav.about': 'About SAA 2025',
-  'home.nav.awards': 'Awards Information',
+  'home.nav.awards': 'Award Information',
   'home.nav.kudos': 'Sun* Kudos',
   'home.header.logoAlt': 'Sun* Annual Awards 2025',
   'home.header.notifications': 'Thông báo',

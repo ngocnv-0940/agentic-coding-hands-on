@@ -22,12 +22,14 @@ test.describe('Sun* Kudos sidebar and Coming soon modal', () => {
     await expect(k.sidebarStat(page, 'unopened')).toHaveText(String(boxesUnopened))
   })
 
-  // FR-311: the latest gifts list holds the ten newest opened boxes, newest first
-  test('FR-311: the gift list shows the 10 newest opened secret boxes, newest first', async ({ page }) => {
+  // FR-312: the latest gifts list holds the 10 Sunners who most recently opened a box, one row each, newest first
+  test('FR-312: the gift list shows each recent gift receiver once, newest first', async ({ page }) => {
     await openKudosBoard(page)
     await expect(k.giftRows(page)).toHaveCount(EXPECT.giftsShown)
     await expect(k.giftRows(page).first()).toContainText(NAME.linh)
     await expect(k.giftRows(page).first()).toContainText(EXPECT.firstGiftPrize)
+    const names = await k.giftRows(page).locator('a[aria-label]').evaluateAll((links) => links.map((a) => a.getAttribute('aria-label')))
+    expect(new Set(names).size).toBe(names.length)
   })
 
   // TC FUNCTION 41 / FR-312: a gift row's avatar or name opens the profile

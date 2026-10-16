@@ -18,7 +18,7 @@ lang: vi
 
 **Purpose:** Người dùng đã đăng nhập đọc hệ thống giải SAA 2025: 6 hạng mục với ảnh, mô tả, số lượng và giá trị giải, nhảy nhanh giữa các hạng mục bằng menu, rồi sang phong trào Sun* Kudos.
 **Actors:** Người dùng đã đăng nhập
-**Entry Conditions:** Có phiên đăng nhập hợp lệ; khách bị chuyển về màn Login. Người dùng tới từ mục "Awards Information" trên header, từ thẻ giải ở trang chủ (kèm `#<slug>`) hoặc từ liên kết ở footer.
+**Entry Conditions:** Có phiên đăng nhập hợp lệ; khách bị chuyển về màn Login. Người dùng tới từ mục "Award Information" trên header, từ thẻ giải ở trang chủ (kèm `#<slug>`) hoặc từ liên kết ở footer.
 **Exit Conditions:** Người dùng sang Sun* Kudos qua nút "Chi tiết", hoặc sang trang khác qua header và footer.
 
 ## 2. Screen Layout
@@ -159,8 +159,8 @@ Văn bản tiếng Việt nguyên văn từ Figma/MoMorph (screen `zFYDgyj_pD`, 
 | From | Trigger there | Condition | Source |
 |------|----------------|-----------|--------|
 | SCR003_Homepage | Bấm một thẻ giải (mở `/awards-information#<slug>`) hoặc nút "ABOUT AWARDS" | Đã đăng nhập | `build-home-screen-props.ts:6`, `lib/awards/award-categories.ts:27-29` |
-| Header (vỏ `(main)`) | Bấm mục "Awards Information" | Đã đăng nhập | `app/(main)/layout.tsx` |
-| Footer (vỏ `(main)`) | Bấm liên kết "Awards Information" | Đã đăng nhập | `app/(main)/layout.tsx` |
+| Header (vỏ `(main)`) | Bấm mục "Award Information" | Đã đăng nhập | `app/(main)/layout.tsx` |
+| Footer (vỏ `(main)`) | Bấm liên kết "Award Information" | Đã đăng nhập | `app/(main)/layout.tsx` |
 
 ### Exits
 

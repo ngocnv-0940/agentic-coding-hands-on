@@ -1,6 +1,66 @@
 # agentic-coding-hands-on
 
-Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có sáu màn hình: `/login`, trang chủ SAA 2025 `/` (đích sau đăng nhập; header, đếm ngược tới sự kiện, lưới giải thưởng, footer), trang Hệ thống giải `/awards-information` (menu 6 hạng mục, 6 thẻ giải, liên kết `#<slug>`) `/todo` (hiện email và nút đăng xuất), trang đếm ngược công khai `/prelaunch` và màn Sun* Kudos live board `/sun-kudos` (Highlight, Spotlight, ALL KUDOS cuộn vô hạn, bộ lọc hashtag/phòng ban, bấm tim; đọc từ Postgres của Supabase). Các trang `/sun-kudos/<id>`, `/standards`, `/profile`, `/admin` hiện chỉ là trang giữ chỗ "Coming soon"; `/admin` chỉ cho người dùng có `app_metadata.role = 'admin'`. Mọi trang trừ `/login` và `/prelaunch` đều cần đăng nhập. Trước `SITE_LAUNCH_AT`, mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` và `/prelaunch` bị chuyển 307 về `/prelaunch` (khóa site, xem bên dưới). Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
+**Demo:** https://agentic-coding-hands-on-theta.vercel.app/ (đăng nhập bằng tài khoản Google)
+
+Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có sáu màn hình: `/login`, trang chủ SAA 2025 `/` (đích sau đăng nhập; header, đếm ngược tới sự kiện, lưới giải thưởng, footer), trang Hệ thống giải `/awards-information` (menu 6 hạng mục, 6 thẻ giải, liên kết `#<slug>`), `/todo` (hiện email và nút đăng xuất), trang đếm ngược công khai `/prelaunch` và màn Sun* Kudos live board `/sun-kudos` (Highlight, Spotlight, ALL KUDOS cuộn vô hạn, bộ lọc hashtag/phòng ban, bấm tim, modal Viết Kudo; đọc và ghi vào Postgres của Supabase). Các trang `/sun-kudos/<id>`, `/standards`, `/profile`, `/admin` hiện chỉ là trang giữ chỗ "Coming soon"; `/admin` chỉ cho người dùng có `app_metadata.role = 'admin'`. Mọi trang trừ `/login` và `/prelaunch` đều cần đăng nhập. Trước `SITE_LAUNCH_AT`, mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` và `/prelaunch` bị chuyển 307 về `/prelaunch` (khóa site, xem bên dưới). Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
+
+## Quy trình AI Driven Development (AIDD)
+
+Toàn bộ mã nguồn được sinh bằng **Claude Code + bộ kit Takumi**, đầu vào là **thiết kế Figma và Screen Specs trên MoMorph** (file `9ypp4enmFmdK3YAFJLIu6C`). Người làm chỉ trả lời câu hỏi làm rõ, duyệt plan và review PR.
+
+### Luồng cho mỗi tính năng
+
+```mermaid
+flowchart LR
+  A[MoMorph: frame, specs CSV, test cases] --> B[Cổng làm rõ<br/>clarifications.md]
+  B --> C[tkm:create-plan<br/>plan.md + phase-*.md]
+  C --> D[RED: E2E / pgTAP / unit<br/>chạy cho đỏ, lưu evidence]
+  D --> E[Code<br/>UI: momorph-ui-implementer<br/>logic/DB: implementer]
+  E --> F[GREEN + so UI với Figma<br/>tester]
+  F --> G[Review code]
+  G --> H[docs/ + journal<br/>PR riêng từng tính năng]
+```
+
+1. **Lấy đầu vào từ MoMorph**: ảnh frame, specs và test cases của từng màn hình được tải về `plans/<plan>/momorph/`.
+2. **Cổng làm rõ**: mọi chỗ spec còn hở (trạng thái lỗi, rỗng, phân quyền, đa ngôn ngữ…) được hỏi trước khi code; câu trả lời ghi vào `plans/<plan>/clarifications.md` theo dạng `Q → A`. Khi Figma và spec lệch nhau thì theo Figma.
+3. **Lập plan** (`tkm:create-plan`): `plan.md` cùng các `phase-*.md` (file sở hữu, rủi ro, tiêu chí xong). Màn có tương tác dùng chính sách test `e2e-red-first`.
+4. **Test đỏ trước**: viết E2E / pgTAP / unit cho yêu cầu, chạy cho đỏ, lưu mã thoát vào `plans/<plan>/evidence/*red*`.
+5. **Code**: phần giao diện do agent `momorph-ui-implementer` dựng theo dữ liệu thiết kế (mỗi phần tử mang chú thích `mm:<node-id>`); logic, RPC và migration do agent thường làm.
+6. **Xanh và so giao diện**: chạy lại đúng lệnh test cho xanh (`evidence/*green*`), agent `tester` chụp màn hình so với frame Figma.
+7. **Review, tài liệu, PR**: review code, cập nhật `docs/` (sinh bằng `tkm:rebuild-spec`) và nhật ký bài học ở `docs/journals/`. Mỗi tính năng một nhánh và một PR vào `master`.
+
+### Tính năng và nơi lưu dấu vết
+
+| Tính năng | Màn MoMorph | Plan (spec, clarifications, evidence) | PR |
+|---|---|---|---|
+| F001 Đăng nhập Google, F002 Đa ngôn ngữ | `GzbNeVGJHz`, `hUyaaugye2` | `plans/261008-0850-login-page-supabase-google/`, `plans/261008-2253-login-parity-with-live-site/` | #1, #3 |
+| F003 Trang chủ SAA | `i87tDx10uM` | `plans/261008-1705-homepage-saa/` | #2, #7 |
+| F004 Hệ thống giải | `zFYDgyj_pD` | `plans/261013-0720-awards-information-page/` | #5 |
+| F005 Countdown Prelaunch | `8PJQswPZmU` | `plans/261013-1638-countdown-prelaunch-page/` | #6 |
+| F006 Sun* Kudos + Like Kudos | `MaZUn5xHXZ` | `plans/261014-0900-kudos-live-board/` | #9, #13 |
+| F007 Viết Kudo | `ihQ26W78P2` | `plans/261015-0950-write-kudo-modal/`, `plans/261015-1700-auto-provision-sunner/`, `plans/261015-1900-fab-and-modal-polish/` | #10, #12 |
+| Unit test, bù các lỗ hổng so với Definition of Done | — | `plans/261016-1000-unit-tests-and-dod-gaps/` | #14 |
+
+Đặc tả sau khi dựng xong nằm ở `docs/features/F00x_*/` (functional/technical spec) và `docs/screens/SCR00x_*/`.
+
+### Kiểm thử và TDD
+
+| Tầng | Công cụ | Ở đâu | Lệnh |
+|---|---|---|---|
+| Unit | `bun test` (logic thuần; định dạng ngày giờ trên trình duyệt thật do E2E kiểm) | `lib/**/*.test.ts`, `app/**/_behavior/*.test.ts` | `bun run test:unit` |
+| Database | pgTAP | `supabase/tests/database/` | `supabase test db` |
+| E2E | Playwright + Supabase giả | `e2e/` | `bun run test:e2e` |
+
+CI (`.github/workflows/ci.yml`) chạy lint, typecheck, unit, E2E (4 nhóm cấu hình môi trường) và pgTAP cho mọi PR.
+
+Về TDD: mỗi plan đều chạy test đỏ trước khi code và lưu bằng chứng trong `plans/*/evidence/` (tệp `*red*` rồi `*green*`). Ở các tính năng đầu, test và code được commit trong cùng một PR, commit test đứng sau commit code, nên nhìn `git log` không thấy bước đỏ; bằng chứng nằm ở thư mục evidence. Từ `plans/261016-1000-unit-tests-and-dod-gaps/` trở đi, commit test đỏ đứng trước commit sửa.
+
+### Phần đã tùy biến trên flow chuẩn của Takumi
+
+- **Bộ nhớ của agent** (`.claude/agent-memory/`): planner, tester, debugger và momorph-ui-implementer ghi lại bài học giữa các phiên (cổng Supabase giả, cách khóa thời gian trong E2E…), nên phiên sau không lặp lỗi cũ.
+- **Supabase giả cho E2E** (`e2e/support/mock-supabase-server.ts`): giả Auth (Google), 8 RPC của Kudos (6 của live board, `create_kudo`, `search_sunners`) và Storage trong bộ nhớ, để E2E chạy nhanh trên CI không cần Docker. Test pgTAP `kudos-seed-matches-e2e-fixture` giữ dữ liệu giả và `seed.sql` không lệch nhau.
+- **Script chạy Supabase bằng Podman** (`scripts/start-local-supabase.sh`) cho máy không có Docker.
+- **Quy tắc làm việc**: mỗi tính năng một nhánh và một PR; khi Figma và trang SAA thật lệch nhau thì theo Figma.
 
 ## Yêu cầu
 
@@ -95,9 +155,11 @@ Mở **`http://localhost:3000`**, không dùng `127.0.0.1`: cookie PKCE của Su
 | `bun run supabase:start` | Chạy Supabase cục bộ (Docker hoặc Podman) |
 | `bun run supabase:stop` | Dừng Supabase cục bộ |
 | `bun run lint` | ESLint |
+| `bun run typecheck` | Kiểm kiểu TypeScript |
+| `bun run test:unit` | Unit test (`bun test`, không cần Supabase) |
 | `bun run test:e2e` | Playwright E2E |
 
-E2E không cần Supabase thật: `playwright.config.ts` tự khởi động một Supabase giả ở cổng `54399` (cả Auth lẫn 6 RPC của Kudos, dữ liệu trong bộ nhớ) và ứng dụng ở cổng `3100` (4 worker khi chạy cục bộ, 2 trên CI), với `EVENT_START_AT` cố định `2025-12-26T18:30:00+07:00` và không đặt `SITE_LAUNCH_AT` (nên không khóa). Supabase giả có thêm hai danh tính để thử quyền admin: `app_metadata.role = 'admin'` và một tài khoản chỉ có `admin` trong `user_metadata` (không được cấp quyền). Muốn thử mốc sự kiện khác, đặt `E2E_EVENT_START_AT`; ví dụ `E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid` chạy riêng nhóm kiểm giá trị sai của trang chủ. Mốc khóa đặt bằng `E2E_SITE_LAUNCH_AT`; nhóm `@prelaunch` cần mốc ở tương lai, ví dụ `E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch`, và `E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid` chạy riêng nhóm kiểm giá trị sai của `/prelaunch`. Đặt `E2E_PROD=1` để chạy bằng `build` + `start` thay cho `next dev` (dùng khi một `next dev` khác đang giữ khoá thư mục). `E2E_SMOKE=1` bật các spec gắn tag `@smoke` (chạy với Supabase thật), nhưng hiện chưa có spec nào như vậy — luồng Google thật phải kiểm thủ công.
+E2E không cần Supabase thật: `playwright.config.ts` tự khởi động một Supabase giả ở cổng `54399` (Auth, 8 RPC của Kudos và Storage, dữ liệu trong bộ nhớ) và ứng dụng ở cổng `3100` (4 worker khi chạy cục bộ, 2 trên CI), với `EVENT_START_AT` cố định `2025-12-26T18:30:00+07:00` và không đặt `SITE_LAUNCH_AT` (nên không khóa). Supabase giả có thêm hai danh tính để thử quyền admin: `app_metadata.role = 'admin'` và một tài khoản chỉ có `admin` trong `user_metadata` (không được cấp quyền). Muốn thử mốc sự kiện khác, đặt `E2E_EVENT_START_AT`; ví dụ `E2E_EVENT_START_AT=not-a-date bun run test:e2e --grep @event-env-invalid` chạy riêng nhóm kiểm giá trị sai của trang chủ. Mốc khóa đặt bằng `E2E_SITE_LAUNCH_AT`; nhóm `@prelaunch` cần mốc ở tương lai, ví dụ `E2E_SITE_LAUNCH_AT=2099-01-01T00:00:00+07:00 bun run test:e2e --grep @prelaunch`, và `E2E_SITE_LAUNCH_AT=not-a-date bun run test:e2e --grep @launch-env-invalid` chạy riêng nhóm kiểm giá trị sai của `/prelaunch`. Đặt `E2E_PROD=1` để chạy bằng `build` + `start` thay cho `next dev` (dùng khi một `next dev` khác đang giữ khoá thư mục). `E2E_SMOKE=1` bật các spec gắn tag `@smoke` (chạy với Supabase thật), nhưng hiện chưa có spec nào như vậy — luồng Google thật phải kiểm thủ công.
 
 ## Cấu trúc chính
 

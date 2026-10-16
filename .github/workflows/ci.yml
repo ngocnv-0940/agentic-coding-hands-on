@@ -25,6 +25,18 @@ jobs:
       - run: bun run lint
       - run: bun run typecheck
 
+  # bun:test unit suites colocated with the pure modules (lib/**, app/**/_behavior/*.test.ts); no Supabase needed.
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      - run: bun install --frozen-lockfile
+      - run: bun run test:unit
+
   # Mocked Supabase (e2e/support/start-mock-supabase.ts); E2E_PROD builds the app, so this also covers `next build`.
   # Each env-specific tag group needs its own app server, hence one matrix entry per group (see playwright.config.ts).
   e2e:

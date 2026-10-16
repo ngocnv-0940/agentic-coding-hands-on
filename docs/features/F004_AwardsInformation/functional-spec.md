@@ -56,7 +56,7 @@ Feature này liên quan tới [F003_Homepage](../../../../docs/features/F003_Hom
 ### Navigation (1xx)
 
 - **FR-101** Người đã đăng nhập mở `/awards-information` thì thấy trang Hệ thống giải.
-- **FR-102** Bấm "Awards Information" trên header thì tới trang này và mục đó được tô nổi.
+- **FR-102** Bấm "Award Information" trên header thì tới trang này và mục đó được tô nổi.
 
 ### Awards Information (2xx)
 
@@ -99,7 +99,7 @@ Chi tiết bố cục và phần tử: `screens/SCR004_AwardsInformation/spec.md
 
 ### User Journey
 
-1. Người dùng đăng nhập rồi bấm "Awards Information" trên header (hoặc một thẻ giải ở trang chủ) và đến Hệ thống giải, thấy tiêu đề và menu 6 hạng mục.
+1. Người dùng đăng nhập rồi bấm "Award Information" trên header (hoặc một thẻ giải ở trang chủ) và đến Hệ thống giải, thấy tiêu đề và menu 6 hạng mục.
 2. Người dùng cuộn xuống đọc từng giải; mục menu của giải đang xem được tô vàng theo.
 3. Người dùng bấm một mục menu, trang cuộn mượt tới giải đó và chỉ mục đó sáng.
 4. Người dùng cuộn tới cuối, xem khối Sun* Kudos và bấm "Chi tiết" để sang trang Sun* Kudos.
@@ -231,7 +231,7 @@ journey
 ## 10. Edge Behaviours to Verify
 
 - **FR-101** → Đã đăng nhập mở `/awards-information` thấy trang Hệ thống giải
-- **FR-102** → Bấm "Awards Information" trên header tới trang này và mục đó tô nổi
+- **FR-102** → Bấm "Award Information" trên header tới trang này và mục đó tô nổi
 - **FR-202** → Menu đủ 6 mục đúng thứ tự
 - **FR-203** → 6 thẻ đủ ảnh, tên, mô tả, số lượng, giá trị; thẻ Signature 2025 có hai mức giá trị
 - **FR-401** → Bấm lần lượt từng mục: đúng thẻ, chỉ mục vừa bấm active

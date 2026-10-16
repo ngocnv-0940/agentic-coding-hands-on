@@ -54,6 +54,17 @@ test.describe('Viết Kudo modal: access and layout', () => {
     await expect(w.recipientInput(page)).toHaveAttribute('aria-expanded', 'false')
   })
 
+  // DEC-002: errors appear only once a field was left or Gửi was pressed. Opening the modal autofocuses the recipient
+  // input, and that focus must not count as "left". The bug was a focus bounce through the opener when the focus-trap
+  // effect re-ran while open (StrictMode's dev re-mount), so this guards `next dev` runs; a prod build never re-runs it.
+  test('DEC-002: no field shows an error right after the modal opens', async ({ page }) => {
+    await openWriteKudoModal(page)
+    await expect(w.recipientInput(page)).toBeFocused()
+    await page.waitForTimeout(500) // negative assertion: give a stray blur time to happen before checking
+    await expect(w.recipientInput(page)).not.toHaveAttribute('aria-invalid', 'true')
+    await expect(page.getByTestId('write-kudo-field-error')).toHaveCount(0)
+  })
+
   // TC ID-5 / FR-206: the editor placeholder is the Figma sentence (read from the attribute, not a pseudo-element)
   test('TC ID-5 / FR-206: the editor placeholder reads the Figma sentence', async ({ page }) => {
     await openWriteKudoModal(page)

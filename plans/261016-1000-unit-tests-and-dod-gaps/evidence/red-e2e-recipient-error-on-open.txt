@@ -1,0 +1,1 @@
+e2e write-kudo-modal-access-and-layout DEC-002 before fix: FAILED (recipient aria-invalid=true right after open; focus trail: input -> compose pill -> input, effect cleanup restored focus to the opener)

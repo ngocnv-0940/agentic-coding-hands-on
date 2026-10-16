@@ -1,0 +1,10 @@
+$ playwright test --grep @launch-env-invalid
+[WebServer] $ next build
+[WebServer] $ next start -p "3100"
+
+Running 2 tests using 2 workers
+
+  ✓  1 [chromium] › e2e/prelaunch-invalid-env.spec.ts:11:7 › @launch-env-invalid Prelaunch with an invalid SITE_LAUNCH_AT › @launch-env-invalid FR-104 / BR-001: GET /prelaunch answers 307 to / with no lock (102ms)
+  ✓  2 [chromium] › e2e/prelaunch-invalid-env.spec.ts:17:7 › @launch-env-invalid Prelaunch with an invalid SITE_LAUNCH_AT › @launch-env-invalid FR-104 / BR-001: a guest opening /prelaunch ends on /login (548ms)
+
+  2 passed (4.8m)

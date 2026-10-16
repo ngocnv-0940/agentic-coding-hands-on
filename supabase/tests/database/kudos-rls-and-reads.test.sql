@@ -246,9 +246,11 @@ select is(pg_temp.got('sidebar') - 'latestGifts',
 select is(pg_temp.got('sidebar') -> 'latestGifts' -> 0,
   '{"sunnerId":"b2000000-0000-4000-8000-000000000001","name":"PgTap Viewer","avatarUrl":"/pgtap/viewer.png","prize":"PgTap Prize New","openedAt":"2099-01-02T00:00:00.000Z"}'::jsonb,
   'latestGifts: newest opened box first');
-select is(pg_temp.got('sidebar') -> 'latestGifts' -> 1 ->> 'prize', 'PgTap Prize Old', 'latestGifts: ordered by opened_at desc');
+select is((select count(*) from jsonb_array_elements(pg_temp.got('sidebar') -> 'latestGifts') e
+           where e ->> 'sunnerId' = 'b2000000-0000-4000-8000-000000000001'), 1::bigint,
+  'latestGifts: one row per Sunner (the older box of the same Sunner is not listed)');
 select is(jsonb_array_length(pg_temp.got('sidebar') -> 'latestGifts')::bigint,
-  (select least(10, count(*)) from public.secret_boxes where opened_at is not null), 'latestGifts: max 10');
+  (select least(10, count(distinct owner_id)) from public.secret_boxes where opened_at is not null), 'latestGifts: max 10 Sunners');
 select is((select count(*) from jsonb_array_elements(pg_temp.got('sidebar') -> 'latestGifts') e where e -> 'openedAt' = 'null'::jsonb),
   0::bigint, 'unopened boxes are not gifts');
 select is(pg_temp.got('sidebar_no_sunner') - 'latestGifts',

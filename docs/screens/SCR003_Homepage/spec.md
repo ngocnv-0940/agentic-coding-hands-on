@@ -30,7 +30,7 @@ Các vùng xếp dọc: header cố định ở trên (logo trái, ba mục đi�
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │ R1: Header (sticky)                                            │
-│ [Logo]   About SAA 2025 | Awards Information | Sun* Kudos      │
+│ [Logo]   About SAA 2025 | Award Information | Sun* Kudos      │
 │                               [Bell] [VN ▾] [Account]          │
 │                                  ┌ ─ ─ ─ ─ ─ ─ ┐ R8 (floating) │
 ├────────────────────────────────────────────────────────────────┤
@@ -72,7 +72,7 @@ Các vùng xếp dọc: header cố định ở trên (logo trái, ba mục đi�
 |----|---------|------|----------|---------|------------|--------|--------|--------|-----------------|-----------|
 | E01 | Logo Sun* Annual Awards (R1) | image | — | Hiển thị, có chữ thay thế | Always | Cuộn lên đầu trang | static | 64x60 | — | — |
 | E02 | About SAA 2025 (mục đang chọn trên `/`; mục đang chọn theo trang hiện tại) | link | — | Tô nổi, gạch chân | Conditional (từ 1024px) | Cuộn lên đầu trang | static | — | — | — |
-| E03 | Awards Information, Sun* Kudos (hai mục điều hướng) | link | — | Chữ thường; hover tô sáng | Conditional (từ 1024px) | Mở trang tương ứng | static | — | — | — |
+| E03 | Award Information, Sun* Kudos (hai mục điều hướng) | link | — | Chữ thường; hover tô sáng | Conditional (từ 1024px) | Mở trang tương ứng | static | — | — | — |
 | E04 | Chuông thông báo | button | — | Không có chấm đỏ | Always | Mở bảng thông báo | static | 40x40 | — | — |
 | E05 | Bộ chọn ngôn ngữ (VN/EN) | button | — | VN | Always | Mở menu chọn ngôn ngữ | cookie ngôn ngữ | cờ + mã | — | F002_Localization |
 | E06 | Biểu tượng tài khoản | button | — | Đóng menu | Always | Mở menu tài khoản | static | 40x40 | — | — |
@@ -93,7 +93,7 @@ Các vùng xếp dọc: header cố định ở trên (logo trái, ba mục đi�
 | E21 | Khối Sun* Kudos (nhãn "Phong trào ghi nhận", tiêu đề, mô tả, ảnh) | display field | — | Hiển thị | Always | — | static | — | — | — |
 | E22 | Nút "Chi tiết" của Kudos | button | — | Hiển thị | Always | Mở trang Sun* Kudos | static | kèm biểu tượng | — | — |
 | E23 | Nút widget (viên thuốc 105x64, nền vàng) | button | — | Hiển thị | Always | Mở nhóm hành động nhanh (Thể lệ, Viết KUDOS, ×); nút ẩn khi nhóm hiện | static | bút chì, "/", biểu tượng SAA | — | — |
-| E24 | Footer: logo và liên kết (About SAA 2025, Awards Information, Sun* Kudos, Tiêu chuẩn chung) | link | — | Hiển thị | Always | Mở trang tương ứng; logo về đầu trang | static | — | — | — |
+| E24 | Footer: logo và liên kết (About SAA 2025, Award Information, Sun* Kudos, Tiêu chuẩn chung) | link | — | Hiển thị | Always | Mở trang tương ứng; logo về đầu trang | static | — | — | — |
 | E25 | Dòng bản quyền | display field | — | "Bản quyền thuộc về Sun* © 2025" | Always | — | static | — | — | — |
 
 Mô tả E19 lấy từ từ điển trang chủ (`lib/i18n/dictionary-home-*.ts`, khoá `home.award.<slug>.description`); slug (`lib/awards/award-categories.ts:1-8`): `top-talent`, `top-project`, `top-project-leader`, `best-manager`, `signature-2025-creator`, `mvp`. Bản tiếng Anh của mọi chuỗi do nhóm tự soạn.

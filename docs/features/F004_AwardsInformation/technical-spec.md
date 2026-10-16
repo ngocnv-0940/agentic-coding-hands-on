@@ -55,7 +55,7 @@ flowchart LR
 `FR-002` `FR-101` `FR-102` `FR-201` `FR-202` `FR-203` `FR-205` `FR-406` `FR-407` `FR-601` `BR-001` `DEC-002` `US001` `US005` · `SCR004_AwardsInformation` (mã SCR### cấp lúc promote)
 
 **Who** · Người dùng đã đăng nhập; khách chỉ bị chặn trước khi tới đây *(gate A0 — § 4.4)*
-**FE** · Trang dựng theo thứ tự: hero keyvisual và tiêu đề (FR-201), menu hạng mục bên trái (FR-202), 6 thẻ giải thưởng ở giữa (FR-203), khối Sun* Kudos ở dưới (FR-205), cùng header và footer của layout `(main)`. Mỗi thẻ là một `<section>` có `id` bằng slug (FR-002). Mục "Awards Information" trên header tự sáng theo đường dẫn hiện tại (FR-102, hành vi sẵn có). Bố cục và phần tử chi tiết: `SCR004_AwardsInformation/spec.md`.
+**FE** · Trang dựng theo thứ tự: hero keyvisual và tiêu đề (FR-201), menu hạng mục bên trái (FR-202), 6 thẻ giải thưởng ở giữa (FR-203), khối Sun* Kudos ở dưới (FR-205), cùng header và footer của layout `(main)`. Mỗi thẻ là một `<section>` có `id` bằng slug (FR-002). Mục "Award Information" trên header tự sáng theo đường dẫn hiện tại (FR-102, hành vi sẵn có). Bố cục và phần tử chi tiết: `SCR004_AwardsInformation/spec.md`.
 **Request** · không có tham số; cookie phiên và `NEXT_LOCALE`
 **BE** · Server component đọc ngôn ngữ, lấy từ điển, rồi `buildAwardsInformationProps` ghép danh sách 6 hạng mục dùng chung (`AWARD_CATEGORIES`: slug, ảnh, khoá tiêu đề) với `AWARD_DETAILS` (khoá mô tả, số lượng, giá trị giải; mô tả đầy đủ nguyên văn Figma trong `dictionary-awards-*.ts`). Trang bọc phần đọc cookie ngôn ngữ trong `<Suspense>` và gọi `connection()` như layout `(main)`. Không gọi dịch vụ ngoài.
 **Rule** · **BR-001 — Thứ tự và slug của 6 hạng mục lấy từ một danh sách duy nhất dùng chung với trang chủ.** Slug là `id` của phần tương ứng nên liên kết thẻ ở trang chủ vẫn đúng. Danh sách có sẵn ở `lib/awards/award-categories.ts` (`AWARD_SLUGS`, `AWARD_CATEGORIES`, `awardHref`).
@@ -244,7 +244,7 @@ None.
 
 Chính sách kiểm thử: `e2e-red-first` (Playwright đã có, chạy bằng `bun run test:e2e`): viết kịch bản E2E đỏ trước rồi làm xanh. Test case MoMorph dùng `/he-thong-giai`; đã thay bằng `/awards-information` (clarifications.md).
 
-- **SC-001** *(A1)* Đã đăng nhập mở `/awards-information` thấy trang Hệ thống giải; khách về `/login`; bấm "Awards Information" trên header thì tới trang và mục đó sáng (covers FR-101, FR-102, FR-601)
+- **SC-001** *(A1)* Đã đăng nhập mở `/awards-information` thấy trang Hệ thống giải; khách về `/login`; bấm "Award Information" trên header thì tới trang và mục đó sáng (covers FR-101, FR-102, FR-601)
 - **SC-002** *(A1)* Có tiêu đề phụ "Sun* annual awards 2025" và tiêu đề chính "Hệ thống giải thưởng SAA 2025"; menu đủ 6 mục đúng thứ tự; 6 thẻ đủ ảnh, tiêu đề, mô tả, số lượng, giá trị theo Figma (covers FR-201, FR-202, FR-203, FR-002, BR-001)
 - **SC-003** *(A2)* Bấm lần lượt từng mục: trang cuộn tới đúng phần, chỉ mục đó active; rê chuột có highlight (covers FR-401, FR-402, BR-002)
 - **SC-004** *(A3)* Cuộn tay qua từng phần thì mục active theo kịp (covers FR-403, ALG-001, DEC-001)

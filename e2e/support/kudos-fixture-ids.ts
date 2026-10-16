@@ -109,8 +109,8 @@ export const EXPECT = {
   viewerStats: { received: 3, sent: 2, hearts: 3, boxesOpened: 2, boxesUnopened: 1 },
   /** Row-derived (kudo 10 carries 7 anonymous likes). Like specs assert deltas from this baseline. */
   senderStats: { received: 0, sent: 4, hearts: 7, boxesOpened: 0, boxesUnopened: 0 },
-  /** Latest gifts list shows 10 of 12 opened boxes, newest first. */
-  giftsShown: 10,
+  /** Latest gifts list: 12 opened boxes by 9 distinct Sunners -> 9 rows, one per Sunner, newest first. */
+  giftsShown: 9,
   giftsTotal: 12,
   firstGiftPrize: 'Voucher 500.000 VND',
   /** Star counts from received totals: 9 -> 0, 10 -> 1, 20 -> 2, 50 -> 3 (Quy, Nhật, Xuân, Linh). */

@@ -78,7 +78,7 @@ lang: vi
 - **FR-209** Bấm ảnh, tiêu đề hoặc "Chi tiết" của thẻ thì mở `/awards-information#<slug>` của hạng mục đó.
 - **FR-210** Khối Sun* Kudos có nút "Chi tiết" dẫn tới `/sun-kudos`.
 - **FR-211** Nút widget cố định ở góc phải dưới của mọi trang chính; bấm vào mở nhóm hành động nhanh "Thể lệ" (Coming soon), "Viết KUDOS" (mở modal Viết Kudo) và nút × đóng, xem F007_WriteKudo FR-106 và FR-107 (D012).
-- **FR-212** Footer có logo (về đầu trang), liên kết About SAA 2025, Awards Information, Sun* Kudos, Tiêu chuẩn chung (tới `/standards`) và dòng bản quyền.
+- **FR-212** Footer có logo (về đầu trang), liên kết About SAA 2025, Award Information, Sun* Kudos, Tiêu chuẩn chung (tới `/standards`) và dòng bản quyền.
 
 ### Interaction (4xx)
 
