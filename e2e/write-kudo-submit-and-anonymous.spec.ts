@@ -136,6 +136,22 @@ test.describe('Viết Kudo submit and anonymous sender (serial, kudos-writer)', 
     await expect(first.getByTestId('kudo-image')).toHaveCount(0)
   })
 
+  // TC ID-13 + ID-47: a content with an "@" mention sends. ProseMirror attrs are null-prototype objects, which the
+  // Server Action serializer turned into an opaque reference, so create_kudo rejected the doc as content_doc_invalid.
+  test('TC ID-13 / ID-47: a kudo whose content mentions a colleague is sent and shown first', async ({ page }) => {
+    const title = 'Kudos có nhắc tên'
+    await openWriteKudoModal(page, 'kudos-writer')
+    await fillRequiredFields(page, title)
+    await w.editorContent(page).click()
+    await page.keyboard.type(' @Nguyen')
+    await w.sunnerOption(page, 'NguyenVanA').click()
+    await expect(w.editor(page).locator('span[data-type="mention"]')).toContainText('NguyenVanA')
+    await submitKudo(page)
+    await expect(w.modal(page)).toBeHidden()
+    await expect(k.toast(page)).toHaveText(SUCCESS_TOAST)
+    await expect(k.feedBlock(page).getByTestId('kudo-card').first()).toContainText(title)
+  })
+
   // FR-604 / FR-801: an anonymous kudo shows the alias to everyone, sender block without avatar or profile link
   test('FR-604: an anonymous kudo shows the alias in the sender block with no avatar or profile link', async ({ page }) => {
     const title = 'Kudos ẩn danh có bí danh'

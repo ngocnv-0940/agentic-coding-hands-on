@@ -22,7 +22,7 @@ export type KudoEditorState = {
   toggle: Record<KudoEditorTool, () => void>
   /** Snapshot for submit: plain text, trimmed (the RPC stores it trimmed). */
   plainText: () => string
-  /** Snapshot for submit: `editor.getJSON()`. */
+  /** Snapshot for submit: `editor.getJSON()` as plain JSON objects. */
   json: () => KudoContentDoc
 }
 
@@ -91,6 +91,8 @@ export function useKudoEditor({ placeholder, disabled, suggestion }: Options): K
     active: active ?? { bold: false, italic: false, strike: false, orderedList: false, link: false, quote: false },
     toggle,
     plainText: () => (editor ? readText(editor).trim() : ''),
-    json: () => (editor ? editor.getJSON() : EMPTY_DOC),
+    // ProseMirror node attrs (e.g. a mention's {id, label}) are null-prototype objects, which the Server Action
+    // serializer sends as an opaque temporary reference instead of data; a JSON round trip makes them plain objects.
+    json: () => (editor ? (JSON.parse(JSON.stringify(editor.getJSON())) as KudoContentDoc) : EMPTY_DOC),
   }
 }
