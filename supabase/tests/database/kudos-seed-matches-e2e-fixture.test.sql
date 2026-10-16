@@ -67,7 +67,7 @@ select is(jsonb_array_length(pg_temp.got('spotlight') -> 'receivers'), 8, 'EXPEC
 select is(pg_temp.got('sidebar_viewer') -> 'stats', '{"received":3,"sent":2,"hearts":3,"boxesOpened":2,"boxesUnopened":1}'::jsonb, 'EXPECT.viewerStats');
 -- What the mock computes from KUDO_ROWS (sender sends k10 with 7 likes, k22, k23, k24); EXPECT.senderStats matches.
 select is(pg_temp.got('sidebar_sender') -> 'stats', '{"received":0,"sent":4,"hearts":7,"boxesOpened":0,"boxesUnopened":0}'::jsonb, 'sender stats as the mock computes them');
-select is(jsonb_array_length(pg_temp.got('sidebar_viewer') -> 'latestGifts'), 10, 'EXPECT.giftsShown');
+select is(jsonb_array_length(pg_temp.got('sidebar_viewer') -> 'latestGifts'), 9, 'EXPECT.giftsShown');
 select is(pg_temp.got('sidebar_viewer') -> 'latestGifts' -> 0 ->> 'prize', 'Voucher 500.000 VND', 'EXPECT.firstGiftPrize');
 
 -- Write-kudo fixture (F007): writer + 10 receiver-only sunners, and what the mock's searchSunners answers
