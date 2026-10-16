@@ -86,7 +86,7 @@ test.describe('Homepage access and landing', () => {
   test('the active nav item follows the current placeholder route', async ({ page }) => {
     await loginThroughStubbedGoogle(page)
     await page.goto('/awards-information')
-    await expect(navLink(page, /Awards Information/i)).toHaveAttribute('aria-current', 'page')
+    await expect(navLink(page, /Award Information/i)).toHaveAttribute('aria-current', 'page')
     await expect(navLink(page, /About SAA 2025/i)).not.toHaveAttribute('aria-current', 'page')
 
     await page.goto('/standards')

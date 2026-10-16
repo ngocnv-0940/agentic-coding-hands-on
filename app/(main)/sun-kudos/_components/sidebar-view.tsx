@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { IconGift, IconHeart, IconUserCircle } from './kudos-icons'
+import { IconGift, IconUserCircle } from './kudos-icons'
 import { FOCUS_RING } from './kudos-layout'
 import type { SidebarGift, SidebarStats, SidebarViewProps } from './kudos-view-types'
 
@@ -22,11 +22,8 @@ function StatRow({ id, label, value, marker }: { id: string; label: string; valu
       <span className={`${FONT} flex items-center gap-1 text-[22px] leading-7 text-white`}>
         {label}
         {marker ? (
-          // mm:3241:14931 — "x2" heart marker beside the hearts statistic
-          <span aria-hidden="true" className="relative inline-flex size-8 items-center justify-center text-[#d4271d]">
-            <IconHeart className="size-8" />
-            <span className="absolute text-[11px] leading-none font-bold text-white [-webkit-text-stroke:0.6px_#000]">x2</span>
-          </span>
+          // mm:3241:14931 — flame image carrying the "x2" badge (mm:3241:14932 + 3241:14933), beside the hearts statistic
+          <Image src="/images/kudos/hearts-flame-x2.png" alt="" aria-hidden="true" width={34} height={40} className="-ml-1 h-10 w-[34px] shrink-0" />
         ) : null}
       </span>
       <span data-testid={`sidebar-stat-${id}`} className={`${FONT} min-w-[46px] text-right text-[32px] leading-10 text-saa-gold`}>

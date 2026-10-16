@@ -100,7 +100,7 @@ test.describe('Awards Information category navigation', () => {
     await expectSectionBelowHeader(page, 'mvp')
     await expect(page).toHaveURL(/\/awards-information#mvp$/)
     expect(await page.evaluate(() => history.length)).toBe(historyBefore)
-    await expect(navLink(page, /Awards Information/i)).toHaveAttribute('aria-current', 'page')
+    await expect(navLink(page, /Award Information/i)).toHaveAttribute('aria-current', 'page')
   })
 
   // BR-002/US002 error path: during the smooth scroll only the clicked item ever gains the active state

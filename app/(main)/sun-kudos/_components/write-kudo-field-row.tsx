@@ -47,7 +47,10 @@ export function WriteKudoFieldRow({ field, label, required, error, align = 'cent
   )
 }
 
-/** Danh hiệu input and its two helper lines (mm:I520:11647;1688:10437, mm:I520:11647;1688:10447). */
+/**
+ * Danh hiệu input and its two helper lines (mm:I520:11647;1688:10437, mm:I520:11647;1688:10447). Figma fixes the input at
+ * 514px flush right (x 555..1069 of the 672px row), so it starts at 555 while the recipient input starts at 559.
+ */
 export function WriteKudoTitleInputView({
   value,
   onChange,
@@ -60,7 +63,7 @@ export function WriteKudoTitleInputView({
   inputRef,
 }: WriteKudoTitleInputViewProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="ml-auto flex max-w-[514px] flex-col gap-2">
       {/* mm:I520:11647;1688:10437 */}
       <div className={FIELD_BOX}>
         <input

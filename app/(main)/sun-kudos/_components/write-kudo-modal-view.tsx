@@ -48,7 +48,9 @@ export function WriteKudoModalView({ open, labels, onBackdropClick, dialogRef, f
           data-testid="write-kudo-heading"
           className="m-0 shrink-0 px-5 pt-5 pb-5 text-center text-2xl leading-8 font-bold sm:px-10 sm:pt-10 sm:pb-6 sm:text-[32px] sm:leading-10"
         >
-          {labels.title}
+          {/* Figma's 672px text box (32/40) wraps this title onto two lines ("... đồng / đội"); Chrome's metrics fit it in
+              exactly 672px, so the inner measure is held just under that to keep the design's wrap. */}
+          <span className="mx-auto block max-w-[660px]">{labels.title}</span>
         </h2>
         <div
           data-testid="write-kudo-scroll-area"

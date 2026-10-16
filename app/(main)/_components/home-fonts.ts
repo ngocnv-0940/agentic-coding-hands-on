@@ -1,8 +1,9 @@
-import { Montserrat, Montserrat_Alternates, Orbitron } from 'next/font/google'
+import { Montserrat, Montserrat_Alternates } from 'next/font/google'
+import localFont from 'next/font/local'
 
 // Figma: Montserrat 400/500/700 (all copy), Montserrat Alternates 700 (footer copyright).
-// "Digital Numbers" (countdown digits) is not on Google Fonts; Orbitron is the closest hosted
-// digital-display face, exposed as --font-digital.
+// "Digital Numbers" (countdown digits, mm:I2268:35141;186:2617) is not on Google Fonts; the OFL-1.1 build by Stephan Ahlf
+// (github.com/s-a/digital-numbers-font, licence beside the file) is self-hosted and exposed as --font-digital.
 const montserrat = Montserrat({
   variable: '--font-montserrat',
   subsets: ['latin', 'vietnamese'],
@@ -17,10 +18,10 @@ const montserratAlternates = Montserrat_Alternates({
   display: 'swap',
 })
 
-const digital = Orbitron({
+const digital = localFont({
   variable: '--font-digital',
-  subsets: ['latin'],
-  weight: ['500'],
+  src: '../../../public/fonts/digital-numbers/DigitalNumbers-Regular.woff',
+  weight: '400',
   display: 'swap',
 })
 

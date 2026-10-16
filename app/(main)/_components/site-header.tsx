@@ -28,8 +28,8 @@ export function SiteHeader({ logoAlt, nav, onNavClick, notifications, languageSe
       {/* mm:I2167:9091;186:1601 */}
       <div className="flex items-center gap-1 sm:gap-4">
         {/* mm:I2167:9091;186:1696 — flag mm:I2167:9091;186:1696;186:1821;186:1709;178:1010 and chevron mm:I2167:9091;186:1696;186:1821;186:1441 live in the language selector slot */}
-        {languageSelector}
         {notifications}
+        {languageSelector}
         {account}
       </div>
     </header>

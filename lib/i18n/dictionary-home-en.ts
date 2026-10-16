@@ -4,7 +4,7 @@ import type { homeVi } from './dictionary-home-vi'
 export const homeEn: { [K in keyof typeof homeVi]: string } = {
   'home.meta.title': 'Home - SAA 2025',
   'home.nav.about': 'About SAA 2025',
-  'home.nav.awards': 'Awards Information',
+  'home.nav.awards': 'Award Information',
   'home.nav.kudos': 'Sun* Kudos',
   'home.header.logoAlt': 'Sun* Annual Awards 2025',
   'home.header.notifications': 'Notifications',

@@ -35,22 +35,31 @@ test.describe('Sun* Kudos highlight and filters', () => {
     await expect(k.carouselPager(page)).toHaveText('4/5')
   })
 
-  // FR-201 / DEC-002: at desktop width the non-centre slides are faded (opacity < 1), the centre one is opaque
-  test('FR-201 / DEC-002: at 1440px the neighbour slides are faded and the centre slide is fully opaque', async ({ page }) => {
+  // FR-201 / DEC-002: at the Figma width the neighbours keep the cream card (opacity 1) and are faded only by the dark
+  // edge gradients (mm:2940:13469 / 13467); they stay inert. Between 1024 and 1279px the gradients would cover the
+  // centred active card, so the neighbours are dimmed instead.
+  test('FR-201 / DEC-002: at 1440px the neighbours sit under the edge fades, inert; at 1100px they are dimmed', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })
     await openKudosBoard(page)
     const slides = k.carousel(page).locator(':scope > ul > li')
     await expect(slides).toHaveCount(5)
     const opacityOf = (slide: Locator) => slide.evaluate((node) => parseFloat(getComputedStyle(node).opacity))
-    // Opens on the second card (Figma pager "2/5"), so a faded card shows on each side of the centre
+    // Opens on the second card (Figma pager "2/5"), so a card shows on each side of the centre
     await expect(slides.nth(1).locator('[data-active]')).toHaveCount(1)
-    await expect.poll(() => opacityOf(slides.nth(1))).toBe(1)
-    for (const index of [0, 2, 3, 4]) {
-      await expect.poll(() => opacityOf(slides.nth(index)), { message: `slide ${index + 1} is faded` }).toBeLessThan(1)
-    }
+    for (const index of [0, 1, 2]) await expect.poll(() => opacityOf(slides.nth(index))).toBe(1)
+    for (const index of [0, 2, 3, 4]) await expect(slides.nth(index)).toHaveAttribute('inert', '')
+    await expect(page.getByTestId('kudos-carousel-side-prev').locator('..')).toBeVisible()
+    await expect(page.getByTestId('kudos-carousel-side-next').locator('..')).toBeVisible()
     await k.carousel(page).scrollIntoViewIfNeeded()
     for (const index of [0, 2]) {
       await expect(slides.nth(index), `slide ${index + 1} sits beside the centre`).toBeInViewport()
+    }
+
+    await page.setViewportSize({ width: 1100, height: 900 })
+    await expect(page.getByTestId('kudos-carousel-side-prev').locator('..')).toBeHidden()
+    await expect.poll(() => opacityOf(slides.nth(1))).toBe(1)
+    for (const index of [0, 2]) {
+      await expect.poll(() => opacityOf(slides.nth(index)), { message: `slide ${index + 1} is dimmed` }).toBeLessThan(1)
     }
   })
 

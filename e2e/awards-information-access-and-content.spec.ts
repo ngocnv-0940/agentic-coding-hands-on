@@ -63,13 +63,13 @@ test.describe('Awards Information access and content', () => {
   })
 
   // ID-2/FR-202: the header item opens the page and marks itself as the current page
-  test('ID-2: the header "Awards Information" item opens the page', async ({ page }) => {
+  test('ID-2: the header "Award Information" item opens the page', async ({ page }) => {
     await loginThroughStubbedGoogle(page)
     await page.goto('/')
-    await navLink(page, /Awards Information/i).click()
+    await navLink(page, /Award Information/i).click()
     await expect(page).toHaveURL(/\/awards-information$/)
     await expect(awardsPage(page)).toBeVisible()
-    await expect(navLink(page, /Awards Information/i)).toHaveAttribute('aria-current', 'page')
+    await expect(navLink(page, /Award Information/i)).toHaveAttribute('aria-current', 'page')
   })
 
   // ID-3/FR-102: title above the menu and cards, Kudos block below the last award

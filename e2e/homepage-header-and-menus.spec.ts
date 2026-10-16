@@ -12,7 +12,7 @@ import {
 
 // Spec ids: FR-201..205 (header), FR-401..405 (menus), FR-602, BR-004, DEC-002.
 const ABOUT = /About SAA 2025/i
-const AWARDS = /Awards Information/i
+const AWARDS = /Award Information/i
 const LOGO = /Sun\* Annual Awards 2025/i
 const scrollY = (page: Page) => page.evaluate(() => window.scrollY)
 const scrollToBottom = (page: Page) => page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
@@ -70,7 +70,7 @@ test.describe('Homepage header navigation', () => {
   })
 
   // FR-202/ID-21/ID-22: other nav items navigate to their pages
-  test('Awards Information and Sun* Kudos nav items navigate to their pages', async ({ page }) => {
+  test('Award Information and Sun* Kudos nav items navigate to their pages', async ({ page }) => {
     await navLink(page, AWARDS).click()
     await expect(page).toHaveURL(/\/awards-information$/)
     await page.goto('/')

@@ -7,7 +7,9 @@ const PAGER_BUTTON = `flex size-12 cursor-pointer items-center justify-center ro
 
 /**
  * Highlight carousel (mm:2940:13461 + 2940:13471). Every slide is rendered; the active one is centred,
- * its neighbours are faded and `inert`. Under 1024px only the centre card shows (neighbours are transparent); under 1280px the active slide is centred and the side arrows give way
+ * its neighbours are `inert`. From 1280px (the Figma layout) they keep the cream card colour and fade only through the
+ * 400px dark edge gradients (mm:2940:13469 / 13467); between 1024 and 1279px the active slide is centred and 400px
+ * gradients would cover its edges, so the neighbours are dimmed instead. Under 1024px only the centre card shows (neighbours are transparent); under 1280px the active slide is centred and the side arrows give way
  * to the pager arrows. `index` and the handlers come from the wiring.
  */
 export function CarouselView({ slides, index, onPrev, onNext, regionLabel, prevLabel, nextLabel, emptyLabel }: CarouselViewProps) {
@@ -41,7 +43,7 @@ export function CarouselView({ slides, index, onPrev, onNext, regionLabel, prevL
                 key={position}
                 inert={!active}
                 aria-hidden={!active}
-                className={`w-[var(--slide)] shrink-0 transition-opacity duration-300 ${active ? '' : 'opacity-0 lg:opacity-40'}`}
+                className={`w-[var(--slide)] shrink-0 transition-opacity duration-300 ${active ? '' : 'opacity-0 lg:opacity-40 xl:opacity-100'}`}
               >
                 {slide}
               </li>
