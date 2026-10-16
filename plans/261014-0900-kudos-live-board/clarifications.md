@@ -68,3 +68,7 @@ Sources: `momorph/kudos-live-board-specs.csv` (64 items), `momorph/kudos-live-bo
 - Accepted known deviations: pager size measured from the PNG; shared header order/footer wrap/floating widget button belong to the shared `(main)` layout (other features).
 - Not provable by E2E, accepted with reason: Spotlight loading state (no dedicated UI — board-wide Suspense fallback only); 100-node cap (enforced by `limit 100` in `kudos_spotlight`, fixture has 8 receivers).
 - 2026-10-15 follow-up: Spotlight background artwork restored. MoMorph export still fails (500/401), so the two layers (root artwork 2940:14173 under a 70% black wash, network 2940:14181 screen-blended at 30%) were pulled through the Figma MCP `get_design_context` and saved as `public/images/kudos/spotlight-{roots,network}.webp`.
+
+## Session 2026-10-16
+
+- Q: "10 SUNNER NHẬN QUÀ MỚI NHẤT" lists 10 boxes or 10 people? → A: 10 distinct Sunners (MoMorph D.3 "10 Sunner vừa nhận quà mới nhất"), one row each with their newest opened box, newest opener first. Supersedes "10 latest opened secret boxes" above; a Sunner who opened several boxes no longer fills several rows. Migration `20261016030000_latest_gifts_distinct_sunners.sql`.

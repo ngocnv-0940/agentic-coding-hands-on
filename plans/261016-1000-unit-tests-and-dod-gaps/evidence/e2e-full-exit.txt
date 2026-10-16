@@ -1,0 +1,4 @@
+default exit=0
+prelaunch exit=0
+launch-invalid exit=0
+event-invalid exit=0

@@ -101,7 +101,7 @@ Feature này liên quan tới [F001_Auth](../F001_Auth/functional-spec.md) (guar
 - **FR-309** Dòng hoạt động chạy ở góc trái dưới Spotlight liệt kê 5 kudo mới nhất; chỉ để xem.
 - **FR-310** Sidebar hiện cho người dùng hiện tại: số kudo nhận, số kudo đã gửi, số tim nhận, số Secret Box đã mở, số Secret Box chưa mở; nút "Mở Secret Box" vô hiệu khi số chưa mở bằng 0, ngược lại mở modal (FR-103).
 - **FR-311** Người đăng nhập chưa có hồ sơ Sunner (chỉ còn khi hồ sơ bị gỡ liên kết hoặc xóa, hoặc tài khoản không phải Google) thì cả năm số hiển thị 0.
-- **FR-312** Hộp "10 SUNNER NHẬN QUÀ MỚI NHẤT" liệt kê 10 hộp đã mở gần nhất (avatar, tên, mô tả quà); chưa có thì hiện "Chưa có dữ liệu".
+- **FR-312** Hộp "10 SUNNER NHẬN QUÀ MỚI NHẤT" liệt kê 10 Sunner mở hộp gần nhất, mỗi người một dòng kèm hộp mới nhất của họ (avatar, tên, mô tả quà), người mở gần nhất đứng đầu; chưa có thì hiện "Chưa có dữ liệu".
 - **FR-313** Sidebar dính (sticky) cạnh feed và có thanh cuộn riêng khi dài hơn khung nhìn.
 - **FR-314** Dưới 1024px sidebar xếp chồng với feed, carousel chỉ một thẻ, không có thanh cuộn ngang ở 375px.
 
