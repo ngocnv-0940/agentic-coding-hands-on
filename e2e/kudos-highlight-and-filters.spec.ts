@@ -22,6 +22,9 @@ test.describe('Sun* Kudos highlight and filters', () => {
   // TC FUNCTION 32 / FR-201: next and prev move one card; each end disables its arrow
   test('TC FUNCTION 32 / FR-201: the carousel arrows move one card and disable at both ends', async ({ page }) => {
     await openKudosBoard(page)
+    await expect(k.carouselPager(page)).toHaveText('2/5')
+    await k.carouselPrev(page).click()
+    await expect(k.carouselPager(page)).toHaveText('1/5')
     await expect(k.carouselPrev(page)).toBeDisabled()
     for (let step = 2; step <= 5; step++) {
       await k.carouselNext(page).click()
@@ -39,11 +42,15 @@ test.describe('Sun* Kudos highlight and filters', () => {
     const slides = k.carousel(page).locator(':scope > ul > li')
     await expect(slides).toHaveCount(5)
     const opacityOf = (slide: Locator) => slide.evaluate((node) => parseFloat(getComputedStyle(node).opacity))
-    const centre = slides.filter({ has: page.locator('[data-active]') })
-    await expect(centre).toHaveCount(1)
-    await expect.poll(() => opacityOf(centre)).toBe(1)
-    for (let index = 1; index < 5; index++) {
+    // Opens on the second card (Figma pager "2/5"), so a faded card shows on each side of the centre
+    await expect(slides.nth(1).locator('[data-active]')).toHaveCount(1)
+    await expect.poll(() => opacityOf(slides.nth(1))).toBe(1)
+    for (const index of [0, 2, 3, 4]) {
       await expect.poll(() => opacityOf(slides.nth(index)), { message: `slide ${index + 1} is faded` }).toBeLessThan(1)
+    }
+    await k.carousel(page).scrollIntoViewIfNeeded()
+    for (const index of [0, 2]) {
+      await expect(slides.nth(index), `slide ${index + 1} sits beside the centre`).toBeInViewport()
     }
   })
 
@@ -64,16 +71,16 @@ test.describe('Sun* Kudos highlight and filters', () => {
     expect(await k.cardIds(k.highlightBlock(page))).toEqual(EXPECT.highlightMarketing)
   })
 
-  // FR-202: choosing a hashtag reruns the highlight, sets ?hashtag= and resets the carousel to 1/N
-  test('FR-202: choosing a hashtag reruns the highlight and resets the carousel to 1/N', async ({ page }) => {
+  // FR-202: choosing a hashtag reruns the highlight, sets ?hashtag= and resets the carousel to its opening card
+  test('FR-202: choosing a hashtag reruns the highlight and resets the carousel to its opening card', async ({ page }) => {
     await openKudosBoard(page)
     await k.carouselNext(page).click()
     await k.carouselNext(page).click()
-    await expect(k.carouselPager(page)).toHaveText('3/5')
+    await expect(k.carouselPager(page)).toHaveText('4/5')
     await chooseOption(page, k.hashtagFilter(page), '#Teamwork')
     await expect(page).toHaveURL(/[?&]hashtag=teamwork/)
     expect(await k.cardIds(k.highlightBlock(page))).toEqual(EXPECT.highlightTeamwork)
-    await expect(k.carouselPager(page)).toHaveText('1/5')
+    await expect(k.carouselPager(page)).toHaveText('2/5')
   })
 
   // FR-202: both filters combine with AND and survive a reload
@@ -88,6 +95,8 @@ test.describe('Sun* Kudos highlight and filters', () => {
   // TC FUNCTION 31 / FR-206: a hashtag on a card sets the hashtag and keeps the department
   test('TC FUNCTION 31 / FR-206: clicking a card hashtag keeps the department filter', async ({ page }) => {
     await openKudosBoard(page, undefined, '/sun-kudos?department=MKT')
+    // Kudo 25 ranks first, so it sits on the faded left slide until the carousel steps back to 1/N
+    await k.carouselPrev(page).click()
     const card = k.cardIn(k.highlightBlock(page), kudoId(25))
     await expect(card).toBeVisible()
     await k.kudoHashtags(card).filter({ hasText: '#Dedicated' }).click()

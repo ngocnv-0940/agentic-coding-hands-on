@@ -1,0 +1,11 @@
+{
+  "regressionTest": "e2e/kudos-highlight-and-filters.spec.ts FR-201 / DEC-002 (+ GUI 10, FUNCTION 32, FR-202)",
+  "preFix": {
+    "command": "bunx playwright test e2e/kudos-highlight-and-filters.spec.ts e2e/kudos-board-access-and-layout.spec.ts --grep \"GUI 10|FUNCTION 32|DEC-002|FR-202: choosing\" (pre-fix baseline)",
+    "exitCode": 1,
+    "status": "fail",
+    "summary": "RED on old code as intended: 4 failed (pager 1/5 not 2/5, slide 2 not active) — baseline-red.txt",
+    "ts": "2026-10-16T00:51:52.546Z"
+  },
+  "postFix": "60 passed — after-fix-green.txt"
+}

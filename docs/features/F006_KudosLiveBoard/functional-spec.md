@@ -80,7 +80,7 @@ Feature này liên quan tới [F001_Auth](../F001_Auth/functional-spec.md) (guar
 ### Kudos Live board — Highlight và bộ lọc (2xx)
 
 - **FR-201** Highlight Kudos gồm tối đa 5 kudo nhiều tim nhất sau khi áp bộ lọc; bằng số tim thì kudo mới hơn đứng trước.
-- **FR-202** Carousel hiển thị thẻ hiện tại rõ ở giữa, hai thẻ bên mờ và không tương tác; chỉ số "n/N" giữa hai mũi tên; mũi tên lùi vô hiệu ở thẻ đầu, mũi tên tiến vô hiệu ở thẻ cuối; đổi bộ lọc đưa về thẻ đầu.
+- **FR-202** Carousel hiển thị thẻ hiện tại rõ ở giữa, hai thẻ bên mờ và không tương tác; chỉ số "n/N" giữa hai mũi tên; mũi tên lùi vô hiệu ở thẻ đầu, mũi tên tiến vô hiệu ở thẻ cuối; từ 3 thẻ trở lên carousel mở ở thẻ thứ hai ("2/N", mỗi bên một thẻ mờ), dưới 3 thẻ mở ở thẻ đầu; đổi bộ lọc đưa về thẻ mở đầu đó.
 - **FR-203** Highlight không có kudo nào thì chỉ hiện "Hiện tại chưa có Kudos nào.".
 - **FR-204** Thẻ kudo hiển thị: người gửi, mũi tên, người nhận (avatar, tên, phòng ban, sao, danh hiệu), thời gian, nội dung (Highlight tối đa 3 dòng, All Kudos tối đa 5 dòng, quá thì "..."), hashtag trên một dòng tối đa 5 (quá thì "..."), số tim kèm biểu tượng tim, "Copy Link"; Highlight có thêm "Xem chi tiết"; All Kudos có thêm tối đa 5 ảnh thu nhỏ xếp ngang, bấm ảnh mở ảnh lớn (D012).
 - **FR-205** Hai dropdown "Hashtag" và "Phòng ban" lấy tùy chọn từ cơ sở dữ liệu, mỗi bên chọn một và có lựa chọn bỏ lọc; hai bên kết hợp AND.
@@ -393,7 +393,7 @@ journey
 
 - **FR-101** → Khách mở `/sun-kudos` hoặc `/sun-kudos/<id>` bị đưa về `/login`
 - **FR-201** → Highlight đúng thứ tự tim, hòa thì mới trước, tối đa 5
-- **FR-202** → Nút lùi vô hiệu ở thẻ đầu, nút tiến vô hiệu ở thẻ cuối, đổi lọc về thẻ đầu
+- **FR-202** → Nút lùi vô hiệu ở thẻ đầu, nút tiến vô hiệu ở thẻ cuối, mở trang và đổi lọc về thẻ thứ hai ("2/N") khi có từ 3 thẻ
 - **FR-203** → Không có kudo thì chỉ hiện chữ rỗng, không mũi tên
 - **FR-204** → Thời gian đúng giờ Việt Nam, nội dung cắt đúng số dòng, tối đa 5 hashtag và 5 ảnh
 - **FR-206** → Đổi lọc đổi URL, tải lại giữ lọc, giá trị lạ không làm lỗi

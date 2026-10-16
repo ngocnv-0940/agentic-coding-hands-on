@@ -1,0 +1,158 @@
+[WebServer] $ next dev -p "3100"
+
+Running 4 tests using 4 workers
+
+[WebServer] Route /login is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route / is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /sun-kudos is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✘  3 [chromium] › e2e/kudos-highlight-and-filters.spec.ts:23:7 › Sun* Kudos highlight and filters › TC FUNCTION 32 / FR-201: the carousel arrows move one card and disable at both ends (8.9s)
+  ✘  4 [chromium] › e2e/kudos-highlight-and-filters.spec.ts:39:7 › Sun* Kudos highlight and filters › FR-201 / DEC-002: at 1440px the neighbour slides are faded and the centre slide is fully opaque (9.0s)
+  ✘  1 [chromium] › e2e/kudos-board-access-and-layout.spec.ts:76:7 › Sun* Kudos live board: access and layout › TC GUI 10: the carousel shows five cards, the centre active, opening on 2/5 (9.2s)
+  ✘  2 [chromium] › e2e/kudos-highlight-and-filters.spec.ts:75:7 › Sun* Kudos highlight and filters › FR-202: choosing a hashtag reruns the highlight and resets the carousel to its opening card (9.5s)
+
+
+  1) [chromium] › e2e/kudos-board-access-and-layout.spec.ts:76:7 › Sun* Kudos live board: access and layout › TC GUI 10: the carousel shows five cards, the centre active, opening on 2/5 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  getByTestId('kudos-carousel-prev')
+    Expected: enabled
+    Received: disabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeEnabled" getByTestId('kudos-carousel-prev') with timeout 5000ms
+      - waiting for getByTestId('kudos-carousel-prev')
+        14 × locator resolved to <button disabled type="button" aria-label="Kudos trước" data-testid="kudos-carousel-prev" class="flex size-12 cursor-pointer items-center justify-center rounded p-2.5 text-white transition-opacity duration-200 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-saa-gold">…</button>
+           - unexpected value "disabled"
+
+
+      79 |     await expect(cards).toHaveCount(5)
+      80 |     await expect(k.highlightBlock(page).locator('[data-active]')).toHaveCount(1)
+    > 81 |     await expect(k.carouselPrev(page)).toBeEnabled()
+         |                                        ^
+      82 |     await expect(k.carouselNext(page)).toBeEnabled()
+      83 |     await expect(k.carouselPager(page)).toHaveText('2/5')
+      84 |   })
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/kudos-board-access-and-layout.spec.ts:81:40
+
+    Error Context: test-results/kudos-board-access-and-lay-77515-entre-active-opening-on-2-5-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/kudos-board-access-and-lay-77515-entre-active-opening-on-2-5-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/kudos-board-access-and-lay-77515-entre-active-opening-on-2-5-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/kudos-highlight-and-filters.spec.ts:23:7 › Sun* Kudos highlight and filters › TC FUNCTION 32 / FR-201: the carousel arrows move one card and disable at both ends 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('kudos-carousel-pager')
+    Expected: "2/5"
+    Received: "1/5"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('kudos-carousel-pager') with timeout 5000ms
+      - waiting for getByTestId('kudos-carousel-pager')
+        14 × locator resolved to <p aria-live="polite" data-testid="kudos-carousel-pager" class="m-0 font-[family-name:var(--font-montserrat)] text-2xl leading-[52px] font-bold text-[#999]">…</p>
+           - unexpected value "1/5"
+
+
+      23 |   test('TC FUNCTION 32 / FR-201: the carousel arrows move one card and disable at both ends', async ({ page }) => {
+      24 |     await openKudosBoard(page)
+    > 25 |     await expect(k.carouselPager(page)).toHaveText('2/5')
+         |                                         ^
+      26 |     await k.carouselPrev(page).click()
+      27 |     await expect(k.carouselPager(page)).toHaveText('1/5')
+      28 |     await expect(k.carouselPrev(page)).toBeDisabled()
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/kudos-highlight-and-filters.spec.ts:25:41
+
+    Error Context: test-results/kudos-highlight-and-filter-6b3f4-rd-and-disable-at-both-ends-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/kudos-highlight-and-filter-6b3f4-rd-and-disable-at-both-ends-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/kudos-highlight-and-filter-6b3f4-rd-and-disable-at-both-ends-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/kudos-highlight-and-filters.spec.ts:39:7 › Sun* Kudos highlight and filters › FR-201 / DEC-002: at 1440px the neighbour slides are faded and the centre slide is fully opaque 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('kudos-carousel').locator(':scope > ul > li').nth(1).locator('[data-active]')
+    Expected: 1
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('kudos-carousel').locator(':scope > ul > li').nth(1).locator('[data-active]') with timeout 5000ms
+      - waiting for getByTestId('kudos-carousel').locator(':scope > ul > li').nth(1).locator('[data-active]')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      44 |     const opacityOf = (slide: Locator) => slide.evaluate((node) => parseFloat(getComputedStyle(node).opacity))
+      45 |     // Opens on the second card (Figma pager "2/5"), so a faded card shows on each side of the centre
+    > 46 |     await expect(slides.nth(1).locator('[data-active]')).toHaveCount(1)
+         |                                                          ^
+      47 |     await expect.poll(() => opacityOf(slides.nth(1))).toBe(1)
+      48 |     for (const index of [0, 2, 3, 4]) {
+      49 |       await expect.poll(() => opacityOf(slides.nth(index)), { message: `slide ${index + 1} is faded` }).toBeLessThan(1)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/kudos-highlight-and-filters.spec.ts:46:58
+
+    Error Context: test-results/kudos-highlight-and-filter-c6702-entre-slide-is-fully-opaque-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/kudos-highlight-and-filter-c6702-entre-slide-is-fully-opaque-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/kudos-highlight-and-filter-c6702-entre-slide-is-fully-opaque-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/kudos-highlight-and-filters.spec.ts:75:7 › Sun* Kudos highlight and filters › FR-202: choosing a hashtag reruns the highlight and resets the carousel to its opening card 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('kudos-carousel-pager')
+    Expected: "4/5"
+    Received: "3/5"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('kudos-carousel-pager') with timeout 5000ms
+      - waiting for getByTestId('kudos-carousel-pager')
+        14 × locator resolved to <p aria-live="polite" data-testid="kudos-carousel-pager" class="m-0 font-[family-name:var(--font-montserrat)] text-2xl leading-[52px] font-bold text-[#999]">…</p>
+           - unexpected value "3/5"
+
+
+      77 |     await k.carouselNext(page).click()
+      78 |     await k.carouselNext(page).click()
+    > 79 |     await expect(k.carouselPager(page)).toHaveText('4/5')
+         |                                         ^
+      80 |     await chooseOption(page, k.hashtagFilter(page), '#Teamwork')
+      81 |     await expect(page).toHaveURL(/[?&]hashtag=teamwork/)
+      82 |     expect(await k.cardIds(k.highlightBlock(page))).toEqual(EXPECT.highlightTeamwork)
+        at /home/nguyenvanngocb/work/agentic-coding-hands-on/e2e/kudos-highlight-and-filters.spec.ts:79:41
+
+    Error Context: test-results/kudos-highlight-and-filter-3d8cb-arousel-to-its-opening-card-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/kudos-highlight-and-filter-3d8cb-arousel-to-its-opening-card-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/kudos-highlight-and-filter-3d8cb-arousel-to-its-opening-card-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [chromium] › e2e/kudos-board-access-and-layout.spec.ts:76:7 › Sun* Kudos live board: access and layout › TC GUI 10: the carousel shows five cards, the centre active, opening on 2/5 
+    [chromium] › e2e/kudos-highlight-and-filters.spec.ts:23:7 › Sun* Kudos highlight and filters › TC FUNCTION 32 / FR-201: the carousel arrows move one card and disable at both ends 
+    [chromium] › e2e/kudos-highlight-and-filters.spec.ts:39:7 › Sun* Kudos highlight and filters › FR-201 / DEC-002: at 1440px the neighbour slides are faded and the centre slide is fully opaque 
+    [chromium] › e2e/kudos-highlight-and-filters.spec.ts:75:7 › Sun* Kudos highlight and filters › FR-202: choosing a hashtag reruns the highlight and resets the carousel to its opening card 

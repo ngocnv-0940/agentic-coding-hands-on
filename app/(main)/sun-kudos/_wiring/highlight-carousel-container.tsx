@@ -13,7 +13,7 @@ type HighlightCarouselContainerProps = {
   carouselTexts: CarouselTexts
 }
 
-/** Highlight carousel. The server block keys it by the filters, so a filter change remounts it at 1/N (FR-202). */
+/** Highlight carousel. The server block keys it by the filters, so a filter change remounts it at its opening card (FR-202). */
 export function HighlightCarouselContainer({ cards, filters, cardTexts, carouselTexts }: HighlightCarouselContainerProps) {
   const { index, prev, next } = useHighlightCarousel(cards.length)
 

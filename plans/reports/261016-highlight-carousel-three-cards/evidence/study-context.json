@@ -1,0 +1,13 @@
+{
+  "task": "Diagnosis: HIGHLIGHT KUDOS carousel opened on index 0 (useState(0) in app/(main)/sun-kudos/_behavior/use-highlight-carousel.ts), so the first card was centred with nothing on its left and only 2 cards showed. Figma (MoMorph B.5/B.5.2 pager '2/5') opens on the second card with a faded card on each side. Fix: open on index 1 when there are 3+ slides, else 0; filter remount resets to that opening card.",
+  "mode": "auto",
+  "acceptanceCriteria": [
+    "Regression: at 1440px the carousel opens on 2/5 with slide 2 active, slides 1 and 3 faded and in the viewport (3 cards visible) — fails on the old code, passes on the fixed code",
+    "Prev/next still move one card and disable at both ends; a filter change resets the carousel to its opening card (2/N)",
+    "Fewer than 3 slides still open on the first slide",
+    "All kudos e2e specs stay green; tsc and lint clean"
+  ],
+  "touchpoints": ["app/(main)/sun-kudos/_behavior/use-highlight-carousel.ts", "app/(main)/sun-kudos/_wiring/highlight-carousel-container.tsx", "e2e/kudos-highlight-and-filters.spec.ts", "e2e/kudos-board-access-and-layout.spec.ts", "e2e/kudos-feed-and-cards.spec.ts"],
+  "blastRadius": ["Highlight carousel initial position and FR-202 reset", "e2e tests that click the top-ranked highlight card"],
+  "contracts": ["node .claude/skills/_shared/lib/evidence-gate.cjs --evidence-dir <abs> --stage hard"]
+}

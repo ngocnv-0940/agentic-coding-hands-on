@@ -1,0 +1,47 @@
+{
+  "score": 9,
+  "criticalCount": 0,
+  "decision": "SEALED",
+  "acceptanceCovered": [
+    "Regression: at 1440px the carousel opens on 2/5 with slide 2 active, slides 1 and 3 faded and in the viewport (3 cards visible) — fails on the old code, passes on the fixed code",
+    "Prev/next still move one card and disable at both ends; a filter change resets the carousel to its opening card (2/N)",
+    "Fewer than 3 slides still open on the first slide",
+    "All kudos e2e specs stay green; tsc and lint clean"
+  ],
+  "regressionChecked": [
+    "count shrink under mounted carousel: index clamped on read, prev/next clamp via last",
+    "count 0/1/2 open on 0, count >=3 opens on 1; pager label and canPrev/canNext derive from clamped index",
+    "initial-state-only is correct: highlight-block.tsx:28 keys the container by filtersKey, so filter change remounts and re-runs the initializer",
+    "only caller of useHighlightCarousel is highlight-carousel-container.tsx; carousel-view.tsx takes index generically (no index-0 assumption)",
+    "e2e specs clicking kudo 25 in highlight now step Prev first; FR-202 now 4/5 then 2/5; FR long-content Next x3 to 5/5",
+    "baseline-red.txt shows the 4 changed tests fail on old code for the intended reason (prev enabled / pager 2/5)",
+    "bunx tsc --noEmit clean; after-fix-green 60 passed"
+  ],
+  "contractStatus": "OK",
+  "refuted": [],
+  "unproven": [],
+  "reachableRegressions": [],
+  "findings": [
+    {
+      "severity": "Low",
+      "category": "Docs",
+      "location": "docs/screens/SCR006_KudosLiveBoard/spec.md:81-82",
+      "summary": "E08 default 'Lùi vô hiệu' and E09 default '1/N' are now stale; opening state is 2/N when 3+ slides (prev enabled)",
+      "disposition": "Defer"
+    },
+    {
+      "severity": "Low",
+      "category": "Assumption",
+      "location": "app/(main)/sun-kudos/_behavior/use-highlight-carousel.ts:25",
+      "summary": "Initial index derives from first-mount count only; if the count grew 2->3 without a key change the carousel would stay on 1/N. Not reachable today since cards derive from the keyed filters; acceptable",
+      "disposition": "Reject"
+    },
+    {
+      "severity": "Low",
+      "category": "Test",
+      "location": "e2e/kudos-highlight-and-filters.spec.ts:27",
+      "summary": "No e2e for the <3 slides opening-on-first branch (criterion 3); only the 3+ path is covered. Covered by reading only",
+      "disposition": "Defer"
+    }
+  ]
+}
