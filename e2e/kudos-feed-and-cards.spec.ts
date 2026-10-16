@@ -48,10 +48,10 @@ test.describe('Sun* Kudos feed and cards', () => {
     expect(await lineClamp(k.kudoContent(longCard))).toBe(String(LONG_CONTENT_LINES))
     await expectClampedTo(k.kudoContent(longCard), LONG_CONTENT_LINES)
 
-    // #Inspiring highlight is 21, 7, 16, 12, 11 (ALG-001: likes desc, ties to newer): kudo 11, the long one, is the 5th, so Next x4 centres it
+    // #Inspiring highlight is 21, 7, 16, 12, 11 (ALG-001: likes desc, ties to newer): kudo 11, the long one, is the 5th; the carousel opens on 2/5, so Next x3 centres it
     await page.goto('/sun-kudos?hashtag=inspiring')
     await expect(k.kudosBoard(page)).toBeVisible()
-    for (let step = 0; step < 4; step++) await k.carouselNext(page).click()
+    for (let step = 0; step < 3; step++) await k.carouselNext(page).click()
     await expect(k.carouselPager(page)).toHaveText('5/5')
     const centre = k.highlightBlock(page).locator('[data-testid="kudo-card"][data-active]')
     await expect(centre).toHaveAttribute('data-kudo-id', EXPECT.longContentKudo)
@@ -131,6 +131,8 @@ test.describe('Sun* Kudos feed and cards', () => {
   test('TC FUNCTION 34: copy link writes the absolute kudo URL and the toast hides after about 3 seconds', async ({ page, context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write'])
     await openKudosBoard(page)
+    // Kudo 25 ranks first, so it sits on the faded left slide until the carousel steps back to 1/5
+    await k.carouselPrev(page).click()
     const card = k.cardIn(k.highlightBlock(page), kudoId(25))
     await k.copyLinkButton(card).click()
     await expect(k.toast(page)).toHaveText(COPIED)
@@ -145,6 +147,7 @@ test.describe('Sun* Kudos feed and cards', () => {
       navigator.clipboard.writeText = () => Promise.reject(new Error('blocked'))
     })
     await openKudosBoard(page)
+    await k.carouselPrev(page).click()
     await k.copyLinkButton(k.cardIn(k.highlightBlock(page), kudoId(25))).click()
     await expect(k.toast(page)).toBeVisible()
     await expect(k.toast(page)).not.toHaveText(COPIED)

@@ -16,11 +16,13 @@ export type HighlightCarousel = {
 
 /**
  * Highlight carousel position (A2, DEC-002). One step per call, no wrap-around; both ends disable their arrow.
+ * With three or more slides it opens on the second one (Figma pager "2/5"), so a faded card shows on each side
+ * of the centre; with fewer it opens on the first.
  * It never resets itself: the parent remounts it with a `key` built from the active filters (FR-202), which is
  * what also works while Activity keeps client state across `router.replace`.
  */
 export function useHighlightCarousel(count: number): HighlightCarousel {
-  const [rawIndex, setRawIndex] = useState(0)
+  const [rawIndex, setRawIndex] = useState(() => (count >= 3 ? 1 : 0))
   const last = Math.max(count - 1, 0)
   // `count` can shrink under a mounted carousel; clamp on read instead of syncing state in an effect.
   const index = Math.min(rawIndex, last)

@@ -26,6 +26,8 @@ test.describe('Sun* Kudos live board: access and layout', () => {
   // TC ACCESSING 2 / FR-103: "Xem chi tiết" on the highlight card opens the kudo detail route
   test('TC ACCESSING 2 / FR-103: "Xem chi tiết" on a highlight card opens /sun-kudos/<id>', async ({ page }) => {
     await openKudosBoard(page)
+    // Kudo 25 ranks first, so it sits on the faded left slide until the carousel steps back to 1/5
+    await k.carouselPrev(page).click()
     const card = k.cardIn(k.highlightBlock(page), kudoId(25))
     await expect(card, 'highlight card for kudo 25').toBeVisible()
     await k.detailLink(card).click()
@@ -72,15 +74,15 @@ test.describe('Sun* Kudos live board: access and layout', () => {
     await expect(k.departmentFilter(page)).toBeVisible()
   })
 
-  // GUI 10: five slides, the centre one active, neighbours inert, prev disabled at the start
-  test('TC GUI 10: the carousel shows five cards, the centre active, prev disabled on 1', async ({ page }) => {
+  // GUI 10: five slides, the centre one active, neighbours inert; opens on 2/5 (Figma) so a card sits on each side
+  test('TC GUI 10: the carousel shows five cards, the centre active, opening on 2/5', async ({ page }) => {
     await openKudosBoard(page)
     const cards = k.highlightBlock(page).getByTestId('kudo-card')
     await expect(cards).toHaveCount(5)
     await expect(k.highlightBlock(page).locator('[data-active]')).toHaveCount(1)
-    await expect(k.carouselPrev(page)).toBeDisabled()
+    await expect(k.carouselPrev(page)).toBeEnabled()
     await expect(k.carouselNext(page)).toBeEnabled()
-    await expect(k.carouselPager(page)).toHaveText('1/5')
+    await expect(k.carouselPager(page)).toHaveText('2/5')
   })
 
   // GUI 11: a highlight card shows sender, receiver, time, hashtags and the action bar
