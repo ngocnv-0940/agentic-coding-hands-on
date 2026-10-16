@@ -2,6 +2,14 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-16 — Sửa lỗi: Kudo có nhắc tên (@) bị báo "Nội dung chưa hợp lệ" (F007)
+
+**Sửa** (mức cao: mọi Kudo có mention đều không gửi được)
+
+- Nguyên nhân: `attrs` của node ProseMirror (ví dụ `{id, label}` của mention) là object không có prototype, nên Server Action không gửi được dữ liệu mà gửi một tham chiếu tạm (`"$T"`). `create_kudo` nhận node mention không có `attrs.id` và trả `content_doc_invalid`.
+- Cách sửa: `useKudoEditor().json()` (`app/(main)/sun-kudos/_behavior/use-kudo-editor.ts`) chuyển tài liệu qua JSON một lượt trước khi gửi, để mọi `attrs` thành object thường. Phía DB không đổi.
+- Test hồi quy: `e2e/write-kudo-submit-and-anonymous.spec.ts`, ca "TC ID-13 / ID-47" gửi một Kudo có mention. Ca này hỏng trên code cũ và đạt sau khi sửa. Đã kiểm thêm trên Supabase local thật: kudo lưu đúng node mention.
+
 ## 2026-10-16 — Nút hành động nhanh (FAB) mở Viết Kudo, click nền đóng modal, cuộn mượt hơn (F007, F003 FR-211)
 
 **Thêm**
