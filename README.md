@@ -1,5 +1,7 @@
 # agentic-coding-hands-on
 
+**Demo:** https://agentic-coding-hands-on-theta.vercel.app/ (đăng nhập bằng tài khoản Google)
+
 Ứng dụng Next.js 16 (App Router) đăng nhập bằng Google qua Supabase Auth, giao diện vi/en. Có sáu màn hình: `/login`, trang chủ SAA 2025 `/` (đích sau đăng nhập; header, đếm ngược tới sự kiện, lưới giải thưởng, footer), trang Hệ thống giải `/awards-information` (menu 6 hạng mục, 6 thẻ giải, liên kết `#<slug>`), `/todo` (hiện email và nút đăng xuất), trang đếm ngược công khai `/prelaunch` và màn Sun* Kudos live board `/sun-kudos` (Highlight, Spotlight, ALL KUDOS cuộn vô hạn, bộ lọc hashtag/phòng ban, bấm tim, modal Viết Kudo; đọc và ghi vào Postgres của Supabase). Các trang `/sun-kudos/<id>`, `/standards`, `/profile`, `/admin` hiện chỉ là trang giữ chỗ "Coming soon"; `/admin` chỉ cho người dùng có `app_metadata.role = 'admin'`. Mọi trang trừ `/login` và `/prelaunch` đều cần đăng nhập. Trước `SITE_LAUNCH_AT`, mọi đường dẫn ngoài `/login`, `/auth/*`, `/_next/*` và `/prelaunch` bị chuyển 307 về `/prelaunch` (khóa site, xem bên dưới). Tài liệu thiết kế nằm ở [docs/README.md](docs/README.md).
 
 ## Quy trình AI Driven Development (AIDD)
