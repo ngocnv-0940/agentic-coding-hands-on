@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useEffectEvent, type RefObject } from 'react'
+import { useEffect, useEffectEvent, useRef, type RefObject } from 'react'
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]):not([hidden]), select:not([disabled]), textarea:not([disabled]), [contenteditable="true"], [tabindex]:not([tabindex="-1"])'
@@ -64,15 +64,30 @@ export function useModalFocusTrap({ open, dialogRef, initialFocusRef, opener, on
     }
   })
 
+  // Focus goes back to the opener one task after cleanup, so an effect re-run while the modal stays open (StrictMode's
+  // dev re-mount, a dependency change) cancels it: an immediate restore would blur the recipient input on open and
+  // mark it touched, showing its error before the user did anything (DEC-002).
+  const pendingRestore = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const restoreTarget = useRef<HTMLElement | null>(null)
+
   useEffect(() => {
     if (!open) return
-    const previous = opener ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null)
-    ;(initialFocusRef.current ?? dialogRef.current)?.focus()
+    const reRun = pendingRestore.current !== null
+    if (reRun) clearTimeout(pendingRestore.current!)
+    pendingRestore.current = null
+    if (!reRun) {
+      restoreTarget.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+      ;(initialFocusRef.current ?? dialogRef.current)?.focus()
+    }
     const onKeyDown = (event: KeyboardEvent) => handleKeyDown(event)
     document.addEventListener('keydown', onKeyDown)
     return () => {
       document.removeEventListener('keydown', onKeyDown)
-      if (previous?.isConnected) previous.focus()
+      const previous = opener ?? restoreTarget.current
+      pendingRestore.current = setTimeout(() => {
+        pendingRestore.current = null
+        if (previous?.isConnected) previous.focus()
+      })
     }
   }, [open, opener, dialogRef, initialFocusRef])
 }

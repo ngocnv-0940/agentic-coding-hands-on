@@ -130,11 +130,14 @@ export function spotlight(ds: MockDataset): Json {
 
 const NO_STATS = { received: 0, sent: 0, hearts: 0, boxesOpened: 0, boxesUnopened: 0 }
 
-/** Sidebar: viewer stats (all 0 without a sunner row) plus the public latest-gifts list (10 newest opened). */
+/** Sidebar: viewer stats (all 0 without a sunner row) plus the public latest-gifts list
+ *  (the 10 Sunners who most recently opened a box, one row each with their newest box). */
 export function sidebar(ds: MockDataset, viewer: MockSunner | undefined): Json {
+  const seenOwners = new Set<string>()
   const latestGifts = ds.boxes
     .filter((box) => box.openedAt !== null)
     .sort((a, b) => Date.parse(b.openedAt!) - Date.parse(a.openedAt!))
+    .filter((box) => !seenOwners.has(box.ownerId) && seenOwners.add(box.ownerId))
     .slice(0, 10)
     .map((box) => {
       const owner = sunnerById(ds, box.ownerId)!

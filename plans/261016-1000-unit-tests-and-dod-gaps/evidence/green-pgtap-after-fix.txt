@@ -1,0 +1,9 @@
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-latest-gifts-distinct-sunners.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-latest-gifts-distinct-sunners.test.sql .. ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql:5: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-like-rules.test.sql ..................... ok
+psql:/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql:6: NOTICE:  extension "pgtap" already exists, skipping
+/home/nguyenvanngocb/work/agentic-coding-hands-on/supabase/tests/database/kudos-rls-and-reads.test.sql .................. ok
+  Failed tests:  3, 6, 9-10, 12-13, 15, 17, 21-22
+Result: FAIL
+Note: kudos-seed-matches-e2e-fixture tests 3,6,9-10,12-13,15,17,21-22 fail on this local DB before and after this change (local DB holds manual kudos/likes/users beyond seed.sql; not reset to keep local data). Test 18 (EXPECT.giftsShown = 9) moved from fail to pass with the fix. CI runs the suite on a fresh supabase start + seed.
