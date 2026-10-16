@@ -10,6 +10,7 @@
     "supabase:stop": "supabase stop",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
+    "test:unit": "bun test ./lib ./app",
     "test:e2e": "playwright test"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@playwright/test": "^1.64.0",
     "@tailwindcss/turbopack": "^4",
+    "@types/bun": "1.4.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
