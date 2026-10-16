@@ -37,7 +37,7 @@ flowchart LR
 | F005 Countdown Prelaunch | `8PJQswPZmU` | `plans/261013-1638-countdown-prelaunch-page/` | #6 |
 | F006 Sun* Kudos + Like Kudos | `MaZUn5xHXZ` | `plans/261014-0900-kudos-live-board/` | #9, #13 |
 | F007 Viết Kudo | `ihQ26W78P2` | `plans/261015-0950-write-kudo-modal/`, `plans/261015-1700-auto-provision-sunner/`, `plans/261015-1900-fab-and-modal-polish/` | #10, #12 |
-| Unit test, bù các lỗ hổng so với Definition of Done | — | `plans/261016-1000-unit-tests-and-dod-gaps/` | (PR này) |
+| Unit test, bù các lỗ hổng so với Definition of Done | — | `plans/261016-1000-unit-tests-and-dod-gaps/` | #14 |
 
 Đặc tả sau khi dựng xong nằm ở `docs/features/F00x_*/` (functional/technical spec) và `docs/screens/SCR00x_*/`.
 
