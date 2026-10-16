@@ -2,6 +2,14 @@
 
 Mỗi mục ghi một thay đổi đáng kể, mới nhất ở trên.
 
+## 2026-10-16 — Sửa lỗi: Highlight Kudos chỉ hiện 2 thẻ lúc mở trang (F006)
+
+**Sửa** (mức thấp: lệch thiết kế, không mất chức năng)
+
+- Nguyên nhân: carousel mở ở thẻ đầu (`useState(0)` trong `app/(main)/sun-kudos/_behavior/use-highlight-carousel.ts`), nên bên trái thẻ giữa trống, chỉ thấy 2 thẻ. Figma mở ở "2/5", mỗi bên một thẻ mờ.
+- Cách sửa: từ 3 thẻ trở lên carousel mở ở thẻ thứ hai, dưới 3 thẻ vẫn mở ở thẻ đầu. Đổi bộ lọc thì carousel về lại thẻ mở đầu này ("2/N").
+- Test hồi quy: `e2e/kudos-highlight-and-filters.spec.ts`, ca "FR-201 / DEC-002" (FR-202) kiểm thẻ thứ hai đang active và thẻ 1, 3 mờ nằm trong khung nhìn; hỏng trên code cũ, đạt sau khi sửa. Các ca bấm vào thẻ top 1 nay lùi về "1/5" trước.
+
 ## 2026-10-16 — Sửa lỗi: Kudo có nhắc tên (@) bị báo "Nội dung chưa hợp lệ" (F007)
 
 **Sửa** (mức cao: mọi Kudo có mention đều không gửi được)

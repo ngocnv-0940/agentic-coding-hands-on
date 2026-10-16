@@ -77,9 +77,9 @@ Văn bản và giá trị theo Figma/MoMorph (screen `MaZUn5xHXZ`, frame `2940:1
 | E04 | Tiêu đề phần: "Sun* Annual Awards 2025" và "HIGHLIGHT KUDOS" | region label | — | Hiện | Always | — | static | raw | — | MoMorph B.1 (`2940:13452`) |
 | E05 | Dropdown "Hashtag" | select | no | Chưa chọn (tất cả) | Always | Mở danh sách, chọn một hashtag hoặc bỏ lọc | API field | raw | Danh sách rỗng thì chỉ có "bỏ lọc" | MoMorph B.1.1 (`2940:13459`) |
 | E06 | Dropdown "Phòng ban" | select | no | Chưa chọn (tất cả) | Always | Mở danh sách, chọn một phòng ban hoặc bỏ lọc | API field | raw | Như E05 | MoMorph B.1.2 (`2940:13460`) |
-| E07 | Carousel Highlight: thẻ giữa rõ, hai thẻ bên mờ và không tương tác | list | — | Thẻ đầu ở giữa | Conditional | — | API field | — | Hiện "Hiện tại chưa có Kudos nào." | MoMorph B.2, B.2.3 (`2940:13461`, `2940:13463`) |
-| E08 | Mũi tên lùi và tiến hai bên carousel | button | — | Lùi vô hiệu | Conditional | Chuyển thẻ trước hoặc sau | computed | — | — | MoMorph B.2.1, B.2.2 (`2940:13470`, `2940:13468`) |
-| E09 | Hàng điều khiển dưới carousel: mũi tên lùi, "n/N", mũi tên tiến | button | — | "1/N" | Conditional | Như E08 | computed | `n/N` | — | MoMorph B.5, B.5.1 đến B.5.3 (`2940:13471` đến `2940:13474`) |
+| E07 | Carousel Highlight: thẻ giữa rõ, hai thẻ bên mờ và không tương tác | list | — | Thẻ thứ hai ở giữa (từ 3 thẻ trở lên, nên hai bên đều có thẻ mờ); dưới 3 thẻ thì thẻ đầu | Conditional | — | API field | — | Hiện "Hiện tại chưa có Kudos nào." | MoMorph B.2, B.2.3 (`2940:13461`, `2940:13463`) |
+| E08 | Mũi tên lùi và tiến hai bên carousel | button | — | Cả hai bật khi mở ở thẻ thứ hai; lùi vô hiệu ở thẻ đầu | Conditional | Chuyển thẻ trước hoặc sau | computed | — | — | MoMorph B.2.1, B.2.2 (`2940:13470`, `2940:13468`) |
+| E09 | Hàng điều khiển dưới carousel: mũi tên lùi, "n/N", mũi tên tiến | button | — | "2/N" (dưới 3 thẻ: "1/N") | Conditional | Như E08 | computed | `n/N` | — | MoMorph B.5, B.5.1 đến B.5.3 (`2940:13471` đến `2940:13474`) |
 | E10 | Tiêu đề phần: "Sun* Annual Awards 2025" và "SPOTLIGHT BOARD" | region label | — | Hiện | Always | — | static | raw | — | MoMorph B.6 (`2940:13476`) |
 | E11 | Khối người gửi: avatar, họ tên, phòng ban, số sao, huy hiệu danh hiệu | display field | — | Avatar mặc định nếu thiếu ảnh | Always | Bấm avatar hoặc tên tới hồ sơ; rê vào sao hiện mô tả | API field | sao: 0 đến 3; huy hiệu New, Rising, Super, Legend Hero | Không sao, không huy hiệu khi thiếu | MoMorph B.3.1, B.3.2, C.3.1 |
 | E12 | Mũi tên "gửi tới" giữa người gửi và người nhận | image | — | Hiện | Always | — | static | raw | — | MoMorph B.3.4, C.3.2 |
@@ -115,7 +115,7 @@ Danh sách mục "10 SUNNER CÓ SỰ THĂNG HẠNG MỚI NHẤT" của spec MoMo
 | Action | Element | Trigger | Condition | Result on this screen | Source |
 |--------|---------|---------|-----------|------------------------|--------|
 | Chuyển thẻ Highlight | E08, E09 | click | Không ở đầu (lùi) hoặc cuối (tiến) | Thẻ giữa đổi, chỉ số "n/N" đổi | TBD (draft) |
-| Chọn bộ lọc hashtag | E05 | click rồi chọn | — | Địa chỉ đổi; Highlight và ALL KUDOS dựng lại theo bộ lọc; carousel về thẻ đầu | TBD (draft) |
+| Chọn bộ lọc hashtag | E05 | click rồi chọn | — | Địa chỉ đổi; Highlight và ALL KUDOS dựng lại theo bộ lọc; carousel về thẻ mở đầu ("2/N") | TBD (draft) |
 | Chọn bộ lọc phòng ban | E06 | click rồi chọn | — | Như trên | TBD (draft) |
 | Bỏ bộ lọc | E05, E06 | chọn dòng bỏ lọc | Đang có lọc | Bộ lọc đó bị xóa khỏi địa chỉ, danh sách dựng lại | TBD (draft) |
 | Lọc theo hashtag trên thẻ | E18 | click một hashtag | Hashtag không bị cắt bởi "..." | Như "Chọn bộ lọc hashtag" | TBD (draft) |
@@ -132,7 +132,7 @@ Danh sách mục "10 SUNNER CÓ SỰ THĂNG HẠNG MỚI NHẤT" của spec MoMo
 
 ### Happy Path
 
-1. Sunner mở trang, thấy banner và Highlight với thẻ đầu ở giữa (R3).
+1. Sunner mở trang, thấy banner và Highlight với thẻ thứ hai ở giữa, mỗi bên một thẻ mờ (R3).
 2. Họ bấm mũi tên tiến để xem các thẻ nổi bật khác, rồi chọn một hashtag ở dropdown; Highlight và ALL KUDOS cùng thu hẹp.
 3. Họ lướt Spotlight (R4), rê chuột lên một tên để xem thời gian, gõ tên đồng nghiệp rồi Enter để làm nổi bật.
 4. Họ cuộn tới ALL KUDOS (R5), thả tim một kudo, bấm "Copy Link" và thấy toast.
